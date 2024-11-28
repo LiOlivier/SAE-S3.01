@@ -1,0 +1,142 @@
+/* Style général pour la page */
+body {
+    background-color: #EEE; /* Couleur de fond gris clair pour toute la page */
+    margin: 0; /* Suppression des marges par défaut */
+}
+
+/* Barre de sélection de langue en haut de la page */
+#bar-selection {
+    position: static; /* Position par défaut */
+    background-color: #354878; /* Couleur bleu foncé pour la barre */
+    height: 35px; /* Hauteur de la barre */
+    width: 100%; /* Largeur maximale de l'écran */
+    margin: 0; /* Suppression des marges (inutile ici car redondant) */
+}
+
+#langue {
+    color: white; /* Couleur de texte blanc */
+    height: 35px; /* Alignement avec la hauteur de la barre */
+    display: flex; /* Utilisation de flexbox pour aligner le contenu */
+    justify-content: flex-end; /* Alignement à droite */
+    align-items: center; /* Alignement vertical centré */
+    margin-right: 5%; /* Espacement à droite */
+}
+
+#langue img {
+    width: 1%; /* Taille des icônes très petite (à ajuster si besoin) */
+}
+
+/* Bannière en dessous de la barre */
+#barner {
+    left: 0; /* Position horizontale par défaut */
+    position: static; /* Position par défaut */
+    top: 36px; /* Décalage par rapport au haut de la page */
+    width: 100%; /* Largeur maximale */
+    height: 15%; /* Hauteur proportionnelle */
+    display: flex; /* Flexbox pour centrer les éléments */
+    justify-content: center; /* Alignement centré */
+    border-bottom: solid #978474 5px; /* Bordure inférieure beige */
+    background-color: white; /* Couleur de fond blanche */
+}
+
+/* Conteneur principal pour le formulaire de connexion */
+#login-div {
+    position: relative; /* Position par rapport à son parent */
+    justify-self: center; /* centrer le bloc login lui même horizontalment */
+    justify-items: center; /* centrer horizontalement ces éléments */
+    background-color: white; /* Couleur de fond blanche */
+    margin-top: 80px; /* Espacement par rapport au haut de la page */
+    width: 500px; /* Largeur fixe */
+    height: 550px; /* Hauteur fixe */
+    box-shadow: 0px 0px 9px 0px #3C3C3C; /* Ombre pour donner un effet de profondeur */
+}
+
+/* Titre du formulaire */
+.content {
+    font-family: 'Lucida Sans', sans-serif; /* Police principale avec alternatives */
+    font-size: 40px; /* Taille de police importante */
+    padding: 40px; /* Espacement interne autour du titre */
+    color: #3C3C3C; /* Couleur gris foncé */
+}
+
+/* Styles pour le formulaire */
+form {
+    width: 100%; /* Le formulaire occupe toute la largeur de son conteneur */
+}
+
+/* Bloc identifiant */
+#identifiant {
+    position: relative; /* Position par rapport à son parent */
+    width: 90%; /* Largeur relative à son conteneur */
+    height: 100px; /* Hauteur fixe */
+}
+
+#identifiant p {
+    color: #A0A0A0; /* Texte gris clair */
+    margin: 0; /* Suppression des marges par défaut */
+}
+
+#identifiant img {
+    width: 25px; /* Taille des icônes */
+    margin-right: 10px; /* Espacement entre l'image et le texte */
+}
+
+#identifiant input {
+    border: none; /* Suppression des bordures standards */
+    border-bottom: 2px solid #978474; /* Ligne en bas de l'input */
+    width: 220%; /* Largeur surdimensionnée, à ajuster */
+    height: 30px; /* Hauteur de l'input */
+}
+
+/* Suppression du style par défaut des listes */
+li {
+    list-style: none;
+}
+
+ul {
+    padding-left: 10px; /* Ajout d'un espacement à gauche */
+}
+
+div > ul {
+    display: flex; /* Flexbox pour aligner les éléments horizontalement */
+    flex-direction: row; /* Direction horizontale */
+    align-items: end; /* Alignement vertical en bas */
+}
+
+/* Bloc mot de passe */
+#mdp {
+    position: relative; /* Position par rapport à son parent */
+    width: 90%; /* Largeur relative à son conteneur */
+    height: 100px; /* Hauteur fixe */
+}
+
+#mdp p {
+    color: #A0A0A0; /* Texte gris clair */
+}
+
+#mdp img {
+    width: 25px; /* Taille des icônes */
+    margin-right: 10px; /* Espacement entre l'image et le texte */
+}
+
+#mdp input {
+    border: none; /* Suppression des bordures standards */
+    border-bottom: 2px solid #978474; /* Ligne en bas de l'input */
+    width: 220%; /* Largeur surdimensionnée, à ajuster */
+    height: 30px; /* Hauteur de l'input */
+}
+
+/* Style du bouton de connexion */
+button {
+    position: relative; /* Position par rapport à son parent */
+    background-color: #978474; /* Couleur de fond beige */
+    width: 40%; /* Largeur relative à son conteneur */
+    height: 70px; /* Hauteur fixe */
+    color: white; /* Couleur du texte */
+    border: none; /* Suppression des bordures standards */
+    display: flex; /* Flexbox pour aligner le texte */
+    justify-self: center; /* (Inutile ici, applicable aux grilles CSS) */
+    justify-content: center; /* Texte centré horizontalement */
+    align-items: center; /* Texte centré verticalement */
+    font-size: large; /* Taille de texte importante */
+}
