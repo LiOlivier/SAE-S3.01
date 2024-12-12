@@ -1,0 +1,143 @@
+/* Style général pour le corps de la page */
+body {
+    background-color: #EEE; /* Couleur de fond gris clair */
+    margin: 0; /* Suppression des marges par défaut */
+}
+
+/* Barre de sélection tout en haut de la page */
+#bar-selection {
+    position: static; /* Position standard par rapport à son flux parent */
+    background-color: #354878; /* Couleur bleu foncé */
+    height: 35px; /* Hauteur fixe de la barre */
+    width: 100%; /* La barre occupe toute la largeur de l'écran */
+    margin: 0%; /* Redondant avec margin: 0px */
+    margin: 0px; /* Suppression des marges */
+}
+
+#langue {
+    color: white; /* Texte blanc */
+    height: 35px; /* Alignement vertical pour correspondre à la hauteur de la barre */
+    display: flex; /* Flexbox utilisé pour organiser les éléments */
+    justify-content: flex-end; /* Les éléments sont alignés à droite */
+    align-items: center; /* Alignement vertical centré */
+    margin-right: 5%; /* Marges internes à droite pour éviter d'être collé au bord */
+}
+
+#langue img {
+    width: 1%; /* Icône de langue très petite */
+}
+
+/* Section de la bannière */
+#barner {
+    left: 0; /* Alignement à gauche */
+    position: static; /* Position standard */
+    top: 36px; /* Décalage par rapport au haut de la page */
+    width: 100%; /* Largeur complète */
+    height: 15%; /* Hauteur en proportion de la page */
+    display: flex; /* Flexbox utilisé pour centrer les éléments */
+    justify-content: center; /* Les éléments sont centrés horizontalement */
+    border-bottom: solid #978474 5px; /* Bordure inférieure de 5px avec une couleur beige */
+    background-color: white; /* Fond blanc */
+}
+
+/* Conteneur principal pour le formulaire de connexion */
+#login-div {
+    position: relative; /* Position relative pour permettre des éléments positionnés */
+    justify-self: center; /* Propriété CSS Grid inutilisée ici */
+    justify-items: center; /* Propriété CSS Grid inutilisée ici */
+    background-color: white; /* Couleur de fond blanche */
+    margin-top: 80px; /* Décalage par rapport au haut */
+    width: 500px; /* Largeur fixe */
+    height: 550px; /* Hauteur fixe */
+    box-shadow: 0px 0px 9px 0px #3C3C3C; /* Ombre pour créer un effet de profondeur */
+}
+
+/* Titre de la section de connexion */
+.content {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; /* Famille de police utilisée */
+    font-size: 40px; /* Taille du texte */
+    padding: 40px; /* Espacement interne */
+    color: #3C3C3C; /* Couleur gris foncé */
+}
+
+/* Styles généraux pour le formulaire */
+form {
+    width: 100%; /* Le formulaire occupe toute la largeur de son conteneur parent */
+}
+
+/* Bloc contenant l'identifiant */
+#identifiant {
+    position: relative; /* Position relative pour des ajustements internes */
+    width: 90%; /* Largeur relative au conteneur parent */
+    height: 100px; /* Hauteur fixe */
+}
+
+#identifiant p {
+    color: #A0A0A0; /* Couleur de texte gris clair */
+    margin: 0; /* Suppression des marges autour du texte */
+}
+
+#identifiant img {
+    width: 25px; /* Taille fixe de l'icône */
+    margin-right: 10PX; /* Espacement entre l'icône et l'entrée */
+}
+
+#identifiant input {
+    border: none; /* Suppression des bordures classiques */
+    border-bottom: 2px solid #978474; /* Ligne inférieure beige */
+    width: 220%; /* Largeur fixée à plus du double du conteneur parent (à surveiller) */
+    height: 30px; /* Hauteur de l'entrée */
+}
+
+/* Styles des listes pour supprimer les puces */
+li {
+    list-style: none; /* Suppression des puces des listes */
+}
+
+ul {
+    padding-left: 10px; /* Espacement interne à gauche */
+}
+
+div > ul {
+    display: flex; /* Flexbox pour organiser les enfants de la liste */
+    flex-direction: row; /* Direction horizontale des enfants */
+    align-items: end; /* Alignement vertical en bas */
+}
+
+/* Bloc contenant le mot de passe */
+#mdp {
+    position: relative; /* Position relative pour ajustements internes */
+    width: 90%; /* Largeur relative au conteneur parent */
+    height: 100px; /* Hauteur fixe */
+}
+
+#mdp p {
+    color: #A0A0A0; /* Texte gris clair */
+}
+
+#mdp img {
+    width: 25px; /* Taille fixe de l'icône */
+    margin-right: 10PX; /* Espacement entre l'icône et l'entrée */
+}
+
+#mdp input {
+    border: none; /* Suppression des bordures classiques */
+    border-bottom: 2px solid #978474; /* Ligne inférieure beige */
+    width: 220%; /* Largeur fixée à plus du double du conteneur parent (à surveiller) */
+    height: 30px; /* Hauteur de l'entrée */
+}
+
+/* Bouton de connexion */
+button {
+    position: relative; /* Position relative pour ajustements */
+    background-color: #978474; /* Couleur de fond beige */
+    width: 40%; /* Largeur relative à son conteneur parent */
+    height: 70PX; /* Hauteur fixe */
+    color: white; /* Texte blanc */
+    border: none; /* Suppression des bordures classiques */
+    display: flex; /* Flexbox pour centrer le contenu */
+    justify-self: center; /* Propriété CSS Grid inutilisée ici */
+    justify-content: center; /* Alignement horizontal centré */
+    align-items: center; /* Alignement vertical centré */
+    font-size: large; /* Taille de police importante */
+}
