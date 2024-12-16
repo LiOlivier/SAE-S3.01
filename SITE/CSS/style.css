@@ -82,7 +82,7 @@ ul.navbar {
 
 .title-container {
     position: absolute;
-    top: 10%; /* Ajuste la position pour placer le titre plus haut */
+    top: 10%; 
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -113,7 +113,7 @@ ul.navbar {
 
 .form-container {
     position: absolute;
-    top: 60%; /* Ajuste pour espacer le formulaire du titre */
+    top: 60%; 
     left: 50%;
     transform: translateX(-50%);
     width: 350px;
