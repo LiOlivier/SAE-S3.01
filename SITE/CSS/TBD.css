@@ -229,22 +229,25 @@ input[type="password"]:focus {
 .bouton-side{
     margin: 2em;
     position: fixed;
-    
+    font-size: larger;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-decoration: none;
+    color: #00244d;
   }
 #TDB{
-    top: 20em;
+    top: 12em;
   }
 #DP{
-    top: 24em;
+    top: 16em;
 }
 #Profil{
-    top: 28em;
+    top: 20em;
 }
 #Deconecter{
-    top:50em;
+    top:40em;
 }
 #USPN{
-height: 20%;
+height: 10em;
 left: -4em;
 }
 body{
@@ -259,4 +262,7 @@ height: 25px;
 }
 #pr{
 height: 25px;
+}
+.bouton-side:hover{
+    background-color: gray;
 }
