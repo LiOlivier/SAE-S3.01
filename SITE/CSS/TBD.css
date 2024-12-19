@@ -263,6 +263,9 @@ height: 25px;
 #pr{
 height: 25px;
 }
-.bouton-side:hover{
-    background-color: gray;
+.click:hover{
+    background-color: rgba(128, 128, 128, 0.3);
+}
+img:hover{
+    background-color: aqua;
 }
