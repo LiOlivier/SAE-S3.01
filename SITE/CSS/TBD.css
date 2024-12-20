@@ -81,6 +81,41 @@ ul.navbar {
     margin-left: 6px;
 }
 
+.aside-ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: left;
+    color: white;
+}
+.content-side {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.content-side img {
+    width: 24px;
+    height: auto;
+
+}
+
+.bouton-side {
+    text-decoration: none;
+    color: #11264f;
+    font-size: 16px;
+    font-weight: bold;
+}
+.bouton-side{
+    margin: 1em;
+    position: fixed;
+    font-size: larger;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-decoration: none;
+    color: #00244d;
+    padding: 0.5em;
+  }
 .title-container {
     position: absolute;
     top: 10%; 
@@ -208,7 +243,6 @@ input[type="password"]:focus {
 #english {
     display: none;
 }
-/* The sidenav */
 .sidenav {
     height: 100%;
     width: 250px;
@@ -222,18 +256,10 @@ input[type="password"]:focus {
     border: #c5c5c5 solid;
   }
   
-  /* Page content */
   .main {
-    margin-left: 200px; /* Same as the width of the sidenav */
+    margin-left: 200px;
   }
-.bouton-side{
-    margin: 2em;
-    position: fixed;
-    font-size: larger;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    text-decoration: none;
-    color: #00244d;
-  }
+
 #TDB{
     top: 12em;
   }
@@ -242,13 +268,15 @@ input[type="password"]:focus {
 }
 #Profil{
     top: 20em;
-}
+    padding-right: 7.69em;
+   
+    }
 #Deconecter{
     top:40em;
 }
 #USPN{
-height: 10em;
-left: -4em;
+height: 7em;
+left: -2em;
 }
 body{
     background-color: #EEEEEE;
@@ -262,10 +290,9 @@ height: 25px;
 }
 #pr{
 height: 25px;
+
 }
 .click:hover{
     background-color: rgba(128, 128, 128, 0.3);
 }
-img:hover{
-    background-color: aqua;
-}
+
