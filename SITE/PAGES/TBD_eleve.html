@@ -1,14 +1,38 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de Bord</title>
     <link rel="stylesheet" href="../CSS/TBD.css">
-    <script src="TBD_eleve.html"></script> 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+    <script src="TBD_eleve.html"></script>
 </head>
-<body>
-    <header><nav class="haut">
+
+<style>
+    .content-side {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .content-side img {
+        width: 24px;
+        height: auto;
+
+    }
+
+    .bouton-side {
+        text-decoration: none;
+        color: #11264f;
+        font-size: 16px;
+        font-weight: bold;
+    }
+</style>
+
+<header>
+    <nav class="haut">
         <ul class="navbar">
             <li>
                 <img src="../IMG/icones/planète.png" alt="Planète" class="icon"> Français
@@ -18,24 +42,45 @@
                 <img src="../IMG/icones/planète.png" alt="Planète" class="icon"> English
             </li>
         </ul>
-    </nav></header>
+    </nav>
+</header>
 
+<body>
+    <aside class="sidenav">
+        <nav>
+            <img src="../IMG/USPN.png" alt="logo USPN" id="USPN" class="bouton-side">
+            <ul class="aside-ul">
+                <li>
+                    <a href="#" class="bouton-side click " id="TDB">
+                        <div class="content-side">
+                            <img src="../IMG/icones/Dashboard.jpg" alt="Dashboard" id="Dashboard"> <span>Tableau de Bord</span> 
+                        </div>
+                    </a>
+                </li>
+                <li>
 
-    <div class="grid">
-        <div class="col-8-12">
-        <!-- content for large column here -->
-        </div>
-       
-       </div>
-       
-    <div id="mySidenav" class="sidenav">
-        <img src="../IMG/USPN.png" alt="logo USPN" id="USPN" class="bouton-side">
-        <a href="#"class="bouton-side click " id="TDB"><img src="../IMG/icones/Dashboard.jpg" alt="Dashboard" id="Dashboard"> Tableau de Bord</a>
-        <a href="#"class="bouton-side click"id="DP"><img src="../IMG/icones/Folder Open.jpg" alt="Depot"id="Folder">Depot de document </a>
-        <a href="#"class="bouton-side click"id="Profil"><img src="../IMG/icones/profile.png" alt="profile"id="pr"> Profil</a>
-        <a href="#"class="bouton-side click"id="Deconecter"><img src="../IMG/icones/Logout.jpg" alt="Logout" id="Logout"> Deconecter</a>
-      </div>
+                    <a href="#" class="bouton-side click" id="DP">
+                        <div class="content-side">
+                           <i class="fas fa-folder" style="font-size: 1.3em;"></i> <span>Depot de document</span> 
+                        </div>
+                    </a>
+                </li>
+                <li>
+
+                    <a href="#" class="bouton-side click" id="Profil">
+                        <div class="content-side">
+                            <i class="fas fa-users" style="font-size: 1.3em;"></i><span>Profil</span>
+                        </div>
+                        
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <a href="login.html" class="bouton-side click" id="Deconecter"><img src="../IMG/icones/Logout.jpg" alt="Logout"
+                id="Logout"> Deconecter</a>
+    </aside>
 
 
 </body>
+
 </html>
