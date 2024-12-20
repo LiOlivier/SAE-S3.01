@@ -81,6 +81,19 @@ ul.navbar {
     margin-left: 6px;
 }
 
+.sidenav {
+    height: 100%;
+    width: 250px;
+    max-width: 250px;
+    min-width: 250px;
+    position: fixed;
+    z-index: 1;
+    background-color: #ffffff;
+    overflow: hidden;
+    padding-top: 20px;
+    border: #c5c5c5 solid;
+  }
+
 .aside-ul {
     list-style-type: none;
     margin: 0;
@@ -89,33 +102,34 @@ ul.navbar {
     justify-content: left;
     color: white;
 }
-.content-side {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.content-side  {
+    display: flex !important ;
+    align-items: center ;
+    gap: 10px !important;
 }
 
 .content-side img {
-    width: 24px;
-    height: auto;
+    width: 24px !important;
+    height: auto !important;
 
 }
 
-.bouton-side {
-    text-decoration: none;
-    color: #11264f;
-    font-size: 16px;
-    font-weight: bold;
-}
 .bouton-side{
     margin: 1em;
     position: fixed;
-    font-size: larger;
+    text-decoration: none;
+    color: #11264f;
+    font-size: 16px !important;
+    font-weight: bold ;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-decoration: none;
     color: #00244d;
     padding: 0.5em;
   }
+.click:hover{
+    background-color: rgba(128, 128, 128, 0.3);
+}
+
 .title-container {
     position: absolute;
     top: 10%; 
@@ -243,18 +257,7 @@ input[type="password"]:focus {
 #english {
     display: none;
 }
-.sidenav {
-    height: 100%;
-    width: 250px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #ffffff;
-    overflow-x: hidden;
-    padding-top: 20px;
-    border: #c5c5c5 solid;
-  }
+
   
   .main {
     margin-left: 200px;
@@ -268,7 +271,6 @@ input[type="password"]:focus {
 }
 #Profil{
     top: 20em;
-    padding-right: 7.69em;
    
     }
 #Deconecter{
@@ -292,7 +294,3 @@ height: 25px;
 height: 25px;
 
 }
-.click:hover{
-    background-color: rgba(128, 128, 128, 0.3);
-}
-
