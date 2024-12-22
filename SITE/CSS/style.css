@@ -1,7 +1,12 @@
+html{
+    height: 100%;
+}
+
 .haut_de_page {
-    position: relative;
-    height: 100vh;
+    position: sticky;
     width: 100%;
+    top: 0px;
+    height: 40px;
 }
 
 .background {
@@ -206,4 +211,147 @@ input[type="password"]:focus {
 
 #english {
     display: none;
+}
+
+nav#nav {
+    position: sticky;
+    top: 40px;
+    width: 250px;
+    height: calc(100% - 40px);
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-right: #C5C5C5 solid 2px;
+    z-index: 1;
+}
+
+#logo-tdb img{
+    width: 200px;
+}
+#bar-selection{
+    list-style: none;
+    padding-left: 0;
+}
+
+#bar-selection li{
+    margin-top: 25px;
+    display: flex; 
+    align-items: center;
+}
+
+#bar-selection span{
+    margin-left: 10px;
+    color: #243871;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+#logout {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+#logout span {
+    margin-left: 10px;
+}
+
+#body-tdb {
+    position: fixed;
+    top: 40px;
+    left: 250px;
+    width: 100%;
+}
+
+#body-tdb header{
+    height: 30px;
+    background-color: white;
+    border-bottom: #C5C5C5 solid 2px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#body-tdb img{
+    width: 30px;
+    margin-right: 10px;   
+    display: flex;
+}
+
+#article-tdb{
+    margin-left: 20px;
+}
+
+#titre-formation{
+    font-size: 40px;
+    color: #1F3269;
+    margin-bottom: 10px;
+}
+
+.bloc-formation{
+    width: 400px;
+    height: 150px;
+    background-color: white;
+    
+}
+
+.bloc-formation p {
+    margin-left: 10px;
+    font-size: 20px;
+    
+}
+.bloc-formation #titre-but{
+    font-weight: bold;
+    font-size: 25px;
+    padding-top: 10px;
+}
+
+
+#calendrier{
+    position: fixed;
+    top: 100px;
+    width: 350px;
+    height: 350px;
+    background-color: white;
+    justify-items: center;
+}
+#mois {
+    display: flex;
+    justify-content: center;
+}
+#mois span:hover{
+    background-color: #afafaf;
+    cursor: pointer;
+    border-radius: 2px;
+}
+#nom-de-mois {
+    padding: 0 100% ;
+    font-size: 18px;
+}
+
+#calendrier th{
+    user-select: none;
+}
+
+#calendrier th, #calendrier td {
+    text-align: center; 
+    vertical-align: middle; 
+    padding: 10px 5px; 
+    width: 35px; 
+    height: 35px; 
+    box-sizing: border-box; 
+}
+
+#date-calendrier td {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd; 
+    border-radius: 5px;
+}
+
+#date-calendrier td:hover {
+    background-color: #1923b1; 
+    cursor: pointer; 
 }
