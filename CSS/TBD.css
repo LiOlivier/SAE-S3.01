@@ -88,15 +88,17 @@ ul.navbar {
     width: 250px;
     max-width: 250px;
     min-width: 250px;
-    position: relative;
+    position: fixed; 
+    top: 0; 
+    left: 0; 
     display: flex;
     flex-direction: column;
-    z-index: 1;
+    z-index: 1; 
     background-color: #ffffff;
     padding-top: 20px;
     border: #c5c5c5 solid;
     box-sizing: border-box; 
-} 
+}
 
 .aside-ul {
     list-style-type: none;
@@ -139,16 +141,6 @@ a.bouton-side:hover{
 }
 
 
-/* #Deconecter {
-    position: absolute; 
-    bottom: 20px; 
-    text-decoration: none;
-    color: #00244d;
-    font-size: 16px;
-    font-weight: bold;
-    display: flex;
-    gap: 10px; 
-} */
 
 #Deconecter {
     margin-top: auto;
@@ -315,4 +307,63 @@ height: 25px;
 #pr{
 height: 25px;
 
+}
+
+#one {
+    flex: 1;
+    padding: 4em 2em 2em 1em;
+    box-sizing: border-box;
+    color: #00244d;
+    font-size: 23px;
+    margin-left: 250px;
+  }
+  .body {
+    display: flex;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+.card{
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 20em;
+    height: 10em;
+    border-radius: 10px;
+}
+.nom{
+    font-size: 24px;
+    left: 1em;
+    position: relative;
+    color:#000000;
+}
+.info{
+    font-size: 18px;
+    color: #000000;
+    margin: 0.4em;
+    left: 1em;
+    top: -0.8em;
+    position: relative;
+}
+#contacter{
+    background-color: #0CAE2F;
+    color: #fff;
+    top: 3em;
+    border-style: none;
+    position: relative;
+    font-size: 17px;
+    left: 1em;
+    width: 10em;
+    height: 2em;
+}
+.left{
+    display: flex;
+    flex: 7;
+}
+.right{
+    display: flex;
+    flex: 3;
+    
+}
+.container{
+    display: flex;
+    width: 100%;
 }
