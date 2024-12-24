@@ -5,7 +5,7 @@
             <li>
                 <a href="bord.html" class="bouton-side" id="TDB">
                     <div class="content-side">
-                        <img src="../IMG/icones/Dashboard.jpg" alt="Dashboard" id="Dashboard"> <span>Tableau de
+                        <i class="fas fa-th" style="font-size: 1.3em;"></i>  <span>Tableau de
                             Bord</span>
                     </div>
                 </a>
@@ -29,5 +29,5 @@
             </li>
         </ul>
     </nav>
-    <a href="login.html" class="bouton-side" id="Deconecter"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+    <a href="login.php" class="bouton-side" id="Deconecter"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
 </aside>
