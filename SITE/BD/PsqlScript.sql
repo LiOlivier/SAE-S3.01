@@ -122,8 +122,8 @@ CREATE TABLE Stage(
     salle_soutenance VARCHAR,
     Id_Enseignant_1 INT,
     Id_Tuteur_Entreprise INT NOT NULL,
-	Id_Enseignant_2 INT NOT NULL,
-	PRIMARY KEY(annee, Id_Departement, numSemestre, Id_Etudiant, Id_Stage),
+    Id_Enseignant_2 INT NOT NULL,
+    PRIMARY KEY(annee, Id_Departement, numSemestre, Id_Etudiant, Id_Stage),
     FOREIGN KEY(annee, Id_Departement, numSemestre, Id_Etudiant) REFERENCES Inscription(annee, Id_Departement, numSemestre, Id_Etudiant),
     FOREIGN KEY(Id_Tuteur_Entreprise) REFERENCES Tuteur_Entreprise(Id_Tuteur_Entreprise),
     FOREIGN KEY(Id_Enseignant_1) REFERENCES Enseignant(Id_Enseignant),
@@ -141,8 +141,8 @@ CREATE TABLE Action(
     lienDocument VARCHAR,
     Id_TypeAction INT NOT NULL,
     Id INT NOT NULL,
-	PRIMARY KEY(annee, Id_Departement, numSemestre, Id_Etudiant, Id_Stage, Id_Action),
-	FOREIGN KEY(annee, Id_Departement, numSemestre, Id_Etudiant, Id_Stage) REFERENCES Stage(annee, Id_Departement, numSemestre, Id_Etudiant, Id_Stage),   
+    PRIMARY KEY(annee, Id_Departement, numSemestre, Id_Etudiant, Id_Stage, Id_Action),
+    FOREIGN KEY(annee, Id_Departement, numSemestre, Id_Etudiant, Id_Stage) REFERENCES Stage(annee, Id_Departement, numSemestre, Id_Etudiant, Id_Stage),
     FOREIGN KEY(Id_TypeAction) REFERENCES TypeAction(Id_TypeAction),
-	FOREIGN KEY(Id) REFERENCES Utilisteur(Id)
+    FOREIGN KEY(Id) REFERENCES Utilisteur(Id)
 );
