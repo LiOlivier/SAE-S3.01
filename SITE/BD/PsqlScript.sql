@@ -108,3 +108,41 @@ CREATE TABLE Inscription(
     FOREIGN KEY(Id_Etudiant) REFERENCES Etudiant(Id_Etudiant),
     FOREIGN KEY(annee) REFERENCES annee(annee)
 );
+
+CREATE TABLE Stage(
+    annee INT,
+    Id_Departement INT,
+    numSemestre INT,
+    Id_Etudiant INT,
+    Id_Stage SERIAL,
+    date_debut INT,
+    date_fin INT,
+    mission VARCHAR,
+    date_soutenance VARCHAR,
+    salle_soutenance VARCHAR,
+    Id_Enseignant_1 INT,
+    Id_Tuteur_Entreprise INT NOT NULL,
+	Id_Enseignant_2 INT NOT NULL,
+	PRIMARY KEY(annee, Id_Departement, numSemestre, Id_Etudiant, Id_Stage),
+    FOREIGN KEY(annee, Id_Departement, numSemestre, Id_Etudiant) REFERENCES Inscription(annee, Id_Departement, numSemestre, Id_Etudiant),
+    FOREIGN KEY(Id_Tuteur_Entreprise) REFERENCES Tuteur_Entreprise(Id_Tuteur_Entreprise),
+    FOREIGN KEY(Id_Enseignant_1) REFERENCES Enseignant(Id_Enseignant),
+    FOREIGN KEY(Id_Enseignant_2) REFERENCES Enseignant(Id_Enseignant)
+);
+
+CREATE TABLE Action(
+    annee INT,
+    Id_Departement INT,
+    numSemestre INT,
+    Id_Etudiant INT,
+    Id_Stage INT,
+    Id_Action SERIAL,
+    date_realisation INT,
+    lienDocument VARCHAR,
+    Id_TypeAction INT NOT NULL,
+    Id INT NOT NULL,
+	PRIMARY KEY(annee, Id_Departement, numSemestre, Id_Etudiant, Id_Stage, Id_Action),
+	FOREIGN KEY(annee, Id_Departement, numSemestre, Id_Etudiant, Id_Stage) REFERENCES Stage(annee, Id_Departement, numSemestre, Id_Etudiant, Id_Stage),   
+    FOREIGN KEY(Id_TypeAction) REFERENCES TypeAction(Id_TypeAction),
+	FOREIGN KEY(Id) REFERENCES Utilisteur(Id)
+);
