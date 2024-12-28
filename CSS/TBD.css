@@ -135,6 +135,7 @@ ul.navbar {
     width: 100%; 
     box-sizing: border-box; 
 }
+.bouton-side.active, 
 a.bouton-side:hover{
     background-color: rgba(128, 128, 128, 0.3);
     width: 90%;
@@ -325,9 +326,12 @@ height: 25px;
 .card{
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 20em;
-    height: 10em;
+    width: 17em;
+    height: 6em;
     border-radius: 10px;
+    margin-top: 1em;
+    display: inline-flex;
+    margin-right: 20px;
 }
 .nom{
     font-size: 24px;
@@ -346,13 +350,14 @@ height: 25px;
 #contacter{
     background-color: #0CAE2F;
     color: #fff;
-    top: 3em;
+    top: 1em;
     border-style: none;
     position: relative;
     font-size: 17px;
     left: 1em;
     width: 10em;
     height: 2em;
+    border-radius: 10px;
 }
 .left{
     display: flex;
@@ -366,4 +371,36 @@ height: 25px;
 .container{
     display: flex;
     width: 100%;
+}
+#titre{
+    position: relative;
+    top: -2em;
+}
+#ouvrir{
+    background-color: #00244d;
+    color: #fff;
+    top: -1em;
+    border-style: none;
+    position: relative;
+    font-size: 17px;
+    left: 12em;
+    width: 10em;
+    height: 2em;
+    border-radius: 10px;
+}
+#date-limite{
+    font-size:15px; 
+    color:gray ; 
+    position: relative ; 
+    left:2em; 
+    top:-1em;
+}
+.left-tableau{
+    display: flex;
+    flex: 7;
+    gap: 1px;
+}
+.right-tableau{
+    display: flex;
+    flex: 3;
 }
