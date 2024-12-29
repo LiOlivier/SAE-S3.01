@@ -45,7 +45,7 @@ nav.haut {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: 3;
 }
 
 ul.navbar {
@@ -81,80 +81,6 @@ ul.navbar {
     cursor: pointer;
     margin-left: 6px;
 }
-
-.sidenav {
-    height: 100vh; 
-    overflow: hidden; 
-    width: 250px;
-    max-width: 250px;
-    min-width: 250px;
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    display: flex;
-    flex-direction: column;
-    z-index: 1; 
-    background-color: #ffffff;
-    padding-top: 20px;
-    border: #c5c5c5 solid;
-    box-sizing: border-box; 
-}
-
-.aside-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-.content-side {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    box-sizing: border-box; 
-}
-
-
-.content-side img {
-    width: 24px !important;
-    height: auto !important;
-
-}
-
-.bouton-side {
-    margin: 1em;
-    text-decoration: none;
-    font-size: 16px !important;
-    font-weight: bold;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    text-decoration: none;
-    color: #00244d;
-    padding: 0.5em;
-    position: relative;
-    display: block; 
-    width: 100%; 
-    box-sizing: border-box; 
-}
-.bouton-side.active, 
-a.bouton-side:hover{
-    background-color: rgba(128, 128, 128, 0.3);
-    width: 90%;
-}
-
-
-
-#Deconecter {
-    margin-top: auto;
-    text-decoration: none;
-    color: #00244d;
-    font-size: 16px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 10px; 
-}
-
-
 
 .title-container {
     position: absolute;
@@ -348,7 +274,7 @@ height: 25px;
     position: relative;
 }
 #contacter{
-    background-color: #0CAE2F;
+    background-color: #0BAFE7;
     color: #fff;
     top: 1em;
     border-style: none;
@@ -374,7 +300,7 @@ height: 25px;
 }
 #titre{
     position: relative;
-    top: -2em;
+    top: -1em;
 }
 #ouvrir{
     background-color: #00244d;
@@ -397,10 +323,87 @@ height: 25px;
 }
 .left-tableau{
     display: flex;
-    flex: 7;
+    flex: 9;
     gap: 1px;
 }
 .right-tableau{
     display: flex;
-    flex: 3;
+    flex: 1;
+}
+div.bell{
+    background-color: #ffffff;
+    position:relative;
+    top: 2.4em;
+    border-style: solid;
+    border-color: #c5c5c5;
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 0.5em;
+} 
+.nav_notif{
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+.far{
+    position: relative;
+    left:-3em;
+    scale: 1.4;
+    top: 0.1em;
+}
+.tache{
+    background-color: #030a64;
+    color: #fff;
+    top: 1em;
+    border-style: none;
+    position: relative;
+    font-size: 19px;
+    left: 1em;
+    width: 13em;
+    height: 2em;
+    border-radius: 10px;
+}
+.taches{
+    height: 20em;
+    width: 13em;
+    margin-right: -15px !important;
+    top: 10em;
+    position: relative;
+}
+
+.notification {
+    background-color:rgb(255, 255, 255);
+    color: #00244d;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    margin-top: 55px;
+    animation: fade-in 2s;
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
 }
