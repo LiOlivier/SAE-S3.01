@@ -1,0 +1,31 @@
+div.bell{
+    background-color: #ffffff;
+    position:relative;
+    top: 2.4em;
+    border-style: solid;
+    border-color: #c5c5c5;
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 0.5em;
+} 
+.nav_notif{
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+.far{
+    position: relative;
+    left:-3em;
+    scale: 1.4;
+    top: 0.1em;
+}
+nav.haut {
+    background-color: #003366;
+    padding: 20px 20px;
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
