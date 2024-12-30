@@ -3,7 +3,7 @@
         <img src="../IMG/USPN.png" alt="logo USPN" id="USPN" class="bouton-side">
         <ul class="aside-ul">
             <li>
-                <a href="bord.html" class="bouton-side" id="TDB">
+                <a href="board.php" class="bouton-side" id="TDB">
                     <div class="content-side">
                         <i class="fas fa-th" style="font-size: 1.3em;"></i>  <span>Tableau de
                             Bord</span>
@@ -12,7 +12,7 @@
             </li>
             <li>
 
-                <a href="document.html" class="bouton-side" id="DP">
+                <a href="depot.php" class="bouton-side" id="DP">
                     <div class="content-side">
                         <i class="fas fa-folder" style="font-size: 1.3em;"></i> <span>Depot de document</span>
                     </div>
