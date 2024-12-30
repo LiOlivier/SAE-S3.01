@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../CSS/TBD.css">
     <link rel="stylesheet" href="../CSS/aside.css">
     <link rel="stylesheet" href="../CSS/header.css">
+    <link rel="stylesheet" href="../CSS/card.css">
+
 
     
 
@@ -84,7 +86,7 @@ require_once(__DIR__ . "/aside.php");
                                 <div class="left">
                                     <div style="display: block;">
                                         <h3 class="nom">Rapport de stage</h3>
-                                        <h3 id="date-limite">date limite 29/01</h3>
+                                        <h3 class="date-limite">date limite 29/01</h3>
                                         <button id="ouvrir">ouvrir</button>
                                         <input type="hidden" value="id">
                                     </div>
@@ -97,7 +99,7 @@ require_once(__DIR__ . "/aside.php");
                                 <div class="left">
                                     <div style="display: block;">
                                         <h3 class="nom">Convention de stage</h3>
-                                        <h3 id="date-limite">date limite 29/01</h3>
+                                        <h3 class="date-limite">date limite 29/01</h3>
                                         <button id="ouvrir">ouvrir</button>
                                     </div>
                                 </div>
