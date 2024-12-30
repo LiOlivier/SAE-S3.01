@@ -1,0 +1,28 @@
+.body {
+    background-color: #EEEEEE;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+#one {
+    flex: 1;
+    padding: 4em 2em 2em 1em;
+    box-sizing: border-box;
+    color: #00244d;
+    font-size: 23px;
+    margin-left: 250px;
+}
+
+.card {
+    width: 20em;
+    height: 13em;
+}
+
+.depot-nom{
+    font-size: 28px;
+}

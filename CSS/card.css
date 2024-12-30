@@ -1,0 +1,40 @@
+#contacter {
+    background-color: #0BAFE7;
+    color: #fff;
+    top: 1em;
+    border-style: none;
+    position: relative;
+    font-size: 17px;
+    left: 1em;
+    width: 10em;
+    height: 2em;
+    border-radius: 10px;
+}
+.nom{
+    font-size: 24px;
+    left: 1em;
+    position: relative;
+    color:#000000;
+}
+.container {
+    display: flex;
+    width: 100%;
+}
+.date-limite{
+    font-size:15px; 
+    color:gray ; 
+    position: relative ; 
+    left:2em; 
+    top:-1em;
+}
+
+.card {
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 17em;
+    height: 6em;
+    border-radius: 10px;
+    margin-top: 1em;
+    display: inline-flex;
+    margin-right: 20px;
+}
