@@ -29,8 +29,11 @@ require_once(__DIR__ . "/aside.php"); ?>
                         <div style="display: block;">
                             <h3 class="nom depot-nom">Bordereau de stage</h3>
                             <h4 class="date-limite"> Date limite : 12/01/2025</h4>
+                            <h4 class="etat"> Etat</h4>
+                            <div class="validation"> <i class="fas fa-circle" style="color: #63E6BE;"></i>Document Validé</div>
 
-                            <button id="contacter" class="copier-email">contact</button>
+                            <button class="contacter" >Télécharger <i class="fas fa-download" style="color: #c0c0c0;"></i></button>
+                            <button class="contacter joindre " >Joindre fichier<i class="fas fa-upload" style="color: #c0c0c0;"></i></button>
                             <input type="hidden" value="email1@exemple.com">
                             <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
                         </div>

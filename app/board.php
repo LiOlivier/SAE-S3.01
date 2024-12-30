@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de Bord</title>
-    <link rel="stylesheet" href="../CSS/TBD.css">
     <link rel="stylesheet" href="../CSS/aside.css">
     <link rel="stylesheet" href="../CSS/header.css">
     <link rel="stylesheet" href="../CSS/card.css">
+    <link rel="stylesheet" href="../CSS/TBD.css">
 
 
     
@@ -44,7 +44,7 @@ require_once(__DIR__ . "/aside.php");
                                     <div style="display: block;">
                                         <h3 class="nom">tuteur pédagogique</h3>
 
-                                        <button id="contacter" class="copier-email">contact</button>
+                                        <button class="contacter copier-email">contact</button>
                                         <input type="hidden" value="email1@exemple.com">
                                         <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
                                     </div>
@@ -57,7 +57,7 @@ require_once(__DIR__ . "/aside.php");
                                 <div class="left">
                                     <div style="display: block;">
                                         <h3 class="nom">tuteur Entreprise</h3>
-                                        <button id="contacter" class="copier-email">contact</button>
+                                        <button class="contacter copier-email">contact</button>
                                         <input type="hidden" value="tuteur@gmail.com">
                                         <p id="message" style="color: green; font-size: 14px; display: none;">Email copié dans le presse-papier !</p>
                                     </div>
@@ -69,7 +69,7 @@ require_once(__DIR__ . "/aside.php");
                                 <div class="left">
                                     <div style="display: block;">
                                         <h3 class="nom">tuteur Entreprise</h3>
-                                        <button id="contacter" class="copier-email">contact</button>
+                                        <button class="contacter copier-email">contact</button>
                                         <input type="hidden" value="tutdeeee@gmail.com">
                                         <p id="message" style="color: green; font-size: 14px; display: none;">Email copié dans le presse-papier !</p>
                                     </div>
