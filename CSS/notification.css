@@ -1,0 +1,92 @@
+
+.notification {
+    background-color:rgb(255, 255, 255);
+    color: #00244d;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    margin-top: 55px;
+    animation: fade-in 2s;
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+
+.panel {
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 2em;
+    left: 68em;
+    border-radius: 1em;
+    width: 12em;
+    height: 20em;
+    z-index: 2;
+}
+
+#notif_title {
+    color: black;
+    font-size: 22px;
+    position: relative;
+    padding-left: 0.7em;
+    border: 2px #c5c5c5;
+    border-style: none none solid;
+}
+
+.notifs {}
+
+.notif {
+    background-color: #EEEEEE;
+    /* width: 5em; */
+    height: 3em;
+    border: 2px gray solid;
+    border-style: solid none solid none;
+}
+
+.titre_n {
+    font-size: 15px;
+    text-align: center;
+    color: black;
+}
+
+.infor {
+    font-size: 13px;
+    text-align: center;
+    color: grey;
+    position: relative;
+    top: -0.4em;
+}
+
+.date_recu {
+    font-size: 9px;
+    color: black;
+    text-align: right;
+    left: -1em;
+    position: relative;
+    top: -0.5em;
+}
