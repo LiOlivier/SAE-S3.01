@@ -262,46 +262,9 @@ height: 25px;
     border-radius: 10px;
 }
 .taches{
-    height: 20em;
+    height: 21em;
     width: 13em;
     margin-right: -15px !important;
     top: 10em;
     position: relative;
-}
-
-.notification {
-    background-color:rgb(255, 255, 255);
-    color: #00244d;
-    padding: 10px 20px;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    font-size: 14px;
-    margin-top: 55px;
-    animation: fade-in 2s;
-    opacity: 0;
-    pointer-events: none;
-}
-
-@keyframes fade-in {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fade-out {
-    from {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    to {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
 }
