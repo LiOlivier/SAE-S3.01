@@ -37,7 +37,7 @@
 }
 
 
-.panel {
+/* .panel { Avant Chat gpt
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: fixed;
@@ -47,8 +47,24 @@
     width: 12em;
     height: 20em;
     z-index: 2;
+} */
+.panel {
+    position: fixed; /* Panneau fixé à l'écran, ne déplace pas les autres éléments */
+    top: 2em;
+    right: 3em;
+    width: 12em;
+    height: 15em;; /* Hauteur pleine de l'écran, en soustrayant la hauteur du header */
+    background-color: #ffffff; /* Fond blanc pour se détacher du reste */
+    border-left: 1px solid #c5c5c5; /* Bordure discrète à gauche */
+    box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.1); /* Ombre pour créer un effet de profondeur */
+    padding: 0.4em; /* Espacement interne */
+    overflow-y: auto; /* Permet de défiler si nécessaire */
+    z-index: 1000; /* Assure qu'il reste au-dessus des autres éléments */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em; /* Espacement entre les notifications */
+    border-radius: 20px;
 }
-
 #notif_title {
     color: black;
     font-size: 22px;

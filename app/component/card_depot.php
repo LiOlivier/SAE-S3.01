@@ -8,7 +8,9 @@
                 <div class="validation"> <i class="fas fa-circle" style="color: #63E6BE;"></i>Document Validé</div>
 
                 <form id="uploadForm" enctype="multipart/form-data">
-                    <button class="contacter">Modèle <i class="fas fa-download load" style="color: #c0c0c0;"></i></button>
+                    <button class="contacter">
+                        Modèle <i class="fas fa-download load" style="color: #c0c0c0;"></i>
+                    </button>
                     <input type="file" id="sortDocument" name="sortDocument" accept=".jpeg,.jpg,.png,.pdf" style="display:none;" />
                     <button type="button" class="contacter joindre" onclick="document.getElementById('sortDocument').click()">
                         Joindre fichier<i class="fas fa-upload load" style="color: #c0c0c0;"></i>
