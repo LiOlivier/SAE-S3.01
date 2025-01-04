@@ -16,7 +16,7 @@
         </ul>
     </nav>
     <div class="nav_notif">
-        <div class="bell"> <i class="far fa-bell"></i></div>
+        <div class="bell"> <i class="far fa-bell" style="cursor: pointer;"></i></div>
     </div>
 
 </header>
