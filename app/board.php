@@ -122,6 +122,7 @@ require_once(__DIR__ . "//component/aside.php");
             </div>
         </div>
         </div>
+        <?php require "component/notification.php" ?>
     </section>
 </body>
 
@@ -134,7 +135,11 @@ require_once(__DIR__ . "//component/aside.php");
             window.location.href = "depot.php";
         });
     });
-
+    document.querySelectorAll('#ouvrir').forEach(button => {
+        button.addEventListener('click', function() {
+            window.location.href = "depot.php";
+        });
+    });
 
     document.querySelectorAll('.copier-email').forEach(button => {
         button.addEventListener('click', function() {

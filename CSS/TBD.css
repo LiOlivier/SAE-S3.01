@@ -1,4 +1,3 @@
-
 .background {
     position: absolute;
     top: 0;
@@ -6,8 +5,8 @@
     width: 100%;
     height: 100%;
     background: url("../IMG/BU-PARIS13.jpg") no-repeat center center;
-    background-size: cover; 
-    background-color: #f5f5f5; 
+    background-size: cover;
+    background-color: #f5f5f5;
     opacity: 0.7;
     z-index: -1;
 }
@@ -36,7 +35,7 @@ body {
 
 .title-container {
     position: absolute;
-    top: 10%; 
+    top: 10%;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -67,7 +66,7 @@ body {
 
 .form-container {
     position: absolute;
-    top: 60%; 
+    top: 60%;
     left: 50%;
     transform: translateX(-50%);
     width: 350px;
@@ -82,7 +81,7 @@ body {
 }
 
 .champ-input label {
-    display: block; 
+    display: block;
     font-size: 14px;
     color: #333;
     margin-bottom: 100px;
@@ -94,7 +93,7 @@ body {
 .input-wrapper {
     position: relative;
     margin-bottom: 30px;
-    display: flex; 
+    display: flex;
     align-items: center;
 }
 
@@ -112,9 +111,9 @@ input[type="password"] {
     border-bottom: 1.9px solid #003366;
     background: none;
     font-size: 16px;
-    padding: 1px ;
+    padding: 1px;
     box-sizing: border-box;
-    
+
 }
 
 input[type="text"]:focus,
@@ -162,23 +161,25 @@ input[type="password"]:focus {
     display: none;
 }
 
-  
-  .main {
-    margin-left: 200px;
-  }
 
-body{
+.main {
+    margin-left: 200px;
+}
+
+body {
     background-color: #EEEEEE;
 }
 
-#Dashboard{
-height: 20px;
+#Dashboard {
+    height: 20px;
 }
-#Folder{
-height: 25px;
+
+#Folder {
+    height: 25px;
 }
-#pr{
-height: 25px;
+
+#pr {
+    height: 25px;
 
 }
 
@@ -188,14 +189,15 @@ height: 25px;
     box-sizing: border-box;
     color: #00244d;
     font-size: 23px;
-    margin-left: 250px;
-  }
-  .body {
+}
+
+.body {
     display: flex;
     margin: 0;
     font-family: Arial, sans-serif;
 }
-.card{
+
+.card {
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 17em;
@@ -205,7 +207,8 @@ height: 25px;
     display: inline-flex;
     margin-right: 20px;
 }
-.info{
+
+.info {
     font-size: 18px;
     color: #000000;
     margin: 0.4em;
@@ -214,20 +217,23 @@ height: 25px;
     position: relative;
 }
 
-.left{
+.left {
     display: flex;
     flex: 7;
 }
-.right{
+
+.right {
     display: flex;
     flex: 3;
-    
+
 }
-#titre{
+
+#titre {
     position: relative;
     top: -1em;
 }
-#ouvrir{
+
+#ouvrir {
     background-color: #00244d;
     color: #fff;
     top: -1em;
@@ -240,16 +246,18 @@ height: 25px;
     border-radius: 10px;
 }
 
-.left-tableau{
+.left-tableau {
     display: flex;
     flex: 9;
     gap: 1px;
 }
-.right-tableau{
+
+.right-tableau {
     display: flex;
     flex: 1;
 }
-.tache{
+
+.tache {
     background-color: #030a64;
     color: #fff;
     top: 1em;
@@ -261,10 +269,21 @@ height: 25px;
     height: 2em;
     border-radius: 10px;
 }
-.taches{
+
+.taches {
     height: 21em;
     width: 13em;
     margin-right: -15px !important;
     top: 10em;
     position: relative;
+}
+
+@media (max-width: 1000px) {
+    .taches {
+        display: none;
+    }
+}
+
+button {
+    cursor: pointer;
 }

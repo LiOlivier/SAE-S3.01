@@ -77,6 +77,10 @@ a.bouton-side:hover {
 
     left: -2em;
 }
+#one {
+    margin-left: 250px;
+    transition: margin-left 0.3s ease; 
+}
 
 .sidenav {
     transition: width 0.3s;
@@ -85,10 +89,21 @@ a.bouton-side:hover {
 .sidenav.collapsed {
     width: 60px;
 }
+.sidenav.collapsed .aside-ul  {
+   margin-top: 10em;
+}
+
+.sidenav.collapsed .bouton-side:hover, 
+.sidenav.collapsed .bouton-side.active {
+    background-color: transparent; 
+    width: 100%; 
+}
+
 
 .sidenav.collapsed .content-side span,
 .sidenav.collapsed #USPN {
     display: none;
+   
 }
 
 .sidenav.collapsed .bouton-side {
@@ -96,9 +111,8 @@ a.bouton-side:hover {
     padding: 0.5em 0;
 }
 
-
 .sidenav.collapsed #Deconecter i {
-    margin-left: -1.8em;
+    margin-left: -1.4em;
 }
 
 .sidenav.collapsed #Deconecter::after,
@@ -109,14 +123,14 @@ a.bouton-side:hover {
 
 .toggle-sidenav {
     position: absolute;
-    top: 10px;
+    top: 40px;
     right: -20px;
-    background: #fa0000;
-    border: 1px solid #ef0000;
+    background: #C5C5C5;
+    border: 1px solid #7a7272;
     border-radius: 50%;
     cursor: pointer;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
