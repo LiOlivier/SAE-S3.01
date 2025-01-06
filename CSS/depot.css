@@ -8,6 +8,10 @@ body {
     box-sizing: border-box;
 }
 
+#titre {
+    top: -1em;
+    position: relative;
+}
 
 #one {
     flex: 1;
@@ -15,38 +19,48 @@ body {
     box-sizing: border-box;
     color: #00244d;
     font-size: 23px;
-    margin-left: 250px;
 }
 
 .card {
-    width: 20em;
+    width: 19em;
     height: 13em;
+    margin-right: 2em;
+    margin-bottom: 1em;
 }
 
-.depot-nom{
+.depot-nom {
     font-size: 28px;
 }
-.etat{
+
+.etat {
     font-size: 20px;
     color: black;
     left: 1em;
     position: relative;
     top: -1em;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Rubik';
     margin-bottom: 0.5em;
     margin-top: 0.5em;
-  }
+}
 
-.validation{
+.validation {
     font-size: 20px;
     color: black;
     left: 1em;
     position: relative;
     top: -1em;
 }
-.contacter{
+
+.contacter {
     background-color: #00244d;
+    top: 4em;
 }
-.joindre{
+
+.joindre {
     left: 4em;
+}
+
+.load {
+    position: relative;
+    left: 0.7em;
 }

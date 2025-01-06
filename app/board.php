@@ -9,16 +9,12 @@
     <link rel="stylesheet" href="../CSS/header.css">
     <link rel="stylesheet" href="../CSS/card.css">
     <link rel="stylesheet" href="../CSS/TBD.css">
-
-
-    
-
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
         integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
     <script src="TBD_eleve.html"></script>
 </head>
-<?php require_once(__DIR__ . "/header.php");
-require_once(__DIR__ . "/aside.php");
+<?php require_once(__DIR__ . "//component/header.php");
+require_once(__DIR__ . "//component/aside.php");
 
 ?>
 <style>
@@ -126,6 +122,7 @@ require_once(__DIR__ . "/aside.php");
             </div>
         </div>
         </div>
+        <?php require "component/notification.php" ?>
     </section>
 </body>
 
@@ -138,7 +135,11 @@ require_once(__DIR__ . "/aside.php");
             window.location.href = "depot.php";
         });
     });
-
+    document.querySelectorAll('#ouvrir').forEach(button => {
+        button.addEventListener('click', function() {
+            window.location.href = "depot.php";
+        });
+    });
 
     document.querySelectorAll('.copier-email').forEach(button => {
         button.addEventListener('click', function() {
