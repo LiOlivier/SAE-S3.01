@@ -10,7 +10,11 @@ INSERT INTO Utilisateur(nom,prenom,email,telephone,login,motdepasse) VALUES
   ('Preteseille','Christine','christine.preteseille@gmail.com','19451677411','siuuujxjjqj7','jujuujjuju');
 
 INSERT INTO TypeAction(libelle,Executant,Destinataire,delaiEnJours,ReferenceDelai,requiertDoc,LienModeleDoc) VALUES
-  
+  ('Rapport d’installation', 'Etudiant', 'Tuteur Pédagogique', 7, 1, 'Oui', 'lien_modele_rapport_installation.pdf'),
+  ('Contact Entreprise', 'Tuteur Pédagogique', 'Entreprise', 14, 1, 'Non', NULL),
+  ('Entretien Mi-Stage', 'Tuteur Pédagogique', 'Entreprise', 30, 1, 'Non', NULL),
+  ('Planification Soutenance', 'Tuteur Pédagogique', 'Etudiant', 90, 2, 'Oui', 'lien_modele_planification.pdf'),
+  ('Dépôt Rapport de Stage', 'Etudiant', 'Tuteur Pédagogique', 100, 2, 'Oui', 'lien_modele_rapport_stage.pdf');
 
 INSERT INTO Entreprise(adresse,code_postal,ville,indicationVisite,tel) VALUES
   ('16 rue Jean Courtois',72400,'La Ferté-Bernard',true,'0500813500'),
@@ -25,16 +29,18 @@ INSERT INTO Etudiant(id_Etudiant) VALUES
   (0),(1),(2),(3),(4),(5),(6);
 
 INSERT INTO Secretaire(id_Secretaire,Bureau) VALUES
-  (8);
+  (8,'L100');
 
 INSERT INTO Enseignant(id_Enseignant,Bureau) VALUES
-  (7);
+  (7,'L105');
 
-INSERT INTO Administrateur(id_Administrateur,id_Entreprise) VALUES
+INSERT INTO Administrateur(id_Administrateur) VALUES
+  (7),
+  (8);
 
-
-INSERT INTO Tuteur_Entreprise(id_Tuteur_Entreprise) VALUES
-
+INSERT INTO Tuteur_Entreprise(id_Tuteur_Entreprise,Id_Entreprise) VALUES
+  (7, 1),
+  (8, 3);
 
 INSERT INTO annee(annee) VALUES
   (2023),
@@ -62,8 +68,13 @@ INSERT INTO Inscription(annee,Id_Departement,numSemestre,Id_Etudiant) VALUES
   (2024,0,4,5),
   (2024,0,4,6);
 
-INSERT INTO Stage(annee,Id_Departement,numSemestre,Id_Etudiant,Id_Stage,date_debut,date_fin,mission,date_soutenance,salle_soutenance,Id_Enseignant_1,
+INSERT INTO Stage(annee,Id_Departement,numSemestre,Id_Etudiant,date_debut,date_fin,mission,date_soutenance,salle_soutenance,Id_Enseignant_1,
 Id_Tuteur_Entreprise,Id_Enseignant_2) VALUES
+  (2024, 0, 4, 0, '2024-04-01', '2024-06-30', 'Développement d’une application web', '2024-07-15', 'Salle A1', 7, 5, 7),
+  (2024, 0, 4, 1, '2024-05-01', '2024-07-31', 'Analyse des données clients', '2024-08-20', 'Salle B2', 7, 6, 7);
 
-
-INSERT INTO Action(annee,Id_Departement,numSemestre,Id_Etudiant,Id_Stage,Id_Action,date_realisation,lienDocument,Id_TypeAction,Id) VALUES
+INSERT INTO Action(annee,Id_Departement,numSemestre,Id_Etudiant,Id_Stage,date_realisation,lienDocument,Id_TypeAction,Id) VALUES
+  (2024, 0, 4, 0, 1, '2024-04-05', 'lien_rapport_1.pdf', 0, 5),
+  (2024, 0, 4, 0, 1, '2024-04-15', NULL, 1, 7),
+  (2024, 0, 4, 1, 2, '2024-05-10', 'lien_rapport_2.pdf', 0, 6),
+  (2024, 0, 4, 1, 2, '2024-05-20', NULL, 1, 7);
