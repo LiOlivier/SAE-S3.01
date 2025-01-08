@@ -24,10 +24,7 @@ require_once(__DIR__ . "//component/aside.php");
 <body class="body">
     <section id="one">
 
-
-        <h1 id="titre">Tableau de Bord</h1>
-
-        <div class="container">
+    <div class="container">
 
 
             <div class="left-tableau">
@@ -38,7 +35,7 @@ require_once(__DIR__ . "//component/aside.php");
                             <div class="container">
                                 <div class="left">
                                     <div style="display: block;">
-                                        <h3 class="nom"><?php echo $nom_eleve; ?>ELEVE1</h3>
+                                        <h3 class="nom">ELEVE1</h3> <!-- <?php echo $nom_eleve; ?>  -->
                                         <p class="classe">BUT2 info</p>
                                         <p class="groupe">Stymphale</p>
 
@@ -54,7 +51,7 @@ require_once(__DIR__ . "//component/aside.php");
                             <div class="container">
                                 <div class="left">
                                     <div style="display: block;">
-                                        <h3 class="nom"><?php echo $nom_eleve; ?>ELEVE2</h3>
+                                        <h3 class="nom">ELEVE2</h3> <!-- <?php echo $nom_eleve; ?>  -->
                                         <p class="classe">BUT2 info</p>
                                         <p class="groupe">Diomerde</p>
 
@@ -69,9 +66,9 @@ require_once(__DIR__ . "//component/aside.php");
                             <div class="container">
                                 <div class="left">
                                     <div style="display: block;">
-                                        <h3 class="nom"><?php echo $nom_eleve; ?>M. Martinez</h3>
+                                        <h3 class="nom">M. Martinez</h3> <!-- <?php echo $nom_eleve; ?>  -->
                                         <p class="classe">Tuteur pédagogique</p>
-                                        <p class="groupe"></p>
+                                        <p class="hidden">.</p>
 
                                         <button class="contacter copier-email">contact</button>
                                         <input type="hidden" value="email1@exemple.com">

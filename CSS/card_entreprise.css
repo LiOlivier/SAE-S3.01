@@ -7,7 +7,7 @@
     height: 2em;
     border-radius: 10px;
     border-style: none;
-    margin-top: 1em; 
+    margin-top: 2em; 
 }
 .nom{
     font-size: 26px;
@@ -35,6 +35,14 @@
     margin-top: 0px;
 }
 
+.hidden{
+    font-size: 16px;
+    font-weight: bold;
+    left: 1.6em;
+    position: relative;
+    color:transparent;
+    margin-top: 0px;
+}
 .container {
     display: flex;
     width: 100%;
@@ -50,8 +58,8 @@
 .card {
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 17em;
-    height: 20em; /* hauteur fixe */
+    width: 25em;
+    height: 8.2em;
     border-radius: 10px;
     margin-top: 1em;
     display: flex;
