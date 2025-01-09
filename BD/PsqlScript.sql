@@ -31,30 +31,30 @@ CREATE TABLE Entreprise(
 
 CREATE TABLE Etudiant(
     Id_Etudiant INT PRIMARY KEY,
-    FOREIGN KEY(Id_Etudiant) REFERENCES Utilisteur(Id)
+    FOREIGN KEY(Id_Etudiant) REFERENCES Utilisateur(Id)
 );
 
 CREATE TABLE Secretaire(
     Id_Secretaire INT PRIMARY KEY,
     Bureau VARCHAR,
-    FOREIGN KEY(Id_Secretaire) REFERENCES Utilisteur(Id)
+    FOREIGN KEY(Id_Secretaire) REFERENCES Utilisateur(Id)
 );
 
 CREATE TABLE Enseignant(
     Id_Enseignant INT PRIMARY KEY,
     Bureau VARCHAR,
-    FOREIGN KEY(Id_Enseignant) REFERENCES Utilisteur(Id)
+    FOREIGN KEY(Id_Enseignant) REFERENCES Utilisateur(Id)
 );
 
 CREATE TABLE Administrateur(
     Id_Administrateur INT PRIMARY KEY,
-    FOREIGN KEY(Id_Administrateur) REFERENCES Utilisteur(Id)
+    FOREIGN KEY(Id_Administrateur) REFERENCES Utilisateur(Id)
 );
 
 CREATE TABLE Tuteur_Entreprise(
     Id_Tuteur_Entreprise INT PRIMARY KEY,
     Id_Entreprise INT NOT NULL,
-    FOREIGN KEY(Id_Tuteur_Entreprise) REFERENCES Utilisteur(Id),
+    FOREIGN KEY(Id_Tuteur_Entreprise) REFERENCES Utilisateur(Id),
     FOREIGN KEY(Id_Entreprise) REFERENCES Entreprise(Id_Entreprise)
 );
 
@@ -144,5 +144,5 @@ CREATE TABLE Action(
     PRIMARY KEY(annee, Id_Departement, numSemestre, Id_Etudiant, Id_Stage, Id_Action),
     FOREIGN KEY(annee, Id_Departement, numSemestre, Id_Etudiant, Id_Stage) REFERENCES Stage(annee, Id_Departement, numSemestre, Id_Etudiant, Id_Stage),
     FOREIGN KEY(Id_TypeAction) REFERENCES TypeAction(Id_TypeAction),
-    FOREIGN KEY(Id) REFERENCES Utilisteur(Id)
+    FOREIGN KEY(Id) REFERENCES Utilisateur(Id)
 );
