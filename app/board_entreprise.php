@@ -39,7 +39,7 @@ require_once(__DIR__ . "//component/aside.php");
                                         <p class="classe">BUT2 info</p>
                                         <p class="groupe">Stymphale</p>
                                         <p class="email">exemple@edu.univ-paris13.fr</p>
-                                        <button class="contacter copier-email">copier</button>
+                                        <button class="contacter copier-email">copier l'email</button>
                                         <input type="hidden" value="email1@exemple.com">
                                         <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
                                     </div>
@@ -55,7 +55,7 @@ require_once(__DIR__ . "//component/aside.php");
                                         <p class="classe">BUT2 info</p>
                                         <p class="groupe">Diomerde</p>
                                         <p class="email">exemple@edu.univ-paris13.fr</p>
-                                        <button class="contacter copier-email">copier</button>
+                                        <button class="contacter copier-email">copier l'email</button>
                                         <input type="hidden" value="email1@exemple.com">
                                         <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
                                     </div>
@@ -70,7 +70,7 @@ require_once(__DIR__ . "//component/aside.php");
                                         <p class="classe">Tuteur pédagogique</p>
                                         <p class="hidden">.</p>
                                         <p class="email">exemple@gmail.fr</p>
-                                        <button class="contacter copier-email">copier</button>
+                                        <button class="contacter copier-email">copier l'email</button>
                                         <input type="hidden" value="email1@exemple.com">
                                         <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
                                     </div>
