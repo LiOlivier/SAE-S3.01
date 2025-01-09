@@ -29,7 +29,6 @@
 
 .modele:hover {
     background-color: #224e80;
-    transform: scale(1.05);
 }
 
 .joindre {
@@ -49,7 +48,6 @@
 
 .joindre:hover {
     background-color: #224e80;
-    transform: scale(1.05);
 }
 
 .nom{
