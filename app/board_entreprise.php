@@ -38,8 +38,8 @@ require_once(__DIR__ . "//component/aside.php");
                                         <h3 class="nom">ELEVE1</h3> <!-- <?php echo $nom_eleve; ?>  -->
                                         <p class="classe">BUT2 info</p>
                                         <p class="groupe">Stymphale</p>
-
-                                        <button class="contacter copier-email">contact</button>
+                                        <p class="email">exemple@edu.univ-paris13.fr</p>
+                                        <button class="contacter copier-email">copier</button>
                                         <input type="hidden" value="email1@exemple.com">
                                         <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
                                     </div>
@@ -54,8 +54,8 @@ require_once(__DIR__ . "//component/aside.php");
                                         <h3 class="nom">ELEVE2</h3> <!-- <?php echo $nom_eleve; ?>  -->
                                         <p class="classe">BUT2 info</p>
                                         <p class="groupe">Diomerde</p>
-
-                                        <button class="contacter copier-email">contact</button>
+                                        <p class="email">exemple@edu.univ-paris13.fr</p>
+                                        <button class="contacter copier-email">copier</button>
                                         <input type="hidden" value="email1@exemple.com">
                                         <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
                                     </div>
@@ -69,8 +69,8 @@ require_once(__DIR__ . "//component/aside.php");
                                         <h3 class="nom">M. Martinez</h3> <!-- <?php echo $nom_prof; ?>  -->
                                         <p class="classe">Tuteur pédagogique</p>
                                         <p class="hidden">.</p>
-
-                                        <button class="contacter copier-email">contact</button>
+                                        <p class="email">exemple@gmail.fr</p>
+                                        <button class="contacter copier-email">copier</button>
                                         <input type="hidden" value="email1@exemple.com">
                                         <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
                                     </div>
