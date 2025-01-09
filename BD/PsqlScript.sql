@@ -1,5 +1,5 @@
 
-CREATE TABLE Utilisteur(
+CREATE TABLE Utilisateur(
     Id SERIAL PRIMARY KEY,
     nom VARCHAR,
     prenom VARCHAR,
