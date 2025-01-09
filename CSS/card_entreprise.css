@@ -7,8 +7,17 @@
     height: 2em;
     border-radius: 10px;
     border-style: none;
-    margin-top: 2em; 
+    margin-top: 2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
+
+
+.contacter:hover {
+    background-color: #043c4e;
+    transform: scale(1.05);
+}
+
 .nom{
     font-size: 26px;
     left: 1em;

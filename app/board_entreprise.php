@@ -66,7 +66,7 @@ require_once(__DIR__ . "//component/aside.php");
                             <div class="container">
                                 <div class="left">
                                     <div style="display: block;">
-                                        <h3 class="nom">M. Martinez</h3> <!-- <?php echo $nom_eleve; ?>  -->
+                                        <h3 class="nom">M. Martinez</h3> <!-- <?php echo $nom_prof; ?>  -->
                                         <p class="classe">Tuteur pédagogique</p>
                                         <p class="hidden">.</p>
 
