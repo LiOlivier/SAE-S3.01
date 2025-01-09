@@ -80,7 +80,7 @@ CREATE TABLE Semestre(
     FOREIGN KEY(annee) REFERENCES annee(annee)
 );
 
-CREATE TABLE Intrevient(
+CREATE TABLE Intervient(
     Id_Enseignant INT,
     Id_Departement INT,
     specialise VARCHAR,
