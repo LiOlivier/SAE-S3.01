@@ -43,7 +43,7 @@ require_once(__DIR__ . "//component/aside.php");
 
 <body class="body">
     <section id="one">
-        <h1 id="titre">BUT Informatique</h1>
+        <h1 id="titre">BUT GEA</h1>
 
         <div class="container">
             <div class="main-cards">
