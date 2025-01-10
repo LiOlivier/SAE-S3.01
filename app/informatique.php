@@ -43,3 +43,19 @@ require_once(__DIR__ . "//component/aside.php");
                     </div>
                 </div>
 
+                <!-- Case 2: BUT 3 -->
+                <div class="card clickable-card">
+                    <div class="container">
+                        <h3 class="nom">BUT 3</h3>
+                        <p class="details">90 étudiants</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php require "component/notification.php" ?>
+    </section>
+
+    <script src="../JS/notif.js"></script>
+</body>
+
+</html>
