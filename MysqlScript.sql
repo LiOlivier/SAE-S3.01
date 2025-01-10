@@ -22,7 +22,7 @@ CREATE TABLE Utilisateur(
     email VARCHAR(255) UNIQUE,
     telephone VARCHAR(255),
     login VARCHAR(255) NOT NULL UNIQUE,
-    motdepasse VARCHAR(255) NOT NULL UNIQUE
+    password VARCHAR(255) NOT NULL UNIQUE
 );
 
 CREATE TABLE TypeAction(
