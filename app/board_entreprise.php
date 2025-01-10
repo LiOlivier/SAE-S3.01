@@ -15,7 +15,7 @@
 </head>
 <?php require_once(__DIR__ . "//component/header.php");
 require_once(__DIR__ . "//component/aside.php");
-
+require_once("Modèle/email_tut_entreprise.php");
 ?>
 <style>
 
@@ -38,7 +38,7 @@ require_once(__DIR__ . "//component/aside.php");
                                         <h3 class="nom">ELEVE1</h3> <!-- <?php echo $nom_eleve; ?>  -->
                                         <p class="classe">BUT2 info</p>
                                         <p class="groupe">Stymphale</p>
-                                        <p class="email">exemple@edu.univ-paris13.fr</p>
+                                        <p class="email"><?php echo $eleve1;?></p>
                                         <button class="contacter copier-email">copier l'email</button>
                                         <input type="hidden" value="email1@exemple.com">
                                         <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
