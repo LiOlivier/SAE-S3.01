@@ -297,6 +297,12 @@ body {
     width: 13em;
     height: 2em;
     border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.tache:hover {
+    background-color: #212997;
 }
 
 .taches {
