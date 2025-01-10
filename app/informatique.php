@@ -16,11 +16,23 @@
             text-align: center;
             padding: 20px;
             cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .clickable-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .clickable-card .nom {
+            font-size: 18px;
+            font-weight: bold;
         }
 
         .clickable-card .details {
-            font-size: 14px;
+            font-size: 16px;
             color: #666;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -36,7 +48,7 @@ require_once(__DIR__ . "//component/aside.php");
         <div class="container">
             <div class="main-cards">
                 <!-- Case 1: BUT 2 -->
-                <div class="card clickable-card">
+                <div class="card clickable-card" onclick="navigateTo('but2.php')">
                     <div class="container">
                         <h3 class="nom">BUT 2</h3>
                         <p class="details">128 étudiants</p>
@@ -44,7 +56,7 @@ require_once(__DIR__ . "//component/aside.php");
                 </div>
 
                 <!-- Case 2: BUT 3 -->
-                <div class="card clickable-card">
+                <div class="card clickable-card" onclick="navigateTo('but3.php')">
                     <div class="container">
                         <h3 class="nom">BUT 3</h3>
                         <p class="details">90 étudiants</p>
@@ -56,6 +68,12 @@ require_once(__DIR__ . "//component/aside.php");
     </section>
 
     <script src="../JS/notif.js"></script>
+    <script>
+        // Redirection vers une autre page en fonction de la case cliquée
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+    </script>
 </body>
 
 </html>
