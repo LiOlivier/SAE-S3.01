@@ -50,3 +50,59 @@
             margin: 10px 0;
             color: #666;
         }
+
+        .card .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .card .btn:hover {
+            background-color: #218838;
+        }
+
+        .info {
+            display: none;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 10px;
+            position: relative;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .info.active {
+            display: block;
+        }
+
+        .info .close {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+            color: #888;
+        }
+
+        .info .close:hover {
+            color: #555;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
