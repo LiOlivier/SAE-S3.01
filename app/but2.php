@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -98,6 +99,7 @@
                 opacity: 0;
                 transform: translateY(-10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -110,6 +112,7 @@
     <div class="container">
         <h1>Liste des élèves</h1>
 
+        <!-- Denis Vuong Card -->
         <div class="card">
             <h2>Denis Vuong</h2>
             <p>Formation: BUT2 Info - Groupe: Stymphale</p>
@@ -121,6 +124,7 @@
             </div>
         </div>
 
+        <!-- Maxime Lointier Card -->
         <div class="card">
             <h2>Maxime Lointier</h2>
             <p>Formation: BUT2 Info - Groupe: Stymphale</p>
@@ -132,6 +136,7 @@
             </div>
         </div>
 
+        <!-- Jorawar Singh Dulai Card -->
         <div class="card">
             <h2>Jorawar Singh Dulai</h2>
             <p>Formation: BUT2 Info - Groupe: Stymphale</p>
@@ -145,17 +150,19 @@
     </div>
 
     <script>
+        // Function to toggle visibility of contact info
         function toggleInfo(button) {
-            // Close all other open info boxes
+            // Close all open info boxes
             document.querySelectorAll('.info.active').forEach(info => {
                 info.classList.remove('active');
             });
 
-            // Open the clicked one
+            // Toggle the selected info box
             const info = button.nextElementSibling;
             info.classList.toggle('active');
         }
 
+        // Function to close an info box
         function closeInfo(closeButton) {
             const info = closeButton.parentElement;
             info.classList.remove('active');
