@@ -22,7 +22,7 @@ require_once(__DIR__ . "//component/aside.php"); ?>
         <div class="cards">
             <?php require "component/card_depot.php"; ?>
         </div>
-        <?php require "component/notification.php" ?>
+        <?php require "component/notification.php"; ?>
     </section>
 
 </body>

@@ -64,3 +64,6 @@ body {
     position: relative;
     left: 0.7em;
 }
+button{
+    cursor: pointer;
+}
