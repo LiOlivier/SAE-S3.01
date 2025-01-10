@@ -25,3 +25,21 @@
     </style>
 </head>
 
+<?php require_once(__DIR__ . "//component/header.php");
+require_once(__DIR__ . "//component/aside.php");
+?>
+
+<body class="body">
+    <section id="one">
+        <h1 id="titre">BUT Informatique</h1>
+
+        <div class="container">
+            <div class="main-cards">
+                <!-- Case 1: BUT 2 -->
+                <div class="card clickable-card">
+                    <div class="container">
+                        <h3 class="nom">BUT 2</h3>
+                        <p class="details">128 étudiants</p>
+                    </div>
+                </div>
+
