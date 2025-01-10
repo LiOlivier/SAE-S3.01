@@ -2,7 +2,7 @@
 require "../config/database.php";
 
 class Utilisateur {
-    protected $table = "Utilisateur";
+    protected $table = "utilisateur";
     protected $db;
     
    public function __construct($dbType = 'mysql')
@@ -23,5 +23,18 @@ class Utilisateur {
         $query->execute(array('login' => $login, 'password' => $password));
         return $query->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function register($data)
+    {
+            $sql = "INSERT INTO $this->table (nom, prenom, login, password, email, telephone) 
+                    VALUES (:nom, :prenom, :login, :password, :email, :tel)";
+            $query = $this->db->prepare($sql);
+            $query->execute($data);     
+
+            return $this->db->lastInsertId();
+        
+    }
+    
+    
 
 }
