@@ -106,3 +106,61 @@
     </style>
 </head>
 
+<body>
+    <div class="container">
+        <h1>Liste des élèves</h1>
+
+        <div class="card">
+            <h2>Denis Vuong</h2>
+            <p>Formation: BUT2 Info - Groupe: Stymphale</p>
+            <button class="btn" onclick="toggleInfo(this)">Contacter</button>
+            <div class="info">
+                <span class="close" onclick="closeInfo(this)">&times;</span>
+                <p><strong>Email:</strong> denis.vuong@example.com</p>
+                <p><strong>Téléphone:</strong> +33 6 12 34 56 78</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Maxime Lointier</h2>
+            <p>Formation: BUT2 Info - Groupe: Stymphale</p>
+            <button class="btn" onclick="toggleInfo(this)">Contacter</button>
+            <div class="info">
+                <span class="close" onclick="closeInfo(this)">&times;</span>
+                <p><strong>Email:</strong> maxime.lointier@example.com</p>
+                <p><strong>Téléphone:</strong> +33 6 87 65 43 21</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Jorawar Singh Dulai</h2>
+            <p>Formation: BUT2 Info - Groupe: Stymphale</p>
+            <button class="btn" onclick="toggleInfo(this)">Contacter</button>
+            <div class="info">
+                <span class="close" onclick="closeInfo(this)">&times;</span>
+                <p><strong>Email:</strong> jorawar.singh@example.com</p>
+                <p><strong>Téléphone:</strong> +33 7 89 45 67 12</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleInfo(button) {
+            // Close all other open info boxes
+            document.querySelectorAll('.info.active').forEach(info => {
+                info.classList.remove('active');
+            });
+
+            // Open the clicked one
+            const info = button.nextElementSibling;
+            info.classList.toggle('active');
+        }
+
+        function closeInfo(closeButton) {
+            const info = closeButton.parentElement;
+            info.classList.remove('active');
+        }
+    </script>
+</body>
+
+</html>
