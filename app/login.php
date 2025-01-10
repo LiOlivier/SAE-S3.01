@@ -1,3 +1,9 @@
+<?php
+require "../model/utilisateur.php";
+$user = new Utilisateur();
+var_dump($user->getAll());
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
