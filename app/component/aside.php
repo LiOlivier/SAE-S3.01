@@ -15,7 +15,7 @@
             <li>
                 <a href="depot.php" class="bouton-side" id="DP">
                     <div class="content-side">
-                        <i class="fas fa-folder" style="font-size: 1.3em;"></i> <span>Depot de document</span>
+                        <i class="fas fa-folder" style="font-size: 1.3em;"></i> <span>Dépot de document</span>
                     </div>
                 </a>
             </li>

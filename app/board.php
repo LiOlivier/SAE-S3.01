@@ -38,9 +38,9 @@ require_once(__DIR__ . "//component/aside.php");
                             <div class="container">
                                 <div class="left">
                                     <div style="display: block;">
-                                        <h3 class="nom">tuteur pédagogique</h3>
+                                        <h3 class="nom">Tuteur pédagogique</h3>
 
-                                        <button class="contacter copier-email">contact</button>
+                                        <button class="contacter copier-email">Contact</button>
                                         <input type="hidden" value="email1@exemple.com">
                                         <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
                                     </div>
@@ -52,8 +52,8 @@ require_once(__DIR__ . "//component/aside.php");
                             <div class="container">
                                 <div class="left">
                                     <div style="display: block;">
-                                        <h3 class="nom">tuteur Entreprise</h3>
-                                        <button class="contacter copier-email">contact</button>
+                                        <h3 class="nom">Tuteur Entreprise</h3>
+                                        <button class="contacter copier-email">Contact</button>
                                         <input type="hidden" value="tuteur@gmail.com">
                                         <p id="message" style="color: green; font-size: 14px; display: none;">Email copié dans le presse-papier !</p>
                                     </div>
@@ -64,8 +64,8 @@ require_once(__DIR__ . "//component/aside.php");
                             <div class="container">
                                 <div class="left">
                                     <div style="display: block;">
-                                        <h3 class="nom">tuteur Entreprise</h3>
-                                        <button class="contacter copier-email">contact</button>
+                                        <h3 class="nom">Tuteur Entreprise</h3>
+                                        <button class="contacter copier-email">Contact</button>
                                         <input type="hidden" value="tutdeeee@gmail.com">
                                         <p id="message" style="color: green; font-size: 14px; display: none;">Email copié dans le presse-papier !</p>
                                     </div>
@@ -76,14 +76,14 @@ require_once(__DIR__ . "//component/aside.php");
 
 
                     <div class="cards">
-                        <h1>A venir :</h1>
+                        <h1>À venir :</h1>
                         <div class="card">
                             <div class="container">
                                 <div class="left">
                                     <div style="display: block;">
                                         <h3 class="nom">Rapport de stage</h3>
-                                        <h3 class="date-limite">date limite 29/01</h3>
-                                        <button id="ouvrir">ouvrir</button>
+                                        <h3 class="date-limite">Date limite 29/01</h3>
+                                        <button id="ouvrir">Ouvrir</button>
                                         <input type="hidden" value="id">
                                     </div>
                                 </div>
@@ -95,8 +95,8 @@ require_once(__DIR__ . "//component/aside.php");
                                 <div class="left">
                                     <div style="display: block;">
                                         <h3 class="nom">Convention de stage</h3>
-                                        <h3 class="date-limite">date limite 29/01</h3>
-                                        <button id="ouvrir">ouvrir</button>
+                                        <h3 class="date-limite">Date limite 29/01</h3>
+                                        <button id="ouvrir">Ouvrir</button>
                                     </div>
                                 </div>
                             </div>
@@ -112,8 +112,8 @@ require_once(__DIR__ . "//component/aside.php");
                 <div class="card taches">
                     <div class="container">
                         <div style="display: block;">
-                            <h3 class="nom">Document a deposer</h3>
-                            <button class="tache">bordereau de stage <i class="fas fa-chevron-right fa-sm" style="color: #c0c0c0; position: relative; left:1em;"></i></button>
+                            <h3 class="nom">Document a déposer</h3>
+                            <button class="tache">Bordereau de stage <i class="fas fa-chevron-right fa-sm" style="color: #c0c0c0; position: relative; left:1em;"></i></button>
                         </div>
                     </div>
 
@@ -156,3 +156,6 @@ require_once(__DIR__ . "//component/aside.php");
         });
     });
 </script>
+
+
+
