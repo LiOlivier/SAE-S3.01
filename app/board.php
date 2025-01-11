@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+$prenom = $_SESSION['user']['prenom'];
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -38,7 +46,7 @@ require_once(__DIR__ . "//component/aside.php");
                             <div class="container">
                                 <div class="left">
                                     <div style="display: block;">
-                                        <h3 class="nom">tuteur pédagogique</h3>
+                                        <h3 class="nom"><?=$prenom  ?></h3>
 
                                         <button class="contacter copier-email">contact</button>
                                         <input type="hidden" value="email1@exemple.com">

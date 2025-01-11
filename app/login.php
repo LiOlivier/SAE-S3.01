@@ -3,32 +3,73 @@ require "../model/utilisateur.php";
 $user = new Utilisateur();
 
 if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
-	session_start();
-    $identifiant = $_POST['identifiant'];
+    session_start();
+    $identifiant = htmlspecialchars(trim($_POST['identifiant']), ENT_QUOTES, 'UTF-8');
     $password = $_POST['password'];
-    
-    $user = $user->login($identifiant, $password);
-    if ($user) {
-        $_SESSION['user'] = $user;
-        header('Location: board.php');
-    } else {
-        echo "Identifiant ou mot de passe incorrect";
 
-}
+    if (empty($identifiant) || empty($password)) {
+        die("Tous les champs doivent être remplis.");
+    }
+
+    try {
+        $userModel = new Utilisateur();
+
+        $user = $userModel->login($identifiant);
+
+        if ($user && password_verify($password, $user['password'])) {
+            // Connexion réussie
+            $_SESSION['user'] = [
+                'id' => $user['id'],
+                'nom' => $user['nom'],
+                'prenom' => $user['prenom'],
+                'email' => $user['email'],
+            ];
+
+        
+            header('Location: board.php');
+            exit(); // Évite les failles de sécurité en arrêtant l'exécution
+        } else {
+            // Identifiant ou mot de passe incorrect
+            echo "Identifiant ou mot de passe incorrect.";
+        }
+    } catch (Exception $e) {
+        die("errer");
+    }
+
+
+
+
+
+    // $user = $user->login($identifiant, $password);
+
+    // if ($user) {
+    //     $_SESSION['user'] = [
+    //         'id' => $user['id'],
+    //         'nom' => $user['nom'],
+    //         'prenom' => $user['prenom'],
+    //         'email' => $user['email']
+    //     ];
+    //     header('Location: board.php');
+    //     exit(); //faille de securiter si on ne met pas exit
+    // } else {
+    //     echo "Identifiant ou mot de passe incorrect";
+    // }
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page de Connexion</title>
     <link rel="stylesheet" href="../CSS/style.css">
 </head>
+
 <body>
     <section class="haut_de_page">
-        <div class="background"></div> 
+        <div class="background"></div>
         <div class="logo">
             <img src="../IMG/USPN.png" alt="Logo USPN">
         </div>
@@ -66,4 +107,5 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
         </div>
     </section>
 </body>
+
 </html>
