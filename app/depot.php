@@ -1,3 +1,18 @@
+<?php
+session_start();
+
+
+if (!isset($_SESSION['user'])) {
+    // Redirige vers la page de connexion si non authentifié
+    header('Location: login.php');
+    exit();
+}
+
+$prenom = $_SESSION['user']['prenom'];
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
