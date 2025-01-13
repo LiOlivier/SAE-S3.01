@@ -25,7 +25,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
                 'email' => $user['email'],
             ];
 
-        
+
             header('Location: board.php');
             exit(); // Évite les failles de sécurité en arrêtant l'exécution
         } else {
@@ -87,13 +87,16 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
         <div class="title">
             <h1>Connexion</h1>
             <form action="login.php" method="post">
+
                 <div class="champ-input">
                     <label for="identifiant">Identifiant</label>
+
                     <div class="input-wrapper">
                         <img src="../IMG/icones/profile.png" alt="Icône Utilisateur" class="input-icon">
                         <input type="text" name="identifiant" id="identifiant" placeholder="Votre identifiant">
                     </div>
                 </div>
+
                 <div class="champ-input">
                     <label for="motdepasse">Mot de passe</label>
                     <div class="input-wrapper">
@@ -102,7 +105,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
                     </div>
                 </div>
                 <a href="#" class="mdp_oublie">Mot de passe oublié</a>
-                <input type="submit" value="connexion" name="connexion" class="but_login">> Me connecter</input>
+                <input type="submit" value="connexion" name="connexion" class="but_login"></input>
             </form>
         </div>
     </section>
