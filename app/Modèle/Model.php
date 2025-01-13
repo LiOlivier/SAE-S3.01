@@ -57,10 +57,4 @@ class Model
         $requete->execute();
         return $requete->fetchAll(PDO::FETCH_ASSOC);
     }
-
-    public function getAllStages() {
-        $requete = $this->bd->prepare('SELECT * FROM Stage');
-        $requete->execute();
-        return $requete->fetchAll(PDO::FETCH_ASSOC); // Retourne toutes les lignes sous forme de tableau associatif
-    }
 }

@@ -54,7 +54,7 @@ require_once("Modèle/email_tut_entreprise.php");
                                         <h3 class="nom">ELEVE2</h3> <!-- <?php echo $nom_eleve; ?>  -->
                                         <p class="classe">BUT2 info</p>
                                         <p class="groupe">Diomerde</p>
-                                        <p class="email">exemple@edu.univ-paris13.fr</p>
+                                        <p class="email"><?php echo $eleve2;?></p>
                                         <button class="contacter copier-email">copier l'email</button>
                                         <input type="hidden" value="email1@exemple.com">
                                         <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
@@ -69,7 +69,7 @@ require_once("Modèle/email_tut_entreprise.php");
                                         <h3 class="nom">M. Martinez</h3> <!-- <?php echo $nom_prof; ?>  -->
                                         <p class="classe">Tuteur pédagogique</p>
                                         <p class="hidden">.</p>
-                                        <p class="email">exemple@gmail.fr</p>
+                                        <p class="email"><?php echo $enseignant_pedagogique?></p>
                                         <button class="contacter copier-email">copier l'email</button>
                                         <input type="hidden" value="email1@exemple.com">
                                         <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
