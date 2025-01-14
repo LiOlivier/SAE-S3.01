@@ -44,17 +44,30 @@ class Model
     }
     
     public function getEleveEnStage($id_tuteur) {
-        $requete = $this->bd->prepare('SELECT Id_Etudiant FROM Stage WHERE Id_Tuteur_Entreprise = :id_tuteur');
+        $requete = $this->bd->prepare('SELECT u.Id AS id_eleve, u.nom, u.prenom, u.email, u.telephone, d.Libelle AS departement, sm.numSemestre AS semestre
+            FROM Stage st
+            JOIN Utilisateur u ON u.Id = st.Id_Etudiant
+            JOIN Departement d ON d.Id_Departement = st.Id_Departement
+            JOIN Semestre sm ON sm.Id_Departement = st.Id_Departement AND sm.numSemestre = st.numSemestre
+            WHERE st.Id_Tuteur_Entreprise = :id_tuteur');
         $requete->bindValue(':id_tuteur', $id_tuteur, PDO::PARAM_INT);
         $requete->execute();
         return $requete->fetchAll(PDO::FETCH_ASSOC);
     }
     
+    
+    
 
-    public function getEnseignant($id_tuteur){
-        $requete = $this->bd->prepare('SELECT Id_Enseignant_1 FROM Stage WHERE id_Tuteur_Entreprise = :id_tuteur');
+    public function getEnseignant($id_tuteur) {
+        $requete = $this->bd->prepare('
+            SELECT u.nom, u.prenom, u.email, u.telephone
+            FROM Stage s
+            JOIN Enseignant e ON s.Id_Enseignant_1 = e.Id_Enseignant
+            JOIN Utilisateur u ON e.Id_Enseignant = u.Id
+            WHERE s.Id_Tuteur_Entreprise = :id_tuteur
+        ');
         $requete->bindValue(':id_tuteur', $id_tuteur, PDO::PARAM_INT);
         $requete->execute();
-        return $requete->fetchAll(PDO::FETCH_ASSOC);
+        return $requete->fetch(PDO::FETCH_ASSOC);
     }
 }
