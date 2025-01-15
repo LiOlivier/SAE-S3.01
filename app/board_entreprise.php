@@ -55,7 +55,7 @@ require_once("Modèle/info_card_entreprise.php");
                                         <h3 class="nom"><?php echo htmlspecialchars($tuteur_ped['prenom'] . ' ' . $tuteur_ped['nom']); ?></h3>
                                         <p class="classe">Tuteur pédagogique</p>
                                         <p class="hidden">.</p>
-                                        <p class="email"><?php echo htmlspecialchars($tuteur_ped['email']); ?></p>
+                                        <p class="email">+33 <?php echo htmlspecialchars($tuteur_ped['telephone']); ?></p>
                                         <button class="contacter copier-email">copier l'email</button>
                                         <input type="hidden" value="<?php echo htmlspecialchars($tuteur_ped['email']); ?>">
                                         <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
@@ -75,7 +75,7 @@ require_once("Modèle/info_card_entreprise.php");
                                         echo '<h3 class="nom">' . htmlspecialchars($eleve['prenom']) . ' ' . htmlspecialchars($eleve['nom']) . '</h3>';
                                         echo '<p class="classe"> BUT ' . htmlspecialchars($eleve['departement']) . '</p>';
                                         echo '<p class="hidden">.</p>';
-                                        echo '<p class="email">' . htmlspecialchars($eleve['email']) . '</p>';
+                                        echo '<p class="email"> +33 ' . htmlspecialchars($eleve['telephone']) . '</p>';
                                         echo '<button class="contacter copier-email">copier l\'email</button>';
                                         echo '<input type="hidden" value="' . htmlspecialchars($eleve['email']) . '">';
                                     echo '</div>
