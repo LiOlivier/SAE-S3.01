@@ -27,12 +27,12 @@
         .clickable-card .nom {
             font-size: 18px;
             font-weight: bold;
+            margin-bottom: 10px;
         }
 
         .clickable-card .details {
             font-size: 16px;
             color: #666;
-            margin-top: 10px;
         }
     </style>
 </head>
