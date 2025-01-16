@@ -15,7 +15,23 @@ $userModel = new Utilisateur();
 
 $enseignants = $userModel->getEnseignantsByEtudiant($idEtudiant);
 
-$tuteur = $userModel->getTuteursByEtudiant($idEtudiant);
+$tuteurs = $userModel->getTuteursByEtudiant($idEtudiant);
+
+// -----------------  DEBUG  -----------------
+// SELECT id_Enseignant FROM `utilisateur` WHERE id = 54;
+// user / utilisateur -> select id Enseignant 
+$id_enseignant = $userModel->getEnseignantById($idEtudiant);
+
+// typeaction / id enseignat ->select * from type action
+
+
+
+
+
+
+//---------------------------------------------
+
+
 
 ?>
 
@@ -51,38 +67,37 @@ require_once(__DIR__ . "//component/aside.php");
 
         <div class="container">
 
-
             <div class="left-tableau">
                 <div style="display: block;">
                     <div class="cards">
                         <h1>Contact : </h1>
                         <?php if ($enseignants) {
-                            for ($i = 0; $i < count($enseignants); $i++) { ?>
+                            foreach ($enseignants as $enseignant){ ?>
                             <div class="card">
                                 <div class="container">
                                     <div class="left">
                                         <div style="display: block;">
-                                            <h3 class="nom"><?= $enseignants[$i]["nom"] ?> <?= $enseignants[$i]["prenom"] ?></h3> <!-- <-- ici on utilie du php pour recuperer le renom de l'utilisateur  -->
-
-                                            <button class="contacter copier-email">contact</button>
-                                            <input type="hidden" value="<?= $enseignants[$i]["email"] ?>">
+                                            <h3 class="nom"><?= $enseignant["nom"] ?> <?= $enseignant["prenom"] ?></h3> <!-- <-- ici on utilie du php pour recuperer le renom de l'utilisateur  -->
+                                            <h3 class="nom-titre">Tuteur entreprise</h3>
+                                            <button class="contacter copier-email">copier l'email</button>
+                                            <input type="hidden" value="<?= $enseignant["email"] ?>">
                                             <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         <?php }} ?>
-                        <?php if ($tuteur) { 
-                            for($i = 0 ; $i < count($tuteur); $i++){
-                                
+                        <?php if ($tuteurs) { 
+                            foreach($tuteurs as $tuteur) {
                            ?>
                             <div class="card">
                                 <div class="container">
                                     <div class="left">
                                         <div style="display: block;">
-                                            <h3 class="nom"><?= $tuteur[$i]["nom"] ?> <?= $tuteur[$i]["prenom"] ?></h3>
-                                            <button class="contacter copier-email">contact</button>
-                                            <input type="hidden" value="<?= $tuteur[$i]["email"] ?>">
+                                            <h3 class="nom"><?= $tuteur["nom"] ?> <?= $tuteur["prenom"] ?></h3>
+                                            <h3 class="nom-titre">Tuteur pedagogique</h3>
+                                            <button class="contacter copier-email">copier l'email</button>
+                                            <input type="hidden" value="<?= $tuteur["email"] ?>">
                                             <p id="message" style="color: green; font-size: 14px; display: none;">Email copié dans le presse-papier !</p>
                                         </div>
                                     </div>

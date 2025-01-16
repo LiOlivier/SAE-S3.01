@@ -58,6 +58,15 @@ class Utilisateur
         return $query->fetchAll(PDO::FETCH_ASSOC); // Retourne un tableau de tuteur
     }
 
+
+    public function getEnseignantById($id)
+    {
+        $sql = "SELECT id_Enseignant FROM $this->table WHERE id = :id";
+        $query = $this->db->prepare($sql);
+        $query->execute(['id' => $id]);
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function cleanXSS($value)
     {
 
