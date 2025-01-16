@@ -1,8 +1,10 @@
 <?php
 session_start();
-require "../model/utilisateur.php";
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
+require "../model/utilisateur.php";
+require "../model/typeAction.php";
+
 if (!isset($_SESSION['user'])) {
     // Redirige vers la page de connexion si non authentifié
     header('Location: login.php');
@@ -22,11 +24,14 @@ $tuteurs = $userModel->getTuteursByEtudiant($idEtudiant);
 // user / utilisateur -> select id Enseignant 
 $id_enseignant = $userModel->getEnseignantById($idEtudiant);
 
-// typeaction / id enseignat ->select * from type action
+// typeaction / id enseignat ->select * from type actionx
 
+// var_dump($id_enseignant);
+// $actionModel = new typeAction();
+// $actions = $actionModel->getActionByEnseignantId($id_enseignant);
 
-
-
+// var_dump($actions);
+// die();
 
 
 //---------------------------------------------
