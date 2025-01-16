@@ -287,3 +287,14 @@ body {
 button {
     cursor: pointer;
 }
+
+.nom-titre {
+    margin: 0 0 0 0;
+    margin-bottom: -1em;
+    font-size: 14px;
+    color: gray;
+    padding: 0px;
+    top: -1.7em;
+    left: 1.7em;
+    position: relative;
+}
