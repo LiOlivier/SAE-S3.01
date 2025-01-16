@@ -1,6 +1,6 @@
 <?php
 // Spécifiez le chemin vers votre fichier PDF
-$filename = "path/to/your/pdf/mon_fichier.pdf";
+$filename = "../pdf/Bharani_Stage_2025.pdf";
 
 if (file_exists($filename)) {
     header('Content-Type: application/pdf');
