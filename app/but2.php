@@ -77,4 +77,3 @@ require_once(__DIR__ . "//component/aside.php");
 </body>
 
 </html>
-ddd
