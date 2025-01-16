@@ -1,22 +1,19 @@
-<div class="card">
+<div class="card ">
     <div class="container">
         <div class="left">
             <div style="display: block;">
                 <h3 class="nom depot-nom">Bordereau de stage</h3>
-                <h4 class="date-limite">Date limite : 12/01/2025</h4>
-                <h4 class="etat">État</h4>
-                <div class="validation">
-                    <i class="fas fa-circle" style="color: #63E6BE;"></i>Document Validé
-                </div>
+                <h4 class="date-limite"> Date limite : 12/01/2025</h4>
+                <h4 class="etat"> Etat</h4>
+                <div class="validation"> <i class="fas fa-circle" style="color: #63E6BE;"></i>Document Validé</div>
 
                 <form id="uploadForm" enctype="multipart/form-data">
-                    
-                    <a href="download_pdf.php" class="contacter" download>
+                    <button class="contacter">
                         Modèle <i class="fas fa-download load" style="color: #c0c0c0;"></i>
-                    </a>
-                    <input type="file" id="sortDocument" name="sortDocument" accept=".jpeg,.jpg,.png,.pdf" style="display: none;" />
+                    </button>
+                    <input type="file" id="sortDocument" name="sortDocument" accept=".jpeg,.jpg,.png,.pdf" style="display:none;" />
                     <button type="button" class="contacter joindre" onclick="document.getElementById('sortDocument').click()">
-                        Joindre fichier <i class="fas fa-upload load" style="color: #c0c0c0;"></i>
+                        Joindre fichier<i class="fas fa-upload load" style="color: #c0c0c0;"></i>
                     </button>
                 </form>
 
@@ -25,4 +22,5 @@
             </div>
         </div>
     </div>
+
 </div>
