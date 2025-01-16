@@ -25,13 +25,6 @@ require_once(__DIR__ . "/component/aside.php");
         </div>
         <?php require "component/notification.php"; ?>
 
-        <!-- Bouton pour télécharger le modèle PDF -->
-        <div class="download-section">
-            <button id="downloadButton" onclick="window.location.href='download_pdf.php'">Télécharger le modèle</button>
-        </div>
-    </section>
-</body>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../JS/notif.js"></script>
 <script type="text/javascript">

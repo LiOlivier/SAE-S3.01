@@ -1,6 +1,6 @@
 <?php
 // Chemin vers le fichier PDF à télécharger
-$filename = __DIR__ . "/path/to/your/pdf/mon_fichier.pdf";
+$filename = __DIR__ . "../pdf/Bordereau de stage 2024-25 BUT2";
 
 if (file_exists($filename)) {
     // En-têtes pour forcer le téléchargement
