@@ -47,19 +47,25 @@ require_once(__DIR__ . "//component/aside.php");
 
         <div class="container">
             <div class="main-cards">
-                <!-- Case 1: BUT 2 -->
-                <div class="card clickable-card" onclick="navigateTo('but2.php')">
+                <!-- Exemple de fiche étudiant -->
+                <div class="card clickable-card">
                     <div class="container">
-                        <h3 class="nom">BUT 2</h3>
-                        <p class="details">128 étudiants</p>
+                        <h3 class="nom">Jean Dupont</h3>
+                        <p class="details">jean.dupont@example.com</p>
                     </div>
                 </div>
 
-                <!-- Case 2: BUT 3 -->
-                <div class="card clickable-card" onclick="navigateTo('but3.php')">
+                <div class="card clickable-card">
                     <div class="container">
-                        <h3 class="nom">BUT 3</h3>
-                        <p class="details">90 étudiants</p>
+                        <h3 class="nom">Marie Curie</h3>
+                        <p class="details">marie.curie@example.com</p>
+                    </div>
+                </div>
+
+                <div class="card clickable-card">
+                    <div class="container">
+                        <h3 class="nom">Albert Einstein</h3>
+                        <p class="details">albert.einstein@example.com</p>
                     </div>
                 </div>
             </div>
@@ -68,12 +74,6 @@ require_once(__DIR__ . "//component/aside.php");
     </section>
 
     <script src="../JS/notif.js"></script>
-    <script>
-        // Redirection vers une autre page en fonction de la case cliquée
-        function navigateTo(page) {
-            window.location.href = page;
-        }
-    </script>
 </body>
 
 </html>
