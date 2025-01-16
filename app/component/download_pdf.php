@@ -1,5 +1,6 @@
 <?php
-$filename = __DIR__ . "/pdf/b"; 
+// Spécifiez le chemin vers votre fichier PDF
+$filename = "pdf/B.pdf";
 
 if (file_exists($filename)) {
     header('Content-Type: application/pdf');
