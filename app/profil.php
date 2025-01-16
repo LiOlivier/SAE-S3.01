@@ -46,7 +46,7 @@ require_once(__DIR__ . "//component/aside.php"); ?>
         </div>
     </section>
 
-    <script src="../JS/mdp.js"></script>
+    <script src="../JS/profil.js"></script>
 </body>
 
 </html>
