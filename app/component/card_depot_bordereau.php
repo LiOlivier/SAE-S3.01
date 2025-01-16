@@ -8,12 +8,12 @@
                 <div class="validation"> <i class="fas fa-circle" style="color: #63E6BE; margin:10px;"></i>Document Validé</div>
 
                 <form id="uploadForm" enctype="multipart/form-data">
-                    <button class="modele">
+                    <button class="modele" type="button" onclick="window.location.href='../app/component/Download_Bordereau.php'">
                         Modèle <i class="fas fa-download load" style="color: #c0c0c0;"></i>
                     </button>
                     <input type="file" id="sortDocument" name="sortDocument" accept=".jpeg,.jpg,.png,.pdf" style="display:none;" />
                     <button type="button" class="joindre" onclick="document.getElementById('sortDocument').click()">
-                        Joindre fichier<i class="fas fa-upload load" style="color: #c0c0c0;"></i>
+                        Joindre fichier <i class="fas fa-upload load" style="color: #c0c0c0;"></i>
                     </button>
                 </form>
 

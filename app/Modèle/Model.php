@@ -62,12 +62,12 @@ class Model
         $requete = $this->bd->prepare('
             SELECT u.nom, u.prenom, u.email, u.telephone
             FROM Stage s
-            JOIN Enseignant e ON s.Id_Enseignant_1 = e.Id_Enseignant
-            JOIN Utilisateur u ON e.Id_Enseignant = u.Id
+            JOIN Utilisateur u ON s.Id_Enseignant_1 = u.Id
             WHERE s.Id_Tuteur_Entreprise = :id_tuteur
         ');
         $requete->bindValue(':id_tuteur', $id_tuteur, PDO::PARAM_INT);
         $requete->execute();
-        return $requete->fetch(PDO::FETCH_ASSOC);
+    
+        return $requete->fetch(PDO::FETCH_ASSOC); // Retourne directement le résultat
     }
 }

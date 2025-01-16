@@ -20,12 +20,15 @@ require_once(__DIR__ . "//component/aside_entreprise.php"); ?>
 
         <h1 id="titre">Document a déposer</h1>
         <div class="cards">
-            <?php require "component/card_depot.php"; ?>
+            <?php require "component/card_depot_bordereau.php"; ?>
         </div>
         <?php require "component/notification.php" ?>
     </section>
 
 </body>
+
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../JS/notif.js"></script>
 <script type="text/javascript">
