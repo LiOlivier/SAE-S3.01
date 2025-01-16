@@ -1,8 +1,8 @@
-<div class="card "  >
+<div class="card ">
     <div class="container">
         <div class="left">
             <div style="display: block;">
-                <h3 class="nom depot-nom">Bordereau de stage</h3>
+                <h3 class="nom depot-nom">Convention de stage</h3>
                 <h4 class="date-limite"> Date limite : 12/01/2025</h4>
                 <h4 class="etat"> Etat</h4>
                 <div class="validation"> <i class="fas fa-circle" style="color: #63E6BE; margin:10px;"></i>Document Validé</div>

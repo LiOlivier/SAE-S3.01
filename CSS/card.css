@@ -60,6 +60,7 @@
     display: flex;
     width: 100%;
 }
+
 .date-limite{
     font-size:15px; 
     color:gray ; 
@@ -78,3 +79,4 @@
     display: inline-flex;
     margin-right: 20px;
 }
+

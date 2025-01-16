@@ -21,6 +21,8 @@ require_once(__DIR__ . "//component/aside_entreprise.php"); ?>
         <h1 id="titre">Document a déposer</h1>
         <div class="cards">
             <?php require "component/card_depot_bordereau.php"; ?>
+            <?php require "component/card_depot_convention.php"; ?>
+            <?php require "component/card_depot_rapport.php"; ?>
         </div>
         <?php require "component/notification.php" ?>
     </section>
