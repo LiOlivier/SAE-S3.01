@@ -10,7 +10,7 @@
                 </div>
 
                 <form id="uploadForm" enctype="multipart/form-data">
-
+                    <!-- Bouton pour télécharger le modèle -->
                     <a href="download_pdf.php" class="contacter">
                         Modèle <i class="fas fa-download load" style="color: #c0c0c0;"></i>
                     </a>
