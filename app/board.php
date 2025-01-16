@@ -14,8 +14,9 @@ $userModel = new Utilisateur();
 
 
 $enseignants = $userModel->getEnseignantsByEtudiant($idEtudiant);
-// var_dump($enseignants[0]["prenom"]);
-// die();
+
+$tuteur = $userModel->getTuteursByEtudiant($idEtudiant);
+
 ?>
 
 
@@ -55,48 +56,39 @@ require_once(__DIR__ . "//component/aside.php");
                 <div style="display: block;">
                     <div class="cards">
                         <h1>Contact : </h1>
-                        <?php if ($enseignants) { ?>
+                        <?php if ($enseignants) {
+                            for ($i = 0; $i < count($enseignants); $i++) { ?>
                             <div class="card">
                                 <div class="container">
                                     <div class="left">
                                         <div style="display: block;">
-                                            <h3 class="nom"><?= $enseignants[0]["nom"] ?> <?= $enseignants[0]["prenom"] ?></h3> <!-- <-- ici on utilie du php pour recuperer le renom de l'utilisateur  -->
+                                            <h3 class="nom"><?= $enseignants[$i]["nom"] ?> <?= $enseignants[$i]["prenom"] ?></h3> <!-- <-- ici on utilie du php pour recuperer le renom de l'utilisateur  -->
 
                                             <button class="contacter copier-email">contact</button>
-                                            <input type="hidden" value="<?= $enseignants[0]["email"] ?>">
+                                            <input type="hidden" value="<?= $enseignants[$i]["email"] ?>">
                                             <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
-                        <?php }
-                        ?>
-                        <div class="card">
-                            <div class="container">
-                                <div class="left">
-                                    <div style="display: block;">
-                                        <h3 class="nom">tuteur Entreprise</h3>
-                                        <button class="contacter copier-email">contact</button>
-                                        <input type="hidden" value="tuteur@gmail.com">
-                                        <p id="message" style="color: green; font-size: 14px; display: none;">Email copié dans le presse-papier !</p>
+                        <?php }} ?>
+                        <?php if ($tuteur) { 
+                            for($i = 0 ; $i < count($tuteur); $i++){
+                                
+                           ?>
+                            <div class="card">
+                                <div class="container">
+                                    <div class="left">
+                                        <div style="display: block;">
+                                            <h3 class="nom"><?= $tuteur[$i]["nom"] ?> <?= $tuteur[$i]["prenom"] ?></h3>
+                                            <button class="contacter copier-email">contact</button>
+                                            <input type="hidden" value="<?= $tuteur[$i]["email"] ?>">
+                                            <p id="message" style="color: green; font-size: 14px; display: none;">Email copié dans le presse-papier !</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="container">
-                                <div class="left">
-                                    <div style="display: block;">
-                                        <h3 class="nom">tuteur Entreprise</h3>
-                                        <button class="contacter copier-email">contact</button>
-                                        <input type="hidden" value="tutdeeee@gmail.com">
-                                        <p id="message" style="color: green; font-size: 14px; display: none;">Email copié dans le presse-papier !</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            </div> 
+                        <?php }} ?>
                     </div>
 
 
