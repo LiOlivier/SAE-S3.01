@@ -19,23 +19,10 @@ $enseignants = $userModel->getEnseignantsByEtudiant($idEtudiant);
 
 $tuteurs = $userModel->getTuteursByEtudiant($idEtudiant);
 
-// -----------------  DEBUG  -----------------
-// SELECT id_Enseignant FROM `utilisateur` WHERE id = 54;
-// user / utilisateur -> select id Enseignant 
 $id_enseignant = $userModel->getEnseignantById($idEtudiant);
 
-// typeaction / id enseignat ->select * from type actionx
-
-// var_dump($id_enseignant);
-// $actionModel = new typeAction();
-// $actions = $actionModel->getActionByEnseignantId($id_enseignant);
-
-// var_dump($actions);
-// die();
-
-
-//---------------------------------------------
-
+$actionModel = new typeAction();
+$actions = $actionModel->getActionByEnseignantId($id_enseignant["id_Enseignant"]);
 
 
 ?>
@@ -114,43 +101,38 @@ require_once(__DIR__ . "//component/aside.php");
 
                     <div class="cards">
                         <h1>A venir :</h1>
+                        <?php if ($enseignant) {  
+                            foreach ($actions as $action){?>
                         <div class="card">
                             <div class="container">
                                 <div class="left">
                                     <div style="display: block;">
-                                        <h3 class="nom">Rapport de stage</h3>
-                                        <h3 class="date-limite">date limite 29/01</h3>
+                                        <h3 class="nom"><?= $action['libelle']?></h3>
+                                        <h3 class="date-limite"><?= $action['dateLimite']?></h3>
                                         <button id="ouvrir">ouvrir</button>
                                         <input type="hidden" value="id">
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="card">
-                            <div class="container">
-                                <div class="left">
-                                    <div style="display: block;">
-                                        <h3 class="nom">Convention de stage</h3>
-                                        <h3 class="date-limite">date limite 29/01</h3>
-                                        <button id="ouvrir">ouvrir</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php }}?>
                     </div>
                 </div>
             </div>
 
 
-            <div class="right-tableau">
+            <div class="right-tableau"></div>
 
                 <!-- Interface tuteur pedagogique -->
                 <div class="card taches">
                     <div class="container">
                         <div style="display: block;">
                             <h3 class="nom">Document a deposer</h3>
-                            <button class="tache">bordereau de stage <i class="fas fa-chevron-right fa-sm" style="color: #c0c0c0; position: relative; left:1em;"></i></button>
+                            <?php if ($actions) { 
+                            foreach($actions as $action) {
+                           ?>
+                            <button class="tache"><?= $action["libelle"]?> <i class="fas fa-chevron-right fa-sm" style="color: #c0c0c0; position: relative; left:1em;"></i></button>
+                            <?php }} ?>
                         </div>
                     </div>
 
