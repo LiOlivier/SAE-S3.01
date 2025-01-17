@@ -2,10 +2,18 @@
     <div class="container">
         <div class="left">
             <div style="display: block;">
-                <h3 class="nom depot-nom">Bordereau de stage</h3>
-                <h4 class="date-limite"> Date limite : 12/01/2025</h4>
+                <h3 class="nom depot-nom"><?= $action["libelle"] ?></h3>
+                <h4 class="date-limite"> Date limite : <?= $action["dateLimite"] ?></h4>
                 <h4 class="etat"> Etat</h4>
-                <div class="validation"> <i class="fas fa-circle" style="color: #63E6BE;"></i>Document Validé</div>
+                <div class="validation"> <i class="fas fa-circle"
+                        style="color: 
+       <?php
+        echo $action['Etat'] == 'A faire' ? '#B0B0B0' : // Gris
+            ($action['Etat'] == 'En attente' ? '#FFA500' : // Orange
+                ($action['Etat'] == 'Valider' ? '#63E6BE' : // Vert
+                    ($action['Etat'] == 'Refuser' ? '#FF0000' : '#000000'))); // Rouge par défaut, sinon Noir
+        ?>">
+                    </i> </i> <?= $action['Etat'] ?></div>
 
                 <form id="uploadForm" enctype="multipart/form-data">
                     <button class="contacter">

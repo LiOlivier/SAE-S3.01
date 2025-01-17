@@ -1,12 +1,6 @@
 <?php
-session_start();
+require "./controller/depotController.php" ;
 
-
-if (!isset($_SESSION['user'])) {
-    // Redirige vers la page de connexion si non authentifié
-    header('Location: login.php');
-    exit();
-}
 
 $prenom = $_SESSION['user']['prenom'];
 
@@ -35,7 +29,10 @@ require_once(__DIR__ . "//component/aside.php"); ?>
 
         <h1 id="titre">Document a déposer</h1>
         <div class="cards">
+        <?php if ($actions) {  
+                            foreach ($actions as $action){?>
             <?php require "component/card_depot.php"; ?>
+            <?php }}?>
         </div>
         <?php require "component/notification.php"; ?>
     </section>
