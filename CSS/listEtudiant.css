@@ -1,0 +1,54 @@
+
+body{
+    background-color: rgb(194, 201, 207);
+}
+
+.listEtudiant{
+    width: 60%;
+    height: 100px;
+    background-color: white;
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+
+.listEtudiant p{
+    font-weight: bold;
+}
+
+.detail-button{
+    background-color: rgb(5, 161, 5);
+    color: white;
+    border: none;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+}

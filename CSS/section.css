@@ -1,0 +1,126 @@
+body{
+    background-color: rgb(194, 201, 207);
+}
+
+#body-tdb {
+    position: absolute;
+    top: 40px;
+    left: 250px;
+    width: 100%;
+}
+
+#body-tdb header{
+    height: 30px;
+    background-color: white;
+    border-bottom: #C5C5C5 solid 2px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#body-tdb img{
+    width: 30px;
+    margin-right: 10px;   
+    display: flex;
+}
+
+#article-tdb{
+    margin-left: 20px;
+}
+
+#titre-formation{
+    font-size: 40px;
+    color: #1F3269;
+    margin-bottom: 10px;
+    user-select: none;
+}
+
+.bloc-formation{
+    width: 400px;
+    height: 150px;
+    background-color: white;
+    user-select: none;
+}
+.bloc-formation a{
+    text-decoration: none;
+    
+}
+
+.bloc-formation:hover{
+    background-color: #3b8bd6;
+}
+
+.bloc-formation a:visited{
+    color: black;
+}
+
+
+.bloc-formation p {
+    margin-left: 10px;
+    font-size: 20px;
+}
+.bloc-formation p:hover {
+    background-color: #3b8bd6;
+}
+.bloc-formation #titre-but{
+    font-weight: bold;
+    font-size: 25px;
+    padding-top: 10px;
+}
+
+
+#calendrier{
+    position: fixed;
+    top: 100px;
+    width: 350px;
+    height: 350px;
+    background-color: white;
+    justify-items: center;
+    border-radius: 5px;
+    border: black solid 1px;
+}
+#mois {
+    display: flex;
+    justify-content: center;
+}
+#mois span:hover{
+    background-color: #afafaf;
+    cursor: pointer;
+    border-radius: 2px;
+}
+#nom-de-mois {
+    padding: 0 100% ;
+    font-size: 18px;
+}
+
+
+#calendrier th, #calendrier td {
+    text-align: center; 
+    vertical-align: middle; 
+    padding: 10px 5px; 
+    width: 35px; 
+    height: 35px; 
+    box-sizing: border-box; 
+}
+
+#calendrier th{
+    user-select: none;
+    padding: 30px 5px; 
+}
+
+
+#date-calendrier td:hover {
+    background-color: #1923b1; 
+    cursor: pointer; 
+    border-radius: 50%;
+    width: 5px;
+}
+
+.notification:hover{
+    cursor:pointer;
+}
+
+#ongletNotif{
+    border: grey solid 1px;
+    box-shadow: 1px 0px 7px black;
+}
