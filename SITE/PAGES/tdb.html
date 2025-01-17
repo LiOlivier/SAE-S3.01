@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de Connexion</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body style="background-color: rgb(194, 201, 207); height: 100%;">
+    <header class="haut_de_page" >
+        <nav class="haut" style="position: relative">
+            <ul class="navbar">
+                <li>
+                    <img src="../IMG/icones/planète.png" alt="Planète" class="icon"> Français
+                    <img src="../IMG/icones/flèche.png" alt="Flèche" class="arrow" id="arrow">
+                </li>
+                <li id="english">
+                    <img src="../IMG/icones/planète.png" alt="Planète" class="icon"> English
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <nav id="nav">
+        <div id="logo-tdb"><img src="../IMG/USPN.png" alt=""></div>
+        <div id="menu">
+            <ul id="bar-selection">
+                <li><img src="../IMG/icones/Dashboard.jpg" alt=""><span>Tableau de bord</span></li>
+                <li><img src="../IMG/icones/Folder Open.jpg" alt=""><span>Depôt de document</span></li>
+                <li><img src="../IMG/icones/Setting.jpg" alt=""><span>Paramètre</span></li>
+            </ul>
+        </div>
+        <footer id="logout"><img src="../IMG/icones/Logout.jpg" alt=""> <span>Se déconnecter</span></footer>
+    </nav>
+    <section id="body-tdb">
+        <header><img src="../IMG/icones/Notification.jpg" alt=""></header>
+        <article id="article-tdb">
+            <h1 id="titre-formation">Formation</h1>
+            <div class="bloc-formation">
+                <p id="titre-but">But 2 Informatique</p>
+                <p>xx étudiants</p>
+            </div>
+            <div class="bloc-formation">
+                <p id="titre-but">But 3 Informatique</p>
+                <p>xx étudiants</p>
+            </div>
+        </article>
+
+        <aside id="calendrier">
+            <div id="mois">
+                <span>&#8592</span><span id="nom-de-mois">Décembre</span><span>&#8594</span>
+            </div>
+            <table id="table-calendrier">
+                <thead>
+                    <tr>
+                        <th>DIM</th>
+                        <th>LUN</th>
+                        <th>MAR</th>
+                        <th>MER</th>
+                        <th>JEU</th>
+                        <th>VEN</th>
+                        <th>SAM</th>
+                    </tr>
+                </thead>
+                <tbody id="date-calendrier">
+                </tbody>
+            </table>
+        </aside>
+    </section>
+
+
+</body>
+<script src="../JS/script.js"></script>
+</html>
