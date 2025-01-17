@@ -31,7 +31,27 @@
     background-color: #224e80;
 }
 
-.joindre {
+.importer {
+    background-color: #00244d;
+    margin-right: 1em;
+    color: #fff;
+    font-size: 17px;
+    margin-left: 1.2em;
+    width: 10em;
+    height: 2em;
+    border-radius: 10px;
+    border-style: none;
+    margin-top: 2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+
+.importer:hover {
+    background-color: #224e80;
+}
+
+.telecharger {
     background-color: #00244d;
     color: #fff;
     font-size: 17px;
@@ -46,9 +66,11 @@
 }
 
 
-.joindre:hover {
+.telecharger:hover {
     background-color: #224e80;
 }
+
+
 
 .nom{
     font-size: 24px;
