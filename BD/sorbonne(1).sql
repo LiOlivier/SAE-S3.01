@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : jeu. 16 jan. 2025 à 10:22
+-- Généré le : jeu. 16 jan. 2025 à 15:59
 -- Version du serveur : 5.7.24
 -- Version de PHP : 8.3.1
 
@@ -85,6 +85,7 @@ INSERT INTO `annee` (`annee`) VALUES
 --
 
 CREATE TABLE `departement` (
+  `id` int(11) NOT NULL,
   `Id_Departement` int(11) NOT NULL,
   `Libelle` varchar(255) DEFAULT NULL,
   `Id_Enseignant` int(11) NOT NULL
@@ -94,8 +95,8 @@ CREATE TABLE `departement` (
 -- Déchargement des données de la table `departement`
 --
 
-INSERT INTO `departement` (`Id_Departement`, `Libelle`, `Id_Enseignant`) VALUES
-(1, 'INFO', 8);
+INSERT INTO `departement` (`id`, `Id_Departement`, `Libelle`, `Id_Enseignant`) VALUES
+(1, 1, 'INFO', 8);
 
 -- --------------------------------------------------------
 
@@ -152,21 +153,23 @@ INSERT INTO `entreprise` (`Id_Entreprise`, `adresse`, `code_postal`, `ville`, `i
 --
 
 CREATE TABLE `etudiant` (
-  `Id_Etudiant` int(11) NOT NULL
+  `Id` int(11) NOT NULL,
+  `id_Etudiant` int(11) NOT NULL,
+  `id_Enseignant` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `etudiant`
 --
 
-INSERT INTO `etudiant` (`id_Etudiant`) VALUES
-(1),
-(2),
-(3),
-(4),
-(5),
-(6),
-(7);
+INSERT INTO `etudiant` (`Id`, `id_Etudiant`, `id_Enseignant`) VALUES
+(1, 54, 2),
+(2, 0, 0),
+(3, 0, 0),
+(4, 0, 0),
+(5, 0, 0),
+(6, 0, 0),
+(7, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -298,8 +301,7 @@ CREATE TABLE `stage` (
 
 INSERT INTO `stage` (`Id_Stage`, `annee`, `Id_Departement`, `numSemestre`, `Id_Etudiant`, `date_debut`, `date_fin`, `mission`, `date_soutenance`, `salle_soutenance`, `Id_Enseignant_1`, `Id_Tuteur_Entreprise`, `Id_Enseignant_2`) VALUES
 (1, 2024, 1, 4, 1, '2024-04-01', '2024-06-30', 'Développement d’une application web', '2024-07-15', 'Salle A1', 8, 9, 8),
-(2, 2024, 1, 4, 2, '2024-05-01', '2024-07-31', 'Analyse des données clients', '2024-08-20', 'Salle B2', 8, 9, 8),
-(3, 2024, 1, 4, 3, '2024-02-10', '2024-06-30', 'Développement d’une application web', '2024-07-15', 'Salle C3', 8, 9, 8);
+(2, 2024, 1, 4, 2, '2024-05-01', '2024-07-31', 'Analyse des données clients', '2024-08-20', 'Salle B2', 8, 9, 8);
 
 -- --------------------------------------------------------
 
@@ -310,6 +312,7 @@ INSERT INTO `stage` (`Id_Stage`, `annee`, `Id_Departement`, `numSemestre`, `Id_E
 CREATE TABLE `tuteur_entreprise` (
   `Id` int(11) NOT NULL,
   `id_Tuteur_Entreprise` int(11) NOT NULL,
+  `id_Enseignant` int(11) NOT NULL,
   `id_Etudiant` int(11) NOT NULL,
   `Id_Entreprise` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -318,9 +321,9 @@ CREATE TABLE `tuteur_entreprise` (
 -- Déchargement des données de la table `tuteur_entreprise`
 --
 
-INSERT INTO `tuteur_entreprise` (`Id`, `id_Tuteur_Entreprise`, `id_Etudiant`, `Id_Entreprise`) VALUES
-(8, 6, 54, 1),
-(9, 5, 54, 3);
+INSERT INTO `tuteur_entreprise` (`Id`, `id_Tuteur_Entreprise`, `id_Enseignant`, `id_Etudiant`, `Id_Entreprise`) VALUES
+(8, 6, 2, 54, 1),
+(9, 5, 0, 53, 3);
 
 -- --------------------------------------------------------
 
@@ -329,26 +332,32 @@ INSERT INTO `tuteur_entreprise` (`Id`, `id_Tuteur_Entreprise`, `id_Etudiant`, `I
 --
 
 CREATE TABLE `typeaction` (
+  `id` int(11) NOT NULL,
   `Id_TypeAction` int(11) NOT NULL,
   `libelle` varchar(255) DEFAULT NULL,
   `Executant` varchar(255) DEFAULT NULL,
   `Destinataire` varchar(255) DEFAULT NULL,
   `delaiEnJours` int(11) DEFAULT NULL,
+  `dateLimite` date DEFAULT NULL,
   `ReferenceDelai` int(11) DEFAULT NULL,
   `requiertDoc` varchar(255) DEFAULT NULL,
-  `LienModeleDoc` varchar(255) DEFAULT NULL
+  `LienModeleDoc` varchar(255) DEFAULT NULL,
+  `reception` varchar(255) DEFAULT NULL,
+  `Etat` enum('A faire','En attente','Valider','Refuser') NOT NULL DEFAULT 'A faire',
+  `id_Enseignant` int(11) DEFAULT NULL,
+  `id_Tuteur_Entreprise` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `typeaction`
 --
 
-INSERT INTO `typeaction` (`Id_TypeAction`, `libelle`, `Executant`, `Destinataire`, `delaiEnJours`, `ReferenceDelai`, `requiertDoc`, `LienModeleDoc`) VALUES
-(1, 'Rapport d’installation', 'Etudiant', 'Tuteur Pédagogique', 7, 1, 'Oui', 'lien_modele_rapport_installation.pdf'),
-(2, 'Contact Entreprise', 'Tuteur Pédagogique', 'Entreprise', 14, 1, 'Non', NULL),
-(3, 'Entretien Mi-Stage', 'Tuteur Pédagogique', 'Entreprise', 30, 1, 'Non', NULL),
-(4, 'Planification Soutenance', 'Tuteur Pédagogique', 'Etudiant', 90, 2, 'Oui', 'lien_modele_planification.pdf'),
-(5, 'Dépôt Rapport de Stage', 'Etudiant', 'Tuteur Pédagogique', 100, 2, 'Oui', 'lien_modele_rapport_stage.pdf');
+INSERT INTO `typeaction` (`id`, `Id_TypeAction`, `libelle`, `Executant`, `Destinataire`, `delaiEnJours`, `dateLimite`, `ReferenceDelai`, `requiertDoc`, `LienModeleDoc`, `reception`, `Etat`, `id_Enseignant`, `id_Tuteur_Entreprise`) VALUES
+(1, 1, 'Rapport d’installation', 'Etudiant', 'Tuteur Pédagogique', 7, '2025-04-16', 1, 'Oui', 'lien_modele_rapport_installation.pdf', NULL, 'A faire', 2, 0),
+(2, 2, 'Contact Entreprise', 'Tuteur Pédagogique', 'Entreprise', 14, NULL, 1, 'Non', NULL, NULL, 'A faire', 2, 6),
+(3, 3, 'Entretien Mi-Stage', 'Tuteur Pédagogique', 'Entreprise', 30, NULL, 1, 'Non', NULL, NULL, 'A faire', 0, 0),
+(4, 4, 'Planification Soutenance', 'Tuteur Pédagogique', 'Etudiant', 90, NULL, 2, 'Oui', 'lien_modele_planification.pdf', NULL, 'A faire', 0, 0),
+(5, 5, 'Dépôt Rapport de Stage', 'Etudiant', 'Tuteur Pédagogique', 100, '2025-04-16', 2, 'Oui', 'lien_modele_rapport_stage.pdf', NULL, 'A faire', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -364,26 +373,28 @@ CREATE TABLE `utilisateur` (
   `telephone` varchar(255) DEFAULT NULL,
   `login` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` enum('etudiant','enseignant','administrateur','secretaire','tuteur') NOT NULL
+  `role` enum('etudiant','enseignant','administrateur','secretaire','tuteur') NOT NULL,
+  `id_Enseignant` int(11) NOT NULL,
+  `id_Tuteur_Entreprise` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `email`, `telephone`, `login`, `password`, `role`) VALUES
-(1, 'Essafa', 'Yassine', 'yassineessafa49@gmail.com', '0102030405', '12302332', '090709756JF', 'etudiant'),
-(2, 'Vuong', 'Denis', 'vuong.denis.p@gmail.com', '0607080910', '48944444', 'gb59etffffre', 'enseignant'),
-(3, 'Rattina', 'Bharani', 'bharanirattina@gmail.com', '1009080706', '4895615649', 'sdfghrYUGGrhs', 'administrateur'),
-(4, 'Lointier', 'Maxime', 'lointier.maxime@gmail.com', '0504030201', 'max', '12345', 'tuteur'),
-(5, 'Pham', 'Huy', 'phamhuy110205@gmail.com', '6984563269', 'L0gIn', '455985cecfe', 'tuteur'),
-(6, 'Li', 'Olivier', 'liolivier98@gmail.com', '0700000000', 'grr955efefef', 'YUEFUvfb8484', 'tuteur'),
-(7, 'Jeremias', 'Sherwin', 'sherwinfrance18@gmail.com', '0880088008', 'XxgoatxX', 'gojgoirssssss', 'etudiant'),
-(8, 'Audibert', 'Laurent', 'laurent.audibert@univ-paris13.fr', '9999999999', 'szdLPLSZ89', 'lplflel', 'etudiant'),
-(9, 'Preteseille', 'Christine', 'christine.preteseille@gmail.com', '19451677411', 'siuuujxjjqj7', 'jujuujjuju', 'etudiant'),
-(50, 'ygtfrd', 'Loick', 'gf@hgf.com', '098765', 'lolo', '$argon2id$v=19$m=262144,t=4,p=2$TEhqS2pheTRqdGtsRzRPbg$Pvx6PVO6++6p+UcCusOrZ7lr2kXSC6yL9ahxevlyxd8', 'etudiant'),
-(53, 'notlointier', 'notmaxime', 'hahahha@gmail.com', '45197815615', 'notmaxime', '$argon2id$v=19$m=262144,t=4,p=2$LjlqQUpMcWJsT1dKeVFyWA$O1a4F+UJeRmWnXKzcmwlpr9BEqoyy2SHgrzPWyFvJ0I', 'etudiant'),
-(54, 'lointier', 'Maxsous', 'erghgre@gmail.com', '1515', 'maxsous', '$argon2id$v=19$m=262144,t=4,p=2$ZXQxc1NueWR2bUxWbVk1Sw$NDKJxQEXpoM0GFc2QQBAIwYI9Q3VXpK905c8p/lxqLw', 'etudiant');
+INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `email`, `telephone`, `login`, `password`, `role`, `id_Enseignant`, `id_Tuteur_Entreprise`) VALUES
+(1, 'Essafa', 'Yassine', 'yassineessafa49@gmail.com', '0102030405', '12302332', '090709756JF', 'etudiant', 0, 0),
+(2, 'Vuong', 'Denis', 'vuong.denis.p@gmail.com', '0607080910', '48944444', 'gb59etffffre', 'enseignant', 0, 0),
+(3, 'Rattina', 'Bharani', 'bharanirattina@gmail.com', '1009080706', '4895615649', 'sdfghrYUGGrhs', 'administrateur', 0, 0),
+(4, 'Lointier', 'Maxime', 'lointier.maxime@gmail.com', '0504030201', 'max', '12345', 'tuteur', 0, 0),
+(5, 'Pham', 'Huy', 'phamhuy110205@gmail.com', '6984563269', 'L0gIn', '455985cecfe', 'tuteur', 0, 0),
+(6, 'Li', 'Olivier', 'liolivier98@gmail.com', '0700000000', 'grr955efefef', 'YUEFUvfb8484', 'tuteur', 0, 0),
+(7, 'Jeremias', 'Sherwin', 'sherwinfrance18@gmail.com', '0880088008', 'XxgoatxX', 'gojgoirssssss', 'etudiant', 0, 0),
+(8, 'Audibert', 'Laurent', 'laurent.audibert@univ-paris13.fr', '9999999999', 'szdLPLSZ89', 'lplflel', 'etudiant', 0, 0),
+(9, 'Preteseille', 'Christine', 'christine.preteseille@gmail.com', '19451677411', 'siuuujxjjqj7', 'jujuujjuju', 'etudiant', 0, 0),
+(50, 'ygtfrd', 'Loick', 'gf@hgf.com', '098765', 'lolo', '$argon2id$v=19$m=262144,t=4,p=2$TEhqS2pheTRqdGtsRzRPbg$Pvx6PVO6++6p+UcCusOrZ7lr2kXSC6yL9ahxevlyxd8', 'etudiant', 0, 0),
+(53, 'notlointier', 'notmaxime', 'hahahha@gmail.com', '45197815615', 'notmaxime', '$argon2id$v=19$m=262144,t=4,p=2$LjlqQUpMcWJsT1dKeVFyWA$O1a4F+UJeRmWnXKzcmwlpr9BEqoyy2SHgrzPWyFvJ0I', 'etudiant', 0, 0),
+(54, 'lointier', 'Maxsous', 'erghgre@gmail.com', '1515', 'maxsous', '$argon2id$v=19$m=262144,t=4,p=2$ZXQxc1NueWR2bUxWbVk1Sw$NDKJxQEXpoM0GFc2QQBAIwYI9Q3VXpK905c8p/lxqLw', 'etudiant', 2, 6);
 
 --
 -- Index pour les tables déchargées
@@ -414,7 +425,7 @@ ALTER TABLE `annee`
 -- Index pour la table `departement`
 --
 ALTER TABLE `departement`
-  ADD PRIMARY KEY (`Id_Departement`),
+  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `Id_Enseignant` (`Id_Enseignant`),
   ADD UNIQUE KEY `Libelle` (`Libelle`);
 
@@ -434,7 +445,7 @@ ALTER TABLE `entreprise`
 -- Index pour la table `etudiant`
 --
 ALTER TABLE `etudiant`
-  ADD PRIMARY KEY (`Id_Etudiant`);
+  ADD PRIMARY KEY (`Id`);
 
 --
 -- Index pour la table `gere`
@@ -493,7 +504,7 @@ ALTER TABLE `tuteur_entreprise`
 -- Index pour la table `typeaction`
 --
 ALTER TABLE `typeaction`
-  ADD PRIMARY KEY (`Id_TypeAction`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `utilisateur`
@@ -518,7 +529,7 @@ ALTER TABLE `action`
 -- AUTO_INCREMENT pour la table `departement`
 --
 ALTER TABLE `departement`
-  MODIFY `Id_Departement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `entreprise`
@@ -536,7 +547,7 @@ ALTER TABLE `stage`
 -- AUTO_INCREMENT pour la table `typeaction`
 --
 ALTER TABLE `typeaction`
-  MODIFY `Id_TypeAction` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
@@ -553,7 +564,7 @@ ALTER TABLE `utilisateur`
 --
 ALTER TABLE `action`
   ADD CONSTRAINT `action_ibfk_1` FOREIGN KEY (`annee`,`Id_Departement`,`numSemestre`,`Id_Etudiant`,`Id_Stage`) REFERENCES `stage` (`annee`, `Id_Departement`, `numSemestre`, `Id_Etudiant`, `Id_Stage`),
-  ADD CONSTRAINT `action_ibfk_2` FOREIGN KEY (`Id_TypeAction`) REFERENCES `typeaction` (`Id_TypeAction`),
+  ADD CONSTRAINT `action_ibfk_2` FOREIGN KEY (`Id_TypeAction`) REFERENCES `typeaction` (`id`),
   ADD CONSTRAINT `action_ibfk_3` FOREIGN KEY (`Id`) REFERENCES `utilisateur` (`id`);
 
 --
@@ -578,7 +589,7 @@ ALTER TABLE `enseignant`
 -- Contraintes pour la table `etudiant`
 --
 ALTER TABLE `etudiant`
-  ADD CONSTRAINT `etudiant_ibfk_1` FOREIGN KEY (`Id_Etudiant`) REFERENCES `utilisateur` (`id`);
+  ADD CONSTRAINT `etudiant_ibfk_1` FOREIGN KEY (`Id`) REFERENCES `utilisateur` (`id`);
 
 --
 -- Contraintes pour la table `gere`
@@ -592,7 +603,7 @@ ALTER TABLE `gere`
 --
 ALTER TABLE `inscription`
   ADD CONSTRAINT `inscription_ibfk_1` FOREIGN KEY (`Id_Departement`,`numSemestre`) REFERENCES `semestre` (`Id_Departement`, `numSemestre`),
-  ADD CONSTRAINT `inscription_ibfk_2` FOREIGN KEY (`Id_Etudiant`) REFERENCES `etudiant` (`Id_Etudiant`),
+  ADD CONSTRAINT `inscription_ibfk_2` FOREIGN KEY (`Id_Etudiant`) REFERENCES `etudiant` (`Id`),
   ADD CONSTRAINT `inscription_ibfk_3` FOREIGN KEY (`annee`) REFERENCES `annee` (`annee`);
 
 --
@@ -600,7 +611,7 @@ ALTER TABLE `inscription`
 --
 ALTER TABLE `intervient`
   ADD CONSTRAINT `intervient_ibfk_1` FOREIGN KEY (`Id_Enseignant`) REFERENCES `enseignant` (`id`),
-  ADD CONSTRAINT `intervient_ibfk_2` FOREIGN KEY (`Id_Departement`) REFERENCES `departement` (`Id_Departement`);
+  ADD CONSTRAINT `intervient_ibfk_2` FOREIGN KEY (`Id_Departement`) REFERENCES `departement` (`id`);
 
 --
 -- Contraintes pour la table `secretaire`
@@ -612,7 +623,7 @@ ALTER TABLE `secretaire`
 -- Contraintes pour la table `semestre`
 --
 ALTER TABLE `semestre`
-  ADD CONSTRAINT `semestre_ibfk_1` FOREIGN KEY (`Id_Departement`) REFERENCES `departement` (`Id_Departement`),
+  ADD CONSTRAINT `semestre_ibfk_1` FOREIGN KEY (`Id_Departement`) REFERENCES `departement` (`id`),
   ADD CONSTRAINT `semestre_ibfk_2` FOREIGN KEY (`Id_Enseignant`) REFERENCES `enseignant` (`id`),
   ADD CONSTRAINT `semestre_ibfk_3` FOREIGN KEY (`annee`) REFERENCES `annee` (`annee`);
 

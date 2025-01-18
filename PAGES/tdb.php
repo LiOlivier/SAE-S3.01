@@ -6,7 +6,8 @@
         integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/navHaut.css">
-    <link rel="stylesheet" href="../CSS/aside.css">
+    <link rel="stylesheet" href="../CSS/headerDemo.css">
+    <link rel="stylesheet" href="../CSS/asideDemo.css">
     <link rel="stylesheet" href="../CSS/section.css">
     <link rel="stylesheet" href="../CSS/listEtudiant.css">
     
@@ -14,9 +15,10 @@
 </head>
 <body>
 <?php 
-    require_once(__DIR__ ."/header.php");
-    require_once(__DIR__ ."/aside.php") ;
+    require_once(__DIR__ ."/headerDemo.php");
+    require_once(__DIR__ ."/asideDemo.php") ;
     require_once(__DIR__ ."/section.php") ;
+    require_once(__DIR__ ."/notification.php");
 ?>
 <script src="../JS/newscript.js"></script>
 </body>

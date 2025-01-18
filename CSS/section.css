@@ -6,7 +6,7 @@ body{
     position: absolute;
     top: 40px;
     left: 250px;
-    width: 100%;
+    width: calc(100% - 400px);
 }
 
 #body-tdb header{
