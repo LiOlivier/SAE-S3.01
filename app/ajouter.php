@@ -50,7 +50,9 @@
             color: #555;
         }
 
-        input, select, button {
+        input,
+        select,
+        button {
             display: block;
             width: 100%;
             padding: 10px;
@@ -60,7 +62,8 @@
             border-radius: 5px;
         }
 
-        input:focus, select:focus {
+        input:focus,
+        select:focus {
             outline: none;
             border-color: #4caf50;
             box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
@@ -105,7 +108,7 @@
 
     <section>
         <h1>Ajouter un utilisateur</h1>
-        <form action="ajout_utilisateur.php" method="POST">
+        <form action="" method="POST">
             <label for="nom">Nom :</label>
             <input type="text" id="nom" name="nom" placeholder="Entrez le nom" required>
 
@@ -138,7 +141,6 @@
                 <select id="entreprise" name="entreprise">
                     <option value="">Aucune</option>
                     <?php
-                    // Charger les entreprises depuis la base de données
                     try {
                         $pdo = new PDO('mysql:host=localhost;dbname=sae3.01;charset=utf8', 'root', '');
                         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -169,10 +171,9 @@
             $login = $_POST['login'];
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $role = $_POST['role'];
-            $entrepriseId = $_POST['entreprise'];
+            $entrepriseId = $_POST['entreprise'] ?? null;
 
             try {
-                // Connexion à la base de données
                 $pdo = new PDO('mysql:host=localhost;dbname=sae3.01;charset=utf8', 'root', '');
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -185,7 +186,7 @@
                     echo "<div class='alert error'>Erreur : Le login est déjà utilisé.</div>";
                 } else {
                     // Ajouter l'utilisateur dans la table Utilisateur
-                    $query = "INSERT INTO Utilisateur (nom, prenom, email, telephone, role, login, motdepasse) 
+                    $query = "INSERT INTO Utilisateur (nom, prenom, email, telephone, role, login, password) 
                               VALUES (:nom, :prenom, :email, :telephone, :role, :login, :password)";
                     $stmt = $pdo->prepare($query);
                     $stmt->bindParam(':nom', $nom, PDO::PARAM_STR);
@@ -197,10 +198,9 @@
                     $stmt->bindParam(':password', $password, PDO::PARAM_STR);
                     $stmt->execute();
 
-                    $lastUserId = $pdo->lastInsertId();
-
-                    // Ajouter des informations spécifiques pour les rôles
-                    if ($role === 'tuteur_entreprise' && $entrepriseId) {
+                    // Si le rôle est "tuteur_entreprise", ajouter dans la table Tuteur_Entreprise
+                    if ($role === 'tuteur_entreprise' && !empty($entrepriseId)) {
+                        $lastUserId = $pdo->lastInsertId();
                         $query = "INSERT INTO Tuteur_Entreprise (Id_Tuteur_Entreprise, Id_Entreprise) VALUES (:userId, :entrepriseId)";
                         $stmt = $pdo->prepare($query);
                         $stmt->bindParam(':userId', $lastUserId, PDO::PARAM_INT);

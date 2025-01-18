@@ -21,7 +21,7 @@
             </li>
 
             <li>
-                <a href="tuteur.php" class="bouton-side" id="DP">
+                <a href="ajouter.php" class="bouton-side" id="DP">
                     <div class="content-side">
                         <i class="fas fa-folder" style="font-size: 1.3em;"></i> <span>Ajouter </span>
                     </div>
