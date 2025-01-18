@@ -100,7 +100,7 @@ require_once(__DIR__ . "//component/aside.php");
             FROM utilisateur
             JOIN etudiant ON utilisateur.id = etudiant.Id
             JOIN inscription ON etudiant.Id = inscription.Id_Etudiant
-            WHERE inscription.numSemestre = 4";
+            WHERE inscription.numSemestre = 6";
 
     $stmt = $pdo->query($sql);
     $etudiants = $stmt->fetchAll(PDO::FETCH_ASSOC);
