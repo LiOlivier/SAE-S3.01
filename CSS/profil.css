@@ -109,3 +109,14 @@
     font-size: 14px;
     margin-top: 5px;
 }
+
+/* Assurez-vous que la largeur des champs "Formation" et "Semestre" est la même que celle du bouton "Enregistrer" */
+#formation, #semestre {
+    width: 100%; /* Largeur à 100% */
+    max-width: 900px; /* Largeur maximale égale à celle du bouton "Enregistrer" */
+    padding: 12px; /* Espacement intérieur */
+    font-size: 16px; /* Taille du texte */
+    border: 2px solid #ccc; /* Bordure */
+    border-radius: 4px; /* Coins arrondis */
+    box-sizing: border-box; /* Inclure la bordure et le padding dans la largeur totale */
+}
