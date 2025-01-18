@@ -1,4 +1,4 @@
-<?php require_once 'Modèle/info_card_chefdpt.php'; ?>
+<?php require_once 'Modele/info_card_chefdpt.php'; ?>
 <article id="article-tdb">
     <h1 id="titre-formation">Formation</h1>
     <div class="bloc-formation" data-file="listEtudiantS4">
