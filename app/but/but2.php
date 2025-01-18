@@ -83,7 +83,7 @@
 
 <?php
 require_once(__DIR__ . "/../component/header.php");
-require_once(__DIR__ . "/../component/db.php");
+require_once(__DIR__ . "/../component/aside.php");
 ?>
 
 <body>
