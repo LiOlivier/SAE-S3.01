@@ -21,32 +21,6 @@ require_once(__DIR__ . "//component/aside.php");
 <body class="body">
     <section id="one">
         <h1 id="titre">BUT Informatique</h1>
-
-        <div class="container">
-            <div class="main-cards">
-                <!-- Exemple de fiche étudiant -->
-                <div class="card clickable-card">
-                    <div class="container">
-                        <h3 class="nom">Jean Dupont</h3>
-                        <p class="details">jean.dupont@example.com</p>
-                    </div>
-                </div>
-
-                <div class="card clickable-card">
-                    <div class="container">
-                        <h3 class="nom">Marie Curie</h3>
-                        <p class="details">marie.curie@example.com</p>
-                    </div>
-                </div>
-
-                <div class="card clickable-card">
-                    <div class="container">
-                        <h3 class="nom">Albert Einstein</h3>
-                        <p class="details">albert.einstein@example.com</p>
-                    </div>
-                </div>
-            </div>
-        </div>
         <?php require "component/notification.php" ?>
     </section>
 
