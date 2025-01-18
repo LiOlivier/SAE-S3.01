@@ -81,25 +81,23 @@
     </style>
 </head>
 
-<?php require_once(__DIR__ . "//component/header.php");
-require_once(__DIR__ . "//component/aside.php");
+<?php
+require_once(__DIR__ . "/../component/header.php");
+require_once(__DIR__ . "/../component/db.php");
 ?>
 
 <body>
     <section id="one">
         <h1 id="titre">BUT Informatique</h1>
-        <?php require "component/notification.php" ?>
+        <?php require_once(__DIR__ . "/../component/notification.php"); ?>
     </section>
 
     <?php
-    // Connexion à la base de données
-    $pdo = new PDO('mysql:host=localhost;dbname=sae3.01;charset=utf8', 'root', '');
-
     // Requête pour obtenir les étudiants en BUT2
     $sql = "SELECT utilisateur.nom, utilisateur.prenom, utilisateur.email, etudiant.id_Etudiant
             FROM utilisateur
-            JOIN etudiant ON utilisateur.id = etudiant.Id
-            JOIN inscription ON etudiant.Id = inscription.Id_Etudiant
+            INNER JOIN etudiant ON utilisateur.id = etudiant.Id
+            INNER JOIN inscription ON etudiant.id_Etudiant = inscription.Id_Etudiant
             WHERE inscription.numSemestre = 4";
 
     $stmt = $pdo->query($sql);
