@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../CSS/header.css">
     <link rel="stylesheet" href="../CSS/card.css">
     <link rel="stylesheet" href="../CSS/TBD.css">
+    <link rel="stylesheet" href="../CSS/t.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
         integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
     <style>
@@ -48,7 +49,7 @@ require_once(__DIR__ . "//component/aside.php");
         <div class="container">
             <div class="main-cards">
                 <!-- Case 1: BUT 2 -->
-                <div class="card clickable-card" onclick="navigateTo('but2.php')">
+                <div class="card clickable-card" onclick="navigateTo('but4r.php')">
                     <div class="container">
                         <h3 class="nom">BUT 2</h3>
                         <p class="details">128 étudiants</p>
@@ -56,7 +57,7 @@ require_once(__DIR__ . "//component/aside.php");
                 </div>
 
                 <!-- Case 2: BUT 3 -->
-                <div class="card clickable-card" onclick="navigateTo('but3.php')">
+                <div class="card clickable-card" onclick="navigateTo('but6r.php')">
                     <div class="container">
                         <h3 class="nom">BUT 3</h3>
                         <p class="details">90 étudiants</p>
