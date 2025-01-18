@@ -37,9 +37,9 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
                 // header('Location: board.php');
                 exit();
             } elseif ($_SESSION['user']['role'] == "tuteur") {
-                // header('Location: board.php');
+                header('Location: board_entreprise.php');
                 exit();
-            }
+            } 
         } else {
             // Identifiant ou mot de passe incorrect
             echo "Identifiant ou mot de passe incorrect.";

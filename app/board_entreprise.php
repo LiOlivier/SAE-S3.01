@@ -1,3 +1,7 @@
+<?php
+require('controller/boardController_entreprise.php');
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
