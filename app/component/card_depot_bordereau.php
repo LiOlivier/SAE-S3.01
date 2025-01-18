@@ -1,4 +1,4 @@
-<div class="card ">
+<div class="card "  >
     <div class="container">
         <div class="left">
             <div style="display: block;">
@@ -16,7 +16,7 @@
                     </i> </i> <?= $action['Etat'] ?></div>
 
                 <form id="uploadForm" enctype="multipart/form-data">
-                    <button class="contacter">
+                    <button class="modele" type="button" onclick="window.location.href='../app/component/Download_Bordereau.php'">
                         Modèle <i class="fas fa-download load" style="color: #c0c0c0;"></i>
                     </button>
                     <input type="file" id="sortDocument" name="sortDocument" accept=".jpeg,.jpg,.png,.pdf" style="display:none;" />

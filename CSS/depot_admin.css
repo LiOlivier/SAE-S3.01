@@ -67,6 +67,17 @@ body {
     position: relative;
     left: 0.7em;
 }
-button{
-    cursor: pointer;
+
+#etat{
+    font-weight: lighter;
+    font-size: 20px;
+    color: black;
+    left: 1em;
+    position: relative;
+    top: -1em;
+    font-family: 'Rubik', sans-serif;
+    margin-left: 0.5em;
+    margin-bottom: -1em;
+    margin-top: 0.5em;
 }
+
