@@ -5,9 +5,9 @@ class Database {
     public static function getConnexion($dbType = 'mysql') {
         $env = 'dev';
 
-        $db_dev = array("host" => "localhost", "port" => "3306", "dbname" => "sorbonne", "login" => "root", "password" => "root");
+        $db_dev = array("host" => "localhost", "port" => "3306", "dbname" => "sorbonne2", "login" => "root", "password" => "root");
 
-        $db_prod = array("host" => "localhost", "port" => "3306", "dbname" => "sorbonne", "login" => "sorbonne", "password" => "Mn/RINhSCxLiXBid");
+        $db_prod = array("host" => "localhost", "port" => "3306", "dbname" => "sorbonne2", "login" => "sorbonne", "password" => "Mn/RINhSCxLiXBid");
 
         switch ($env) {
             case 'dev':

@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 require "../model/utilisateur.php";
 $user = new Utilisateur();
 
@@ -25,7 +27,6 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
                 'email' => $user['email'],
                 'role' => $user['role'],
             ];
-
             if ($_SESSION['user']['role'] == "etudiant") {
                 header('Location: board.php');
                 exit(); // Évite les failles de sécurité en arrêtant l'exécution
