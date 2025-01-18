@@ -49,7 +49,7 @@ require_once(__DIR__ . "//component/aside.php");
         <div class="container">
             <div class="main-cards">
                 <!-- Case 1: BUT 2 -->
-                <div class="card clickable-card" onclick="navigateTo('but2i.php')">
+                <div class="card clickable-card" onclick="navigateTo('./but/but2.php')">
                     <div class="container">
                         <h3 class="nom">BUT 2</h3>
                         <p class="details">128 étudiants</p>
