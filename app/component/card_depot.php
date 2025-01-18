@@ -20,12 +20,13 @@
                         Modèle <i class="fas fa-download load" style="color: #c0c0c0;"></i>
                     </button>
                     <input type="file" id="sortDocument" name="sortDocument" accept=".jpeg,.jpg,.png,.pdf" style="display:none;" />
+                    <input type="hidden" name="userId" value="<?=$action["id_TypeAction"] ?>">
                     <button type="button" class="contacter joindre" onclick="document.getElementById('sortDocument').click()">
                         Joindre fichier<i class="fas fa-upload load" style="color: #c0c0c0;"></i>
                     </button>
                 </form>
 
-                <input type="hidden" value="email1@exemple.com">
+               
                 <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
             </div>
         </div>
