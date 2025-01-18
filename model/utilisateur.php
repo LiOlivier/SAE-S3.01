@@ -1,6 +1,5 @@
 <?php
-$chemin_relatif='C:\xampp\htdocs\SAE-S3.01\config\database.php';//a modifier pour chaque personne
-require_once($chemin_relatif);
+require_once(__DIR__ . '/../config/database.php');
 
 
 class Utilisateur
