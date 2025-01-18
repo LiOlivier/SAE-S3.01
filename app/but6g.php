@@ -78,22 +78,6 @@
             display: block;
             margin-bottom: 0.3rem;
         }
-
-        .status {
-            width: 12px;
-            height: 12px;
-            display: inline-block;
-            border-radius: 50%;
-            margin-left: 10px;
-        }
-
-        .status.vert {
-            background-color: green;
-        }
-
-        .status.rouge {
-            background-color: red;
-        }
     </style>
 </head>
 
@@ -111,32 +95,23 @@ require_once(__DIR__ . "//component/aside.php");
     // Connexion à la base de données
     $pdo = new PDO('mysql:host=localhost;dbname=sae3.01;charset=utf8', 'root', '');
 
-    // Requête pour obtenir les étudiants en INFO semestre 4 avec statut
-    $sql = "SELECT utilisateur.nom, utilisateur.prenom, utilisateur.email, etudiant.id_Etudiant,
-                   CASE
-                       WHEN stage.Id_Stage IS NOT NULL OR action.Id_Action IS NOT NULL THEN 'vert'
-                       ELSE 'rouge'
-                   END AS statut
+    // Requête pour obtenir les étudiants en BUT2
+    $sql = "SELECT utilisateur.nom, utilisateur.prenom, utilisateur.email, etudiant.id_Etudiant
             FROM utilisateur
             JOIN etudiant ON utilisateur.id = etudiant.Id
             JOIN inscription ON etudiant.Id = inscription.Id_Etudiant
-            LEFT JOIN stage ON inscription.Id_Etudiant = stage.Id_Etudiant AND inscription.numSemestre = stage.numSemestre
-            LEFT JOIN action ON inscription.Id_Etudiant = action.Id_Etudiant AND inscription.numSemestre = action.numSemestre
-            WHERE inscription.numSemestre = 4 AND inscription.Id_Departement = 1";
+            WHERE inscription.numSemestre = 6";
 
     $stmt = $pdo->query($sql);
     $etudiants = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
     <section id="etudiants">
-        <h2>Étudiants en INFO Semestre 4</h2>
+        <h2>Étudiants en BUT2</h2>
         <div class="container">
             <?php foreach ($etudiants as $etudiant): ?>
                 <div class="card">
-                    <h3 class="nom">
-                        <?= htmlspecialchars($etudiant['nom']) ?> <?= htmlspecialchars($etudiant['prenom']) ?>
-                        <span class="status <?= htmlspecialchars($etudiant['statut']) ?>"></span>
-                    </h3>
+                    <h3 class="nom"><?= htmlspecialchars($etudiant['nom']) ?> <?= htmlspecialchars($etudiant['prenom']) ?></h3>
                     <div class="tooltip">
                         <span>Email : <?= htmlspecialchars($etudiant['email']) ?></span>
                         <span>Numéro étudiant : <?= htmlspecialchars($etudiant['id_Etudiant']) ?></span>
