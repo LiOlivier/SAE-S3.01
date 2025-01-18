@@ -1,5 +1,8 @@
-<header>
-    <nav class="haut">
+<head>
+    
+</head>
+<header class="haut_de_page" >
+    <nav class="haut" style="position: relative">
         <ul class="navbar">
             <li>
                 <img src="../IMG/icones/planète.png" alt="Planète" class="icon"> Français
