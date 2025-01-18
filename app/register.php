@@ -1,6 +1,8 @@
 <?php 
-require "controller/loginController.php";
+require "controller/registerController.php";
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -10,6 +12,7 @@ require "controller/loginController.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page de Connexion</title>
     <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/register.css">
 </head>
 
 <body>
@@ -30,27 +33,43 @@ require "controller/loginController.php";
             </ul>
         </nav>
         <div class="title">
-            <h1>Connexion</h1>
-            <form action="login.php" method="post">
-
+            <h1>Register</h1>
+            <form action="register.php" method="post">
                 <div class="champ-input">
+                    <label for="identifiant">nom</label>
+                    <div class="input-wrapper">
+                        <img src="../IMG/icones/profile.png" alt="Icône Utilisateur" class="input-icon">
+                        <input type="text" name="nom" id="nom" placeholder="Votre nom">
+                    </div>
+                    <label for="identifiant">prenom</label>
+                    <div class="input-wrapper">
+                        <img src="../IMG/icones/profile.png" alt="Icône Utilisateur" class="input-icon">
+                        <input type="text" name="prenom" id="prenom" placeholder="Votre prenom">
+                    </div>
+                    <label for="identifiant">email</label>
+                    <div class="input-wrapper">
+                        <img src="../IMG/icones/profile.png" alt="Icône Utilisateur" class="input-icon">
+                        <input type="text" name="email" id="email" placeholder="Votre email">
+                    </div>
+                    <label for="identifiant">tel</label>
+                    <div class="input-wrapper">
+                        <img src="../IMG/icones/profile.png" alt="Icône Utilisateur" class="input-icon">
+                        <input type="text" name="tel" id="tel" placeholder="Votre tel">
+                    </div>
                     <label for="identifiant">Identifiant</label>
-
                     <div class="input-wrapper">
                         <img src="../IMG/icones/profile.png" alt="Icône Utilisateur" class="input-icon">
                         <input type="text" name="identifiant" id="identifiant" placeholder="Votre identifiant">
                     </div>
-                </div>
 
-                <div class="champ-input">
                     <label for="motdepasse">Mot de passe</label>
                     <div class="input-wrapper">
                         <img src="../IMG/icones/Lock.jpg" alt="Icône Verrou" class="input-icon">
                         <input type="password" name="password" id="password" placeholder="Votre mot de passe">
                     </div>
                 </div>
-                <a href="#" class="mdp_oublie">Mot de passe oublié</a>
-                <input type="submit" value="connexion" name="connexion" class="but_login"></input>
+                <input type="submit" value="Create" name="connexion" class="but_login" style="bottom: 47px;"></input>
+
             </form>
         </div>
     </section>

@@ -1,3 +1,12 @@
+<?php
+require "./controller/depotController.php" ;
+
+
+$prenom = $_SESSION['user']['prenom'];
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -20,9 +29,12 @@ require_once(__DIR__ . "//component/aside.php"); ?>
 
         <h1 id="titre">Document a déposer</h1>
         <div class="cards">
+        <?php if ($actions) {  
+                            foreach ($actions as $action){?>
             <?php require "component/card_depot.php"; ?>
+            <?php }}?>
         </div>
-        <?php require "component/notification.php" ?>
+        <?php require "component/notification.php"; ?>
     </section>
 
 </body>
@@ -30,10 +42,10 @@ require_once(__DIR__ . "//component/aside.php"); ?>
 <script src="../JS/notif.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#sortDocument").change(function() {
+        $("#sortDocument").change(function() {//quand lui met un truc
             let formData = new FormData($("#uploadForm")[0]);
 
-            $.ajax({
+            $.ajax({ //evite de reload la page
                 url: "component/upload_handler.php",
                 type: "POST",
                 data: formData,
