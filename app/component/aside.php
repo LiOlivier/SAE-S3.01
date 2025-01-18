@@ -19,6 +19,15 @@
                     </div>
                 </a>
             </li>
+
+            <li>
+                <a href="depot.php" class="bouton-side" id="DP">
+                    <div class="content-side">
+                        <i class="fas fa-folder" style="font-size: 1.3em;"></i> <span>Ajouter </span>
+                    </div>
+                </a>
+            </li>
+
             <li>
                 <a href="#" class="bouton-side" id="Profil">
                     <div class="content-side">
