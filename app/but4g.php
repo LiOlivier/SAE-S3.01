@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BUT Informatique</title>
+    <title>BUT GEA</title>
     <link rel="stylesheet" href="../CSS/aside.css">
     <link rel="stylesheet" href="../CSS/header.css">
     <link rel="stylesheet" href="../CSS/card.css">
@@ -78,6 +78,22 @@
             display: block;
             margin-bottom: 0.3rem;
         }
+
+        .status {
+            width: 12px;
+            height: 12px;
+            display: inline-block;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+        .status.vert {
+            background-color: green;
+        }
+
+        .status.rouge {
+            background-color: red;
+        }
     </style>
 </head>
 
@@ -87,7 +103,7 @@ require_once(__DIR__ . "//component/aside.php");
 
 <body>
     <section id="one">
-        <h1 id="titre">BUT Informatique</h1>
+        <h1 id="titre">BUT GEA</h1>
         <?php require "component/notification.php" ?>
     </section>
 
@@ -95,11 +111,18 @@ require_once(__DIR__ . "//component/aside.php");
     // Connexion à la base de données
     $pdo = new PDO('mysql:host=localhost;dbname=sae3.01;charset=utf8', 'root', '');
 
-    // Requête pour obtenir les étudiants en GEA semestre 4
-    $sql = "SELECT utilisateur.nom, utilisateur.prenom, utilisateur.email, etudiant.id_Etudiant
+    // Requête pour obtenir les étudiants en INFO semestre 4 avec statut
+    $sql = "SELECT utilisateur.nom, utilisateur.prenom, utilisateur.email, utilisateur.telephone, etudiant.id_Etudiant,
+                   CASE
+                       WHEN stage.Id_Stage IS NOT NULL OR action.Id_Action IS NOT NULL THEN 'vert'
+                       ELSE 'rouge'
+                   END AS statut,
+                   stage.mission, stage.date_debut, stage.date_fin, stage.salle_soutenance
             FROM utilisateur
             JOIN etudiant ON utilisateur.id = etudiant.Id
             JOIN inscription ON etudiant.Id = inscription.Id_Etudiant
+            LEFT JOIN stage ON inscription.Id_Etudiant = stage.Id_Etudiant AND inscription.numSemestre = stage.numSemestre
+            LEFT JOIN action ON inscription.Id_Etudiant = action.Id_Etudiant AND inscription.numSemestre = action.numSemestre
             WHERE inscription.numSemestre = 4 AND inscription.Id_Departement = 2";
 
     $stmt = $pdo->query($sql);
@@ -111,17 +134,45 @@ require_once(__DIR__ . "//component/aside.php");
         <div class="container">
             <?php foreach ($etudiants as $etudiant): ?>
                 <div class="card">
-                    <h3 class="nom"><?= htmlspecialchars($etudiant['nom']) ?> <?= htmlspecialchars($etudiant['prenom']) ?></h3>
+                    <h3 class="nom">
+                        <?= htmlspecialchars($etudiant['nom']) ?> <?= htmlspecialchars($etudiant['prenom']) ?>
+                        <span class="status <?= htmlspecialchars($etudiant['statut']) ?>"
+                              data-mission="<?= htmlspecialchars($etudiant['mission']) ?>"
+                              data-debut="<?= htmlspecialchars($etudiant['date_debut']) ?>"
+                              data-fin="<?= htmlspecialchars($etudiant['date_fin']) ?>"
+                              data-soutenance="<?= htmlspecialchars($etudiant['salle_soutenance']) ?>">
+                        </span>
+                    </h3>
                     <div class="tooltip">
                         <span>Email : <?= htmlspecialchars($etudiant['email']) ?></span>
-                        <span>Numéro étudiant : <?= htmlspecialchars($etudiant['id_Etudiant']) ?></span>
+                        <span>Numéro de téléphone : <?= htmlspecialchars($etudiant['telephone']) ?></span>
                     </div>
                 </div>
             <?php endforeach; ?>
         </div>
     </section>
 
-    <script src="../JS/notif.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const statusElements = document.querySelectorAll('.status');
+
+            statusElements.forEach(element => {
+                element.addEventListener('click', () => {
+                    const mission = element.getAttribute('data-mission') || 'Aucune mission';
+                    const debut = element.getAttribute('data-debut') || 'Non défini';
+                    const fin = element.getAttribute('data-fin') || 'Non défini';
+                    const soutenance = element.getAttribute('data-soutenance') || 'Non défini';
+
+                    alert(`
+                        Mission : ${mission}
+                        Date de début : ${debut}
+                        Date de fin : ${fin}
+                        Salle de soutenance : ${soutenance}
+                    `);
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

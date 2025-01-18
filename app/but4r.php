@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BUT Informatique</title>
+    <title>BUT RT</title>
     <link rel="stylesheet" href="../CSS/aside.css">
     <link rel="stylesheet" href="../CSS/header.css">
     <link rel="stylesheet" href="../CSS/card.css">
@@ -103,7 +103,7 @@ require_once(__DIR__ . "//component/aside.php");
 
 <body>
     <section id="one">
-        <h1 id="titre">BUT Informatique</h1>
+        <h1 id="titre">BUT RT</h1>
         <?php require "component/notification.php" ?>
     </section>
 
@@ -111,7 +111,7 @@ require_once(__DIR__ . "//component/aside.php");
     // Connexion à la base de données
     $pdo = new PDO('mysql:host=localhost;dbname=sae3.01;charset=utf8', 'root', '');
 
-    // Requête pour obtenir les étudiants en INFO semestre 6 avec statut
+    // Requête pour obtenir les étudiants en INFO semestre 4 avec statut
     $sql = "SELECT utilisateur.nom, utilisateur.prenom, utilisateur.email, utilisateur.telephone, etudiant.id_Etudiant,
                    CASE
                        WHEN stage.Id_Stage IS NOT NULL OR action.Id_Action IS NOT NULL THEN 'vert'
@@ -123,14 +123,14 @@ require_once(__DIR__ . "//component/aside.php");
             JOIN inscription ON etudiant.Id = inscription.Id_Etudiant
             LEFT JOIN stage ON inscription.Id_Etudiant = stage.Id_Etudiant AND inscription.numSemestre = stage.numSemestre
             LEFT JOIN action ON inscription.Id_Etudiant = action.Id_Etudiant AND inscription.numSemestre = action.numSemestre
-            WHERE inscription.numSemestre = 6 AND inscription.Id_Departement = 1";
+            WHERE inscription.numSemestre = 4 AND inscription.Id_Departement = 3";
 
     $stmt = $pdo->query($sql);
     $etudiants = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
     <section id="etudiants">
-        <h2>Étudiants en INFO Semestre 6</h2>
+        <h2>Étudiants en RT Semestre 4</h2>
         <div class="container">
             <?php foreach ($etudiants as $etudiant): ?>
                 <div class="card">
