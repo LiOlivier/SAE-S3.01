@@ -70,7 +70,7 @@
         }
 
         button {
-            background-color: #4caf50;
+            background-color: #003366;
             color: white;
             font-weight: bold;
             border: none;
@@ -79,7 +79,7 @@
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color:rgb(32, 14, 225);
         }
 
         .alert {
@@ -91,7 +91,7 @@
         }
 
         .alert.success {
-            background-color: #4caf50;
+            background-color:rgb(44, 11, 207);
         }
 
         .alert.error {
