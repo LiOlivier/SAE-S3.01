@@ -13,6 +13,23 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
         integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #one {
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        #etudiants {
+            margin: 0 auto;
+            padding: 1rem;
+            max-width: 800px;
+        }
+
         .container {
             display: flex;
             flex-direction: column;
