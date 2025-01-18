@@ -29,25 +29,6 @@ require_once("Modèle/info_card_entreprise.php");
                 <div style="display: block;">
                     <div class="cards">
                         <h1>Contact : </h1>
-
-                        <!--
-                        <div class="card">
-                            <div class="container">
-                                <div class="left">
-                                    <div style="display: block;">
-                                        <h3 class="nom">M. Martinez</h3>
-                                        <p class="classe">Tuteur pédagogique</p>
-                                        <p class="hidden">.</p>
-                                        <p class="email"><?php echo $enseignant_pedagogique?></p>
-                                        <button class="contacter copier-email">copier l'email</button>
-                                        <input type="hidden" value="email1@exemple.com">
-                                        <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
--->
-
                     <div class="card">
                             <div class="container">
                                 <div class="left">

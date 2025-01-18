@@ -1,5 +1,7 @@
 <?php
-require_once "../config/database.php";
+$chemin_relatif='C:\xampp\htdocs\SAE-S3.01\config\database.php';//a modifier pour chaque personne
+require_once($chemin_relatif);
+
 
 class Utilisateur
 {
@@ -95,5 +97,37 @@ class Utilisateur
 
             return $value;
         }
+    }
+
+    public function getEleveParTuteur($idTuteur) {
+        // Requête pour récupérer les informations de l'élève et du département lié au tuteur dans la table 'stage'
+        // On fait une jointure entre 'stage', 'utilisateur' et 'departement'
+        $query = "SELECT utilisateur.nom, utilisateur.prenom, utilisateur.telephone, utilisateur.email, departement.nom AS departement
+                  FROM stage 
+                  JOIN utilisateur ON stage.Id_Etudiant = utilisateur.id
+                  JOIN departement ON stage.Id_Departement = departement.Id_Departement
+                  WHERE stage.Id_Tuteur_Entreprise = :idTuteur";
+        
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':idTuteur', $idTuteur, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getEnseignantParTuteur($idTuteur) {
+        // Requête pour récupérer les informations de l'enseignant lié au tuteur dans la table 'stage'
+        // On fait une jointure entre 'stage', 'enseignant', et 'utilisateur'
+        $query = "SELECT utilisateur.nom, utilisateur.prenom, utilisateur.telephone, utilisateur.email
+                  FROM stage 
+                  JOIN enseignant ON stage.Id_Enseignant_1 = enseignant.Id_Enseignant 
+                  JOIN utilisateur ON enseignant.Id_Enseignant = utilisateur.id
+                  WHERE stage.Id_Tuteur_Entreprise = :idTuteur";
+        
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':idTuteur', $idTuteur, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
