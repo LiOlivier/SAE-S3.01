@@ -14,8 +14,8 @@ class TypeAction
     }
 
     public function getActionByEnseignantId($userId) { //recupere toute les actions qu'un enseignant a créer du point de vue de etudiant
-        //SELECT libelle, LienModeleDoc, Etat FROM typeaction WHERE id_Enseignant = 2 AND Executant = "Etudiant";
-        $sql = "SELECT libelle, LienModeleDoc, Etat, dateLimite, id_TypeAction FROM $this->table WHERE id_Enseignant = :userId AND Executant = 'Etudiant'";
+        //SELECT libelle, LienModeleDoc, Etat FROM typeaction WHERE id_Pedagogique = 2 AND Executant = "Etudiant";
+        $sql = "SELECT libelle, LienModeleDoc, Etat, dateLimite, id_TypeAction FROM $this->table WHERE id_Pedagogique = :userId AND Executant = 'Etudiant'";
         $query = $this->db->prepare($sql);
         $query->execute(['userId' => $userId]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
