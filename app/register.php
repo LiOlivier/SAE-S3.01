@@ -36,22 +36,22 @@ require "controller/registerController.php";
             <h1>Register</h1>
             <form action="register.php" method="post">
                 <div class="champ-input">
-                    <label for="identifiant">nom</label>
+                    <label for="identifiant">Nom</label>
                     <div class="input-wrapper">
                         <img src="../IMG/icones/profile.png" alt="Icône Utilisateur" class="input-icon">
                         <input type="text" name="nom" id="nom" placeholder="Votre nom">
                     </div>
-                    <label for="identifiant">prenom</label>
+                    <label for="identifiant">Prenom</label>
                     <div class="input-wrapper">
                         <img src="../IMG/icones/profile.png" alt="Icône Utilisateur" class="input-icon">
                         <input type="text" name="prenom" id="prenom" placeholder="Votre prenom">
                     </div>
-                    <label for="identifiant">email</label>
+                    <label for="identifiant">Email</label>
                     <div class="input-wrapper">
                         <img src="../IMG/icones/profile.png" alt="Icône Utilisateur" class="input-icon">
                         <input type="text" name="email" id="email" placeholder="Votre email">
                     </div>
-                    <label for="identifiant">tel</label>
+                    <label for="identifiant">Tel</label>
                     <div class="input-wrapper">
                         <img src="../IMG/icones/profile.png" alt="Icône Utilisateur" class="input-icon">
                         <input type="text" name="tel" id="tel" placeholder="Votre tel">

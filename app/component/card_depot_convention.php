@@ -1,4 +1,4 @@
-<div class="card ">
+<div class="card">
     <div class="container">
         <div class="left">
             <div style="display: block;">
@@ -22,5 +22,4 @@
             </div>
         </div>
     </div>
-
 </div>
