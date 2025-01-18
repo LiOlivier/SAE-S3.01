@@ -37,15 +37,21 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
                 // header('Location: board.php');
                 exit();
             } elseif ($_SESSION['user']['role'] == "tuteur") {
-                header('Location: board_entreprise.php');
+                header('Location: board_entreprise.php'); // Page pour les tuteurs
                 exit();
-            } 
+            } else {
+                // Si aucun rôle valide n'est trouvé
+                header('Location: unauthorized.php'); // Page d'accès refusé
+                exit();
+            }
         } else {
             // Identifiant ou mot de passe incorrect
             echo "Identifiant ou mot de passe incorrect.";
         }
     } catch (Exception $e) {
-        die("errer");
+        error_log($e->getMessage());
+        die("Une erreur s'est produite. Veuillez réessayer plus tard.");
     }
 }
+?>
 ?>

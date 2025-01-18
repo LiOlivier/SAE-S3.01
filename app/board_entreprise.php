@@ -19,7 +19,7 @@ require('controller/boardController_entreprise.php');
 </head>
 <?php require_once(__DIR__ . "//component/header.php");
 require_once(__DIR__ . "//component/aside_entreprise.php");
-require_once("Modèle/info_card_entreprise.php");
+require_once("controller/info_card_entreprise.php");
 ?>
 <style>
 
