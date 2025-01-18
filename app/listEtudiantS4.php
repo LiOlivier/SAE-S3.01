@@ -10,7 +10,7 @@
 <h4 id ="back" onclick="goBack()"><- Retour</h4>
 <h1 id="titre-formation">Liste Etudiant</h1>
 
-<?php require_once 'Modèle/info_card_chefdpt.php';
+<?php require_once 'Modele/info_card_chefdpt.php';
 foreach ($listeS4 as $info) :?>
     <div class="listEtudiant" id="etudiant-<?=$info["id"]?>">
         <h3><?=$info["nom"]?> <?=$info["prenom"]?></h3>
