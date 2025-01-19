@@ -33,7 +33,6 @@ require_once("controller/info_card_entreprise.php");
                 <div style="display: block;">
                     <div class="cards">
                         <h1>Contact : </h1>
-                        <p><?php echo var_dump($_SESSION )?></p>
                     <div class="card">
                             <div class="container">
                                 <div class="left">
@@ -78,20 +77,7 @@ require_once("controller/info_card_entreprise.php");
 
 
 
-            <div class="right-tableau">
-
-                <!-- Interface tuteur pedagogique -->
-                <div class="card taches">
-                    <div class="container">
-                        <div style="display: block;">
-                            <h3 class="nom">Document a deposer</h3>
-                            <button class="tache">bordereau de stage <i class="fas fa-chevron-right fa-sm" style="color: #c0c0c0; position: relative; left:1em;"></i></button>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
+        
         </div>
         </div>
         <?php require "component/notification.php" ?>
