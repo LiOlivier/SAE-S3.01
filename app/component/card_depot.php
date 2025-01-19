@@ -18,7 +18,7 @@
                 </div>
 
                 <form class="uploadForm" enctype="multipart/form-data">
-                    <button class="modele" type="button" onclick="window.location.href='../app/component/Download_Bordereau.php'">
+                <button class="modele" type="button" onclick="window.location.href='../app/component/DownloadModel.php?idAction=<?= $action["id_TypeAction"] ?>'">
                         Modèle <i class="fas fa-download load" style="color: #c0c0c0;"></i>
                     </button>
                     <input type="file" class="sortDocument" name="sortDocument" accept=".jpeg,.jpg,.png,.pdf" style="display:none;" /> <!-- ID remplacé par une classe -->
