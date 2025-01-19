@@ -1,6 +1,6 @@
 <?php
-$chemin_relatif='..\config\database.php';//a modifier pour chaque personne
-require_once($chemin_relatif);
+$chemin='..\config\database.php';//a modifier pour chaque personne
+require_once($chemin);
 
 
 class Utilisateur

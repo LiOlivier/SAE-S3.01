@@ -33,6 +33,7 @@ require_once("controller/info_card_entreprise.php");
                 <div style="display: block;">
                     <div class="cards">
                         <h1>Contact : </h1>
+                        <p><?php echo var_dump($_SESSION )?></p>
                     <div class="card">
                             <div class="container">
                                 <div class="left">
