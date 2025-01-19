@@ -19,7 +19,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
         $user = $userModel->login($identifiant);
 
         if ($user && password_verify($password, $user['password'])) {
-            // Connexion réussie
+
             $_SESSION['user'] = [
                 'id' => $user['id'],
                 'nom' => $user['nom'],
@@ -29,7 +29,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
             ];
             if ($_SESSION['user']['role'] == "etudiant") {
                 header('Location: board.php');
-                exit(); // Évite les failles de sécurité en arrêtant l'exécution
+                exit();
             } elseif ($_SESSION['user']['role'] == "enseignant") {
                // header('Location: board.php');
                 exit();
@@ -37,13 +37,18 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
                 header('Location: dpt.php');
                 exit();
             } elseif ($_SESSION['user']['role'] == "tuteur") {
-                header('Location: board_entreprise.php'); // Page pour les tuteurs
+                header('Location: board_entreprise.php');
                 exit();
-            } else {
-                // Si aucun rôle valide n'est trouvé
-                header('Location: unauthorized.php'); // Page d'accès refusé
+            }elseif ($_SESSION['user']['role'] == "pedagogique") {
+                header('Location: board_pedagogique.php');
                 exit();
-            }
+            } 
+            
+            else {
+
+                header('Location: unauthorized.php');
+                exit();
+            } 
         } else {
             // Identifiant ou mot de passe incorrect
             echo "Identifiant ou mot de passe incorrect.";
