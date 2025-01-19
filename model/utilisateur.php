@@ -1,5 +1,5 @@
 <?php
-$chemin='..\config\database.php';//a modifier pour chaque personne
+$chemin='..\config\database.php';
 require_once($chemin);
 
 
@@ -47,7 +47,7 @@ class Utilisateur
             WHERE s.id_Etudiant = :idEtudiant";
         $query = $this->db->prepare($sql);
         $query->execute(['idEtudiant' => $idEtudiant]);
-        return $query->fetchAll(PDO::FETCH_ASSOC); // Retourne un tableau d'enseignants
+        return $query->fetchAll(PDO::FETCH_ASSOC); 
     }
     
     public function getTuteursByEtudiant($idEtudiant)
@@ -58,7 +58,7 @@ class Utilisateur
             WHERE t.id_Etudiant = :idEtudiant";
         $query = $this->db->prepare($sql);
         $query->execute(['idEtudiant' => $idEtudiant]);
-        return $query->fetchAll(PDO::FETCH_ASSOC); // Retourne un tableau de tuteur
+        return $query->fetchAll(PDO::FETCH_ASSOC); 
     }
 
 
@@ -110,7 +110,7 @@ class Utilisateur
 
     $query = $this->db->prepare($sql);
     $query->execute(['idTuteur' => $idTuteur]);
-    return $query->fetchAll(PDO::FETCH_ASSOC); // Retourne un tableau contenant les informations des élèves
+    return $query->fetchAll(PDO::FETCH_ASSOC); 
 }
 
     public function getEnseignantParTuteur($idTuteur)

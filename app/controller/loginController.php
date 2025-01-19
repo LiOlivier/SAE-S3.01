@@ -29,23 +29,28 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
             ];
             if ($_SESSION['user']['role'] == "etudiant") {
                 header('Location: board.php');
-                exit(); // Évite les failles de sécurité en arrêtant l'exécution
+                exit(); 
             } elseif ($_SESSION['user']['role'] == "enseignant") {
-               // header('Location: board.php');
+                header('Location: board.php');
                 exit();
             } elseif ($_SESSION['user']['role'] == "administrateur") {
                 header('Location: dpt.php');
                 exit();
             } elseif ($_SESSION['user']['role'] == "tuteur") {
-                header('Location: board_entreprise.php'); // Page pour les tuteurs
+                header('Location: board_entreprise.php'); 
                 exit();
             } 
             elseif ($_SESSION['user']['role'] == "secretaire") {
                 header('Location: dashboard.php');
                 exit();
+            }
+            
+            elseif ($_SESSION['user']['role'] == "pedagogique") {
+                header('Location: board_pedagogique.php');
+                exit();
             } 
         } else {
-            // Identifiant ou mot de passe incorrect
+
             echo "Identifiant ou mot de passe incorrect.";
         }
     } catch (Exception $e) {
