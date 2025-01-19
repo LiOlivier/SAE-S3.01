@@ -1,6 +1,6 @@
 <?php
-$chemin_relatif='..\config\database.php';//a modifier pour chaque personne
-require_once($chemin_relatif);
+$chemin='..\config\database.php';//a modifier pour chaque personne
+require_once($chemin);
 
 
 class Utilisateur
@@ -100,36 +100,48 @@ class Utilisateur
         }
     }
 
-    public function getEleveParTuteur($idTuteur) {
-        // Requête pour récupérer les informations de l'élève et du département lié au tuteur dans la table 'stage'
-        // On fait une jointure entre 'stage', 'utilisateur' et 'departement'
-        $query = "SELECT utilisateur.nom, utilisateur.prenom, utilisateur.telephone, utilisateur.email, departement.nom AS departement
-                  FROM stage 
-                  JOIN utilisateur ON stage.Id_Etudiant = utilisateur.id
-                  JOIN departement ON stage.Id_Departement = departement.Id_Departement
-                  WHERE stage.Id_Tuteur_Entreprise = :idTuteur";
-        
-        $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':idTuteur', $idTuteur, PDO::PARAM_INT);
-        $stmt->execute();
-        
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    public function getEleveParTuteur($idTuteur)
+{
+    $sql = "SELECT u.nom, u.prenom, u.telephone, u.email, d.Libelle AS departement
+            FROM utilisateur u
+            INNER JOIN stage s ON s.Id_Etudiant = u.id
+            INNER JOIN departement d ON s.Id_Departement = d.Id_Departement
+            WHERE s.Id_Tuteur_Entreprise = :idTuteur";
+
+    $query = $this->db->prepare($sql);
+    $query->execute(['idTuteur' => $idTuteur]);
+    return $query->fetchAll(PDO::FETCH_ASSOC); // Retourne un tableau contenant les informations des élèves
+}
+
+    public function getEnseignantParTuteur($idTuteur)
+    {
+        $sql = "SELECT u.nom, u.prenom, u.telephone, u.email
+                FROM utilisateur u
+                INNER JOIN enseignant e ON u.id = e.Id_Enseignant
+                INNER JOIN stage s ON s.Id_Enseignant_1 = e.Id_Enseignant
+                WHERE s.Id_Tuteur_Entreprise = :idTuteur";
+
+        $query = $this->db->prepare($sql);
+        $query->execute(['idTuteur' => $idTuteur]);
+        return $query->fetch(PDO::FETCH_ASSOC); // Retourne une seule ligne (enseignant)
     }
 
-    public function getEnseignantParTuteur($idTuteur) {
-        // Requête pour récupérer les informations de l'enseignant lié au tuteur dans la table 'stage'
-        // On fait une jointure entre 'stage', 'enseignant', et 'utilisateur'
-        $query = "SELECT utilisateur.nom, utilisateur.prenom, utilisateur.telephone, utilisateur.email
-                  FROM stage 
-                  JOIN enseignant ON stage.Id_Enseignant_1 = enseignant.Id_Enseignant 
-                  JOIN utilisateur ON enseignant.Id_Enseignant = utilisateur.id
-                  WHERE stage.Id_Tuteur_Entreprise = :idTuteur";
-        
-        $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':idTuteur', $idTuteur, PDO::PARAM_INT);
-        $stmt->execute();
-        
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+    public function getTuteurByUserId($userId)
+    {
+        // Requête SQL pour récupérer l'id_Tuteur_Entreprise à partir de la table utilisateur
+        $sql = "SELECT id_Tuteur
+                FROM utilisateur
+                WHERE id = :userId";
+
+        // Préparation et exécution de la requête
+        $query = $this->db->prepare($sql);
+        $query->execute(['userId' => $userId]);
+
+        // Récupération du résultat (id_Tuteur_Entreprise) ou null si pas trouvé
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+
+        // Retourne l'id_Tuteur_Entreprise ou null si non trouvé
+        return $result ? $result['id_Tuteur'] : null;
     }
 
     public function updateUtilisateur($id, $nom = null, $prenom = null, $email = null, $telephone = null)

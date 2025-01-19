@@ -19,7 +19,7 @@ require('controller/boardController_entreprise.php');
 </head>
 <?php require_once(__DIR__ . "//component/header.php");
 require_once(__DIR__ . "//component/aside_entreprise.php");
-require_once("Modèle/info_card_entreprise.php");
+require_once("controller/info_card_entreprise.php");
 ?>
 <style>
 
@@ -77,20 +77,7 @@ require_once("Modèle/info_card_entreprise.php");
 
 
 
-            <div class="right-tableau">
-
-                <!-- Interface tuteur pedagogique -->
-                <div class="card taches">
-                    <div class="container">
-                        <div style="display: block;">
-                            <h3 class="nom">Document a deposer</h3>
-                            <button class="tache">bordereau de stage <i class="fas fa-chevron-right fa-sm" style="color: #c0c0c0; position: relative; left:1em;"></i></button>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
+        
         </div>
         </div>
         <?php require "component/notification.php" ?>

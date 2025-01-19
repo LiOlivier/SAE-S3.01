@@ -37,7 +37,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
                 header('Location: dpt.php');
                 exit();
             } elseif ($_SESSION['user']['role'] == "tuteur") {
-                header('Location: board_entreprise.php');
+                header('Location: board_entreprise.php'); // Page pour les tuteurs
                 exit();
             } 
             elseif ($_SESSION['user']['role'] == "secretaire") {
@@ -49,7 +49,9 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
             echo "Identifiant ou mot de passe incorrect.";
         }
     } catch (Exception $e) {
-        die("errer");
+        error_log($e->getMessage());
+        die("Une erreur s'est produite. Veuillez réessayer plus tard.");
     }
 }
+?>
 ?>
