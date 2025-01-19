@@ -40,6 +40,10 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
                 header('Location: board_entreprise.php');
                 exit();
             } 
+            elseif ($_SESSION['user']['role'] == "secretaire") {
+                header('Location: dashboard.php');
+                exit();
+            } 
         } else {
             // Identifiant ou mot de passe incorrect
             echo "Identifiant ou mot de passe incorrect.";
