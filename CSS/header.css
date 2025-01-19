@@ -1,0 +1,72 @@
+div.bell{
+    background-color: #ffffff;
+    position:relative;
+    top: 1.9em;
+    border-style: solid;
+    border-color: #c5c5c5;
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 0.5em;
+} 
+.nav_notif{
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+.far{
+    position: relative;
+    left:-3em;
+    scale: 1.4;
+    top: 0.1em;
+}
+nav.haut {
+    background-color: #003366;
+    padding: 20px 20px;
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+ul.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: left;
+    color: white;
+}
+
+.navbar li {
+    padding-left: 30px;
+    font-size: 18px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    top: 10px;
+    left: 30px;
+}
+
+.navbar li img.icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.navbar li .arrow {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    margin-left: 6px;
+}
+.haut_de_page {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+}
+#english {
+    display: none;
+}
