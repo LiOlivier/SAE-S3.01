@@ -283,6 +283,7 @@ input[type="password"]:focus {
     display: none;
 }
 
+
 .main {
     margin-left: 200px;
   }
@@ -360,7 +361,7 @@ height: 25px;
 .right{
     display: flex;
     flex: 3;
-
+    
 }
 .container{
     display: flex;
