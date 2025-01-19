@@ -131,8 +131,8 @@ require_once(__DIR__ . "//component/aside.php");
                    END AS statut,
                    stage.mission, stage.date_debut, stage.date_fin, stage.salle_soutenance
             FROM utilisateur
-            JOIN etudiant ON utilisateur.id = etudiant.Id
-            JOIN inscription ON etudiant.Id = inscription.Id_Etudiant
+            JOIN etudiant ON utilisateur.id = etudiant.Id_etudiant
+            JOIN inscription ON etudiant.Id_etudiant = inscription.Id_Etudiant
             LEFT JOIN stage ON inscription.Id_Etudiant = stage.Id_Etudiant AND inscription.numSemestre = stage.numSemestre
             LEFT JOIN action ON inscription.Id_Etudiant = action.Id_Etudiant AND inscription.numSemestre = action.numSemestre
             WHERE inscription.numSemestre = 6 AND inscription.Id_Departement = 3";
