@@ -6,28 +6,81 @@
         <img src="../IMG/USPN.png" alt="logo USPN" id="USPN" class="bouton-side">
         <ul class="aside-ul">
             <li>
-                <?php if($_SESSION["user"]["role"]=='etudiant') {?>
-                <a href="board.php" class="bouton-side" id="TDB">
+                
+
+            <?php if ($_SESSION["user"]["role"] == 'etudiant') { ?>
+                        <a href="board.php" class="bouton-side" id="TDB">
+                            <div class="content-side">
+                                <i class="fas fa-th" style="font-size: 1.3em;"></i> <span>Tableau de Bord</span>
+                            </div>
+                        </a>
+                    <?php } ?>
+                    <?php if ($_SESSION["user"]["role"] == 'administrateur') { ?>
+                        <a href="dpt.php" class="bouton-side" id="TDB">
+                            <div class="content-side">
+                                <i class="fas fa-th" style="font-size: 1.3em;"></i> <span>Tableau de Bord</span>
+                            </div>
+                        </a>
+                    <?php } ?>
+                    <?php if ($_SESSION["user"]["role"] == 'chefdept') { ?>
+                        <a href="board_chefdpt_formation.php" class="bouton-side" id="TDB">
+                            <div class="content-side">
+                                <i class="fas fa-th" style="font-size: 1.3em;"></i> <span>Tableau de Bord</span>
+                            </div>
+                        </a>
+                    <?php } ?>
+                    <?php if ($_SESSION["user"]["role"] == 'tuteur') { ?>
+                        <a href="board_entreprise.php" class="bouton-side" id="TDB">
+                            <div class="content-side">
+                                <i class="fas fa-th" style="font-size: 1.3em;"></i> <span>Tableau de Bord</span>
+                            </div>
+                        </a>
+                    <?php } ?>
+                    <?php if ($_SESSION["user"]["role"] == 'pedagogique') { ?>
+                        <a href="board_pedagogique.php" class="bouton-side" id="TDB">
+                            <div class="content-side">
+                                <i class="fas fa-th" style="font-size: 1.3em;"></i> <span>Tableau de Bord</span>
+                            </div>
+                        </a>
+                    <?php } ?>
+
+            </li>
+            <li>
+                <?php if ($_SESSION["user"]["role"] == 'etudiant') { ?>
+                    <a href="depot.php" class="bouton-side" id="DP">
+                        <div class="content-side">
+                            <i class="fas fa-folder" style="font-size: 1.3em;"></i> <span>Dépot de document</span>
+                        </div>
+                    </a>
+                <?php } ?>
+                
+            <?php if ($_SESSION["user"]["role"] == 'pedagogique') { ?>
+                <a href="board_pedagogique.php" class="bouton-side" id="TDB">
                     <div class="content-side">
                         <i class="fas fa-th" style="font-size: 1.3em;"></i> <span>Tableau de Bord</span>
                     </div>
                 </a>
-                <?php }?>
+            <?php } ?>
+
             </li>
             <li>
-                <a href="depot.php" class="bouton-side" id="DP">
-                    <div class="content-side">
-                        <i class="fas fa-folder" style="font-size: 1.3em;"></i> <span>Dépot de document</span>
-                    </div>
-                </a>
+                <?php if ($_SESSION["user"]["role"] == 'etudiant') { ?>
+                    <a href="depot.php" class="bouton-side" id="DP">
+                        <div class="content-side">
+                            <i class="fas fa-folder" style="font-size: 1.3em;"></i> <span>Dépot de document</span>
+                        </div>
+                    </a>
+                <?php } ?>
             </li>
 
             <li>
-                <a href="ajouter.php" class="bouton-side" id="DP">
-                    <div class="content-side">
-                        <i class="fas fa-folder" style="font-size: 1.3em;"></i> <span>Ajouter un utilisateur</span>
-                    </div>
-                </a>
+                <?php if ($_SESSION["user"]["role"] == 'administrateur') { ?>
+                    <a href="ajouter.php" class="bouton-side" id="DP">
+                        <div class="content-side">
+                            <i class="fas fa-folder" style="font-size: 1.3em;"></i> <span>Ajouter un utilisateur</span>
+                        </div>
+                    </a>
+                <?php } ?>
             </li>
 
             <li>

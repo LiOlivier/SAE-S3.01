@@ -34,7 +34,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
                // header('Location: board.php');
                 exit();
             } elseif ($_SESSION['user']['role'] == "administrateur") {
-                // header('Location: board.php');
+                header('Location: dpt.php');
                 exit();
             } elseif ($_SESSION['user']['role'] == "tuteur") {
                 header('Location: board_entreprise.php'); // Page pour les tuteurs

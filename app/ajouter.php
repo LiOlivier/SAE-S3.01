@@ -70,7 +70,7 @@
         }
 
         button {
-            background-color: #4caf50;
+            background-color: #003366;
             color: white;
             font-weight: bold;
             border: none;
@@ -79,7 +79,7 @@
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color:rgb(32, 14, 225);
         }
 
         .alert {
@@ -91,7 +91,7 @@
         }
 
         .alert.success {
-            background-color: #4caf50;
+            background-color:rgb(44, 11, 207);
         }
 
         .alert.error {
@@ -102,6 +102,7 @@
 
 <body>
     <?php
+    require_once('./controller/sessionController.php');
     require_once(__DIR__ . "/component/header.php");
     require_once(__DIR__ . "/component/aside.php");
     ?>
@@ -142,7 +143,8 @@
                     <option value="">Aucune</option>
                     <?php
                     try {
-                        $pdo = new PDO('mysql:host=localhost;dbname=sae3.01;charset=utf8', 'root', '');
+                        //$db_dev = array("host" => "localhost", "port" => "3306", "dbname" => "sorbonne2", "login" => "root", "password" => "root");
+                        $pdo = new PDO('mysql:host=localhost;dbname=sorbonne2;charset=utf8', 'root', '');
                         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                         $query = "SELECT Id_Entreprise, ville FROM Entreprise";

@@ -46,7 +46,7 @@ require_once(__DIR__ . "//component/aside.php");
                                     <div class="left">
                                         <div style="display: block;">
                                             <h3 class="nom"><?= $enseignant["nom"] ?> <?= $enseignant["prenom"] ?></h3> <!-- <-- ici on utilie du php pour recuperer le renom de l'utilisateur  -->
-                                            <h3 class="nom-titre">Tuteur entreprise</h3>
+                                            <h3 class="nom-titre">Tuteur pedagogique</h3>
                                             <button class="contacter copier-email">copier l'email</button>
                                             <input type="hidden" value="<?= $enseignant["email"] ?>">
                                             <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
@@ -63,7 +63,7 @@ require_once(__DIR__ . "//component/aside.php");
                                     <div class="left">
                                         <div style="display: block;">
                                             <h3 class="nom"><?= $tuteur["nom"] ?> <?= $tuteur["prenom"] ?></h3>
-                                            <h3 class="nom-titre">Tuteur pedagogique</h3>
+                                            <h3 class="nom-titre">Tuteur entreprise</h3>
                                             <button class="contacter copier-email">copier l'email</button>
                                             <input type="hidden" value="<?= $tuteur["email"] ?>">
                                             <p id="message" style="color: green; font-size: 14px; display: none;">Email copié dans le presse-papier !</p>

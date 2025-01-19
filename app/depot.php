@@ -1,8 +1,10 @@
 <?php
-require "./controller/depotController.php" ;
+require "./controller/depotController.php";
 
 
 $prenom = $_SESSION['user']['prenom'];
+
+
 
 
 ?>
@@ -30,10 +32,11 @@ require_once(__DIR__ . "//component/aside.php"); ?>
 
         <h1 id="titre">Document a déposer</h1>
         <div class="cards">
-        <?php if ($actions) {  
-                            foreach ($actions as $action){?>
-            <?php require "component/card_depot.php"; ?>
-            <?php }}?>
+            <?php if ($actions) {
+                foreach ($actions as $action) { ?>
+                    <?php require "component/card_depot.php"; ?>
+            <?php }
+            } ?>
         </div>
         <?php require "component/notification.php"; ?>
     </section>
@@ -43,10 +46,12 @@ require_once(__DIR__ . "//component/aside.php"); ?>
 <script src="../JS/notif.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#sortDocument").change(function() {//quand lui met un truc
-            let formData = new FormData($("#uploadForm")[0]);
+        // Sélectionnez chaque input file individuellement
+        $(".sortDocument").change(function() {
+            let form = $(this).closest(".uploadForm"); // Trouver le formulaire parent le plus proche
+            let formData = new FormData(form[0]); // Préparer les données du formulaire
 
-            $.ajax({ //evite de reload la page
+            $.ajax({
                 url: "component/upload_handler.php",
                 type: "POST",
                 data: formData,
@@ -59,9 +64,10 @@ require_once(__DIR__ . "//component/aside.php"); ?>
                 if (response.status === "success") {
                     showNotification("Fichier téléchargé avec succès.");
                 } else if (response.status === "error") {
-                    showNotification("Erreur: " + response.message, 5000); 
+                    showNotification("Erreur: " + response.message, 5000);
                 }
             }).fail(function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR, textStatus, errorThrown);
                 showNotification('Une erreur est survenue lors de l\'upload.', 5000);
             });
         });

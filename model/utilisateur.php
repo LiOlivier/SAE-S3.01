@@ -1,5 +1,6 @@
 <?php
-require_once(__DIR__ . '/../config/database.php');
+$chemin_relatif='..\config\database.php';//a modifier pour chaque personne
+require_once($chemin_relatif);
 
 
 class Utilisateur
@@ -42,12 +43,13 @@ class Utilisateur
     {
         $sql = "SELECT u.prenom, u.nom, u.email, u.telephone
             FROM $this->table u
-            INNER JOIN pedagogique p ON u.id = p.id_Pedagogique
-            WHERE p.id_Etudiant = :idEtudiant";
+            INNER JOIN stage s ON u.id = s.Id_Enseignant_1
+            WHERE s.id_Etudiant = :idEtudiant";
         $query = $this->db->prepare($sql);
         $query->execute(['idEtudiant' => $idEtudiant]);
         return $query->fetchAll(PDO::FETCH_ASSOC); // Retourne un tableau d'enseignants
     }
+    
     public function getTuteursByEtudiant($idEtudiant)
     {
         $sql = "SELECT u.prenom, u.nom, u.email, u.telephone
@@ -142,6 +144,62 @@ class Utilisateur
         return $result ? $result['id_Tuteur'] : null;
     }
 
-
-
+    public function updateUtilisateur($id, $nom = null, $prenom = null, $email = null, $telephone = null)
+    {
+        $fieldsToUpdate = [];
+        $parameters = ['id' => $id];
+    
+        if ($nom !== null) {
+            $fieldsToUpdate[] = "nom = :nom";
+            $parameters['nom'] = $nom;
+        }
+    
+        if ($prenom !== null) {
+            $fieldsToUpdate[] = "prenom = :prenom";
+            $parameters['prenom'] = $prenom;
+        }
+    
+        if ($email !== null) {
+            $fieldsToUpdate[] = "email = :email";
+            $parameters['email'] = $email;
+        }
+    
+        if ($telephone !== null) {
+            $fieldsToUpdate[] = "telephone = :telephone";
+            $parameters['telephone'] = $telephone;
+        }
+    
+        if (empty($fieldsToUpdate)) {
+            return 0;
+        }
+    
+        $sql = "UPDATE utilisateur SET " . implode(", ", $fieldsToUpdate) . " WHERE id = :id";
+    
+        echo "Requête SQL : " . $sql . "<br>";
+    
+        echo "<pre>";
+        print_r($parameters);
+        echo "</pre>";
+    
+        $pdo = Database::getConnexion();
+        if ($pdo === null) {
+            echo "Erreur de connexion à la base de données";
+            return 0;
+        }
+    
+        try
+        {
+            $query = $pdo->prepare($sql);
+            $query->execute($parameters);
+            $affectedRows = $query->rowCount();
+            echo "Lignes affectées : " . $affectedRows . "<br>";
+            return $affectedRows;
+        } 
+        catch (PDOException $e)
+        {
+            echo "Erreur lors de l'exécution de la requête : " . $e->getMessage();
+            return 0;
+        }
+    }
+    
 }
