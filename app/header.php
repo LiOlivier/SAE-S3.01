@@ -1,6 +1,3 @@
-<head>
-    
-</head>
 <header class="haut_de_page" >
     <nav class="haut" style="position: relative">
         <ul class="navbar">
