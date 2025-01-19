@@ -49,7 +49,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
                 header('Location: board_pedagogique.php');
                 exit();
             } 
-            } 
+             
         } else {
 
             echo "Identifiant ou mot de passe incorrect.";
