@@ -13,7 +13,9 @@
     <title>Tableau de Bord</title>
 </head>
 <body>
-<?php require_once(__DIR__ . "//component/header.php");
+<?php 
+require_once('./controller/sessionController.php');
+ require_once(__DIR__ . "//component/header.php");
     require_once(__DIR__ . "//component/aside.php");
     require_once(__DIR__ ."/section_pedagogique.php") ;
     require_once(__DIR__ ."../component/notification.php");
