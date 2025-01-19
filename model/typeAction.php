@@ -36,6 +36,13 @@ class TypeAction
             'idAction' => $idAction
         ]);
     }
+
+    public  function selectActionById($idAction){
+        $sql = "SELECT LienModeleDoc FROM $this->table WHERE id_TypeAction = :idAction";
+        $query = $this->db->prepare($sql);
+        $query->execute(['idAction' => $idAction]);
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
     
 }
 ?>
