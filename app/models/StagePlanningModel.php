@@ -7,7 +7,7 @@ class StagePlanningModel {
         try {
             $this->db = new PDO($dsn, $login, $mdp);
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->db->exec("USE sbd");
+            $this->db->exec("USE sorbonne");
         } catch (PDOException $e) {
             die('Erreur : ' . $e->getMessage());
         }
