@@ -13,7 +13,9 @@
         integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
     <script src="TBD_directeur_etude.html"></script>
 </head>
-<?php require_once(__DIR__ . "//component/header.php");
+<?php 
+require('./controller/sessionController');
+require_once(__DIR__ . "//component/header.php");
 require_once(__DIR__ . "//component/aside.php");
 
 ?>
