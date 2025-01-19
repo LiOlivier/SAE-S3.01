@@ -1,53 +1,8 @@
-<?php
-// Initialisation des variables
-$error_message_info = $error_message_mdp = $error_message = $success_message = "";
-$prenom_nom = $email = $telephone = $formation = $semestre = "";
-$new_mdp = $confirm_mdp = "";
-
-// Traitement du formulaire
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Sécurisation des données avec htmlspecialchars pour éviter les failles XSS
-    $prenom_nom = isset($_POST['prenom-nom']) ? htmlspecialchars($_POST['prenom-nom']) : '';
-    $email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';
-    $telephone = isset($_POST['telephone']) ? htmlspecialchars($_POST['telephone']) : '';
-    $formation = isset($_POST['formation']) ? htmlspecialchars($_POST['formation']) : '';
-    $semestre = isset($_POST['semestre']) ? htmlspecialchars($_POST['semestre']) : '';
-    $new_mdp = isset($_POST['new-mdp']) ? htmlspecialchars($_POST['new-mdp']) : '';
-    $confirm_mdp = isset($_POST['confirm-mdp']) ? htmlspecialchars($_POST['confirm-mdp']) : '';
-    
-    // Validation des informations personnelles
-    if (strlen($prenom_nom) < 2) {
-        $error_message_info = "Le prénom et le nom doivent comporter au moins 2 caractères.";
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error_message_info = "❌ Adresse email invalide.";
-    } else {
-        $success_message = "✔️ Informations personnelles sauvegardées avec succès.";
-    }
-
-    // Validation du mot de passe
-    if ($new_mdp !== $confirm_mdp) {
-        $error_message_mdp = "❌ Les mots de passe ne correspondent pas.";
-    } elseif (strlen($new_mdp) < 8) {
-        $error_message_mdp = "❌ Le mot de passe doit contenir au moins 8 caractères.";
-    } else {
-        if (empty($error_message_info)) {
-            $success_message = "✔️ Mot de passe changé avec succès.";
-        }
-    }
-
-    // Validation de la formation et du semestre
-    if ($formation == "BUT 1" && ($semestre < 3 || $semestre > 4)) {
-        $error_message_info = "❌ Le semestre sélectionné n'est pas valide pour la formation BUT 1.";
-    } elseif ($formation == "BUT 2" && ($semestre < 3 || $semestre > 5)) {
-        $error_message_info = "❌ Le semestre sélectionné n'est pas valide pour la formation BUT 2.";
-    } elseif ($formation == "BUT 3" && ($semestre < 5 || $semestre > 6)) {
-        $error_message_info = "❌ Le semestre sélectionné n'est pas valide pour la formation BUT 3.";
-    }
-}
+<?php 
 require_once(__DIR__ . "//component/header.php");
 require_once(__DIR__ . "//component/aside.php");
+require_once("controller/updateController.php");
 ?>
-
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -95,12 +50,15 @@ require_once(__DIR__ . "//component/aside.php");
         <div class="title-section">
             <h1>Mes informations</h1>
         </div>
-
         <div class="mdp-section">
             <form class="mdp-form" method="POST" action="">
                 <div class="form-group">
-                    <label for="prenom-nom">Prénom - Nom</label>
-                    <input type="text" id="prenom-nom" name="prenom-nom" value="<?= htmlspecialchars($prenom_nom) ?>" placeholder="Entrez votre Prénom et Nom" required>
+                    <label for="nom">Nom</label>
+                    <input type="text" id="nom" name="nom" value="<?= htmlspecialchars($nom) ?>" placeholder="Entrez votre Nom" required>
+                </div>
+                <div class="form-group">
+                    <label for="prenom">Prénom</label>
+                    <input type="text" id="prenom" name="prenom" value="<?= htmlspecialchars($prenom) ?>" placeholder="Entrez votre Prénom" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
@@ -110,36 +68,20 @@ require_once(__DIR__ . "//component/aside.php");
                     <label for="telephone">Numéro de téléphone</label>
                     <input type="tel" id="telephone" name="telephone" value="<?= htmlspecialchars($telephone) ?>" placeholder="Entrez votre Numéro de téléphone" required>
                 </div>
-                <div class="form-group">
-                    <label for="formation">Formation</label>
-                    <select id="formation" name="formation" required>
-                        <option value="" <?= $formation == "" ? "selected" : "" ?>>Sélectionnez votre formation</option>
-                        <option value="BUT 1" <?= $formation == "BUT 1" ? "selected" : "" ?>>BUT 1</option>
-                        <option value="BUT 2" <?= $formation == "BUT 2" ? "selected" : "" ?>>BUT 2</option>
-                        <option value="BUT 3" <?= $formation == "BUT 3" ? "selected" : "" ?>>BUT 3</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="semestre">Semestre</label>
-                    <select id="semestre" name="semestre" required>
-                        <option value="" <?= $semestre == "" ? "selected" : "" ?>>Sélectionnez votre semestre</option>
-                        <option value="1" <?= $semestre == "3" ? "selected" : "" ?>>Semestre 1</option>
-                        <option value="2" <?= $semestre == "3" ? "selected" : "" ?>>Semestre 2</option>
-                        <option value="3" <?= $semestre == "3" ? "selected" : "" ?>>Semestre 3</option>
-                        <option value="4" <?= $semestre == "4" ? "selected" : "" ?>>Semestre 4</option>
-                        <option value="5" <?= $semestre == "5" ? "selected" : "" ?>>Semestre 5</option>
-                        <option value="6" <?= $semestre == "6" ? "selected" : "" ?>>Semestre 6</option>
-                    </select>
-                </div>
                 <button type="submit" class="btn-save">Enregistrer</button>
             </form>
         </div>
 
-        <?php if($error_message): ?>
-            <div class="error-message" style="color: red;"><?= $error_message ?></div>
+        <!-- Affichage des messages d'erreur ou de succès -->
+        <?php if($error_message_info || $error_message_mdp): ?>
+            <div class="error-message" style="color: red;">
+                <?php echo $error_message_info; ?>
+                <?php echo $error_message_mdp; ?>
+            </div>
         <?php elseif($success_message): ?>
-            <div class="success-message" style="color: green;"><?= $success_message ?></div>
+            <div class="success-message" style="color: green;">
+                <?php echo $success_message; ?>
+            </div>
         <?php endif; ?>
     </section>
 

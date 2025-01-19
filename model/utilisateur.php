@@ -131,4 +131,63 @@ class Utilisateur
         
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function updateUtilisateur($id, $nom = null, $prenom = null, $email = null, $telephone = null)
+    {
+        $fieldsToUpdate = [];
+        $parameters = ['id' => $id];
+    
+        if ($nom !== null) {
+            $fieldsToUpdate[] = "nom = :nom";
+            $parameters['nom'] = $nom;
+        }
+    
+        if ($prenom !== null) {
+            $fieldsToUpdate[] = "prenom = :prenom";
+            $parameters['prenom'] = $prenom;
+        }
+    
+        if ($email !== null) {
+            $fieldsToUpdate[] = "email = :email";
+            $parameters['email'] = $email;
+        }
+    
+        if ($telephone !== null) {
+            $fieldsToUpdate[] = "telephone = :telephone";
+            $parameters['telephone'] = $telephone;
+        }
+    
+        if (empty($fieldsToUpdate)) {
+            return 0;
+        }
+    
+        $sql = "UPDATE utilisateur SET " . implode(", ", $fieldsToUpdate) . " WHERE id = :id";
+    
+        echo "Requête SQL : " . $sql . "<br>";
+    
+        echo "<pre>";
+        print_r($parameters);
+        echo "</pre>";
+    
+        $pdo = Database::getConnexion();
+        if ($pdo === null) {
+            echo "Erreur de connexion à la base de données";
+            return 0;
+        }
+    
+        try
+        {
+            $query = $pdo->prepare($sql);
+            $query->execute($parameters);
+            $affectedRows = $query->rowCount();
+            echo "Lignes affectées : " . $affectedRows . "<br>";
+            return $affectedRows;
+        } 
+        catch (PDOException $e)
+        {
+            echo "Erreur lors de l'exécution de la requête : " . $e->getMessage();
+            return 0;
+        }
+    }
+    
 }
