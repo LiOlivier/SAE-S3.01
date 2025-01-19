@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__ . '/../models/DashboardModel.php');
 require_once(__DIR__ . '/../dbdata.php');
-require_once(__DIR__ . '/../sessionController.php');
+require_once(__DIR__ . '/../controller/sessionController.php');
 
 class DashboardController {
     private $model;
