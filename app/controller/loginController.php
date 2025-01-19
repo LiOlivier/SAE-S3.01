@@ -19,7 +19,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
         $user = $userModel->login($identifiant);
 
         if ($user && password_verify($password, $user['password'])) {
-            // Connexion réussie
+
             $_SESSION['user'] = [
                 'id' => $user['id'],
                 'nom' => $user['nom'],
@@ -48,6 +48,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
             elseif ($_SESSION['user']['role'] == "pedagogique") {
                 header('Location: board_pedagogique.php');
                 exit();
+            } 
             } 
         } else {
 

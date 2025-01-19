@@ -13,12 +13,20 @@
     <title>Tableau de Bord</title>
 </head>
 <body>
-<?php 
-require_once('./controller/sessionController.php');
- require_once(__DIR__ . "//component/header.php");
+<?php
+    session_start();
+
+    if (!isset($_SESSION['user'])) {
+        header('Location: login.php');
+        exit();
+    }
+    
+    $utilisateurId = $_SESSION['user']['id'];
+    require_once(__DIR__ . "//component/header.php");
     require_once(__DIR__ . "//component/aside.php");
     require_once(__DIR__ ."/section_pedagogique.php") ;
     require_once(__DIR__ ."../component/notification.php");
+    
 ?>
 <script src="../JS/script_pedagogique.js"></script>
 </body>
