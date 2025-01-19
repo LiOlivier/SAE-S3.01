@@ -133,7 +133,7 @@ require_once(__DIR__ . "//component/aside.php");
 
     <?php
     // Connexion à la base de données
-    $pdo = new PDO('mysql:host=localhost;dbname=sae3.01;charset=utf8', 'root', '');
+    $pdo = new PDO('mysql:host=localhost;dbname=sorbonne;charset=utf8', 'root', '');
 
     // Requête pour obtenir les étudiants en INFO semestre 4 avec statut
     $sql = "SELECT utilisateur.nom, utilisateur.prenom, utilisateur.email, utilisateur.telephone, etudiant.id_Etudiant,

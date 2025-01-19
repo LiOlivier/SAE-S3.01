@@ -50,9 +50,7 @@
             color: #555;
         }
 
-        input,
-        select,
-        button {
+        input, select, button {
             display: block;
             width: 100%;
             padding: 10px;
@@ -62,8 +60,7 @@
             border-radius: 5px;
         }
 
-        input:focus,
-        select:focus {
+        input:focus, select:focus {
             outline: none;
             border-color: #4caf50;
             box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
@@ -79,7 +76,7 @@
         }
 
         button:hover {
-            background-color:rgb(32, 14, 225);
+            background-color: rgb(32, 14, 225);
         }
 
         .alert {
@@ -91,7 +88,7 @@
         }
 
         .alert.success {
-            background-color:rgb(44, 11, 207);
+            background-color: rgb(44, 11, 207);
         }
 
         .alert.error {
@@ -130,34 +127,31 @@
 
             <label for="role">Rôle :</label>
             <select id="role" name="role" required>
+                <option value="etudiant">Étudiant</option>
                 <option value="enseignant">Enseignant</option>
                 <option value="tuteur_pédagogique">Tuteur Pédagogique</option>
                 <option value="secrétaire">Secrétaire</option>
-                <option value="tuteur_stage">Tuteur de Stage</option>
                 <option value="tuteur_entreprise">Tuteur Entreprise</option>
+                <option value="admin">Administrateur</option>
             </select>
 
-            <div id="entreprise-section" style="display: none;">
-                <label for="entreprise">Entreprise (si Tuteur Entreprise) :</label>
-                <select id="entreprise" name="entreprise">
-                    <option value="">Aucune</option>
-                    <?php
-                    try {
-                        //$db_dev = array("host" => "localhost", "port" => "3306", "dbname" => "sorbonne2", "login" => "root", "password" => "root");
-                        $pdo = new PDO('mysql:host=localhost;dbname=sorbonne2;charset=utf8', 'root', '');
-                        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            <div id="etudiant-section" style="display: none;">
+                <label for="departement">Département :</label>
+                <select id="departement" name="departement">
+                    <option value="1">Informatique</option>
+                    <option value="2">GEA</option>
+                    <option value="4">RT</option>
+                    <option value="8">SD</option>
+                </select>
 
-                        $query = "SELECT Id_Entreprise, ville FROM Entreprise";
-                        $stmt = $pdo->query($query);
-                        $entreprises = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                        foreach ($entreprises as $entreprise) {
-                            echo '<option value="' . htmlspecialchars($entreprise['Id_Entreprise'], ENT_QUOTES) . '">' . htmlspecialchars($entreprise['ville'], ENT_QUOTES) . '</option>';
-                        }
-                    } catch (PDOException $e) {
-                        echo "Erreur : " . $e->getMessage();
-                    }
-                    ?>
+                <label for="semestre">Semestre :</label>
+                <select id="semestre" name="semestre">
+                    <option value="1">Semestre 1</option>
+                    <option value="2">Semestre 2</option>
+                    <option value="3">Semestre 3</option>
+                    <option value="4">Semestre 4</option>
+                    <option value="5">Semestre 5</option>
+                    <option value="6">Semestre 6</option>
                 </select>
             </div>
 
@@ -173,45 +167,53 @@
             $login = $_POST['login'];
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $role = $_POST['role'];
-            $entrepriseId = $_POST['entreprise'] ?? null;
+            $departement = $_POST['departement'] ?? null;
+            $semestre = $_POST['semestre'] ?? null;
 
             try {
-                $pdo = new PDO('mysql:host=localhost;dbname=sae3.01;charset=utf8', 'root', '');
+                $pdo = new PDO('mysql:host=localhost;dbname=sorbonne2;charset=utf8', 'root', '');
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                // Vérifier si le login est unique
-                $query = "SELECT COUNT(*) FROM Utilisateur WHERE login = :login";
+                // Ajouter dans la table Utilisateur
+                $query = "INSERT INTO Utilisateur (nom, prenom, email, telephone, role, login, password) 
+                          VALUES (:nom, :prenom, :email, :telephone, :role, :login, :password)";
                 $stmt = $pdo->prepare($query);
-                $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+                $stmt->bindParam(':nom', $nom);
+                $stmt->bindParam(':prenom', $prenom);
+                $stmt->bindParam(':email', $email);
+                $stmt->bindParam(':telephone', $telephone);
+                $stmt->bindParam(':role', $role);
+                $stmt->bindParam(':login', $login);
+                $stmt->bindParam(':password', $password);
                 $stmt->execute();
-                if ($stmt->fetchColumn() > 0) {
-                    echo "<div class='alert error'>Erreur : Le login est déjà utilisé.</div>";
-                } else {
-                    // Ajouter l'utilisateur dans la table Utilisateur
-                    $query = "INSERT INTO Utilisateur (nom, prenom, email, telephone, role, login, password) 
-                              VALUES (:nom, :prenom, :email, :telephone, :role, :login, :password)";
+
+                $lastUserId = $pdo->lastInsertId();
+
+                if ($role === 'etudiant' && $departement && $semestre) {
+                    // Ajouter dans la table Etudiant
+                    $query = "INSERT INTO Etudiant (Id, Id_Departement) VALUES (:id, :departement)";
                     $stmt = $pdo->prepare($query);
-                    $stmt->bindParam(':nom', $nom, PDO::PARAM_STR);
-                    $stmt->bindParam(':prenom', $prenom, PDO::PARAM_STR);
-                    $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-                    $stmt->bindParam(':telephone', $telephone, PDO::PARAM_STR);
-                    $stmt->bindParam(':role', $role, PDO::PARAM_STR);
-                    $stmt->bindParam(':login', $login, PDO::PARAM_STR);
-                    $stmt->bindParam(':password', $password, PDO::PARAM_STR);
+                    $stmt->bindParam(':id', $lastUserId);
+                    $stmt->bindParam(':departement', $departement);
                     $stmt->execute();
 
-                    // Si le rôle est "tuteur_entreprise", ajouter dans la table Tuteur_Entreprise
-                    if ($role === 'tuteur_entreprise' && !empty($entrepriseId)) {
-                        $lastUserId = $pdo->lastInsertId();
-                        $query = "INSERT INTO Tuteur_Entreprise (Id_Tuteur_Entreprise, Id_Entreprise) VALUES (:userId, :entrepriseId)";
-                        $stmt = $pdo->prepare($query);
-                        $stmt->bindParam(':userId', $lastUserId, PDO::PARAM_INT);
-                        $stmt->bindParam(':entrepriseId', $entrepriseId, PDO::PARAM_INT);
-                        $stmt->execute();
-                    }
-
-                    echo "<div class='alert success'>Utilisateur ajouté avec succès.</div>";
+                    // Ajouter dans la table Inscription
+                    $query = "INSERT INTO Inscription (Id_Etudiant, Id_Departement, numSemestre, annee) 
+                              VALUES (:id, :departement, :semestre, YEAR(CURDATE()))";
+                    $stmt = $pdo->prepare($query);
+                    $stmt->bindParam(':id', $lastUserId);
+                    $stmt->bindParam(':departement', $departement);
+                    $stmt->bindParam(':semestre', $semestre);
+                    $stmt->execute();
+                } elseif ($role === 'enseignant') {
+                    // Ajouter dans la table Enseignant
+                    $query = "INSERT INTO Enseignant (Id_Enseignant) VALUES (:id)";
+                    $stmt = $pdo->prepare($query);
+                    $stmt->bindParam(':id', $lastUserId);
+                    $stmt->execute();
                 }
+
+                echo "<div class='alert success'>Utilisateur ajouté avec succès.</div>";
             } catch (PDOException $e) {
                 echo "<div class='alert error'>Erreur : " . $e->getMessage() . "</div>";
             }
@@ -221,13 +223,13 @@
 
     <script>
         const roleSelect = document.getElementById('role');
-        const entrepriseSection = document.getElementById('entreprise-section');
+        const etudiantSection = document.getElementById('etudiant-section');
 
         roleSelect.addEventListener('change', () => {
-            if (roleSelect.value === 'tuteur_entreprise') {
-                entrepriseSection.style.display = 'block';
+            if (roleSelect.value === 'etudiant') {
+                etudiantSection.style.display = 'block';
             } else {
-                entrepriseSection.style.display = 'none';
+                etudiantSection.style.display = 'none';
             }
         });
     </script>

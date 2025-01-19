@@ -124,7 +124,7 @@ require_once(__DIR__ . "//component/aside.php");
     // a mettre dans le model utilisateur 
     // je dois avoir une fonction 
     // je ne dois pas faire un  $pdo = new PDO je recupere la bdd avec un require
-    $pdo = new PDO('mysql:host=localhost;dbname=sae3.01;charset=utf8', 'root', '');
+    $pdo = new PDO('mysql:host=localhost;dbname=sorbonne;charset=utf8', 'root', '');
 
     // Requête pour obtenir les étudiants en GEA semestre 4 avec statut
     $sql = "SELECT utilisateur.nom, utilisateur.prenom, utilisateur.email, utilisateur.telephone, etudiant.id_Etudiant,
