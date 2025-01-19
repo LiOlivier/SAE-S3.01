@@ -14,9 +14,10 @@
 </head>
 <body>
 <?php 
-    require_once(__DIR__ ."/header.php");
-    require_once(__DIR__ ."/aside.php") ;
-    require_once(__DIR__ ."/section.php") ;
+    require_once(__DIR__ ."/component/header.php");
+    require_once(__DIR__ ."/component/aside.php") ;
+    require_once(__DIR__ ."/component/section.php") ;
+    require('./controller/sessionController');
 ?>
 <script src="../JS/newscript.js"></script>
 </body>
