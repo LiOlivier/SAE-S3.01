@@ -4,6 +4,7 @@
     width: 100%;
 }
 
+
 .background {
     position: absolute;
     top: 0;
@@ -151,6 +152,8 @@ a.bouton-side:hover{
     align-items: center;
     gap: 10px; 
 }
+
+
 
 .title-container {
     position: absolute;
