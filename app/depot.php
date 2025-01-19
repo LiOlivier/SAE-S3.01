@@ -1,5 +1,5 @@
 <?php
-require "./controller/depotController.php";
+require_once "./controller/depotController.php";
 
 
 $prenom = $_SESSION['user']['prenom'];

@@ -50,7 +50,9 @@
             color: #555;
         }
 
-        input, select, button {
+        input,
+        select,
+        button {
             display: block;
             width: 100%;
             padding: 10px;
@@ -60,7 +62,8 @@
             border-radius: 5px;
         }
 
-        input:focus, select:focus {
+        input:focus,
+        select:focus {
             outline: none;
             border-color: #4caf50;
             box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
@@ -98,12 +101,6 @@
 </head>
 
 <body>
-    <?php
-    require_once('./controller/sessionController.php');
-    require_once(__DIR__ . "/component/header.php");
-    require_once(__DIR__ . "/component/aside.php");
-    ?>
-
     <section>
         <h1>Ajouter un utilisateur</h1>
         <form action="" method="POST">
@@ -129,10 +126,9 @@
             <select id="role" name="role" required>
                 <option value="etudiant">Étudiant</option>
                 <option value="enseignant">Enseignant</option>
-                <option value="tuteur_pédagogique">Tuteur Pédagogique</option>
-                <option value="secrétaire">Secrétaire</option>
+                <option value="secretaire">Secrétaire</option>
                 <option value="tuteur_entreprise">Tuteur Entreprise</option>
-                <option value="admin">Administrateur</option>
+                <option value="administrateur">Administrateur</option>
             </select>
 
             <div id="etudiant-section" style="display: none;">
@@ -140,8 +136,8 @@
                 <select id="departement" name="departement">
                     <option value="1">Informatique</option>
                     <option value="2">GEA</option>
-                    <option value="4">RT</option>
-                    <option value="8">SD</option>
+                    <option value="3">RT</option>
+                    <option value="4">SD</option>
                 </select>
 
                 <label for="semestre">Semestre :</label>
@@ -152,6 +148,29 @@
                     <option value="4">Semestre 4</option>
                     <option value="5">Semestre 5</option>
                     <option value="6">Semestre 6</option>
+                </select>
+            </div>
+
+            <div id="entreprise-section" style="display: none;">
+                <label for="entreprise">Entreprise (si Tuteur Entreprise) :</label>
+                <select id="entreprise" name="entreprise">
+                    <option value="">Aucune</option>
+                    <?php
+                    try {
+                        $pdo = new PDO('mysql:host=localhost;dbname=sorbonne;charset=utf8', 'root', '');
+                        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                        $query = "SELECT Id_Entreprise, ville FROM entreprise";
+                        $stmt = $pdo->query($query);
+                        $entreprises = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                        foreach ($entreprises as $entreprise) {
+                            echo '<option value="' . htmlspecialchars($entreprise['Id_Entreprise'], ENT_QUOTES) . '">' . htmlspecialchars($entreprise['ville'], ENT_QUOTES) . '</option>';
+                        }
+                    } catch (PDOException $e) {
+                        echo "Erreur : " . $e->getMessage();
+                    }
+                    ?>
                 </select>
             </div>
 
@@ -169,45 +188,58 @@
             $role = $_POST['role'];
             $departement = $_POST['departement'] ?? null;
             $semestre = $_POST['semestre'] ?? null;
+            $entrepriseId = $_POST['entreprise'] ?? null;
 
             try {
-                $pdo = new PDO('mysql:host=localhost;dbname=sorbonne2;charset=utf8', 'root', '');
+                $pdo = new PDO('mysql:host=localhost;dbname=sorbonne;charset=utf8', 'root', '');
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 // Ajouter dans la table Utilisateur
-                $query = "INSERT INTO Utilisateur (nom, prenom, email, telephone, role, login, password) 
-                          VALUES (:nom, :prenom, :email, :telephone, :role, :login, :password)";
+                $query = "INSERT INTO utilisateur (nom, prenom, email, telephone, login, password, role) 
+                          VALUES (:nom, :prenom, :email, :telephone, :login, :password, :role)";
                 $stmt = $pdo->prepare($query);
                 $stmt->bindParam(':nom', $nom);
                 $stmt->bindParam(':prenom', $prenom);
                 $stmt->bindParam(':email', $email);
                 $stmt->bindParam(':telephone', $telephone);
-                $stmt->bindParam(':role', $role);
                 $stmt->bindParam(':login', $login);
                 $stmt->bindParam(':password', $password);
+                $stmt->bindParam(':role', $role);
                 $stmt->execute();
 
                 $lastUserId = $pdo->lastInsertId();
 
                 if ($role === 'etudiant' && $departement && $semestre) {
-                    // Ajouter dans la table Etudiant
-                    $query = "INSERT INTO Etudiant (Id, Id_Departement) VALUES (:id, :departement)";
+                    $query = "INSERT INTO etudiant (id_Etudiant) VALUES (:id)";
                     $stmt = $pdo->prepare($query);
                     $stmt->bindParam(':id', $lastUserId);
-                    $stmt->bindParam(':departement', $departement);
                     $stmt->execute();
 
-                    // Ajouter dans la table Inscription
-                    $query = "INSERT INTO Inscription (Id_Etudiant, Id_Departement, numSemestre, annee) 
-                              VALUES (:id, :departement, :semestre, YEAR(CURDATE()))";
+                    $query = "INSERT INTO inscription (annee, Id_Departement, numSemestre, Id_Etudiant) 
+                              VALUES (YEAR(CURDATE()), :departement, :semestre, :id)";
                     $stmt = $pdo->prepare($query);
-                    $stmt->bindParam(':id', $lastUserId);
                     $stmt->bindParam(':departement', $departement);
                     $stmt->bindParam(':semestre', $semestre);
+                    $stmt->bindParam(':id', $lastUserId);
                     $stmt->execute();
                 } elseif ($role === 'enseignant') {
-                    // Ajouter dans la table Enseignant
-                    $query = "INSERT INTO Enseignant (Id_Enseignant) VALUES (:id)";
+                    $query = "INSERT INTO enseignant (Id_Enseignant) VALUES (:id)";
+                    $stmt = $pdo->prepare($query);
+                    $stmt->bindParam(':id', $lastUserId);
+                    $stmt->execute();
+                } elseif ($role === 'secretaire') {
+                    $query = "INSERT INTO secretaire (Id_Secretaire) VALUES (:id)";
+                    $stmt = $pdo->prepare($query);
+                    $stmt->bindParam(':id', $lastUserId);
+                    $stmt->execute();
+                } elseif ($role === 'tuteur_entreprise' && $entrepriseId) {
+                    $query = "INSERT INTO tuteur_entreprise (Id_Tuteur_Entreprise, Id_Entreprise) VALUES (:id, :entreprise)";
+                    $stmt = $pdo->prepare($query);
+                    $stmt->bindParam(':id', $lastUserId);
+                    $stmt->bindParam(':entreprise', $entrepriseId);
+                    $stmt->execute();
+                } elseif ($role === 'administrateur') {
+                    $query = "INSERT INTO administrateur (Id_Administrateur) VALUES (:id)";
                     $stmt = $pdo->prepare($query);
                     $stmt->bindParam(':id', $lastUserId);
                     $stmt->execute();
@@ -224,13 +256,11 @@
     <script>
         const roleSelect = document.getElementById('role');
         const etudiantSection = document.getElementById('etudiant-section');
+        const entrepriseSection = document.getElementById('entreprise-section');
 
         roleSelect.addEventListener('change', () => {
-            if (roleSelect.value === 'etudiant') {
-                etudiantSection.style.display = 'block';
-            } else {
-                etudiantSection.style.display = 'none';
-            }
+            etudiantSection.style.display = roleSelect.value === 'etudiant' ? 'block' : 'none';
+            entrepriseSection.style.display = roleSelect.value === 'tuteur_entreprise' ? 'block' : 'none';
         });
     </script>
 </body>

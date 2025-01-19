@@ -1,5 +1,5 @@
 <?php 
-    require('./controller/sessionController.php');
+    require_once('./controller/sessionController.php');
     require_once(__DIR__ ."/component/header.php");
     require_once(__DIR__ ."/component/aside.php") ;
     require_once(__DIR__ ."/component/section.php") ;

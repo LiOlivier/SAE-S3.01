@@ -1,5 +1,5 @@
 <?php 
-require "controller/loginController.php";
+require_once "controller/loginController.php";
 ?>
 
 <!DOCTYPE html>
