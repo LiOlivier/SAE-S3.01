@@ -1,6 +1,6 @@
 <?php 
 
-require ("Model.php");
+require ("../models/ChefDptModel.php");
 
 $model = Model::getModel();
 
