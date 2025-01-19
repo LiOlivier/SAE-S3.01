@@ -1,3 +1,10 @@
+<?php 
+    require_once(__DIR__ ."/component/header.php");
+    require_once(__DIR__ ."/component/aside.php") ;
+    require_once(__DIR__ ."/component/section.php") ;
+    require('./controller/sessionController.php');
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -13,12 +20,7 @@
     <title>Tableau de Bord</title>
 </head>
 <body>
-<?php 
-    require_once(__DIR__ ."/component/header.php");
-    require_once(__DIR__ ."/component/aside.php") ;
-    require_once(__DIR__ ."/component/section.php") ;
-    require('./controller/sessionController');
-?>
+
 <script src="../JS/newscript.js"></script>
 </body>
 </html>
