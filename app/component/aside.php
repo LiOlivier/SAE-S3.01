@@ -6,7 +6,7 @@
         <img src="../IMG/USPN.png" alt="logo USPN" id="USPN" class="bouton-side">
         <ul class="aside-ul">
             <li>
-                <?php session_start();
+                <?php 
                 if (isset($_SESSION['user'])) {
                     $nom = $_SESSION['user']['nom'];
                     $prenom = $_SESSION['user']['prenom'];
