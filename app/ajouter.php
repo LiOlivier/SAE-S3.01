@@ -142,7 +142,8 @@
                     <option value="">Aucune</option>
                     <?php
                     try {
-                        $pdo = new PDO('mysql:host=localhost;dbname=sae3.01;charset=utf8', 'root', '');
+                        //$db_dev = array("host" => "localhost", "port" => "3306", "dbname" => "sorbonne2", "login" => "root", "password" => "root");
+                        $pdo = new PDO('mysql:host=localhost;dbname=sorbonne2;charset=utf8', 'root', '');
                         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                         $query = "SELECT Id_Entreprise, ville FROM Entreprise";

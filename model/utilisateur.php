@@ -1,5 +1,5 @@
 <?php
-$chemin_relatif='C:\xampp\htdocs\SAE-S3.01\config\database.php';//a modifier pour chaque personne
+$chemin_relatif='..\config\database.php';//a modifier pour chaque personne
 require_once($chemin_relatif);
 
 

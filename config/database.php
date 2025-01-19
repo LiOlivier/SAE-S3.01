@@ -5,7 +5,7 @@ class Database {
     public static function getConnexion($dbType = 'mysql') {
         $env = 'dev';
 
-        $db_dev = array("host" => "localhost", "port" => "3306", "dbname" => "sorbonne", "login" => "root", "password" => "");
+        $db_dev = array("host" => "localhost", "port" => "3306", "dbname" => "sorbonne", "login" => "root", "password" => "root");
 
         $db_prod = array("host" => "localhost", "port" => "3306", "dbname" => "sorbonne", "login" => "sorbonne", "password" => "Mn/RINhSCxLiXBid");
 
