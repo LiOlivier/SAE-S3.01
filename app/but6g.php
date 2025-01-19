@@ -108,7 +108,8 @@
     </style>
 </head>
 
-<?php require_once(__DIR__ . "//component/header.php");
+<?php require('./controller/sessionController');
+require_once(__DIR__ . "//component/header.php");
 require_once(__DIR__ . "//component/aside.php");
 ?>
 

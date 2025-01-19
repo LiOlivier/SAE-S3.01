@@ -1,5 +1,5 @@
 <?php
-$chemin_relatif='C:\xampp\htdocs\SAE-S3.01\config\database.php';//a modifier pour chaque personne
+$chemin_relatif='..\config\database.php';//a modifier pour chaque personne
 require_once($chemin_relatif);
 
 
@@ -43,12 +43,13 @@ class Utilisateur
     {
         $sql = "SELECT u.prenom, u.nom, u.email, u.telephone
             FROM $this->table u
-            INNER JOIN pedagogique p ON u.id = p.id_Pedagogique
-            WHERE p.id_Etudiant = :idEtudiant";
+            INNER JOIN stage s ON u.id = s.Id_Enseignant_1
+            WHERE s.id_Etudiant = :idEtudiant";
         $query = $this->db->prepare($sql);
         $query->execute(['idEtudiant' => $idEtudiant]);
         return $query->fetchAll(PDO::FETCH_ASSOC); // Retourne un tableau d'enseignants
     }
+    
     public function getTuteursByEtudiant($idEtudiant)
     {
         $sql = "SELECT u.prenom, u.nom, u.email, u.telephone

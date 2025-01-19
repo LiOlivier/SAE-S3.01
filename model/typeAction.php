@@ -1,5 +1,5 @@
 <?php
-require_once "../config/database.php";
+require_once __DIR__ . '/../config/database.php';
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
@@ -28,6 +28,14 @@ class TypeAction
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
+    public function updateDocument($idAction, $libelle) {
+        $sql = "UPDATE typeaction SET reception = :libelle, Etat = 'En attente' WHERE Id_TypeAction = :idAction";
+        $query = $this->db->prepare($sql);
+        $query->execute([
+            'libelle' => $libelle,
+            'idAction' => $idAction
+        ]);
+    }
+    
 }
 ?>
