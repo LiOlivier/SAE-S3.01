@@ -13,18 +13,18 @@ document.getElementById("body-tdb").style.width = widthTDB - 250 + "px";
 
 let ajouteSemaine = document.getElementById("date-calendrier");
 
-let semaine; // Déclare la variable pour les lignes de semaines
+let semaine; 
 for (let i = 1; i <= 31; i++) {
-    if (i % 7 == 1) { // Début d'une nouvelle semaine
-        semaine = document.createElement('tr'); // Créer une nouvelle ligne
+    if (i % 7 == 1) { 
+        semaine = document.createElement('tr'); 
     }
 
-    let day = document.createElement('td'); // Créer une cellule pour un jour
-    day.textContent = i; // Ajouter le numéro du jour
-    semaine.appendChild(day); // Ajouter le jour à la semaine
+    let day = document.createElement('td'); 
+    day.textContent = i; 
+    semaine.appendChild(day); 
 
-    if (i % 7 == 0 || i == 31) { // Fin de la semaine ou dernier jour
-        ajouteSemaine.appendChild(semaine); // Ajouter la semaine au tableau
+    if (i % 7 == 0 || i == 31) { 
+        ajouteSemaine.appendChild(semaine); 
     }
 }
 
@@ -39,7 +39,7 @@ let widthArticle = article.getBoundingClientRect().width;
 article.style.width=(widthArticle - 380) +"px";
 
 
-//onglet notif
+
 
 
 

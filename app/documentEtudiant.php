@@ -15,7 +15,6 @@ if (isset($_GET['id'])) {
         $bd->query("SET NAMES 'utf8'");
         $bd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // Préparation de la requête pour les détails de l'étudiant
         $requete = $bd->prepare('
                 SELECT u.nom,
                     u.prenom
@@ -85,7 +84,6 @@ if (isset($_GET['id'])) {
                     <h2>".$student["email"]." - ".$student["telephone"]."</h2>
                   </div>";
 
-            // Section bordereau
             echo '<div class="document-section">
                     <h3>Bordereau de stage</h3>
                     <form action="telechargement.php" method="POST">

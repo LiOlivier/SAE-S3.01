@@ -46,10 +46,10 @@ require_once(__DIR__ . "//component/aside.php"); ?>
 <script src="../JS/notif.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        // Sélectionnez chaque input file individuellement
+        
         $(".sortDocument").change(function() {
-            let form = $(this).closest(".uploadForm"); // Trouver le formulaire parent le plus proche
-            let formData = new FormData(form[0]); // Préparer les données du formulaire
+            let form = $(this).closest(".uploadForm"); 
+            let formData = new FormData(form[0]); 
 
             $.ajax({
                 url: "component/upload_handler.php",
@@ -57,7 +57,7 @@ require_once(__DIR__ . "//component/aside.php"); ?>
                 data: formData,
                 contentType: false,
                 processData: false,
-                dataType: "json" // Ajoutez cette ligne pour indiquer que la réponse attendue est du JSON
+                dataType: "json"
             }).done(function(response) {
                 console.log(response);
 
