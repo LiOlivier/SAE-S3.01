@@ -123,24 +123,24 @@ class Utilisateur
 
         $query = $this->db->prepare($sql);
         $query->execute(['idTuteur' => $idTuteur]);
-        return $query->fetch(PDO::FETCH_ASSOC);  Retourne une seule ligne (enseignant)
+        return $query->fetch(PDO::FETCH_ASSOC); 
     }
 
     public function getTuteurByUserId($userId)
     {
-         Requête SQL pour récupérer l'id_Tuteur_Entreprise à partir de la table utilisateur
+        
         $sql = "SELECT id_Tuteur
                 FROM utilisateur
                 WHERE id = :userId";
 
-         Préparation et exécution de la requête
+        
         $query = $this->db->prepare($sql);
         $query->execute(['userId' => $userId]);
 
-         Récupération du résultat (id_Tuteur_Entreprise) ou null si pas trouvé
+        
         $result = $query->fetch(PDO::FETCH_ASSOC);
 
-         Retourne l'id_Tuteur_Entreprise ou null si non trouvé
+        
         return $result ? $result['id_Tuteur'] : null;
     }
 

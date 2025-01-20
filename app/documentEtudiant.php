@@ -86,7 +86,7 @@ if (isset($_GET['id'])) {
 
             echo '<div class="document-section">
                     <h3>Bordereau de stage</h3>
-                    <form action="telechargement.php" method="POST">
+                    <form action="telechargement_pedagogique.php" method="POST">
                         <input type="hidden" name="studentId" value="' . $studentId . '">
                         <input type="hidden" name="documentType" value="bordereau">
                         <input type="hidden" name="nomDoc" value="bordereau-'.$studentId.'-'.$student['nom'].'_'.$student['prenom'].'.pdf">
@@ -110,7 +110,7 @@ if (isset($_GET['id'])) {
                     
 
                     <!-- Télécharger le document -->
-                    <form action="telechargement.php" method="POST">
+                    <form action="telechargement_pedagogique.php" method="POST">
                         <input type="hidden" name="studentId" value="'.$studentId.'">
                         <input type="hidden" name="documentType" value="convention">
                         <input type="hidden" name="nomDoc" value="Convention-'.$studentId.'-'.$student['nom'].'_'.$student['prenom'].'.pdf">
@@ -146,7 +146,7 @@ if (isset($_GET['id'])) {
             echo '<div class="document-section">
                     <h3>Rapport de stage</h3>
                     
-                    <form action="telechargement.php" method="POST">
+                    <form action="telechargement_pedagogique.php" method="POST">
                         <input type="hidden" name="studentId" value="<?php echo $studentId; ?>">
                         <input type="hidden" name="nomDoc" value="Rapport-'.$studentId.'-'.$student['nom'].'_'.$student['prenom'].'.pdf">
                     ';
