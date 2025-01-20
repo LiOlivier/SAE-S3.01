@@ -83,18 +83,18 @@
                     </a>
                     <a href="stage-planning.php" class="bouton-side" id="StagePlanning">
                         <div class="content-side">
-                            <i class="fas fa-calendar" style="font-size: 1.3em;"></i> <span>Planification des Stages</span>
+                            <i class="fas fa-calendar" style="font-size: 1.3em;"></i> <span>Gestion des Stages</span>
                         </div>
                     </a>
                     <a href="stages.php" class="bouton-side" id="Stages">
                         <div class="content-side">
-                            <i class="fas fa-briefcase" style="font-size: 1.3em;"></i> <span>Stages</span>
+                            <i class="fas fa-briefcase" style="font-size: 1.3em;"></i> <span>Liste des Stages</span>
                         </div>
                     </a>
                     
                     <a href="tuteur.php" class="bouton-side" id="Tuteur">
                         <div class="content-side">
-                            <i class="fas fa-chalkboard-teacher" style="font-size: 1.3em;"></i> <span>Tuteur</span>
+                            <i class="fas fa-tasks" style="font-size: 1.3em;"></i> <span>Assignation Tuteur</span>
                         </div>
                     </a>
                     <a href="tuteurs-entreprise.php" class="bouton-side" id="TuteursEntreprise">
@@ -104,7 +104,7 @@
                     </a>
                     <a href="tuteurs-pedagogiques.php" class="bouton-side" id="TuteursPedagogiques">
                         <div class="content-side">
-                            <i class="fas fa-school" style="font-size: 1.3em;"></i> <span>Tuteurs Pédagogiques</span>
+                            <i class="fas fa-university" style="font-size: 1.3em;"></i> <span>Tuteurs Pédagogiques</span>
                         </div>
                     </a>
                 <?php } ?>
