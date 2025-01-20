@@ -54,12 +54,13 @@ body {
     box-sizing: border-box;
 }
 
+/*
 .bouton-side.active,
 a.bouton-side:hover {
     background-color: rgba(128, 128, 128, 0.3);
     width: 90%;
 }
-
+*/
 
 
 #Deconecter {
@@ -135,4 +136,32 @@ a.bouton-side:hover {
     justify-content: center;
     align-items: center;
     z-index: 3;
+}
+
+
+.sidenav .aside-ul li {
+    position: relative;
+    overflow: hidden;
+}
+
+.sidenav .aside-ul li:hover {
+    background-color: rgba(128, 128, 128, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+
+.sidenav .aside-ul li a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0.5em;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: #00244d;
+    transition: none; 
+}
+
+
+.sidenav .aside-ul li:hover a {
+    color: #00244d; 
 }

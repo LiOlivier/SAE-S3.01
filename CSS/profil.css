@@ -109,3 +109,16 @@
     font-size: 14px;
     margin-top: 5px;
 }
+<<<<<<< HEAD
+=======
+
+#formation, #semestre {
+    width: 100%; 
+    max-width: 900px;
+    padding: 12px; 
+    font-size: 16px; 
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; 
+}
+>>>>>>> stage

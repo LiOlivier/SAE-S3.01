@@ -1,3 +1,4 @@
+
 .body {
     background-color: #EEEEEE;
 }
@@ -33,12 +34,14 @@ body {
 }
 
 .etat {
+    font-weight: lighter;
     font-size: 20px;
     color: black;
     left: 1em;
     position: relative;
     top: -1em;
-    font-family: 'Rubik';
+    font-family: 'Rubik', sans-serif;
+    margin-left: 0.5em;
     margin-bottom: 0.5em;
     margin-top: 0.5em;
 }
@@ -53,14 +56,17 @@ body {
 
 .contacter {
     background-color: #00244d;
-    top: 4em;
+    top: 0em;
 }
 
 .joindre {
-    left: 4em;
+    left: 1em;
 }
 
 .load {
     position: relative;
     left: 0.7em;
+}
+button{
+    cursor: pointer;
 }

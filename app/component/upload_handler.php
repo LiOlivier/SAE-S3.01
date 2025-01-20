@@ -4,12 +4,19 @@ error_reporting(E_ALL);
 
 header('Content-Type: application/json');
 
+require_once __DIR__ . '/../../model/typeAction.php';
+
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_FILES['sortDocument']) && $_FILES['sortDocument']['error'] === UPLOAD_ERR_OK) {
         $nomOrigine = $_FILES['sortDocument']['name'];
         $elementsChemin = pathinfo($nomOrigine);
         $extensionFichier = strtolower($elementsChemin['extension']);
         $extensionsAutorisees = ["jpeg", "jpg", "gif", "png", "pdf"];
+        $idAction = $_POST["actionId"];
+        $libele = $_POST["libelle"];
+        $nom = $_POST["nom"];
 
         if (!in_array($extensionFichier, $extensionsAutorisees)) {
             echo json_encode([
@@ -19,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         }
 
-        $idNewSujet = "8"; // ID du fichier à uploader
-        $nomDestination = "document-" . $idNewSujet . "." . $extensionFichier;
+        $idNewSujet = $idAction; // ID du fichier à uploader
+        $nomDestination = $libele . "-"  . $nom . "." . $extensionFichier;
         $dossierUpload = "../../document";
 
         if (!file_exists($dossierUpload)) {
@@ -47,6 +54,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if (move_uploaded_file($_FILES["sortDocument"]["tmp_name"], $repertoireDestination . $nomDestination)) {
+            $action = new TypeAction();
+            $action->updateDocument($idAction, $nomDestination);
             echo json_encode([
                 "status" => "success",
                 "message" => "Fichier téléchargé avec succès."
