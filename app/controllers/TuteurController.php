@@ -35,7 +35,7 @@ class TuteurController {
             $email = $_POST['email'];
             $telephone = $_POST['telephone'];
             $login = $_POST['login'];
-            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $password = password_hash($_POST['password'], PASSWORD_ARGON2I);
             $entrepriseId = $_POST['entreprise'];
             if ($this->model->addTuteurEntreprise($nom, $prenom, $email, $telephone, $login, $password, $entrepriseId)) {
                 $this->message = 'Le tuteur entreprise a été ajouté avec succès.';
