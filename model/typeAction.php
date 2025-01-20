@@ -20,26 +20,15 @@ class TypeAction
         $query->execute(['userId' => $userId]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
      }
-    //  public function getActionByEnseignantId($userId) { 
-        
-    //     $sql = "SELECT libelle, LienModeleDoc, dateLimite, id_TypeAction FROM $this->table WHERE id_Pedagogique = :userId AND Executant = 'Etudiant'";
-    //     $query = $this->db->prepare($sql);
-    //     $query->execute(['userId' => $userId]);
-    //     return $query->fetchAll(PDO::FETCH_ASSOC);
-    //  }
+   
     
     public function getActionByEntreprise($id_Tuteur_Entreprise){  
-        $sql = "SELECT libelle, LienModeleDoc, t.id_TypeAction FROM $this->table t JOIN action a WHERE a.id_Tuteur_Entreprise = :id_Tuteur_Entreprise AND t.Executant = 'Tuteur Pédagogique'";
+        $sql = "SELECT libelle, Etat, LienModeleDoc, t.id_TypeAction FROM $this->table t JOIN action a WHERE a.id_Tuteur_Entreprise = :id_Tuteur_Entreprise AND t.Executant = 'Tuteur Pédagogique'";
         $query = $this->db->prepare($sql);
         $query->execute(['id_Tuteur_Entreprise' => $id_Tuteur_Entreprise]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
-    // public function getActionByEntreprise($id_Tuteur_Entreprise){  
-    //     $sql = "SELECT libelle, LienModeleDoc, Etat, id_TypeAction FROM $this->table WHERE id_Tuteur_Entreprise = :id_Tuteur_Entreprise AND Executant = 'Tuteur Pédagogique'";
-    //     $query = $this->db->prepare($sql);
-    //     $query->execute(['id_Tuteur_Entreprise' => $id_Tuteur_Entreprise]);
-    //     return $query->fetchAll(PDO::FETCH_ASSOC);
-    // }
+    
 
     public function updateDocument($idAction, $libelle) {
         $sql = "UPDATE typeaction SET reception = :libelle, Etat = 'En attente' WHERE Id_TypeAction = :idAction";
