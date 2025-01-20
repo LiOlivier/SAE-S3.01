@@ -49,14 +49,6 @@
 
             </li>
             <li>
-                <?php if ($_SESSION["user"]["role"] == 'etudiant') { ?>
-                    <a href="depot.php" class="bouton-side" id="DP">
-                        <div class="content-side">
-                            <i class="fas fa-folder" style="font-size: 1.3em;"></i> <span>Dépot de document</span>
-                        </div>
-                    </a>
-                <?php } ?>
-                
             <?php if ($_SESSION["user"]["role"] == 'pedagogique') { ?>
                 <a href="board_pedagogique.php" class="bouton-side" id="TDB">
                     <div class="content-side">

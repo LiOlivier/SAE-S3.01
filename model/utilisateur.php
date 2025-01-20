@@ -54,12 +54,22 @@ class Utilisateur
     {
         $sql = "SELECT u.prenom, u.nom, u.email, u.telephone
             FROM $this->table u
-            INNER JOIN tuteur_entreprise t ON u.id = t.id_Tuteur_Entreprise
-            WHERE t.id_Etudiant = :idEtudiant";
+            INNER JOIN stage s ON u.id = s.Id_Tuteur_Entreprise
+            WHERE s.Id_Etudiant = :idEtudiant";
         $query = $this->db->prepare($sql);
         $query->execute(['idEtudiant' => $idEtudiant]);
         return $query->fetchAll(PDO::FETCH_ASSOC); 
     }
+    // public function getTuteursByEtudiant($idEtudiant)
+    // {
+    //     $sql = "SELECT u.prenom, u.nom, u.email, u.telephone
+    //         FROM $this->table u
+    //         INNER JOIN tuteur_entreprise t ON u.id = t.id_Tuteur_Entreprise
+    //         WHERE t.id_Etudiant = :idEtudiant";
+    //     $query = $this->db->prepare($sql);
+    //     $query->execute(['idEtudiant' => $idEtudiant]);
+    //     return $query->fetchAll(PDO::FETCH_ASSOC); 
+    // }
 
 
     public function getPedagogiqueById($id)
