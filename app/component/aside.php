@@ -36,14 +36,7 @@
                             </div>
                         </a>
                     <?php } ?>
-
-                    <?php if ($_SESSION["user"]["role"] == 'secretaire') { ?>
-                        <a href="dashboard.php" class="bouton-side" id="TDB">
-                            <div class="content-side">
-                                <i class="fas fa-th" style="font-size: 1.3em;"></i> <span>Tableau de Bord</span>
-                            </div>
-                        </a>
-                    <?php } ?>
+                    
 
 
                     <?php if ($_SESSION["user"]["role"] == 'pedagogique') { ?>
@@ -64,6 +57,13 @@
                     </a>
                 <?php } ?>
                 
+            <?php if ($_SESSION["user"]["role"] == 'pedagogique') { ?>
+                <a href="board_pedagogique.php" class="bouton-side" id="TDB">
+                    <div class="content-side">
+                        <i class="fas fa-th" style="font-size: 1.3em;"></i> <span>Tableau de Bord</span>
+                    </div>
+                </a>
+            <?php } ?>
 
             </li>
             <li>
@@ -85,8 +85,8 @@
                     </a>
                 <?php } ?>
             </li>
-            
-            <?php } ?>
+
+
                 <?php if ($_SESSION["user"]["role"] == 'secretaire') { ?>
                     <a href="dashboard.php" class="bouton-side" id="TDB">
                         <div class="content-side">
@@ -127,6 +127,7 @@
                     </a>
                 <?php } ?>
             <li>
+
             <li>
                 <a href="profil.php" class="bouton-side" id="Profil">
                     <div class="content-side">
@@ -144,6 +145,7 @@
         $('#toggleSidebar').click(function() {
             $('.sidenav').toggleClass('collapsed');
 
+            // Change the icon direction
             if ($('.sidenav').hasClass('collapsed')) {
                 $(this).find('i').removeClass('fa-chevron-left').addClass('fa-chevron-right');
             } else {

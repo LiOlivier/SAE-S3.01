@@ -32,7 +32,7 @@ session_start();
                 $db = new PDO($dsn, $login, $mdp);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                $db->exec("USE sorbonne2");
+                $db->exec("USE sorbonne");
 
                 if (isset($_GET['id'])) {
                     $studentId = $_GET['id'];
