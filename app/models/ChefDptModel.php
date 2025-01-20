@@ -10,7 +10,7 @@ class Model
  
     private function __construct()
     {
-        require("credentials.php");
+        require(__DIR__."//../dbdata.php");
         $this->bd = new PDO($dsn, $login, $mdp);
         $this->bd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->bd->query("SET nameS 'utf8'");
