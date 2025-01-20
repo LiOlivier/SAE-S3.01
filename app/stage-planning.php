@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once(__DIR__ . '/controllers/StagePlanningController.php');
+require_once(__DIR__ . '/controller/StagePlanningController.php');
 
 $controller = new StagePlanningController();
 
