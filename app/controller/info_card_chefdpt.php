@@ -1,6 +1,6 @@
 <?php 
 
-require ("../models/ChefDptModel.php");
+require (__DIR__."//../models/ChefDptModel.php");
 
 $model = Model::getModel();
 
