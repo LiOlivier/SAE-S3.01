@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once(__DIR__ . '/controllers/StagePlanningController.php');
 
 $controller = new StagePlanningController();

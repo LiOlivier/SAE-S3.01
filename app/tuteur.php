@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once(__DIR__ . '/controllers/TuteurController.php');
 
 $controller = new TuteurController();

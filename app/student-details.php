@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -23,12 +27,11 @@
         <h1 id="titre">Détails de l'Étudiant</h1>
         <div class="cards">
             <?php
-            require "dbdata.php"; // Include your database credentials
+            require "dbdata.php"; 
             try {
                 $db = new PDO($dsn, $login, $mdp);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                // Ensure the database is set to sorbonne2
                 $db->exec("USE sorbonne2");
 
                 if (isset($_GET['id'])) {
