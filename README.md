@@ -35,3 +35,24 @@ Le projet doit être fonctionnel et opérationnel dès **janvier 2025** afin de 
 ### Conclusion
 
 Le développement de cette application web vise à alléger les tâches administratives des enseignants et responsables de stages tout en offrant aux étudiants une interface claire et intuitive pour suivre leurs actions et interactions. Cette solution contribuera à améliorer la gestion des stages et à garantir le bon déroulement des parcours professionnels des étudiants dans le cadre du BUT.
+
+
+### Login + mdp 
+
+Administrateur login -> juju
+Administrateur mdp -> 123
+
+Tuteur Pédagogique login -> titi  
+Tuteur Pédagogique mdp -> 123
+
+
+Tuteur Entreprise login -> tata
+Tuteur Entreprise mdp -> 123
+
+
+Secrétaire login -> rick 
+Secrétaire mdp -> 123
+
+
+Etudiant login -> max
+Etudiant mdp -> 123
