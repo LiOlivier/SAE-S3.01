@@ -6,7 +6,7 @@ require "../model/utilisateur.php";
 require "../model/typeAction.php";
 
 if (!isset($_SESSION['user'])) {
-    // Redirige vers la page de connexion si non authentifié
+    
     header('Location: login.php');
     exit();
 }

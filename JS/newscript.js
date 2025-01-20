@@ -13,18 +13,18 @@ document.getElementById("body-tdb").style.width = widthTDB - 250 + "px";
 
 let ajouteSemaine = document.getElementById("date-calendrier");
 
-let semaine; // Déclare la variable pour les lignes de semaines
+let semaine; 
 for (let i = 1; i <= 31; i++) {
-    if (i % 7 == 1) { // Début d'une nouvelle semaine
-        semaine = document.createElement('tr'); // Créer une nouvelle ligne
+    if (i % 7 == 1) { 
+        semaine = document.createElement('tr'); 
     }
 
-    let day = document.createElement('td'); // Créer une cellule pour un jour
-    day.textContent = i; // Ajouter le numéro du jour
-    semaine.appendChild(day); // Ajouter le jour à la semaine
+    let day = document.createElement('td'); 
+    day.textContent = i; 
+    semaine.appendChild(day); 
 
-    if (i % 7 == 0 || i == 31) { // Fin de la semaine ou dernier jour
-        ajouteSemaine.appendChild(semaine); // Ajouter la semaine au tableau
+    if (i % 7 == 0 || i == 31) { 
+        ajouteSemaine.appendChild(semaine); 
     }
 }
 
@@ -39,7 +39,7 @@ let widthArticle = article.getBoundingClientRect().width;
 article.style.width=(widthArticle - 380) +"px";
 
 
-//onglet notif
+
 
 
 
@@ -79,33 +79,33 @@ function remplaceNotif(){
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    const blocks = document.querySelectorAll('.bloc-formation'); // Get all the clickable blocks
+    const blocks = document.querySelectorAll('.bloc-formation'); 
 
     blocks.forEach(block => {
         block.addEventListener('click', function (e) {
-            e.preventDefault(); // Prevent default link behavior
+            e.preventDefault(); 
 
-            const target = document.getElementById('main-content'); // Target container for dynamic content
-            const targetFile = block.getAttribute('data-file'); // Get the target file to load
+            const target = document.getElementById('main-content'); 
+            const targetFile = block.getAttribute('data-file'); 
 
-            // Check if the content is already loaded to avoid reloading the same content
+            
             if (target.dataset.loaded === targetFile) {
-                return; // Content already loaded, do nothing
+                return; 
             }
 
-            // Load the corresponding PHP file dynamically based on the target
+            
             if (targetFile === 'listEtudiantS4') {
-                fetchContent('listEtudiantS4.php', target); // Fetch and load the student list
+                fetchContent('listEtudiantS4.php', target); 
             } else if (targetFile === 'listEtudiantS6') {
-                fetchContent('listEtudiantS6.php', target); // Fetch and load the student list
+                fetchContent('listEtudiantS6.php', target); 
             } else if (targetFile === 'zoneFormation') {
-                fetchContent('zoneFormation.php', target); // Fetch and load the zone formation content
+                fetchContent('zoneFormation.php', target); 
             }
         });
     });
 });
 
-// Function to fetch content from the specified PHP file
+
 function fetchContent(file, target) {
     fetch(file)
         .then(response => {
@@ -113,51 +113,51 @@ function fetchContent(file, target) {
             return response.text();
         })
         .then(data => {
-            target.innerHTML = data; // Replace the content with the data from the PHP file
-            target.dataset.loaded = file.split('.')[0]; // Mark as loaded based on the file name (without extension)
+            target.innerHTML = data; 
+            target.dataset.loaded = file.split('.')[0]; 
             
-            // After loading new content, re-attach event listeners
+            
             if (file === 'zoneFormation.php') {
-                attachEventListeners(); // Re-attach event listeners to the blocs
+                attachEventListeners(); 
             }
         })
         .catch(error => console.error('Error:', error));
 }
 
-// Function to go back to the original zoneFormation.php section
-function goBack() {
-    const target = document.getElementById('main-content'); // Target container for dynamic content
-    
-    // Reset the loaded data to allow reloading zoneFormation
-    target.dataset.loaded = ''; // Reset the loaded attribute
 
-    // Force reload of the zoneFormation.php content
+function goBack() {
+    const target = document.getElementById('main-content'); 
+    
+    
+    target.dataset.loaded = ''; 
+
+    
     fetchContent('zoneFormation.php', target);
 }
 
-// Function to attach event listeners to the bloc-formation elements
+
 function attachEventListeners() {
-    const blocks = document.querySelectorAll('.bloc-formation'); // Get all the clickable blocks
+    const blocks = document.querySelectorAll('.bloc-formation'); 
 
     blocks.forEach(block => {
         block.addEventListener('click', function (e) {
-            e.preventDefault(); // Prevent default link behavior
+            e.preventDefault(); 
 
-            const target = document.getElementById('main-content'); // Target container for dynamic content
-            const targetFile = block.getAttribute('data-file'); // Get the target file to load
+            const target = document.getElementById('main-content'); 
+            const targetFile = block.getAttribute('data-file'); 
 
-            // Check if the content is already loaded to avoid reloading the same content
+            
             if (target.dataset.loaded === targetFile) {
-                return; // Content already loaded, do nothing
+                return; 
             }
 
-            // Load the corresponding PHP file dynamically based on the target
+            
             if (targetFile === 'listEtudiantS4') {
-                fetchContent('listEtudiantS4.php', target); // Fetch and load the student list
+                fetchContent('listEtudiantS4.php', target); 
             } else if (targetFile === 'listEtudiantS6') {
-                fetchContent('listEtudiantS6.php', target); // Fetch and load the student list
+                fetchContent('listEtudiantS6.php', target); 
             } else if (targetFile === 'zoneFormation') {
-                fetchContent('zoneFormation.php', target); // Fetch and load the zone formation content
+                fetchContent('zoneFormation.php', target); 
             }
         });
     });
@@ -166,10 +166,10 @@ function attachEventListeners() {
 document.addEventListener('DOMContentLoaded', function () {
     const mainContent = document.getElementById('main-content');
 
-    // Listen for clicks on the "Contacter" buttons
+    
     mainContent.addEventListener('click', function (e) {
         if (e.target.classList.contains('detail-button')) {
-            // Extract student details from the button
+            
             const id = e.target.getAttribute('data-id');
             const nom = e.target.getAttribute('data-nom');
             const prenom = e.target.getAttribute('data-prenom');
@@ -177,14 +177,14 @@ document.addEventListener('DOMContentLoaded', function () {
             const email = e.target.getAttribute('data-email');
             const telephone = e.target.getAttribute('data-telephone');
 
-            // Show the modal with the student's details
+            
             showModal(id, nom, prenom, departement, email, telephone);
         }
     });
 
-    // Function to show the modal
+    
     function showModal(id, nom, prenom, departement, email, telephone) {
-        // Create the modal content
+        
         const modal = document.createElement('div');
         modal.classList.add('modal');
         modal.innerHTML = `
@@ -199,15 +199,15 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
         `;
 
-        // Append the modal to the body
+        
         document.body.appendChild(modal);
 
-        // Close the modal when the "close" button is clicked
+        
         modal.querySelector('.close-button').addEventListener('click', function () {
             document.body.removeChild(modal);
         });
 
-        // Close the modal when clicking outside the modal content
+        
         modal.addEventListener('click', function (e) {
             if (e.target === modal) {
                 document.body.removeChild(modal);

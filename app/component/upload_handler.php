@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         }
 
-        $idNewSujet = $idAction; // ID du fichier à uploader
+        $idNewSujet = $idAction; 
         $nomDestination = $libele . "-"  . $nom . "." . $extensionFichier;
         $dossierUpload = "../../document";
 
@@ -36,12 +36,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $repertoireDestination = realpath($dossierUpload) . "/";
 
-        // Supprimer les anciens fichiers avec le même ID mais des extensions différentes
+        
         $extensionsExistantes = ["jpeg", "jpg", "gif", "png", "pdf"];
         foreach ($extensionsExistantes as $ext) {
             $fichierExistant = $repertoireDestination . "document-" . $idNewSujet . "." . $ext;
             if (file_exists($fichierExistant)) {
-                unlink($fichierExistant); // Supprime le fichier existant
+                unlink($fichierExistant); 
             }
         }
 

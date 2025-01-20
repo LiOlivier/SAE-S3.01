@@ -120,11 +120,11 @@ require_once(__DIR__ . "//component/aside.php");
     </section>
 
     <?php
-    // Connexion à la base de données
-    $pdo = new PDO('mysql:host=localhost;dbname=sorbonne;charset=utf8', 'root', '');
 
-    // Requête pour obtenir les étudiants en RT semestre 4 avec statut
-    $sql = "SELECT utilisateur.nom, utilisateur.prenom, utilisateur.email, utilisateur.telephone, etudiant.id_Etudiant,
+$pdo = new PDO('mysql:host=localhost;dbname=sorbonne;charset=utf8', 'root', '');
+
+
+$sql = "SELECT utilisateur.nom, utilisateur.prenom, utilisateur.email, utilisateur.telephone, etudiant.id_Etudiant,
                    CASE
                        WHEN stage.Id_Stage IS NOT NULL OR action.Id_Action IS NOT NULL THEN 'vert'
                        ELSE 'rouge'

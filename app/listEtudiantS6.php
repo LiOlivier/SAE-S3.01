@@ -27,23 +27,18 @@ foreach ($listeS6 as $info) :?>
 <script>document.addEventListener('DOMContentLoaded', function () {
     const mainContent = document.getElementById('main-content');
 
-    // Listen for clicks on the "View Details" buttons
     mainContent.addEventListener('click', function (e) {
         if (e.target.classList.contains('detail-button')) {
-            // Extract student details from the button
             const id = e.target.getAttribute('data-id');
             const nom = e.target.getAttribute('data-nom');
             const prenom = e.target.getAttribute('data-prenom');
             const departement = e.target.getAttribute('data-departement');
 
-            // Show the modal with the student's details
             showModal(id, nom, prenom, departement);
         }
     });
 
-    // Function to show the modal
     function showModal(id, nom, prenom, departement) {
-        // Create the modal content
         const modal = document.createElement('div');
         modal.classList.add('modal');
         modal.innerHTML = `
@@ -56,15 +51,12 @@ foreach ($listeS6 as $info) :?>
             </div>
         `;
 
-        // Append the modal to the body
         document.body.appendChild(modal);
 
-        // Close the modal when the "close" button is clicked
         modal.querySelector('.close-button').addEventListener('click', function () {
             document.body.removeChild(modal);
         });
 
-        // Close the modal when clicking outside the modal content
         modal.addEventListener('click', function (e) {
             if (e.target === modal) {
                 document.body.removeChild(modal);

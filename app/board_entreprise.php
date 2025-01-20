@@ -87,7 +87,7 @@ require_once("controller/info_card_entreprise.php");
 </html>
 <script src="../JS/notif.js"></script>
 <script>
-    // script pour redireger vers la page de depot de document
+    
     document.querySelectorAll('.tache').forEach(button => {
         button.addEventListener('click', function() {
             window.location.href = "depot_entreprise.php";

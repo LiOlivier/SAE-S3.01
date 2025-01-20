@@ -77,7 +77,7 @@
         $('#toggleSidebar').click(function() {
             $('.sidenav').toggleClass('collapsed');
 
-            // Change the icon direction
+            
             if ($('.sidenav').hasClass('collapsed')) {
                 $(this).find('i').removeClass('fa-chevron-left').addClass('fa-chevron-right');
             } else {

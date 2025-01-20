@@ -184,7 +184,7 @@
             $email = $_POST['email'];
             $telephone = $_POST['telephone'];
             $login = $_POST['login'];
-            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $password = password_hash($_POST['password'], PASSWORD_ARGON2I);
             $role = $_POST['role'];
             $departement = $_POST['departement'] ?? null;
             $semestre = $_POST['semestre'] ?? null;
@@ -194,7 +194,7 @@
                 $pdo = new PDO('mysql:host=localhost;dbname=sorbonne;charset=utf8', 'root', '');
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                // Ajouter dans la table Utilisateur
+                /
                 $query = "INSERT INTO utilisateur (nom, prenom, email, telephone, login, password, role) 
                           VALUES (:nom, :prenom, :email, :telephone, :login, :password, :role)";
                 $stmt = $pdo->prepare($query);

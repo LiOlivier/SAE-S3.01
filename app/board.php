@@ -124,7 +124,7 @@ require_once(__DIR__ . "//component/aside.php");
 </html>
 <script src="../JS/notif.js"></script>
 <script>
-    // script pour redireger vers la page de depot de document
+    
     document.querySelectorAll('.tache').forEach(button => {
         button.addEventListener('click', function() {
             window.location.href = "depot.php";

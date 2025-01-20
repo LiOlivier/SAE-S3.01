@@ -28,7 +28,7 @@
                     <label for="enseignant">Sélectionner un enseignant :</label>
                     <select id="enseignant" name="enseignant">
                         <?php
-                        require "dbdata.php"; // Include your database credentials
+                        require "dbdata.php"; 
                         try {
                             $db = new PDO($dsn, $login, $mdp);
                             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -99,7 +99,7 @@
                     $enseignantId = $_POST['enseignant'];
 
                     try {
-                        // Update the role of the selected enseignant to 'pedagogique'
+                        
                         $query = 'UPDATE Utilisateur SET role = "pedagogique" WHERE Id = :enseignantId';
                         $stmt = $db->prepare($query);
                         $stmt->bindParam(':enseignantId', $enseignantId, PDO::PARAM_INT);
@@ -115,11 +115,11 @@
                     $email = $_POST['email'];
                     $telephone = $_POST['telephone'];
                     $login = $_POST['login'];
-                    $motdepasse = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                    $motdepasse = password_hash($_POST['password'], PASSWORD_ARGON2I);
                     $entrepriseId = $_POST['entreprise'];
 
                     try {
-                        // Ensure the login is unique
+                        
                         $originalLogin = $login;
                         $i = 1;
                         while (true) {
@@ -134,7 +134,7 @@
                             $i++;
                         }
 
-                        // Insert the new utilisateur with role 'tuteur'
+                        
                         $query = 'INSERT INTO Utilisateur (nom, prenom, email, telephone, role, login, motdepasse) VALUES (:nom, :prenom, :email, :telephone, "tuteur", :login, :motdepasse)';
                         $stmt = $db->prepare($query);
                         $stmt->bindParam(':nom', $nom, PDO::PARAM_STR);
@@ -145,10 +145,10 @@
                         $stmt->bindParam(':motdepasse', $motdepasse, PDO::PARAM_STR);
                         $stmt->execute();
 
-                        // Get the last inserted Id from Utilisateur
+                        
                         $lastUserId = $db->lastInsertId();
 
-                        // Insert the new tuteur entreprise
+                        
                         $query = 'INSERT INTO Tuteur_Entreprise (Id_Tuteur_Entreprise, Id_Entreprise) VALUES (:lastUserId, :entrepriseId)';
                         $stmt = $db->prepare($query);
                         $stmt->bindParam(':lastUserId', $lastUserId, PDO::PARAM_INT);

@@ -35,7 +35,7 @@ class TuteurModel {
     }
 
     public function addTuteurEntreprise($nom, $prenom, $email, $telephone, $login, $password, $entrepriseId) {
-        // Ensure the login is unique
+        
         $originalLogin = $login;
         $i = 1;
         while (true) {
@@ -50,7 +50,7 @@ class TuteurModel {
             $i++;
         }
 
-        // Insert the new utilisateur with role 'tuteur'
+        
         $query = 'INSERT INTO Utilisateur (nom, prenom, email, telephone, role, login, password) VALUES (:nom, :prenom, :email, :telephone, "tuteur", :login, :password)';
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':nom', $nom, PDO::PARAM_STR);
@@ -61,10 +61,10 @@ class TuteurModel {
         $stmt->bindParam(':password', $password, PDO::PARAM_STR);
         $stmt->execute();
 
-        // Get the last inserted Id from Utilisateur
+        
         $lastUserId = $this->db->lastInsertId();
 
-        // Insert the new tuteur entreprise
+        
         $query = 'INSERT INTO Tuteur_Entreprise (Id_Tuteur_Entreprise, Id_Entreprise) VALUES (:lastUserId, :entrepriseId)';
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':lastUserId', $lastUserId, PDO::PARAM_INT);

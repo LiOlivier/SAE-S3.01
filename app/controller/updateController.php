@@ -1,6 +1,6 @@
 <?php
 
-// UPDATE POUR LES INFORMATIONS 
+
 
 $host = 'localhost';
 $dbname = 'sorbonne'; 
@@ -53,12 +53,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error_message_info = "Veuillez remplir tous les champs.";
     }
 
-    // Vérifie si l'utilisateur est connecté
+    
     if (isset($_SESSION['user']['id'])) {
         $userId = $_SESSION['user']['id'];
     } else {
-        // Si l'utilisateur n'est pas connecté, redirige vers la page de connexion ou affiche une erreur
-        header("Location: login.php"); // Exemple de redirection
+        
+        header("Location: login.php"); 
         exit();
     }
 
@@ -66,12 +66,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $success_message = '';
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Mise à jour du mot de passe
+        
         if (!empty($_POST['new-mdp']) && !empty($_POST['confirm-mdp'])) {
-            // Vérification que les mots de passe sont valides
+            
             if ($_POST['new-mdp'] === $_POST['confirm-mdp'] && strlen($_POST['new-mdp']) >= 8) {
-                $newPassword = password_hash($_POST['new-mdp'], PASSWORD_ARGON2I); // Assure-toi d'utiliser un bon algorithme
-                $query = "UPDATE utilisateur SET password = :password WHERE id = :id"; // Met à jour la colonne 'password'
+                $newPassword = password_hash($_POST['new-mdp'], PASSWORD_ARGON2I); 
+                $query = "UPDATE utilisateur SET password = :password WHERE id = :id"; 
                 $stmt = $pdo->prepare($query);
                 $stmt->execute([
                     ':password' => $newPassword,

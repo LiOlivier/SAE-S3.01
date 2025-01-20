@@ -48,7 +48,7 @@ require_once(__DIR__ . "//component/aside_entreprise.php"); ?>
                 data: formData,
                 contentType: false,
                 processData: false,
-                dataType: "json" // Ajoutez cette ligne pour indiquer que la réponse attendue est du JSON
+                dataType: "json"
             }).done(function(response) {
                 console.log(response);
 

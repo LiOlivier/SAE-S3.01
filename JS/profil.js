@@ -34,19 +34,19 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Empêcher le copier-coller dans les champs de mot de passe
+    
     function disableCopyPaste(e) {
         e.preventDefault();
         alert("Le copier-coller est désactivé dans ce champ.");
     }
 
-    // Désactiver copier-coller dans les champs de mot de passe
+    
     newPasswordInput.addEventListener('copy', disableCopyPaste);
     newPasswordInput.addEventListener('paste', disableCopyPaste);
     confirmPasswordInput.addEventListener('copy', disableCopyPaste);
     confirmPasswordInput.addEventListener('paste', disableCopyPaste);
 
-    // Empêcher l'utilisation de CTRL + C
+    
     document.addEventListener('keydown', function(e) {
         if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'C')) {
             e.preventDefault();
