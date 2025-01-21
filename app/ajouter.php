@@ -194,7 +194,7 @@
                 $pdo = new PDO('mysql:host=localhost;dbname=sorbonne;charset=utf8', 'root', '');
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                // Ajouter dans la table Utilisateur
+                // Ajouter dans la table utilisateur
                 $query = "INSERT INTO utilisateur (nom, prenom, email, telephone, login, password, role) 
                           VALUES (:nom, :prenom, :email, :telephone, :login, :password, :role)";
                 $stmt = $pdo->prepare($query);
