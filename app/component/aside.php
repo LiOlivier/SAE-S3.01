@@ -22,8 +22,8 @@
                             </div>
                         </a>
                     <?php } ?>
-                    <?php if ($_SESSION["user"]["role"] == 'chefdept') { ?>
-                        <a href="board_chefdpt_formation.php" class="bouton-side" id="TDB">
+                    <?php if ($_SESSION["user"]["role"] == 'chefdpt') { ?>
+                        <a href="board_chefdpt.php" class="bouton-side" id="TDB">
                             <div class="content-side">
                                 <i class="fas fa-th" style="font-size: 1.3em;"></i> <span>Tableau de Bord</span>
                             </div>

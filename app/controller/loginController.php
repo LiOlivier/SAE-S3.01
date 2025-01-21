@@ -48,6 +48,11 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
             elseif ($_SESSION['user']['role'] == "pedagogique") {
                 header('Location: board_pedagogique.php');
                 exit();
+            }
+            
+            elseif ($_SESSION['user']['role'] == "chefdpt") {
+                header('Location: board_chefdpt.php');
+                exit();
             } 
              
         } else {
