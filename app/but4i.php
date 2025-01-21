@@ -26,9 +26,12 @@
         }
 
         #etudiants {
-            margin: 20px auto; /* Ajoute des marges verticales */
-            padding: 20px; /* Ajoute des marges internes */
-            max-width: 800px; /* Limite la largeur pour une meilleure lisibilité */
+            margin: 20px auto;
+            /* Ajoute des marges verticales */
+            padding: 20px;
+            /* Ajoute des marges internes */
+            max-width: 800px;
+            /* Limite la largeur pour une meilleure lisibilité */
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -42,22 +45,28 @@
 
         .container {
             display: flex;
-            flex-direction: column; /* Les cartes restent en colonne */
-            gap: 20px; /* Espacement uniforme entre les cartes */
-            padding: 10px; /* Ajout d'une marge interne */
+            flex-direction: column;
+            /* Les cartes restent en colonne */
+            gap: 20px;
+            /* Espacement uniforme entre les cartes */
+            padding: 10px;
+            /* Ajout d'une marge interne */
         }
 
         .card {
             display: flex;
-            flex-direction: column; /* Réorganise les éléments en colonne */
-            align-items: flex-start; /* Aligne les éléments à gauche */
+            flex-direction: column;
+            /* Réorganise les éléments en colonne */
+            align-items: flex-start;
+            /* Aligne les éléments à gauche */
             padding: 1.5rem;
             background-color: #ffffff;
             border: 1px solid #ddd;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
-            margin-bottom: 20px; /* Espace entre les cartes */
+            margin-bottom: 20px;
+            /* Espace entre les cartes */
         }
 
         .card:hover {
@@ -65,13 +74,14 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
 
-/* Container pour le titre (nom et point rouge/vert) */
+        /* Container pour le titre (nom et point rouge/vert) */
         .card-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            margin-bottom: 10px; /* Ajoute un espace sous le titre */
+            margin-bottom: 10px;
+            /* Ajoute un espace sous le titre */
         }
 
         .nom {
@@ -81,15 +91,17 @@
             margin: 0;
         }
 
-/* Style pour les infos comme email et téléphone */
+        /* Style pour les infos comme email et téléphone */
         .card-info {
             font-size: 0.9rem;
             color: #666;
-            margin-top: 5px; /* Ajoute un léger espace entre les lignes */
-            line-height: 1.6; /* Augmente l'espacement entre les lignes */
+            margin-top: 5px;
+            /* Ajoute un léger espace entre les lignes */
+            line-height: 1.6;
+            /* Augmente l'espacement entre les lignes */
         }
 
-/* Point rouge ou vert */
+        /* Point rouge ou vert */
         .status {
             width: 12px;
             height: 12px;
@@ -108,7 +120,8 @@
     </style>
 </head>
 
-<?php require_once(__DIR__ . "//component/header.php");
+<?php require_once('./controller/sessionController.php');
+require_once(__DIR__ . "//component/header.php");
 require_once(__DIR__ . "//component/aside.php");
 ?>
 
@@ -120,7 +133,7 @@ require_once(__DIR__ . "//component/aside.php");
 
     <?php
     // Connexion à la base de données
-    $pdo = new PDO('mysql:host=localhost;dbname=sae3.01;charset=utf8', 'root', '');
+    $pdo = new PDO('mysql:host=localhost;dbname=sorbonne;charset=utf8', 'root', '');
 
     // Requête pour obtenir les étudiants en INFO semestre 4 avec statut
     $sql = "SELECT utilisateur.nom, utilisateur.prenom, utilisateur.email, utilisateur.telephone, etudiant.id_Etudiant,
@@ -130,8 +143,8 @@ require_once(__DIR__ . "//component/aside.php");
                    END AS statut,
                    stage.mission, stage.date_debut, stage.date_fin, stage.salle_soutenance
             FROM utilisateur
-            JOIN etudiant ON utilisateur.id = etudiant.Id
-            JOIN inscription ON etudiant.Id = inscription.Id_Etudiant
+            JOIN etudiant ON utilisateur.id = etudiant.Id_etudiant
+            JOIN inscription ON etudiant.Id_etudiant = inscription.Id_Etudiant
             LEFT JOIN stage ON inscription.Id_Etudiant = stage.Id_Etudiant AND inscription.numSemestre = stage.numSemestre
             LEFT JOIN action ON inscription.Id_Etudiant = action.Id_Etudiant AND inscription.numSemestre = action.numSemestre
             WHERE inscription.numSemestre = 4 AND inscription.Id_Departement = 1";
@@ -148,10 +161,10 @@ require_once(__DIR__ . "//component/aside.php");
                     <h3 class="nom">
                         <?= htmlspecialchars($etudiant['nom']) ?> <?= htmlspecialchars($etudiant['prenom']) ?>
                         <span class="status <?= htmlspecialchars($etudiant['statut']) ?>"
-                              data-mission="<?= htmlspecialchars($etudiant['mission']) ?>"
-                              data-debut="<?= htmlspecialchars($etudiant['date_debut']) ?>"
-                              data-fin="<?= htmlspecialchars($etudiant['date_fin']) ?>"
-                              data-soutenance="<?= htmlspecialchars($etudiant['salle_soutenance']) ?>">
+                            data-mission="<?= htmlspecialchars($etudiant['mission']) ?>"
+                            data-debut="<?= htmlspecialchars($etudiant['date_debut']) ?>"
+                            data-fin="<?= htmlspecialchars($etudiant['date_fin']) ?>"
+                            data-soutenance="<?= htmlspecialchars($etudiant['salle_soutenance']) ?>">
                         </span>
                     </h3>
                     <div class="tooltip">

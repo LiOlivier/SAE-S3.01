@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $identifiant = htmlspecialchars(trim($_POST['identifiant']), ENT_QUOTES, 'UTF-8');
     $password = htmlspecialchars(trim($_POST['password']), ENT_QUOTES, 'UTF-8');
-    $nom = htmlspecialchars(trim($_POST['nom']), ENT_QUOTES, 'UTF-8');//trim pour suprimmer les espaces
+    $nom = htmlspecialchars(trim($_POST['nom']), ENT_QUOTES, 'UTF-8');
     $prenom = htmlspecialchars(trim($_POST['prenom']), ENT_QUOTES, 'UTF-8');
     $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
     $tel = htmlspecialchars(trim($_POST['tel']), ENT_QUOTES, 'UTF-8');

@@ -1,5 +1,5 @@
 <?php
-// Spécifiez le chemin vers votre fichier PDF
+
 $filename = "../../pdf/Bordereau de stage 2024-25 BUT2.pdf";
 
 if (file_exists($filename)) {

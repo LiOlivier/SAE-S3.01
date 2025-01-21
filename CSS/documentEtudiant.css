@@ -32,10 +32,6 @@
     cursor: pointer;
 }
 
-.document-section #button-refuser{
-    background-color: rgb(255, 0, 0);
-}
-
 .document-section button:hover {
     background-color: #45a049;
 }

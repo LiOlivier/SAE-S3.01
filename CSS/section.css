@@ -6,7 +6,7 @@ body{
     position: absolute;
     top: 40px;
     left: 250px;
-    width: calc(100% - 400px);
+    width: 100%;
 }
 
 #body-tdb header{
@@ -36,10 +36,23 @@ body{
 }
 
 .bloc-formation{
-    width: 400px;
-    height: 150px;
-    background-color: white;
-    user-select: none;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 25em;
+    height: 8.2em;
+    border-radius: 10px;
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-right: 20px;
+    overflow: hidden;
+    color: #fff;
+    font-size: 17px;
+    margin-left: 1.2em;
+    border-style: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 .bloc-formation a{
     text-decoration: none;
@@ -47,7 +60,8 @@ body{
 }
 
 .bloc-formation:hover{
-    background-color: #3b8bd6;
+    background-color: #043c4e;
+    transform: scale(1.05);
 }
 
 .bloc-formation a:visited{
@@ -56,20 +70,26 @@ body{
 
 
 .bloc-formation p {
-    margin-left: 10px;
-    font-size: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    left: 1.6em;
+    position: relative;
+    color:#000000;
+    margin: 0px;
 }
-.bloc-formation p:hover {
-    background-color: #3b8bd6;
-}
+
 .bloc-formation #titre-but{
     font-weight: bold;
-    font-size: 25px;
-    padding-top: 10px;
+    font-size: 26px;
+    left: 1em;
+    position: relative;
+    color:#000000;
+    margin-top: 20px;
 }
 
 
 #calendrier{
+    display: none;
     position: fixed;
     top: 100px;
     width: 350px;

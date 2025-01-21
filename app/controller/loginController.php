@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
-require_once "../model/utilisateur.php";
+require "../model/utilisateur.php";
 $user = new Utilisateur();
 
 if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
@@ -19,7 +19,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
         $user = $userModel->login($identifiant);
 
         if ($user && password_verify($password, $user['password'])) {
-            // Connexion réussie
+
             $_SESSION['user'] = [
                 'id' => $user['id'],
                 'nom' => $user['nom'],
@@ -29,17 +29,23 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
             ];
             if ($_SESSION['user']['role'] == "etudiant") {
                 header('Location: board.php');
-                exit(); // Évite les failles de sécurité en arrêtant l'exécution
+                exit(); 
             } elseif ($_SESSION['user']['role'] == "enseignant") {
-               // header('Location: board.php');
+                header('Location: board.php');
                 exit();
             } elseif ($_SESSION['user']['role'] == "administrateur") {
-                // header('Location: board.php');
+                header('Location: dpt.php');
                 exit();
             } elseif ($_SESSION['user']['role'] == "tuteur") {
-                header('Location: board_entreprise.php');
+                header('Location: board_entreprise.php'); 
                 exit();
-            }   elseif ($_SESSION['user']['role'] == "pedagogique") {
+            } 
+            elseif ($_SESSION['user']['role'] == "secretaire") {
+                header('Location: dashboard.php');
+                exit();
+            }
+            
+            elseif ($_SESSION['user']['role'] == "pedagogique") {
                 header('Location: board_pedagogique.php');
                 exit();
             }
@@ -50,11 +56,13 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
             }
 
         } else {
-            // Identifiant ou mot de passe incorrect
+
             echo "Identifiant ou mot de passe incorrect.";
         }
     } catch (Exception $e) {
-        die("errer");
+        error_log($e->getMessage());
+        die("Une erreur s'est produite. Veuillez réessayer plus tard.");
     }
 }
+?>
 ?>
