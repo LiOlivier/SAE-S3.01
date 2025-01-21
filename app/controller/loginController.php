@@ -43,6 +43,12 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
                 header('Location: board_pedagogique.php');
                 exit();
             }
+
+               elseif ($_SESSION['user']['role'] == "chefdept") {
+            header('Location: board_chefdpt.php');
+            exit();
+            }
+
         } else {
             // Identifiant ou mot de passe incorrect
             echo "Identifiant ou mot de passe incorrect.";
