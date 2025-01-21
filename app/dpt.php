@@ -19,7 +19,10 @@
     </style>
 </head>
 
-<?php require_once(__DIR__ . "//component/header.php");
+<?php 
+require('./controller/sessionController.php');
+
+require_once(__DIR__ . "//component/header.php");
 require_once(__DIR__ . "//component/aside.php");
 ?>
 
@@ -64,7 +67,7 @@ require_once(__DIR__ . "//component/aside.php");
 
     <script src="../JS/notif.js"></script>
     <script>
-        // Redirection vers une autre page en fonction de la case cliquée
+        
         function navigateTo(page) {
             window.location.href = page;
         }

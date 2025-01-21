@@ -1,5 +1,5 @@
 <?php 
-require "controller/loginController.php";
+require_once "controller/loginController.php";
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +49,6 @@ require "controller/loginController.php";
                         <input type="password" name="password" id="password" placeholder="Votre mot de passe">
                     </div>
                 </div>
-                <a href="#" class="mdp_oublie">Mot de passe oublié</a>
                 <input type="submit" value="connexion" name="connexion" class="but_login"></input>
             </form>
         </div>

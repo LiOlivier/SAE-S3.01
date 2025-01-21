@@ -6,32 +6,112 @@
         <img src="../IMG/USPN.png" alt="logo USPN" id="USPN" class="bouton-side">
         <ul class="aside-ul">
             <li>
-                <?php if($_SESSION["user"]["role"]=='etudiant') {?>
-                <a href="board.php" class="bouton-side" id="TDB">
+                
+
+            <?php if ($_SESSION["user"]["role"] == 'etudiant') { ?>
+                        <a href="board.php" class="bouton-side" id="TDB">
+                            <div class="content-side">
+                                <i class="fas fa-th" style="font-size: 1.3em;"></i> <span>Tableau de Bord</span>
+                            </div>
+                        </a>
+                    <?php } ?>
+                    <?php if ($_SESSION["user"]["role"] == 'administrateur') { ?>
+                        <a href="dpt.php" class="bouton-side" id="TDB">
+                            <div class="content-side">
+                                <i class="fas fa-th" style="font-size: 1.3em;"></i> <span>Tableau de Bord</span>
+                            </div>
+                        </a>
+                    <?php } ?>
+                    <?php if ($_SESSION["user"]["role"] == 'chefdept') { ?>
+                        <a href="board_chefdpt.php" class="bouton-side" id="TDB">
+                            <div class="content-side">
+                                <i class="fas fa-th" style="font-size: 1.3em;"></i> <span>Tableau de Bord</span>
+                            </div>
+                        </a>
+                    <?php } ?>
+                    <?php if ($_SESSION["user"]["role"] == 'tuteur') { ?>
+                        <a href="board_entreprise.php" class="bouton-side" id="TDB">
+                            <div class="content-side">
+                                <i class="fas fa-th" style="font-size: 1.3em;"></i> <span>Tableau de Bord</span>
+                            </div>
+                        </a>
+                    <?php } ?>
+
+            </li>
+            <li>
+            <?php if ($_SESSION["user"]["role"] == 'pedagogique') { ?>
+                <a href="board_pedagogique.php" class="bouton-side" id="TDB">
                     <div class="content-side">
                         <i class="fas fa-th" style="font-size: 1.3em;"></i> <span>Tableau de Bord</span>
                     </div>
                 </a>
-                <?php }?>
+            <?php } ?>
+
             </li>
             <li>
-                <a href="depot.php" class="bouton-side" id="DP">
-                    <div class="content-side">
-                        <i class="fas fa-folder" style="font-size: 1.3em;"></i> <span>Dépot de document</span>
-                    </div>
-                </a>
+                <?php if ($_SESSION["user"]["role"] == 'etudiant') { ?>
+                    <a href="depot.php" class="bouton-side" id="DP">
+                        <div class="content-side">
+                            <i class="fas fa-folder" style="font-size: 1.3em;"></i> <span>Dépot de document</span>
+                        </div>
+                    </a>
+                <?php } ?>
             </li>
 
             <li>
-                <a href="ajouter.php" class="bouton-side" id="DP">
-                    <div class="content-side">
-                        <i class="fas fa-folder" style="font-size: 1.3em;"></i> <span>Ajouter un utilisateur</span>
-                    </div>
-                </a>
+                <?php if ($_SESSION["user"]["role"] == 'administrateur') { ?>
+                    <a href="ajouter.php" class="bouton-side" id="DP">
+                        <div class="content-side">
+                            <i class="fas fa-folder" style="font-size: 1.3em;"></i> <span>Ajouter un utilisateur</span>
+                        </div>
+                    </a>
+                <?php } ?>
             </li>
 
+
+                <?php if ($_SESSION["user"]["role"] == 'secretaire') { ?>
+                    <a href="dashboard.php" class="bouton-side" id="TDB">
+                        <div class="content-side">
+                            <i class="fas fa-th" style="font-size: 1.3em;"></i> <span>Tableau de Bord</span>
+                        </div>
+                        </a>
+                    
+                    <a href="etudiants.php" class="bouton-side" id="Etudiants">
+                        <div class="content-side">
+                            <i class="fas fa-users" style="font-size: 1.3em;"></i> <span>Étudiants</span>
+                        </div>
+                    </a>
+                    <a href="stage-planning.php" class="bouton-side" id="StagePlanning">
+                        <div class="content-side">
+                            <i class="fas fa-calendar" style="font-size: 1.3em;"></i> <span>Gestion des Stages</span>
+                        </div>
+                    </a>
+                    <a href="stages.php" class="bouton-side" id="Stages">
+                        <div class="content-side">
+                            <i class="fas fa-briefcase" style="font-size: 1.3em;"></i> <span>Liste des Stages</span>
+                        </div>
+                    </a>
+                    
+                    <a href="tuteur.php" class="bouton-side" id="Tuteur">
+                        <div class="content-side">
+                            <i class="fas fa-tasks" style="font-size: 1.3em;"></i> <span>Assignation Tuteur</span>
+                        </div>
+                    </a>
+                    <a href="tuteurs-entreprise.php" class="bouton-side" id="TuteursEntreprise">
+                        <div class="content-side">
+                            <i class="fas fa-building" style="font-size: 1.3em;"></i> <span>Tuteurs Entreprise</span>
+                        </div>
+                    </a>
+                    <a href="tuteurs-pedagogiques.php" class="bouton-side" id="TuteursPedagogiques">
+                        <div class="content-side">
+                            <i class="fas fa-university" style="font-size: 1.3em;"></i> <span>Tuteurs Pédagogiques</span>
+                        </div>
+                    </a>
+                <?php } ?>
             <li>
-                <a href="#" class="bouton-side" id="Profil">
+
+            <li>
+                <a href="profil.php" class="bouton-side" id="Profil">
                     <div class="content-side">
                         <i class="fas fa-users" style="font-size: 1.3em;"></i><span>Profil</span>
                     </div>
