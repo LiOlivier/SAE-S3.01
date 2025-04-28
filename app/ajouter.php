@@ -98,6 +98,12 @@
             background-color: #f44336;
         }
     </style>
+    <?php
+    require('./controller/sessionController.php');
+    require_once 'component/aside.php';
+    require_once 'component/header.php';
+    ?>
+    
 </head>
 
 <body>
