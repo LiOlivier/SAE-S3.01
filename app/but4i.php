@@ -117,6 +117,9 @@
         .status.rouge {
             background-color: red;
         }
+        .nav_notif{
+            top: 0px;
+        }
     </style>
 </head>
 
