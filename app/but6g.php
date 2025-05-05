@@ -124,7 +124,8 @@ require_once(__DIR__ . "//component/aside.php");
 
     <?php
     // Connexion à la base de données
-    $pdo = new PDO('mysql:host=localhost;dbname=sorbonne;charset=utf8', 'root', '');
+    require_once(__DIR__ . '/../config/database.php');
+    $pdo = Database::getConnexion('mysql');
 
     // Requête pour obtenir les étudiants en GEA semestre 6 avec statut
     $sql = "SELECT utilisateur.nom, utilisateur.prenom, utilisateur.email, utilisateur.telephone, etudiant.id_Etudiant,
