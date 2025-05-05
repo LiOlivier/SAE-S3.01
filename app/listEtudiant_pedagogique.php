@@ -6,8 +6,8 @@ $password = '';
 
 
 try {
-
-    $bd = new PDO('mysql:host=localhost;dbname=sorbonne', $username, $password);
+    require_once "../config/database.php";
+    $bd = Database::getConnexion('mysql');
     $bd->query("SET NAMES 'utf8'");
     $bd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

@@ -21,15 +21,15 @@ session_start();
     <?php 
         require_once(__DIR__ . "/component/header.php");
         require_once(__DIR__ . "/component/aside.php"); 
+        require_once "../config/database.php";
     ?>
 
     <section id="one">
         <h1 id="titre">Détails de l'Étudiant</h1>
         <div class="cards">
             <?php
-            require "dbdata.php"; 
+            $bd = Database::getConnexion('mysql'); 
             try {
-                $db = new PDO($dsn, $login, $mdp);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 $db->exec("USE sorbonne");

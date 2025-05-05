@@ -6,8 +6,7 @@ class TuteurEntrepriseController {
     private $model;
 
     public function __construct() {
-        global $dsn, $login, $mdp;
-        $this->model = new TuteurEntrepriseModel($dsn, $login, $mdp);
+        $this->model = new TuteurEntrepriseModel();
     }
 
     public function displayTuteursEntreprise() {

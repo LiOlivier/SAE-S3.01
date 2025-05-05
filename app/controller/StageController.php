@@ -6,8 +6,7 @@ class StageController {
     private $model;
 
     public function __construct() {
-        global $dsn, $login, $mdp;
-        $this->model = new StageModel($dsn, $login, $mdp);
+        $this->model = new StageModel();
     }
 
     public function displayStages() {

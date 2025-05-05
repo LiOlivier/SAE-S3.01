@@ -7,8 +7,7 @@ class DashboardController {
     private $model;
 
     public function __construct() {
-        global $dsn, $login, $mdp;
-        $this->model = new DashboardModel($dsn, $login, $mdp);
+        $this->model = new DashboardModel();
     }
 
     public function displayDashboard() {

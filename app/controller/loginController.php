@@ -50,7 +50,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
                 exit();
             }
             
-            elseif ($_SESSION['user']['role'] == "chefdpt") {
+            elseif ($_SESSION['user']['role'] == "chefdept") {
                 header('Location: board_chefdpt.php');
                 exit();
             } 

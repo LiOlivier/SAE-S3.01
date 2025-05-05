@@ -102,6 +102,8 @@
     require('./controller/sessionController.php');
     require_once 'component/aside.php';
     require_once 'component/header.php';
+    require_once '../config/database.php';
+    $pdo = Database::getConnexion('mysql');
     ?>
     
 </head>
@@ -163,7 +165,6 @@
                     <option value="">Aucune</option>
                     <?php
                     try {
-                        $pdo = new PDO('mysql:host=localhost;dbname=sorbonne;charset=utf8', 'root', '');
                         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                         $query = "SELECT Id_Entreprise, ville FROM entreprise";
@@ -197,7 +198,6 @@
             $entrepriseId = $_POST['entreprise'] ?? null;
 
             try {
-                $pdo = new PDO('mysql:host=localhost;dbname=sorbonne;charset=utf8', 'root', '');
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 // Ajouter dans la table utilisateur

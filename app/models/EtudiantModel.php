@@ -3,11 +3,10 @@
 class EtudiantModel {
     private $db;
 
-    public function __construct($dsn, $login, $mdp) {
+    public function __construct() {
         try {
-            $this->db = new PDO($dsn, $login, $mdp);
-            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->db->exec("USE sorbonne");
+            require_once(__DIR__ . "/../../config/database.php"); // Inclure database.php
+            $this->db = Database::getConnexion(); // Utiliser la connexion centralisée
         } catch (PDOException $e) {
             die('Erreur : ' . $e->getMessage());
         }

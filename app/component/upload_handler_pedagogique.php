@@ -1,6 +1,7 @@
 <?php
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
+require_once "../../config/database.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_FILES['document']) && $_FILES['document']['error'] === UPLOAD_ERR_OK) {
@@ -40,12 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (move_uploaded_file($_FILES['document']['tmp_name'], $repertoireDestination . $nomDestination)) {
 
             try {
-                $username = 'root';
-                $password = '';
-                $bd = new PDO('mysql:host=localhost;dbname=sorbonne', $username, $password);
-                $bd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $bd = Database::getConnexion('mysql'); // Connexion à la base de données
                 
-
                 echo "studentId: $studentId, stageId: $stageId";
                 $requete = $bd->prepare('
                     INSERT INTO `action`(`annee`, `Id_Departement`, `numSemestre`, `Id_Etudiant`, `Id_Stage`, `date_realisation`, `lienDocument`, `Id_TypeAction`, `Id`, `etat`) 

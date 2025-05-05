@@ -126,7 +126,6 @@ require_once(__DIR__ . "//component/aside.php");
     // Connexion à la base de données
     // a mettre dans le model utilisateur 
     // je dois avoir une fonction 
-    // je ne dois pas faire un  $pdo = new PDO je recupere la bdd avec un require
     require_once(__DIR__ . '/../config/database.php');
     $pdo = Database::getConnexion('mysql');
 

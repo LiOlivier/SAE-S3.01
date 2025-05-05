@@ -2,14 +2,11 @@
 
 // UPDATE POUR LES INFORMATIONS 
 
-$host = 'localhost';
-$dbname = 'sorbonne'; 
-$username = 'root';
-$password = ''; 
+
+require_once "../config/database.php";
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo = Database::getConnexion('mysql');
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }

@@ -6,8 +6,7 @@ class EtudiantController {
     private $model;
 
     public function __construct() {
-        global $dsn, $login, $mdp;
-        $this->model = new EtudiantModel($dsn, $login, $mdp);
+        $this->model = new EtudiantModel();
     }
 
     public function displayEtudiants() {

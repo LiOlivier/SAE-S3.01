@@ -3,17 +3,14 @@
 
 <?php
 session_start();
+require_once "../config/database.php";
+$bd = Database::getConnexion('mysql');
+
 if (isset($_GET['id'])) {
     $studentId = $_GET['id'];
 
-    $servername = 'localhost';
-    $username = 'root';
-    $password = '';
-
     try {
-        $bd = new PDO('mysql:host=localhost;dbname=sorbonne', $username, $password);
         $bd->query("SET NAMES 'utf8'");
-        $bd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $requete = $bd->prepare('
                 SELECT u.nom,

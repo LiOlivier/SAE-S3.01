@@ -6,8 +6,7 @@ class TuteurPedagogiqueController {
     private $model;
 
     public function __construct() {
-        global $dsn, $login, $mdp;
-        $this->model = new TuteurPedagogiqueModel($dsn, $login, $mdp);
+        $this->model = new TuteurPedagogiqueModel();
     }
 
     public function displayTuteursPedagogiques() {
