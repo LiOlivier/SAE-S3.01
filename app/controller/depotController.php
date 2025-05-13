@@ -17,5 +17,5 @@ $idEtudiant = $_SESSION['user']['id'];
 
 $id_Pedagogique = $userModel->getPedagogiqueById($idEtudiant);
 
-$actions = $actionModel->getActionByEnseignantId($id_Pedagogique["id_Pedagogique"]);
+$actions = $actionModel->getActionByEnseignantId($idEtudiant);
 ?>

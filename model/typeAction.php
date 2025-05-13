@@ -15,7 +15,7 @@ class TypeAction
 
      public function getActionByEnseignantId($userId) { 
         
-        $sql = "SELECT libelle, Etat, LienModeleDoc, dateLimite, t.id_TypeAction FROM $this->table t JOIN action  a WHERE a.id_Pedagogique = :userId AND t.Executant = 'Etudiant'";
+        $sql = "SELECT libelle, Etat, LienModeleDoc, dateLimite, t.id_TypeAction FROM $this->table t JOIN action  a WHERE a.id_Etudiant = :userId AND t.Executant = 'Etudiant'";
         $query = $this->db->prepare($sql);
         $query->execute(['userId' => $userId]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
@@ -31,7 +31,7 @@ class TypeAction
     
 
     public function updateDocument($idAction, $libelle) {
-        $sql = "UPDATE typeaction SET reception = :libelle, Etat = 'En attente' WHERE Id_TypeAction = :idAction";
+        $sql = "UPDATE action SET lienDocument = :libelle, Etat = 'En attente' WHERE Id_TypeAction = :idAction";
         $query = $this->db->prepare($sql);
         $query->execute([
             'libelle' => $libelle,
