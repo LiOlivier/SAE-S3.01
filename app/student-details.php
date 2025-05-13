@@ -28,7 +28,7 @@ session_start();
         <h1 id="titre">Détails de l'Étudiant</h1>
         <div class="cards">
             <?php
-            $bd = Database::getConnexion('mysql'); 
+            $db = Database::getConnexion('mysql'); 
             try {
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
