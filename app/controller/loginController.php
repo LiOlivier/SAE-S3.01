@@ -41,7 +41,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
                 exit();
             } 
             elseif ($_SESSION['user']['role'] == "secretaire") {
-                header('Location: dashboard.php');
+                header('Location: secretaire-dashboard.php');
                 exit();
             }
             
