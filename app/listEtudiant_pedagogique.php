@@ -27,7 +27,7 @@ try {
                     SELECT 1 
                     FROM action a 
                     WHERE a.Id_Etudiant = u.Id 
-                      AND a.Id_TypeAction = 7 -- Type de bordereau
+                      AND a.id_type_action = 7 -- Type de bordereau
                 ) THEN "En attente"
                 ELSE "Tâche complète"
             END AS BordereauEtat,
@@ -36,7 +36,7 @@ try {
                     SELECT 1 
                     FROM action a 
                     WHERE a.Id_Etudiant = u.Id 
-                      AND a.Id_TypeAction = 9 -- Type de convention
+                      AND a.id_type_action = 9 -- Type de convention
                 ) THEN "En attente"
                 ELSE "Tâche complète"
             END AS ConventionEtat

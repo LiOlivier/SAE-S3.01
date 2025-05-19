@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 echo "studentId: $studentId, stageId: $stageId";
                 $requete = $bd->prepare('
-                    INSERT INTO `action`(`annee`, `Id_Departement`, `numSemestre`, `Id_Etudiant`, `Id_Stage`, `date_realisation`, `lienDocument`, `Id_TypeAction`, `Id`, `etat`) 
+                    INSERT INTO `action`(`annee`, `Id_Departement`, `num_Semestre`, `Id_Etudiant`, `Id_Stage`, `date_realisation`, `lienDocument`, `id_type_action`, `Id`, `etat`) 
                     VALUES (2024, 1, 4, :studentId, :stageId, :dateRealisation, :filePath, 9, :actionId, "a faire")
                 ');
 

@@ -47,7 +47,7 @@ require_once(__DIR__ . "/../component/aside.php"); ?>
                             <tr>
                                 <td><?php echo htmlspecialchars($stage['annee'], ENT_QUOTES); ?></td>
                                 <td><?php echo htmlspecialchars($stage['Id_Departement'], ENT_QUOTES); ?></td>
-                                <td><?php echo htmlspecialchars($stage['numSemestre'], ENT_QUOTES); ?></td>
+                                <td><?php echo htmlspecialchars($stage['num_Semestre'], ENT_QUOTES); ?></td>
                                 <td><?php echo htmlspecialchars($stage['Id_Etudiant'], ENT_QUOTES); ?></td>
                                 <td><?php echo htmlspecialchars($stage['Id_Stage'], ENT_QUOTES); ?></td>
                                 <td><?php echo htmlspecialchars($stage['date_debut'], ENT_QUOTES); ?></td>

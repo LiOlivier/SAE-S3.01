@@ -221,7 +221,7 @@
                     $stmt->bindParam(':id', $lastUserId);
                     $stmt->execute();
 
-                    $query = "INSERT INTO inscription (annee, Id_Departement, numSemestre, Id_Etudiant) 
+                    $query = "INSERT INTO inscription (annee, Id_Departement, num_Semestre, Id_Etudiant) 
                               VALUES (YEAR(CURDATE()), :departement, :semestre, :id)";
                     $stmt = $pdo->prepare($query);
                     $stmt->bindParam(':departement', $departement);

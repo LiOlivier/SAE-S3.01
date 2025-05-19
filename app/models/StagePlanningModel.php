@@ -67,7 +67,7 @@ class StagePlanningModel {
         }
 
         // Check if the student already has a stage in the selected semester
-        $query = 'SELECT COUNT(*) AS semester_stage_count FROM Stage WHERE Id_Etudiant = :studentId AND numSemestre = :semester';
+        $query = 'SELECT COUNT(*) AS semester_stage_count FROM Stage WHERE Id_Etudiant = :studentId AND num_Semestre = :semester';
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':studentId', $studentId, PDO::PARAM_INT);
         $stmt->bindParam(':semester', $semester, PDO::PARAM_INT);
@@ -79,7 +79,7 @@ class StagePlanningModel {
         }
 
         // Retrieve the annee from the inscription table
-        $query = 'SELECT annee FROM inscription WHERE Id_Etudiant = :studentId AND numSemestre = :semester AND Id_Departement = :Id_Departement';
+        $query = 'SELECT annee FROM inscription WHERE Id_Etudiant = :studentId AND num_Semestre = :semester AND Id_Departement = :Id_Departement';
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':studentId', $studentId, PDO::PARAM_INT);
         $stmt->bindParam(':semester', $semester, PDO::PARAM_INT);
@@ -94,7 +94,7 @@ class StagePlanningModel {
         $annee = $result['annee'];
 
         // Insert the new stage
-        $query = 'INSERT INTO Stage (Id_Etudiant, numSemestre, annee, Id_Departement, date_debut, date_fin, mission) VALUES (:studentId, :semester, :annee, :Id_Departement, :startDate, :endDate, :mission)';
+        $query = 'INSERT INTO Stage (Id_Etudiant, num_Semestre, annee, Id_Departement, date_debut, date_fin, mission) VALUES (:studentId, :semester, :annee, :Id_Departement, :startDate, :endDate, :mission)';
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':studentId', $studentId, PDO::PARAM_INT);
         $stmt->bindParam(':semester', $semester, PDO::PARAM_INT);
@@ -108,7 +108,7 @@ class StagePlanningModel {
 
     public function assignTuteur($studentId, $semester, $tuteurPedagogiqueId, $tuteurEntrepriseId) {
         // Check if the stage exists
-        $query = 'SELECT COUNT(*) AS stage_exists FROM Stage WHERE Id_Etudiant = :studentId AND numSemestre = :semester';
+        $query = 'SELECT COUNT(*) AS stage_exists FROM Stage WHERE Id_Etudiant = :studentId AND num_Semestre = :semester';
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':studentId', $studentId, PDO::PARAM_INT);
         $stmt->bindParam(':semester', $semester, PDO::PARAM_INT);
@@ -119,7 +119,7 @@ class StagePlanningModel {
             return false;
         }
 
-        $query = 'UPDATE Stage SET Id_Enseignant_1 = :tuteurPedagogiqueId, Id_Tuteur_Entreprise = :tuteurEntrepriseId WHERE Id_Etudiant = :studentId AND numSemestre = :semester';
+        $query = 'UPDATE Stage SET Id_Enseignant_1 = :tuteurPedagogiqueId, Id_Tuteur_Entreprise = :tuteurEntrepriseId WHERE Id_Etudiant = :studentId AND num_Semestre = :semester';
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':studentId', $studentId, PDO::PARAM_INT);
         $stmt->bindParam(':semester', $semester, PDO::PARAM_INT);
@@ -130,7 +130,7 @@ class StagePlanningModel {
 
     public function assignJury($studentId, $semester, $juryId, $date, $salle_soutenance) {
         // Check if the stage exists
-        $query = 'SELECT COUNT(*) AS stage_exists FROM Stage WHERE Id_Etudiant = :studentId AND numSemestre = :semester';
+        $query = 'SELECT COUNT(*) AS stage_exists FROM Stage WHERE Id_Etudiant = :studentId AND num_Semestre = :semester';
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':studentId', $studentId, PDO::PARAM_INT);
         $stmt->bindParam(':semester', $semester, PDO::PARAM_INT);
@@ -141,7 +141,7 @@ class StagePlanningModel {
             return false;
         }
 
-        $query = 'UPDATE Stage SET Id_Enseignant_2 = :juryId, date_soutenance = :date, salle_soutenance = :salle_soutenance WHERE Id_Etudiant = :studentId AND numSemestre = :semester';
+        $query = 'UPDATE Stage SET Id_Enseignant_2 = :juryId, date_soutenance = :date, salle_soutenance = :salle_soutenance WHERE Id_Etudiant = :studentId AND num_Semestre = :semester';
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':studentId', $studentId, PDO::PARAM_INT);
         $stmt->bindParam(':semester', $semester, PDO::PARAM_INT);
