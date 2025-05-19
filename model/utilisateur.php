@@ -74,7 +74,9 @@ class Utilisateur
 
     public function getPedagogiqueById($id)
     {
-        $sql = "SELECT id_Pedagogique FROM $this->table WHERE id = :id";
+        
+        $sql = 'select id_enseignant_1 from utilisateur u join stage s on u.id = s.id_etudiant where s.id_enseignant_1 = :id';
+        //$sql = "SELECT id_Pedagogique FROM $this->table WHERE id = :id";
         $query = $this->db->prepare($sql);
         $query->execute(['id' => $id]);
         return $query->fetch(PDO::FETCH_ASSOC);
