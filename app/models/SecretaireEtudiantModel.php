@@ -13,9 +13,9 @@ class EtudiantModel {
     }
 
     public function getAllEtudiants() {
-        $query = 'SELECT Utilisateur.nom, Utilisateur.prenom, Utilisateur.email, Utilisateur.telephone, Etudiant.id_Etudiant 
-                  FROM Etudiant 
-                  JOIN Utilisateur ON Etudiant.id_Etudiant = Utilisateur.id';
+        $query = 'SELECT utilisateur.nom, utilisateur.prenom, utilisateur.email, utilisateur.telephone, etudiant.id_etudiant 
+                  FROM etudiant 
+                  JOIN utilisateur ON etudiant.id_etudiant = utilisateur.id';
         $stmt = $this->db->query($query);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

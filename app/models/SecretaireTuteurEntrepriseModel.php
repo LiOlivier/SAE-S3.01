@@ -13,7 +13,7 @@ class TuteurEntrepriseModel {
     }
 
     public function getAllTuteursEntreprise() {
-        $query = 'SELECT Utilisateur.nom, Utilisateur.prenom, Utilisateur.email, Utilisateur.telephone, Tuteur_Entreprise.Id_Entreprise 
+        $query = 'SELECT Utilisateur.nom, Utilisateur.prenom, Utilisateur.email, Utilisateur.telephone, Tuteur_Entreprise.id_entreprise 
                   FROM Tuteur_Entreprise 
                   JOIN Utilisateur ON Tuteur_Entreprise.Id_Tuteur_Entreprise = Utilisateur.id';
         $stmt = $this->db->query($query);

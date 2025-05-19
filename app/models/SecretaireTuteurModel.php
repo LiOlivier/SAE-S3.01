@@ -28,7 +28,7 @@ class TuteurModel {
     }
 
     public function getAllEntreprises() {
-        $query = 'SELECT Id_Entreprise FROM Entreprise';
+        $query = 'SELECT id_entreprise FROM Entreprise';
         $stmt = $this->db->query($query);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -64,7 +64,7 @@ class TuteurModel {
         $lastUserId = $this->db->lastInsertId();
 
         // Insert the new tuteur entreprise
-        $query = 'INSERT INTO Tuteur_Entreprise (Id_Tuteur_Entreprise, Id_Entreprise) VALUES (:lastUserId, :entrepriseId)';
+        $query = 'INSERT INTO Tuteur_Entreprise (Id_Tuteur_Entreprise, id_entreprise) VALUES (:lastUserId, :entrepriseId)';
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':lastUserId', $lastUserId, PDO::PARAM_INT);
         $stmt->bindParam(':entrepriseId', $entrepriseId, PDO::PARAM_INT);

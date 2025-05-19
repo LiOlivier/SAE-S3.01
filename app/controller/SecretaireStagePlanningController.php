@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . '/../models/StagePlanningModel.php');
+require_once(__DIR__ . '/../models/SecretaireStagePlanningModel.php');
 require_once(__DIR__ . '/../dbdata.php');
 
 class StagePlanningController {
@@ -17,7 +17,7 @@ class StagePlanningController {
         $enseignants = $this->model->getAllEnseignants();
         $departements = $this->model->getAllDepartements();
         $annees = $this->model->getAllAnnees();
-        require(__DIR__ . '/../views/stagePlanningView.php');
+        require(__DIR__ . '/../views/SecretaireStagePlanningView.php');
     }
 
     public function addStage() {

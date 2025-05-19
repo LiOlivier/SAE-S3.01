@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../CSS/card.css">
     <link rel="stylesheet" href="../CSS/TBD.css">
     <link rel="stylesheet" href="../CSS/tableau.css">
-    <link rel="stylesheet" href="../CSS/rs.css">
+    <link rel="stylesheet" href="../CSS/secretaire.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
@@ -30,7 +30,7 @@
 
             <div class="form-section" id="add-tuteur-pedagogique">
                 <h2>Ajouter un Tuteur Pédagogique</h2>
-                <form action="tuteur.php" method="post">
+                <form action="secretaire-tuteur.php" method="post">
                     <label for="enseignant">Sélectionner un enseignant :</label>
                     <select id="enseignant" name="enseignant" class="searchable">
                         <?php foreach ($enseignants as $enseignant) { ?>
@@ -45,7 +45,7 @@
 
             <div class="form-section" id="add-tuteur-entreprise">
                 <h2>Ajouter un Tuteur Entreprise</h2>
-                <form action="tuteur.php" method="post">
+                <form action="secretaire-tuteur.php" method="post">
                     <label for="nom">Nom :</label>
                     <input type="text" id="nom" name="nom" required>
 
@@ -67,8 +67,8 @@
                     <label for="entreprise">Sélectionner une entreprise :</label>
                     <select id="entreprise" name="entreprise" class="searchable">
                         <?php foreach ($entreprises as $entreprise) { ?>
-                            <option value="<?php echo htmlspecialchars($entreprise['Id_Entreprise'], ENT_QUOTES); ?>">
-                                <?php echo htmlspecialchars($entreprise['Id_Entreprise'], ENT_QUOTES); ?>
+                            <option value="<?php echo htmlspecialchars($entreprise['id_entreprise'], ENT_QUOTES); ?>">
+                                <?php echo htmlspecialchars($entreprise['id_entreprise'], ENT_QUOTES); ?>
                             </option>
                         <?php } ?>
                     </select>

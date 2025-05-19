@@ -14,9 +14,11 @@ session_start();
     <link rel="stylesheet" href="../CSS/card.css">
     <link rel="stylesheet" href="../CSS/TBD.css">
     <link rel="stylesheet" href="../CSS/tableau.css">
+    <link rel="stylesheet" href="../CSS/secretaire.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
         integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
 </head>
+
 <body class="body">
     <?php 
         require_once(__DIR__ . "/component/header.php");
@@ -37,10 +39,10 @@ session_start();
                 if (isset($_GET['id'])) {
                     $studentId = $_GET['id'];
 
-                    $query = 'SELECT Utilisateur.nom, Utilisateur.prenom, Utilisateur.email, Utilisateur.telephone, Etudiant.Id_Etudiant 
+                    $query = 'SELECT utilisateur.nom, utilisateur.prenom, utilisateur.email, utilisateur.telephone, Etudiant.id_etudiant 
                               FROM Etudiant 
-                              JOIN Utilisateur ON Etudiant.Id_Etudiant = Utilisateur.Id 
-                              WHERE Etudiant.Id_Etudiant = :studentId';
+                              JOIN utilisateur ON Etudiant.id_etudiant = utilisateur.id 
+                              WHERE Etudiant.id_etudiant = :studentId';
                     $stmt = $db->prepare($query);
                     $stmt->bindParam(':studentId', $studentId, PDO::PARAM_INT);
                     $stmt->execute();
@@ -52,7 +54,7 @@ session_start();
                         echo '<p><strong>Email:</strong> ' . htmlspecialchars($etudiant['email'], ENT_QUOTES) . '</p>';
                         echo '<p><strong>Téléphone:</strong> ' . htmlspecialchars($etudiant['telephone'], ENT_QUOTES) . '</p>';
 
-                        $query = 'SELECT annee FROM Stage WHERE Id_Etudiant = :studentId';
+                        $query = 'SELECT annee FROM stage WHERE id_etudiant = :studentId';
                         $stmt = $db->prepare($query);
                         $stmt->bindParam(':studentId', $studentId, PDO::PARAM_INT);
                         $stmt->execute();
@@ -91,7 +93,7 @@ session_start();
                     <tbody>
                         <?php
                         try {
-                            $query = 'SELECT * FROM Stage WHERE Id_Etudiant = :studentId';
+                            $query = 'SELECT * FROM stage WHERE id_etudiant = :studentId';
                             $stmt = $db->prepare($query);
                             $stmt->bindParam(':studentId', $studentId, PDO::PARAM_INT);
                             $stmt->execute();
@@ -100,7 +102,7 @@ session_start();
                             if ($stages) {
                                 foreach ($stages as $stage) {
                                     echo '<tr>';
-                                    echo '<td>' . htmlspecialchars($stage['Id_Stage'], ENT_QUOTES) . '</td>';
+                                    echo '<td>' . htmlspecialchars($stage['id_stage'], ENT_QUOTES) . '</td>';
                                     echo '<td>' . htmlspecialchars($stage['annee'], ENT_QUOTES) . '</td>';
                                     echo '<td>' . htmlspecialchars($stage['date_debut'], ENT_QUOTES) . '</td>';
                                     echo '<td>' . htmlspecialchars($stage['date_fin'], ENT_QUOTES) . '</td>';
@@ -124,7 +126,7 @@ session_start();
             <div class="cards">
                 <?php
                 try {
-                    $query = 'SELECT lienDocument FROM action WHERE Id_Etudiant = :studentId';
+                    $query = 'SELECT lien_document FROM action WHERE id_etudiant = :studentId';
                     $stmt = $db->prepare($query);
                     $stmt->bindParam(':studentId', $studentId, PDO::PARAM_INT);
                     $stmt->execute();
@@ -132,7 +134,7 @@ session_start();
 
                     if ($documents) {
                         foreach ($documents as $document) {
-                            echo '<p><a href="' . htmlspecialchars($document['lienDocument'], ENT_QUOTES) . '" target="_blank">Voir le document</a></p>';
+                            echo '<p><a href="' . htmlspecialchars($document['lien_document'], ENT_QUOTES) . '" target="_blank">Voir le document</a></p>';
                         }
                     } else {
                         echo '<p>Aucun document trouvé.</p>';
@@ -150,7 +152,7 @@ session_start();
             <div class="cards">
                 <?php
                 try {
-                    $query = 'SELECT * FROM Communication WHERE Id_Etudiant = :studentId';
+                    $query = 'SELECT * FROM Communication WHERE id_etudiant = :studentId';
                     $stmt = $db->prepare($query);
                     $stmt->bindParam(':studentId', $studentId, PDO::PARAM_INT);
                     $stmt->execute();

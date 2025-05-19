@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . '/../models/TuteurModel.php');
+require_once(__DIR__ . '/../models/SecretaireTuteurModel.php');
 require_once(__DIR__ . '/../dbdata.php');
 
 class TuteurController {
@@ -14,7 +14,7 @@ class TuteurController {
         $enseignants = $this->model->getAllEnseignants();
         $entreprises = $this->model->getAllEntreprises();
         $message = $this->message;
-        require(__DIR__ . '/../views/tuteurView.php');
+        require(__DIR__ . '/../views/secretaireTuteurView.php');
     }
 
     public function addTuteurPedagogique() {
