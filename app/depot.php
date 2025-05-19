@@ -1,11 +1,6 @@
 <?php
 require "./controller/depotController.php";
-
-
 $prenom = $_SESSION['user']['prenom'];
-
-
-
 
 ?>
 

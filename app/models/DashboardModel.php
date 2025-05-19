@@ -13,7 +13,7 @@ class DashboardModel {
     }
 
     public function getOverdueReportsCount() {
-        $query = 'SELECT COUNT(*) AS overdue_reports FROM Action WHERE date_realisation < NOW() AND Id_TypeAction = 1';
+        $query = 'SELECT COUNT(*) AS overdue_reports FROM Action WHERE date_realisation < NOW() AND id_type_action = 1';
         $stmt = $this->db->query($query);
         return $stmt->fetch(PDO::FETCH_ASSOC)['overdue_reports'];
     }
@@ -50,7 +50,7 @@ class DashboardModel {
         $query = 'SELECT Utilisateur.nom, Utilisateur.prenom, Action.date_realisation, TypeAction.libelle 
                   FROM Action 
                   JOIN Utilisateur ON Action.Id = Utilisateur.Id 
-                  JOIN TypeAction ON Action.Id_TypeAction = TypeAction.Id_TypeAction 
+                  JOIN TypeAction ON Action.Id_Type_Action = TypeAction.Id_Type_Action 
                   ORDER BY Action.date_realisation DESC 
                   LIMIT 10';
         $stmt = $this->db->query($query);

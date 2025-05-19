@@ -13,7 +13,7 @@ class StageModel {
     }
 
     public function getAllStages() {
-        $query = 'SELECT annee, Id_Departement, numSemestre, Id_Etudiant, Id_Stage, date_debut, date_fin, mission, date_soutenance, salle_soutenance, Id_Enseignant_1, Id_Tuteur_Entreprise, Id_Enseignant_2 
+        $query = 'SELECT annee, Id_Departement, num_Semestre, Id_Etudiant, Id_Stage, date_debut, date_fin, mission, date_soutenance, salle_soutenance, Id_Enseignant_1, Id_Tuteur_Entreprise, Id_Enseignant_2 
                   FROM Stage 
                   ORDER BY Id_Etudiant ASC';
         $stmt = $this->db->query($query);

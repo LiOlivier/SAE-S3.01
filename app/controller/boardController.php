@@ -19,5 +19,5 @@ $actionModel = new typeAction();
 $enseignants = $userModel->getPedagogiqueByEtudiant($idEtudiant);
 $tuteurs = $userModel->getTuteursByEtudiant($idEtudiant);
 $id_Pedagogique = $userModel->getPedagogiqueById($idEtudiant);
-$actions = $actionModel->getActionByEnseignantId($id_Pedagogique["id_Pedagogique"]);
+$actions = $actionModel->getActionByEnseignantId($idEtudiant);
 

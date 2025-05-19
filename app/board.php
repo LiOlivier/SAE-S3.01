@@ -84,7 +84,7 @@ require_once(__DIR__ . "//component/aside.php");
                                 <div class="left">
                                     <div style="display: block;">
                                         <h3 class="nom"><?= $action['libelle']?></h3>
-                                        <h3 class="date-limite"><?= $action['dateLimite']?></h3>
+                                        <h3 class="date-limite"><?= $action['delai_limite']?></h3>
                                         <button id="ouvrir">ouvrir</button>
                                         <input type="hidden" value="id">
                                     </div>
