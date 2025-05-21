@@ -25,9 +25,11 @@
                     <input type="hidden" name="actionId" value="<?= $action["id_type_action"] ?>">
                     <input type="hidden" name="libelle" value="<?= $action["libelle"] ?>">
                     <input type="hidden" name="nom" value="<?= $_SESSION["user"]["nom"] ?>">
+                    <?php if ($action['requiert_doc'] == 'oui') { ?> <!-- si l'instructeur a besoin d'un document-->
                     <button type="button" class="contacter joindre" onclick="$(this).siblings('.sortDocument').click()"> <!-- Changez la logique pour utiliser siblings() -->
                         Joindre fichier<i class="fas fa-upload load" style="color: #c0c0c0;"></i>
                     </button>
+                    <?php } ?>
                 </form>
                 <?php } ?>
                 <?php if ($action['Etat'] == 'Valider') { ?>

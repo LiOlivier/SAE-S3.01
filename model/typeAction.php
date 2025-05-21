@@ -15,7 +15,7 @@ class TypeAction
 
      public function getActionByEnseignantId($userId) { 
         
-        $sql = "SELECT libelle, Etat, lien_modele_doc, delai_limite, t.id_type_action FROM $this->table t JOIN action a USING(id_type_action) WHERE a.id_Etudiant = :userId AND t.Executant = 'Etudiant'";
+        $sql = "SELECT libelle, Etat, lien_modele_doc, delai_limite, t.id_type_action, t.requiert_doc FROM $this->table t JOIN action a USING(id_type_action) WHERE a.id_Etudiant = :userId AND t.Executant = 'Etudiant'";
         $query = $this->db->prepare($sql);
         $query->execute(['userId' => $userId]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
