@@ -16,7 +16,7 @@
         ?>">
                     </i> <?= $action['Etat'] ?>
                 </div>
-
+            <?php if ($action['Etat'] != 'Valider') { ?>
                 <form class="uploadForm" enctype="multipart/form-data">
                 <button class="modele" type="button" onclick="window.location.href='../app/component/DownloadModel.php?idAction=<?= $action["id_type_action"] ?>'">
                         Modèle <i class="fas fa-download load" style="color: #c0c0c0;"></i>
@@ -29,6 +29,10 @@
                         Joindre fichier<i class="fas fa-upload load" style="color: #c0c0c0;"></i>
                     </button>
                 </form>
+                <?php } ?>
+                <?php if ($action['Etat'] == 'Valider') { ?>
+                    <p class="message_valider">Document validé par l'administration</p>
+                <?php } ?>
 
                 <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
             </div>
