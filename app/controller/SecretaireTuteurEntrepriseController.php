@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . '/../models/TuteurEntrepriseModel.php');
+require_once(__DIR__ . '/../models/SecretaireTuteurEntrepriseModel.php');
 require_once(__DIR__ . '/../dbdata.php');
 
 class TuteurEntrepriseController {
@@ -11,7 +11,7 @@ class TuteurEntrepriseController {
 
     public function displayTuteursEntreprise() {
         $tuteursEntreprise = $this->model->getAllTuteursEntreprise();
-        require(__DIR__ . '/../views/tuteursEntrepriseView.php');
+        require(__DIR__ . '/../views/secretaireTuteursEntrepriseView.php');
     }
 }
 ?>
