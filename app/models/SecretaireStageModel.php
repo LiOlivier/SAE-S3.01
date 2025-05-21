@@ -13,9 +13,9 @@ class StageModel {
     }
 
     public function getAllStages() {
-        $query = 'SELECT annee, Id_Departement, num_Semestre, Id_Etudiant, Id_Stage, date_debut, date_fin, mission, date_soutenance, salle_soutenance, Id_Enseignant_1, Id_Tuteur_Entreprise, Id_Enseignant_2 
-                  FROM Stage 
-                  ORDER BY Id_Etudiant ASC';
+        $query = 'SELECT annee, id_departement, num_semestre, id_etudiant, id_stage, date_debut, date_fin, mission, date_soutenance, salle_soutenance, id_enseignant_1, id_tuteur_entreprise, id_enseignant_2 
+                  FROM stage 
+                  ORDER BY id_etudiant ASC';
         $stmt = $this->db->query($query);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

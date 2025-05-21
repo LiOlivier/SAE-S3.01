@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once(__DIR__ . '/controller/TuteurController.php');
+require_once(__DIR__ . '/controller/SecretaireTuteurController.php');
 
 $controller = new TuteurController();
 

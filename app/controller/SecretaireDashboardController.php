@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . '/../models/DashboardModel.php');
+require_once(__DIR__ . '/../models/SecretaireDashboardModel.php');
 require_once(__DIR__ . '/../dbdata.php');
 require_once(__DIR__ . '/../controller/sessionController.php');
 
@@ -17,7 +17,7 @@ class DashboardController {
         $totalStudentsCount = $this->model->getTotalStudentsCount();
         $totalStagesCount = $this->model->getTotalStagesCount();
         $recentNotifications = $this->model->getRecentNotifications();
-        require(__DIR__ . '/../views/dashboardView.php');
+        require(__DIR__ . '/../views/secretaireDashboardView.php');
     }
 }
 ?>
