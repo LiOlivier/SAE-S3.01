@@ -1,6 +1,4 @@
-<?php
-require_once('controller/boardController.php');
-?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -9,10 +7,11 @@ require_once('controller/boardController.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Depôt des documents</title>
+    <link rel="stylesheet" href="../CSS/TDB_entreprise.css">
     <link rel="stylesheet" href="../CSS/aside.css">
     <link rel="stylesheet" href="../CSS/header.css">
     <link rel="stylesheet" href="../CSS/card.css">
-    <link rel="stylesheet" href="../CSS/depot.css">
+    <link rel="stylesheet" href="../CSS/depot.css">    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
         integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
 </head>
@@ -21,7 +20,6 @@ require_once(__DIR__ . "//component/aside_entreprise.php"); ?>
 
 <body class="body">
     <section id="one">
-
         <h1 id="titre">Document a déposer</h1>
         <div class="cards">
             <?php require "component/card_depot_bordereau.php"; ?>

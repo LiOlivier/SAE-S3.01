@@ -1,5 +1,5 @@
 <?php
-$chemin='..\config\database.php';
+$chemin='../config/database.php';
 require_once($chemin);
 
 
@@ -141,7 +141,7 @@ class Utilisateur
     public function getTuteurByUserId($userId)
     {
         
-        $sql = "SELECT id_Tuteur
+        $sql = "SELECT id
                 FROM utilisateur
                 WHERE id = :userId";
 
