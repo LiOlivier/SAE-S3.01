@@ -17,7 +17,7 @@ require "./controller/boardController.php";
     <link rel="stylesheet" href="../CSS/t.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
         integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
-    <script src="TBD_eleve.html"></script>
+    
 </head>
 <?php require_once(__DIR__ . "//component/header.php");
 require_once(__DIR__ . "//component/aside.php");
