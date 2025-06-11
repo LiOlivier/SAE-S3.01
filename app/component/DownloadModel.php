@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../../model/typeAction.php';
+require_once __DIR__ . '/../models/typeAction.php';
 $action = new TypeAction();
 
 if (isset($_GET['idAction'])) {

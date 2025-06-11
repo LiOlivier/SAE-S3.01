@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 
 header('Content-Type: application/json');
 
-require_once __DIR__ . '/../../model/typeAction.php';
+require_once __DIR__ . '/../models/typeAction.php';
 
 
 
