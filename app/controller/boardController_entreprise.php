@@ -2,6 +2,11 @@
 session_start();
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
+<<<<<<< HEAD
+=======
+require "models/utilisateur.php";
+require "models/typeAction.php";
+>>>>>>> origin/stage
 
 require_once(__DIR__ . "/../../model/utilisateur.php");
 require_once(__DIR__ . "/../../model/typeAction.php");
