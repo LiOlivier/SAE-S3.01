@@ -15,15 +15,11 @@ if (!isset($_SESSION['user'])) {
 
 // Récupération de l'ID du tuteur entreprise connecté
 $idTuteurEntreprise = $_SESSION['user']['id']; 
-
 // Instanciation du modèle
 $model = TuteurEntrepriseModel::getModel();
 
-// Récupération des tuteurs pédagogiques liés
-$listePedagogiques = $model->getTuteursPedagogiquesByTuteurEntreprise($idTuteurEntreprise);
-
-// Récupération des étudiants liés
 $listeEtudiants = $model->getEtudiantsByTuteurEntreprise($idTuteurEntreprise);
 
 ?>
+
 

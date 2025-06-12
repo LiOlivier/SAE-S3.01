@@ -19,11 +19,16 @@ $idTuteurEntreprise = $_SESSION['user']['id'];
 // Instanciation du modèle
 $model = TuteurEntrepriseModel::getModel();
 
-// Récupération des tuteurs pédagogiques liés
-$listePedagogiques = $model->getTuteursPedagogiquesByTuteurEntreprise($idTuteurEntreprise);
-
-// Récupération des étudiants liés
 $listeEtudiants = $model->getEtudiantsByTuteurEntreprise($idTuteurEntreprise);
+
+// TypeAction : 6 = Rapport, 9 = Convention
+$documentsEtudiants = [];
+
+foreach ($listeEtudiants as $etudiant) {
+    $idEtu = $etudiant['id'];
+    $documentsEtudiants[$idEtu]['convention'] = $model->getDocumentByEtudiantAndType($idEtu, 9);
+    $documentsEtudiants[$idEtu]['rapport'] = $model->getDocumentByEtudiantAndType($idEtu, 6);
+}
 
 ?>
 
