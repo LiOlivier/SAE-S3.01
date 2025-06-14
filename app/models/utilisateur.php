@@ -1,5 +1,5 @@
 <?php
-$chemin=__DIR__ . "/../config/database.php";
+$chemin=__DIR__ . "/../../config/database.php";
 require_once($chemin);
 
 

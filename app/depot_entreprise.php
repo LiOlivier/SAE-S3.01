@@ -1,5 +1,4 @@
 <?php
-require('controller/boardController_entreprise.php');
 require_once(__DIR__ . "/models/TuteurEntrepriseModel.php");
 ?>
 
@@ -21,6 +20,7 @@ require_once(__DIR__ . "/models/TuteurEntrepriseModel.php");
 </head>
 <?php require_once(__DIR__ . "//component/header.php");
 require_once(__DIR__ . "//component/aside_entreprise.php");
+require_once(__DIR__ . "//controller/info_card_entrepriseController.php");
 ?>
 <style>
 
@@ -30,6 +30,8 @@ require_once(__DIR__ . "//component/aside_entreprise.php");
     <section id="one">
         
         <h1 id="titre">Dépot de document</h1>
+
+        <?php require_once("component/card_depot_entreprise.php"); ?>
        
         <?php require "component/notification.php" ?>
     </section>
