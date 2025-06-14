@@ -39,7 +39,9 @@
                     <button type="submit" name="add_tuteur_pedagogique">Ajouter le Tuteur Pédagogique</button>
                 </form>
             </div>
+        </div>
 
+        <div class="cards">
             <div class="form-section" id="add-tuteur-entreprise">
                 <h2>Ajouter un Tuteur Entreprise</h2>
                 <form action="secretaire-tuteur.php" method="post">
