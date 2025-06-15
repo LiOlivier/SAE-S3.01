@@ -1,0 +1,72 @@
+
+.body {
+    background-color: #EEEEEE;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#titre {
+    top: -1em;
+    position: relative;
+}
+
+#one {
+    flex: 1;
+    padding: 4em 2em 2em 1em;
+    box-sizing: border-box;
+    color: #00244d;
+    font-size: 23px;
+}
+
+.card {
+    width: 19em;
+    height: 13em;
+    margin-right: 2em;
+    margin-bottom: 1em;
+}
+
+.depot-nom {
+    font-size: 28px;
+}
+
+.etat {
+    font-weight: lighter;
+    font-size: 20px;
+    color: black;
+    left: 1em;
+    position: relative;
+    top: -1em;
+    font-family: 'Rubik', sans-serif;
+    margin-left: 0.5em;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+}
+
+.validation {
+    font-size: 20px;
+    color: black;
+    left: 1em;
+    position: relative;
+    top: -1em;
+}
+
+.contacter {
+    background-color: #00244d;
+    top: 0em;
+}
+
+.joindre {
+    left: 1em;
+}
+
+.load {
+    position: relative;
+    left: 0.7em;
+}
+button{
+    cursor: pointer;
+}
