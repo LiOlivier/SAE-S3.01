@@ -25,6 +25,7 @@ class Model
         return self::$instance;
     }
 
+<<<<<<< HEAD
     public function getDpt($idEnseignant) {
         $requete = $this->bd->prepare(('SELECT id_departement FROM departement WHERE id_enseignant = :id'));
         $requete->bindValue(':id', $idEnseignant, PDO::PARAM_INT);
@@ -34,22 +35,36 @@ class Model
     }
     
     public function getListEtudiants($numSemestre, $idDepartement) {
+=======
+    public function getListEtudiants($num_Semestre) {
+>>>>>>> origin/main
         $requete = $this->bd->prepare('SELECT u.id, u.nom, u.prenom,u.email,u.telephone, d.Libelle
                             FROM utilisateur u
                             JOIN inscription i ON i.Id_Etudiant = u.Id
                             JOIN departement d ON i.Id_Departement = d.Id_Departement
+<<<<<<< HEAD
                             WHERE i.num_semestre = :num AND i.id_departement = :dpt');
         $requete->bindValue(':num', $numSemestre, PDO::PARAM_INT);
         $requete->bindValue(':dpt', $idDepartement, PDO::PARAM_INT);
+=======
+                            WHERE i.num_Semestre = :num');
+        $requete->bindValue(':num', $num_Semestre, PDO::PARAM_INT);
+>>>>>>> origin/main
         $requete->execute();
         $tab = $requete->fetchAll(PDO::FETCH_ASSOC);
         return $tab;
     }
 
+<<<<<<< HEAD
     public function getNbEtudiants($numSemestre, $idDepartement) {
         $requete = $this->bd->prepare('SELECT COUNT(*) FROM Inscription WHERE num_semestre = :num AND id_departement = :dpt');
         $requete->bindValue(':num', $numSemestre, PDO::PARAM_INT);
         $requete->bindValue(':dpt', $idDepartement, PDO::PARAM_INT);
+=======
+    public function getNbEtudiants($num_Semestre) {
+        $requete = $this->bd->prepare('SELECT COUNT(*) FROM Inscription WHERE num_Semestre = :num');
+        $requete->bindValue(':num', $num_Semestre, PDO::PARAM_INT);
+>>>>>>> origin/main
         $requete->execute();
         $tab = $requete->fetch(PDO::FETCH_ASSOC);
         return $tab["COUNT(*)"];

@@ -1,5 +1,6 @@
 <?php
 require "./controller/depotController.php";
+<<<<<<< HEAD
 
 
 $prenom = $_SESSION['user']['prenom'];
@@ -7,6 +8,10 @@ $prenom = $_SESSION['user']['prenom'];
 
 
 
+=======
+$prenom = $_SESSION['user']['prenom'];
+
+>>>>>>> origin/main
 ?>
 
 <!DOCTYPE html>

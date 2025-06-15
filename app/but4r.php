@@ -41,9 +41,15 @@ require_once(__DIR__ . "//component/aside.php");
             FROM utilisateur
             JOIN etudiant ON utilisateur.id = etudiant.Id_etudiant
             JOIN inscription ON etudiant.Id_etudiant = inscription.Id_Etudiant
+<<<<<<< HEAD
             LEFT JOIN stage ON inscription.Id_Etudiant = stage.Id_Etudiant AND inscription.numSemestre = stage.numSemestre
             LEFT JOIN action ON inscription.Id_Etudiant = action.Id_Etudiant AND inscription.numSemestre = action.numSemestre
             WHERE inscription.numSemestre = 4 AND inscription.Id_Departement = 3";
+=======
+            LEFT JOIN stage ON inscription.Id_Etudiant = stage.Id_Etudiant AND inscription.num_Semestre = stage.num_Semestre
+            LEFT JOIN action ON inscription.Id_Etudiant = action.Id_Etudiant AND inscription.num_Semestre = action.num_Semestre
+            WHERE inscription.num_Semestre = 4 AND inscription.Id_Departement = 3";
+>>>>>>> origin/main
 
     $stmt = $pdo->query($sql);
     $etudiants = $stmt->fetchAll(PDO::FETCH_ASSOC);

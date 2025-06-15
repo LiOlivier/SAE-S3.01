@@ -70,39 +70,39 @@
 
 
                 <?php if ($_SESSION["user"]["role"] == 'secretaire') { ?>
-                    <a href="dashboard.php" class="bouton-side" id="TDB">
+                    <a href="secretaire-dashboard.php" class="bouton-side" id="TDB">
                         <div class="content-side">
                             <i class="fas fa-th" style="font-size: 1.3em;"></i> <span>Tableau de Bord</span>
                         </div>
                         </a>
                     
-                    <a href="etudiants.php" class="bouton-side" id="Etudiants">
+                    <a href="secretaire-etudiants.php" class="bouton-side" id="Etudiants">
                         <div class="content-side">
                             <i class="fas fa-users" style="font-size: 1.3em;"></i> <span>Étudiants</span>
                         </div>
                     </a>
-                    <a href="stage-planning.php" class="bouton-side" id="StagePlanning">
+                    <a href="secretaire-stage-planning.php" class="bouton-side" id="StagePlanning">
                         <div class="content-side">
                             <i class="fas fa-calendar" style="font-size: 1.3em;"></i> <span>Gestion des Stages</span>
                         </div>
                     </a>
-                    <a href="stages.php" class="bouton-side" id="Stages">
+                    <a href="secretaire-stages.php" class="bouton-side" id="Stages">
                         <div class="content-side">
                             <i class="fas fa-briefcase" style="font-size: 1.3em;"></i> <span>Liste des Stages</span>
                         </div>
                     </a>
                     
-                    <a href="tuteur.php" class="bouton-side" id="Tuteur">
+                    <a href="secretaire-tuteur.php" class="bouton-side" id="Tuteur">
                         <div class="content-side">
                             <i class="fas fa-tasks" style="font-size: 1.3em;"></i> <span>Assignation Tuteur</span>
                         </div>
                     </a>
-                    <a href="tuteurs-entreprise.php" class="bouton-side" id="TuteursEntreprise">
+                    <a href="secretaire-tuteurs-entreprise.php" class="bouton-side" id="TuteursEntreprise">
                         <div class="content-side">
                             <i class="fas fa-building" style="font-size: 1.3em;"></i> <span>Tuteurs Entreprise</span>
                         </div>
                     </a>
-                    <a href="tuteurs-pedagogiques.php" class="bouton-side" id="TuteursPedagogiques">
+                    <a href="secretaire-tuteurs-pedagogiques.php" class="bouton-side" id="TuteursPedagogiques">
                         <div class="content-side">
                             <i class="fas fa-university" style="font-size: 1.3em;"></i> <span>Tuteurs Pédagogiques</span>
                         </div>

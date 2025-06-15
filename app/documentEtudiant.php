@@ -41,7 +41,11 @@ if (isset($_GET['id'])) {
                         SELECT 1 
                         FROM action a 
                         WHERE a.Id_Etudiant = u.Id 
+<<<<<<< HEAD
                         AND a.Id_TypeAction = 7 -- Type de bordereau
+=======
+                        AND a.id_type_action = 7 -- Type de bordereau
+>>>>>>> origin/main
                     ) THEN "En attente"
                     ELSE "Tâche complète"
                 END AS BordereauEtat,
@@ -50,7 +54,11 @@ if (isset($_GET['id'])) {
                         SELECT 1 
                         FROM action a 
                         WHERE a.Id_Etudiant = u.Id 
+<<<<<<< HEAD
                         AND a.Id_TypeAction = 9 -- Type de convention
+=======
+                        AND a.id_type_action = 9 -- Type de convention
+>>>>>>> origin/main
                     ) THEN "En attente"
                     ELSE "Tâche complète"
                 END AS ConventionEtat,
@@ -59,7 +67,11 @@ if (isset($_GET['id'])) {
                         SELECT 1 
                         FROM action a 
                         WHERE a.Id_Etudiant = u.Id 
+<<<<<<< HEAD
                         AND a.Id_TypeAction = 6 -- Type de rapport
+=======
+                        AND a.id_type_action = 6 -- Type de rapport
+>>>>>>> origin/main
                     ) THEN "En attente"
                     ELSE "Tâche complète"
                 END AS RapportEtat

@@ -6,7 +6,11 @@ body {
 .sidenav {
     height: 100vh;
     overflow: hidden;
+<<<<<<< HEAD
     width: 250px;
+=======
+    width: 225px;
+>>>>>>> origin/main
     position: fixed;
     top: 0;
     left: 0;
@@ -42,7 +46,11 @@ body {
 .bouton-side {
     margin: 1em;
     text-decoration: none;
+<<<<<<< HEAD
     font-size: 16px !important;
+=======
+    font-size: 15.5px !important;
+>>>>>>> origin/main
     font-weight: bold;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-decoration: none;
@@ -52,6 +60,10 @@ body {
     display: block;
     width: 100%;
     box-sizing: border-box;
+<<<<<<< HEAD
+=======
+    margin-left: 0.5em;
+>>>>>>> origin/main
 }
 
 /*

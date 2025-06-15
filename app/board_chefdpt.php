@@ -1,3 +1,16 @@
+<<<<<<< HEAD
+=======
+<?php
+
+
+
+    require('./controller/sessionController.php');
+    require_once(__DIR__ ."/component/header.php");
+    require_once(__DIR__ ."/component/aside.php") ;
+    require_once(__DIR__ ."/component/section.php") ;
+?>
+
+>>>>>>> origin/main
 <!DOCTYPE html>
 <html lang="fr">
 <head>
