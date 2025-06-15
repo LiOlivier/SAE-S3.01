@@ -30,11 +30,7 @@ body {
 }
 
 .depot-nom {
-<<<<<<< HEAD
-    font-size: 28px;
-=======
     font-size: 24px;
->>>>>>> origin/main
 }
 
 .etat {
@@ -73,8 +69,6 @@ body {
 }
 button{
     cursor: pointer;
-<<<<<<< HEAD
-=======
 }
 .message_valider{
     font-size: 18px;
@@ -82,5 +76,4 @@ button{
     position: relative;
     top: 1em;
     text-align: center;
->>>>>>> origin/main
 }

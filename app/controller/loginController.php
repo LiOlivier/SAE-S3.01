@@ -1,11 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
-<<<<<<< HEAD
-require "../model/utilisateur.php";
-=======
 require "models/utilisateur.php";
->>>>>>> origin/main
 $user = new Utilisateur();
 
 if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
@@ -45,11 +41,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
                 exit();
             } 
             elseif ($_SESSION['user']['role'] == "secretaire") {
-<<<<<<< HEAD
-                header('Location: dashboard.php');
-=======
                 header('Location: secretaire-dashboard.php');
->>>>>>> origin/main
                 exit();
             }
             
