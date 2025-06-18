@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . "/models/TuteurEntrepriseModel.php");
+require_once(__DIR__ . "/../models/TuteurEntrepriseModel.php");
 ?>
 
 <!DOCTYPE html>
@@ -9,18 +9,18 @@ require_once(__DIR__ . "/models/TuteurEntrepriseModel.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de Bord</title>
-    <link rel="stylesheet" href="../CSS/aside.css">
-    <link rel="stylesheet" href="../CSS/header.css">
-    <link rel="stylesheet" href="../CSS/TBD_entreprise.css">
-    <link rel="stylesheet" href="../CSS/card_entreprise.css">
+    <link rel="stylesheet" href="../../CSS/aside.css">
+    <link rel="stylesheet" href="../../CSS/header.css">
+    <link rel="stylesheet" href="../../CSS/TBD_entreprise.css">
+    <link rel="stylesheet" href="../../CSS/card_entreprise.css">
+    <link rel="stylesheet" href="../../CSS/notification.css">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
         integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
     <script src="TBD_eleve.html"></script>
 </head>
-<?php require_once(__DIR__ . "//component/header.php");
-require_once(__DIR__ . "//component/aside_entreprise.php");
-require_once(__DIR__ . "//controller/info_card_entrepriseController.php");
+<?php require_once(__DIR__ . "/../component/header.php");
+require_once(__DIR__ . "/../component/aside_entreprise.php");
 ?>
 <style>
 
@@ -31,7 +31,7 @@ require_once(__DIR__ . "//controller/info_card_entrepriseController.php");
         
         <h1 id="titre">Dépot de document</h1>
 
-        <?php require_once("component/card_depot_entreprise.php"); ?>
+        
        
         <?php require "component/notification.php" ?>
     </section>

@@ -1,6 +1,6 @@
 <?php
-require('controller/boardController_entreprise.php');
-require_once(__DIR__ . "/models/TuteurEntrepriseModel.php");
+require(__DIR__ . '/../controller/boardController_entreprise.php');
+require_once(__DIR__ . '/../models/TuteurEntrepriseModel.php');
 ?>
 
 <!DOCTYPE html>
@@ -10,17 +10,18 @@ require_once(__DIR__ . "/models/TuteurEntrepriseModel.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de Bord</title>
-    <link rel="stylesheet" href="../CSS/aside.css">
-    <link rel="stylesheet" href="../CSS/header.css">
-    <link rel="stylesheet" href="../CSS/TBD_entreprise.css">
-    <link rel="stylesheet" href="../CSS/card_entreprise.css">
+    <link rel="stylesheet" href="../../CSS/aside.css">
+    <link rel="stylesheet" href="../../CSS/header.css">
+    <link rel="stylesheet" href="../../CSS/TBD_entreprise.css">
+    <link rel="stylesheet" href="../../CSS/card_entreprise.css">
+    <link rel="stylesheet" href="../../CSS/notification.css">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
         integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
-    <script src="TBD_eleve.html"></script>
+    <script src="../JS/TBD_eleve.js"></script>
 </head>
-<?php require_once(__DIR__ . "//component/header.php");
-require_once(__DIR__ . "//component/aside_entreprise.php");
+<?php require_once(__DIR__ . '/../component/header.php');
+require_once(__DIR__ . '/../component/aside_entreprise.php');
 ?>
 <style>
 
@@ -63,15 +64,8 @@ require_once(__DIR__ . "//component/aside_entreprise.php");
                 </div>
             </div>
         <?php endforeach; ?>
-        <?php require "component/notification.php" ?>
+        <?php require(__DIR__ . '/../component/notification.php'); ?>
     </section>
-    
-
-    
-
-
-        
-    
 </body>
 
 </html>
@@ -80,12 +74,12 @@ require_once(__DIR__ . "//component/aside_entreprise.php");
     // script pour redireger vers la page de depot de document
     document.querySelectorAll('.tache').forEach(button => {
         button.addEventListener('click', function() {
-            window.location.href = "depot_entreprise.php";
+            window.location.href = "../views/depot_entreprise.php";
         });
     });
     document.querySelectorAll('#ouvrir').forEach(button => {
         button.addEventListener('click', function() {
-            window.location.href = "depot_entreprise.php";
+            window.location.href = "../views/depot_entreprise.php";
         });
     });
 

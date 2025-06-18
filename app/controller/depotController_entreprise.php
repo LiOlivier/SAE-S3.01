@@ -3,12 +3,13 @@ session_start();
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
-require_once(__DIR__ . "/../../model/utilisateur.php");
-require_once(__DIR__ . "/../../model/typeAction.php");
+require_once(__DIR__ . "/../models/utilisateur.php");
 require_once(__DIR__ . "/../models/TuteurEntrepriseModel.php");
+require_once(__DIR__ . "/../models/ActionModel.php");
+require_once(__DIR__ . "/../models/TypeAction.php");
 
 // Redirection si non connecté
-if (!isset($_SESSION['user'])) {
+if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 'tuteur_entreprise') {
     header('Location: login.php');
     exit();
 }
@@ -16,19 +17,11 @@ if (!isset($_SESSION['user'])) {
 // Récupération de l'ID du tuteur entreprise connecté
 $idTuteurEntreprise = $_SESSION['user']['id']; 
 
-// Instanciation du modèle
-$model = TuteurEntrepriseModel::getModel();
 
-$listeEtudiants = $model->getEtudiantsByTuteurEntreprise($idTuteurEntreprise);
+$actionModel = new ActionModel();
+$typeActions = ['Convention de stage', 'Rapport de stage'];
 
-// TypeAction : 6 = Rapport, 9 = Convention
-$documentsEtudiants = [];
+$etudiantsActions = $actionModel->getActionsParEtudiantPourTuteur($idTuteurEntreprise, $typeActions);
 
-foreach ($listeEtudiants as $etudiant) {
-    $idEtu = $etudiant['id'];
-    $documentsEtudiants[$idEtu]['convention'] = $model->getDocumentByEtudiantAndType($idEtu, 9);
-    $documentsEtudiants[$idEtu]['rapport'] = $model->getDocumentByEtudiantAndType($idEtu, 6);
-}
 
 ?>
-
