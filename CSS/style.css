@@ -26,7 +26,7 @@ body {
 .logo {
     position: absolute;
     top: 30px;
-    right: -5%;
+    left: 50%;
     transform: translateX(-50%);
     z-index: 10;
 }
@@ -44,6 +44,7 @@ nav.haut {
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 1;
 }
 
 ul.navbar {
@@ -121,10 +122,12 @@ ul.navbar {
 }
 
 .champ-input {
-    height: 130px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    text-align: left;
+    height: 5em;
+  margin-bottom: 1em;
+  margin-top: -0.2em;
+  text-align: left;
+  top: 4em;
+  position: relative;
 }
 
 .champ-input label {
@@ -196,8 +199,9 @@ input[type="password"]:focus {
     height: 50px;
     box-sizing: border-box;
     position: absolute;
-    bottom: 90px;
+    bottom: 70px;
     left: 52px;
+    z-index: 0;
 }
 
 .but_login:hover {

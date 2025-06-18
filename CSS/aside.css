@@ -6,7 +6,7 @@ body {
 .sidenav {
     height: 100vh;
     overflow: hidden;
-    width: 250px;
+    width: 225px;
     position: fixed;
     top: 0;
     left: 0;
@@ -42,7 +42,7 @@ body {
 .bouton-side {
     margin: 1em;
     text-decoration: none;
-    font-size: 16px !important;
+    font-size: 15.5px !important;
     font-weight: bold;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-decoration: none;
@@ -52,14 +52,16 @@ body {
     display: block;
     width: 100%;
     box-sizing: border-box;
+    margin-left: 0.5em;
 }
 
+/*
 .bouton-side.active,
 a.bouton-side:hover {
     background-color: rgba(128, 128, 128, 0.3);
     width: 90%;
 }
-
+*/
 
 
 #Deconecter {
@@ -135,4 +137,32 @@ a.bouton-side:hover {
     justify-content: center;
     align-items: center;
     z-index: 3;
+}
+
+
+.sidenav .aside-ul li {
+    position: relative;
+    overflow: hidden;
+}
+
+.sidenav .aside-ul li:hover {
+    background-color: rgba(128, 128, 128, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+
+.sidenav .aside-ul li a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0.5em;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: #00244d;
+    transition: none; 
+}
+
+
+.sidenav .aside-ul li:hover a {
+    color: #00244d; 
 }

@@ -236,7 +236,6 @@ body {
 #ouvrir {
     background-color: #00244d;
     color: #fff;
-    top: -1em;
     border-style: none;
     position: relative;
     font-size: 17px;
@@ -266,8 +265,9 @@ body {
     font-size: 19px;
     left: 1em;
     width: 13em;
-    height: 2em;
+    height: 3em;
     border-radius: 10px;
+    margin-bottom: 1em;
 }
 
 .taches {
@@ -286,4 +286,15 @@ body {
 
 button {
     cursor: pointer;
+}
+
+.nom-titre {
+    margin: 0 0 0 0;
+    margin-bottom: -1em;
+    font-size: 14px;
+    color: gray;
+    padding: 0px;
+    top: -1.7em;
+    left: 1.7em;
+    position: relative;
 }

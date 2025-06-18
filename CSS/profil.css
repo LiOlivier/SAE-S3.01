@@ -110,6 +110,7 @@
     margin-top: 5px;
 }
 
+<<<<<<< HEAD
 /* Assurez-vous que la largeur des champs "Formation" et "Semestre" est la même que celle du bouton "Enregistrer" */
 #formation, #semestre {
     width: 100%; /* Largeur à 100% */
@@ -120,3 +121,14 @@
     border-radius: 4px; /* Coins arrondis */
     box-sizing: border-box; /* Inclure la bordure et le padding dans la largeur totale */
 }
+=======
+#formation, #semestre {
+    width: 100%; 
+    max-width: 900px;
+    padding: 12px; 
+    font-size: 16px; 
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; 
+}
+>>>>>>> stage

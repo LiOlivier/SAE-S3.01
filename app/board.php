@@ -1,3 +1,8 @@
+<?php
+require "./controller/boardController.php";
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -9,9 +14,10 @@
     <link rel="stylesheet" href="../CSS/header.css">
     <link rel="stylesheet" href="../CSS/card.css">
     <link rel="stylesheet" href="../CSS/TBD.css">
+    <link rel="stylesheet" href="../CSS/t.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
         integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
-    <script src="TBD_eleve.html"></script>
+    
 </head>
 <?php require_once(__DIR__ . "//component/header.php");
 require_once(__DIR__ . "//component/aside.php");
@@ -29,91 +35,80 @@ require_once(__DIR__ . "//component/aside.php");
 
         <div class="container">
 
-
             <div class="left-tableau">
                 <div style="display: block;">
                     <div class="cards">
                         <h1>Contact : </h1>
-                        <div class="card">
-                            <div class="container">
-                                <div class="left">
-                                    <div style="display: block;">
-                                        <h3 class="nom">Tuteur pédagogique</h3>
-
-                                        <button class="contacter copier-email">Contact</button>
-                                        <input type="hidden" value="email1@exemple.com">
-                                        <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
+                        <?php if ($enseignants) {
+                            foreach ($enseignants as $enseignant){ ?>
+                            <div class="card">
+                                <div class="container">
+                                    <div class="left">
+                                        <div style="display: block;">
+                                            <h3 class="nom"><?= $enseignant["nom"] ?> <?= $enseignant["prenom"] ?></h3> <!-- <-- ici on utilie du php pour recuperer le renom de l'utilisateur  -->
+                                            <h3 class="nom-titre">Tuteur pedagogique</h3>
+                                            <button class="contacter copier-email">copier l'email</button>
+                                            <input type="hidden" value="<?= $enseignant["email"] ?>">
+                                            <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-                        </div>
-                        <div class="card">
-                            <div class="container">
-                                <div class="left">
-                                    <div style="display: block;">
-                                        <h3 class="nom">Tuteur Entreprise</h3>
-                                        <button class="contacter copier-email">Contact</button>
-                                        <input type="hidden" value="tuteur@gmail.com">
-                                        <p id="message" style="color: green; font-size: 14px; display: none;">Email copié dans le presse-papier !</p>
+                        <?php }} ?>
+                        <?php if ($tuteurs) { 
+                            foreach($tuteurs as $tuteur) {
+                           ?>
+                            <div class="card">
+                                <div class="container">
+                                    <div class="left">
+                                        <div style="display: block;">
+                                            <h3 class="nom"><?= $tuteur["nom"] ?> <?= $tuteur["prenom"] ?></h3>
+                                            <h3 class="nom-titre">Tuteur entreprise</h3>
+                                            <button class="contacter copier-email">copier l'email</button>
+                                            <input type="hidden" value="<?= $tuteur["email"] ?>">
+                                            <p id="message" style="color: green; font-size: 14px; display: none;">Email copié dans le presse-papier !</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="container">
-                                <div class="left">
-                                    <div style="display: block;">
-                                        <h3 class="nom">Tuteur Entreprise</h3>
-                                        <button class="contacter copier-email">Contact</button>
-                                        <input type="hidden" value="tutdeeee@gmail.com">
-                                        <p id="message" style="color: green; font-size: 14px; display: none;">Email copié dans le presse-papier !</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            </div> 
+                        <?php }} ?>
                     </div>
 
 
                     <div class="cards">
-                        <h1>À venir :</h1>
+                        <h1>A venir :</h1>
+                        <?php if ($actions) {  
+                            foreach ($actions as $action){?>
                         <div class="card">
                             <div class="container">
                                 <div class="left">
                                     <div style="display: block;">
-                                        <h3 class="nom">Rapport de stage</h3>
-                                        <h3 class="date-limite">Date limite 29/01</h3>
-                                        <button id="ouvrir">Ouvrir</button>
+                                        <h3 class="nom"><?= $action['libelle']?></h3>
+                                        <h3 class="date-limite"><?= $action['delai_limite']?></h3>
+                                        <button id="ouvrir">ouvrir</button>
                                         <input type="hidden" value="id">
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="card">
-                            <div class="container">
-                                <div class="left">
-                                    <div style="display: block;">
-                                        <h3 class="nom">Convention de stage</h3>
-                                        <h3 class="date-limite">Date limite 29/01</h3>
-                                        <button id="ouvrir">Ouvrir</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php }}?>
                     </div>
                 </div>
             </div>
 
 
-            <div class="right-tableau">
+            <div class="right-tableau"></div>
 
                 <!-- Interface tuteur pedagogique -->
                 <div class="card taches">
                     <div class="container">
                         <div style="display: block;">
-                            <h3 class="nom">Document a déposer</h3>
-                            <button class="tache">Bordereau de stage <i class="fas fa-chevron-right fa-sm" style="color: #c0c0c0; position: relative; left:1em;"></i></button>
+                            <h3 class="nom">Document a deposer</h3>
+                            <?php if ($actions) { 
+                            foreach($actions as $action) {
+                           ?>
+                            <button class="tache"><?= $action["libelle"]?> <i class="fas fa-chevron-right fa-sm" style="color: #c0c0c0; position: relative; left:1em;"></i></button>
+                            <?php }} ?>
                         </div>
                     </div>
 
