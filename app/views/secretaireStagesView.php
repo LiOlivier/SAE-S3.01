@@ -64,7 +64,7 @@ $title = "Liste des Stages - Responsable de Stage";
             <!-- Stages Table -->
             <?php if (!empty($stages)): ?>
                 <div class="table-wrapper">
-                    <table>
+                    <table class="responsive-table">
                         <thead>
                             <tr>
                                 <th>
