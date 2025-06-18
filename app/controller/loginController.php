@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
-require "models/utilisateur.php";
+require_once __DIR__ . '/../models/utilisateur.php';
 $user = new Utilisateur();
 
 if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
@@ -22,6 +22,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
 
             $_SESSION['user'] = [
                 'id' => $user['id'],
+                'login' => $user['login'], 
                 'nom' => $user['nom'],
                 'prenom' => $user['prenom'],
                 'email' => $user['email'],

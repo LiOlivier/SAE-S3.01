@@ -1,10 +1,3 @@
-<?php
-require_once('./controller/sessionController.php');
-require_once(__DIR__ . "//component/header.php");
-require_once(__DIR__ . "//component/aside.php");
-require_once("controller/updateController.php");
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -21,6 +14,9 @@ require_once("controller/updateController.php");
 </head>
 
 <body>
+    <?php require_once(__DIR__ . '/../../component/header.php'); ?>
+    <?php require_once(__DIR__ . '/../../component/aside.php'); ?>
+
     <section id="one">
         <div class="title-section">
             <h1>Modifier le mot de passe</h1>
@@ -73,15 +69,14 @@ require_once("controller/updateController.php");
             </form>
         </div>
 
-        <!-- Affichage des messages d'erreur ou de succès -->
-        <?php if($error_message_info || $error_message_mdp): ?>
+        <?php if ($error_message_info || $error_message_mdp): ?>
             <div class="error-message" style="color: red;">
-                <?php echo $error_message_info; ?>
-                <?php echo $error_message_mdp; ?>
+                <?= $error_message_info ?>
+                <?= $error_message_mdp ?>
             </div>
-        <?php elseif($success_message): ?>
+        <?php elseif ($success_message): ?>
             <div class="success-message" style="color: green;">
-                <?php echo $success_message; ?>
+                <?= $success_message ?>
             </div>
         <?php endif; ?>
     </section>

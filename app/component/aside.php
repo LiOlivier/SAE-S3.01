@@ -111,7 +111,7 @@
             <li>
 
             <li>
-                <a href="profil.php" class="bouton-side" id="Profil">
+                <a href="index.php?page=profil" class="bouton-side" id="Profil">
                     <div class="content-side">
                         <i class="fas fa-users" style="font-size: 1.3em;"></i><span>Profil</span>
                     </div>
