@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
-require "../model/utilisateur.php";
+require "models/utilisateur.php";
 $user = new Utilisateur();
 
 if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
@@ -37,7 +37,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
                 header('Location: dpt.php');
                 exit();
             } elseif ($_SESSION['user']['role'] == "tuteur") {
-                header('Location: board_entreprise.php'); 
+                header('Location: board_tut_entreprise.php'); 
                 exit();
             } 
             elseif ($_SESSION['user']['role'] == "secretaire") {

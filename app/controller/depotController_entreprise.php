@@ -2,9 +2,9 @@
 session_start();
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
-require_once(__DIR__ . "/../models/utilisateur.php");
-require_once(__DIR__ . "/../models/typeAction.php");
 
+require_once(__DIR__ . "/../../model/utilisateur.php");
+require_once(__DIR__ . "/../../model/typeAction.php");
 require_once(__DIR__ . "/../models/TuteurEntrepriseModel.php");
 
 // Redirection si non connecté
@@ -19,11 +19,16 @@ $idTuteurEntreprise = $_SESSION['user']['id'];
 // Instanciation du modèle
 $model = TuteurEntrepriseModel::getModel();
 
-// Récupération des tuteurs pédagogiques liés
-$listePedagogiques = $model->getTuteursPedagogiquesByTuteurEntreprise($idTuteurEntreprise);
-
-// Récupération des étudiants liés
 $listeEtudiants = $model->getEtudiantsByTuteurEntreprise($idTuteurEntreprise);
+
+// TypeAction : 6 = Rapport, 9 = Convention
+$documentsEtudiants = [];
+
+foreach ($listeEtudiants as $etudiant) {
+    $idEtu = $etudiant['id'];
+    $documentsEtudiants[$idEtu]['convention'] = $model->getDocumentByEtudiantAndType($idEtu, 9);
+    $documentsEtudiants[$idEtu]['rapport'] = $model->getDocumentByEtudiantAndType($idEtu, 6);
+}
 
 ?>
 

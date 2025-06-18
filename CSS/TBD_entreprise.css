@@ -257,8 +257,10 @@ body {
 }
 
 #titre {
+
     position: relative;
-    top: -1em;
+    top: -0.2em;
+    font-size: 50px;
 }
 
 #ouvrir {
