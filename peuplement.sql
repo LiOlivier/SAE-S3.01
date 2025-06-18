@@ -1,4 +1,4 @@
-INSERT INTO Utilisateur(nom,prenom,email,telephone,login,motdepasse) VALUES
+INSERT INTO Utilisateur(nom,prenom,email,telephone,login,password) VALUES
   ('Essafa','Yassine','yassineessafa49@gmail.com','0102030405','12302332','090709756JF'),
   ('Vuong','Denis','vuong.denis.p@gmail.com','0607080910','48944444','gb59etffffre'),
   ('Rattina','Bharani','bharanirattina@gmail.com','1009080706','4895615649','sdfghrYUGGrhs'),

@@ -67,9 +67,10 @@
 }
 
 .card {
-    background-color: #ffffff;
+    position: relative;
+    background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 25em;
+    width: 25em;    
     height: 8.2em;
     border-radius: 10px;
     margin-top: 1em;
@@ -79,3 +80,5 @@
     margin-right: 20px;
     overflow: hidden; /* Empêche le débordement du contenu */
 }
+
+
