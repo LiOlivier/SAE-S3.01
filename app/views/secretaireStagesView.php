@@ -1,45 +1,109 @@
-<?php
-$title = "Liste des Stages - Responsable de Stage";
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= htmlspecialchars($title) ?></title>
+    <title>Liste des stages - Responsable de stage</title>
     <link rel="stylesheet" href="../CSS/aside.css">
     <link rel="stylesheet" href="../CSS/header.css">
     <link rel="stylesheet" href="../CSS/secretaire.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
         integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+    <style>
+        .form-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        .form-button {
+            align-self: flex-end;
+        }
+        th, th a, th a:hover, th a:visited {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        th.sortable {
+            cursor: pointer;
+        }
+        th.sortable:hover {
+            background-color: #004080;
+        }
+        .common-pagination {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .common-pagination button {
+            padding: 8px 12px;
+            background-color: #003366;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+        .common-pagination button:hover:not(:disabled) {
+            background-color: #005599;
+        }
+        .common-pagination button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .common-pagination select {
+            width: auto;
+            min-width: 80px;
+            height: 34px;
+            padding: 8px;
+            border: 1px solid #003366;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body class="body">
     <?php 
         require_once(__DIR__ . "/../component/header.php");
         require_once(__DIR__ . "/../component/aside.php"); 
+        // Default pagination values to prevent undefined errors
+        $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
+        $rowsPerPage = isset($_GET['rows']) && in_array((int)$_GET['rows'], [5, 10, 25, 50]) ? (int)$_GET['rows'] : 10;
+        $totalPages = isset($totalPages) ? max(1, (int)$totalPages) : 1;
     ?>
 
     <div id="one">
         <div class="cards">
-            <h1 id="titre">Liste des Stages</h1>
+            <h1 id="titre">Liste des stages</h1>
 
             <!-- Filter Form -->
             <form method="GET" action="">
                 <div class="form-section">
-                    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                        <div style="flex: 1; min-width: 200px;">
+                    <div class="form-container">
+                        <div class="form-group">
                             <label for="department">Département</label>
                             <select name="department" id="department">
                                 <option value="">Tous les départements</option>
-                                <?php foreach ($departments as $dept): ?>
-                                    <option value="<?= htmlspecialchars($dept['id_departement']) ?>" <?= isset($_GET['department']) && $_GET['department'] == $dept['id_departement'] ? 'selected' : '' ?>>
-                                        <?= htmlspecialchars($dept['libelle']) ?>
-                                    </option>
-                                <?php endforeach; ?>
+                                <?php 
+                                if (is_array($departments) && !empty($departments)) {
+                                    foreach ($departments as $dept) {
+                                        if (isset($dept['id_department']) && isset($dept['libelle'])) {
+                                            echo '<option value="' . htmlspecialchars($dept['id_department']) . '" ' . 
+                                                 (isset($_GET['department']) && $_GET['department'] == $dept['id_department'] ? 'selected' : '') . '>' .
+                                                 htmlspecialchars($dept['libelle']) . '</option>';
+                                        }
+                                    }
+                                }
+                                ?>
                             </select>
                         </div>
-                        <div style="flex: 1; min-width: 200px;">
+                        <div class="form-group">
                             <label for="year">Année</label>
                             <select name="year" id="year">
                                 <option value="">Toutes les années</option>
@@ -50,11 +114,11 @@ $title = "Liste des Stages - Responsable de Stage";
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <div style="flex: 1; min-width: 200px;">
+                        <div class="form-group">
                             <label for="search">Rechercher</label>
                             <input type="text" name="search" id="search" value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>" placeholder="Nom étudiant/ville entreprise">
                         </div>
-                        <div style="align-self: flex-end;">
+                        <div class="form-button">
                             <button type="submit"><i class="fas fa-filter"></i> Filtrer</button>
                         </div>
                     </div>
@@ -64,54 +128,34 @@ $title = "Liste des Stages - Responsable de Stage";
             <!-- Stages Table -->
             <?php if (!empty($stages)): ?>
                 <div class="table-wrapper">
-                    <table class="responsive-table">
+                    <table class="responsive-table" id="stagesTable">
                         <thead>
                             <tr>
-                                <th>
-                                    <a href="?sort=student_name&order=<?= isset($_GET['sort']) && $_GET['sort'] == 'student_name' && $_GET['order'] == 'ASC' ? 'DESC' : 'ASC' ?>&department=<?= isset($_GET['department']) ? urlencode($_GET['department']) : '' ?>&year=<?= isset($_GET['year']) ? urlencode($_GET['year']) : '' ?>&search=<?= isset($_GET['search']) ? urlencode($_GET['search']) : '' ?>">
-                                        Étudiant <i class="fas fa-sort"></i>
-                                    </a>
-                                </th>
-                                <th>
-                                    <a href="?sort=company_name&order=<?= isset($_GET['sort']) && $_GET['sort'] == 'company_name' && $_GET['order'] == 'ASC' ? 'DESC' : 'ASC' ?>&department=<?= isset($_GET['department']) ? urlencode($_GET['department']) : '' ?>&year=<?= isset($_GET['year']) ? urlencode($_GET['year']) : '' ?>&search=<?= isset($_GET['search']) ? urlencode($_GET['search']) : '' ?>">
-                                        Ville Entreprise <i class="fas fa-sort"></i>
-                                    </a>
-                                </th>
-                                <th>Tuteur Pédagogique</th>
-                                <th>
-                                    <a href="?sort=date_debut&order=<?= isset($_GET['sort']) && $_GET['sort'] == 'date_debut' && $_GET['order'] == 'ASC' ? 'DESC' : 'ASC' ?>&department=<?= isset($_GET['department']) ? urlencode($_GET['department']) : '' ?>&year=<?= isset($_GET['year']) ? urlencode($_GET['year']) : '' ?>&search=<?= isset($_GET['search']) ? urlencode($_GET['search']) : '' ?>">
-                                        Date de Début <i class="fas fa-sort"></i>
-                                    </a>
-                                </th>
-                                <th>
-                                    <a href="?sort=date_fin&order=<?= isset($_GET['sort']) && $_GET['sort'] == 'date_fin' && $_GET['order'] == 'ASC' ? 'DESC' : 'ASC' ?>&department=<?= isset($_GET['department']) ? urlencode($_GET['department']) : '' ?>&year=<?= isset($_GET['year']) ? urlencode($_GET['year']) : '' ?>&search=<?= isset($_GET['search']) ? urlencode($_GET['search']) : '' ?>">
-                                        Date de Fin <i class="fas fa-sort"></i>
-                                    </a>
-                                </th>
+                                <th class="sortable" onclick="sortTable('student_name')">Étudiant ↑</th>
+                                <th class="sortable" onclick="sortTable('company_name')">Ville entreprise</th>
+                                <th>Tuteur pédagogique</th>
+                                <th class="sortable" onclick="sortTable('date_debut')">Date de début</th>
+                                <th class="sortable" onclick="sortTable('date_fin')">Date de fin</th>
                                 <th>Mission</th>
-                                <th>Date de Soutenance</th>
+                                <th>Date de soutenance</th>
                                 <th>Salle</th>
-                                <th>Second Jury</th>
-                                <th>
-                                    <a href="?sort=overdue_actions&order=<?= isset($_GET['sort']) && $_GET['sort'] == 'overdue_actions' && $_GET['order'] == 'ASC' ? 'DESC' : 'ASC' ?>&department=<?= isset($_GET['department']) ? urlencode($_GET['department']) : '' ?>&year=<?= isset($_GET['year']) ? urlencode($_GET['year']) : '' ?>&search=<?= isset($_GET['search']) ? urlencode($_GET['search']) : '' ?>">
-                                        Actions en Retard <i class="fas fa-sort"></i>
-                                    </a>
-                                </th>
+                                <th>Second jury</th>
+                                <th class="sortable" onclick="sortTable('overdue_actions')">Actions en retard</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($stages as $stage): ?>
                                 <tr>
-                                    <td><?= htmlspecialchars($stage['student_name']) ?></td>
-                                    <td><?= htmlspecialchars($stage['company_name'] ?? 'N/A') ?></td>
-                                    <td><?= htmlspecialchars($stage['academic_tutor_name'] ?? 'N/A') ?></td>
-                                    <td><?= htmlspecialchars($stage['date_debut']) ?></td>
-                                    <td><?= htmlspecialchars($stage['date_fin']) ?></td>
-                                    <td><?= htmlspecialchars($stage['mission']) ?></td>
-                                    <td><?= htmlspecialchars($stage['date_soutenance'] ?? 'Non planifiée') ?></td>
-                                    <td><?= htmlspecialchars($stage['salle_soutenance'] ?? 'N/A') ?></td>
-                                    <td><?= htmlspecialchars($stage['second_jury_name'] ?? 'Non assigné') ?></td>
-                                    <td style="<?= $stage['overdue_actions'] > 0 ? 'color: #ff0000; font-weight: bold;' : '' ?>">
+                                    <td data-column="student_name"><?= htmlspecialchars($stage['student_name']) ?></td>
+                                    <td data-column="company_name"><?= htmlspecialchars($stage['company_name'] ?? 'N/A') ?></td>
+                                    <td data-column="academic_tutor_name"><?= htmlspecialchars($stage['academic_tutor_name'] ?? 'N/A') ?></td>
+                                    <td data-column="date_debut"><?= htmlspecialchars($stage['date_debut']) ?></td>
+                                    <td data-column="date_fin"><?= htmlspecialchars($stage['date_fin']) ?></td>
+                                    <td data-column="mission"><?= htmlspecialchars($stage['mission']) ?></td>
+                                    <td data-column="date_soutenance"><?= htmlspecialchars($stage['date_soutenance'] ?? 'Non planifiée') ?></td>
+                                    <td data-column="salle_soutenance"><?= htmlspecialchars($stage['salle_soutenance'] ?? 'N/A') ?></td>
+                                    <td data-column="second_jury_name"><?= htmlspecialchars($stage['second_jury_name'] ?? 'Non assigné') ?></td>
+                                    <td data-column="overdue_actions" style="<?= $stage['overdue_actions'] > 0 ? 'color: #ff0000; font-weight: bold;' : '' ?>">
                                         <?= htmlspecialchars($stage['overdue_actions']) ?>
                                     </td>
                                 </tr>
@@ -119,6 +163,69 @@ $title = "Liste des Stages - Responsable de Stage";
                         </tbody>
                     </table>
                 </div>
+                <!-- Pagination -->
+                <div class="common-pagination">
+                    <button onclick="changePage(<?php echo $page - 1; ?>)" <?php echo $page <= 1 ? 'disabled' : ''; ?>>Précédent</button>
+                    <span id="page-info">Page <?php echo $page; ?> sur <?php echo $totalPages; ?></span>
+                    <button onclick="changePage(<?php echo $page + 1; ?>)" <?php echo $page >= $totalPages ? 'disabled' : ''; ?>>Suivant</button>
+                    <select id="rowsPerPage" onchange="changeRowsPerPage()">
+                        <?php foreach ([5, 10, 25, 50] as $rows): ?>
+                            <option value="<?php echo $rows; ?>" <?php echo $rowsPerPage == $rows ? 'selected' : ''; ?>>
+                                <?php echo $rows; ?> par page
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <script>
+                    function sortTable(column) {
+                        const table = document.getElementById('stagesTable');
+                        const tbody = table.querySelector('tbody');
+                        const rows = Array.from(tbody.querySelectorAll('tr'));
+                        const header = table.querySelector(`th[onclick="sortTable('${column}')"]`);
+                        const isAscending = header.textContent.includes('↑');
+                        const sortOrder = isAscending ? -1 : 1;
+
+                        table.querySelectorAll('th.sortable').forEach(th => {
+                            const text = th.textContent.replace(/[↑↓]/g, '').trim();
+                            th.textContent = text + (th === header ? (isAscending ? ' ↓' : ' ↑') : '');
+                        });
+
+                        rows.sort((a, b) => {
+                            let aValue = a.querySelector(`td[data-column="${column}"]`).textContent.trim();
+                            let bValue = b.querySelector(`td[data-column="${column}"]`).textContent.trim();
+
+                            if (column === 'overdue_actions') {
+                                aValue = parseInt(aValue) || 0;
+                                bValue = parseInt(bValue) || 0;
+                                return (aValue - bValue) * sortOrder;
+                            }
+
+                            if (column === 'date_debut' || column === 'date_fin') {
+                                aValue = new Date(aValue);
+                                bValue = new Date(bValue);
+                                return (aValue - bValue) * sortOrder;
+                            }
+
+                            return aValue.localeCompare(bValue) * sortOrder;
+                        });
+
+                        tbody.innerHTML = '';
+                        rows.forEach(row => tbody.appendChild(row));
+                    }
+
+                    function changePage(page) {
+                        const params = new URLSearchParams(window.location.search);
+                        params.set('page', Math.max(1, page));
+                        window.location.href = '?' + params.toString();
+                    }
+
+                    function changeRowsPerPage() {
+                        const params = new URLSearchParams(window.location.search);
+                        params.set('rows', document.getElementById('rowsPerPage').value);
+                        params.set('page', 1);
+                        window.location.href = '?' + params.toString();
+                    }
+                </script>
             <?php else: ?>
                 <p style="color: #ff0000;">Aucun stage trouvé.</p>
             <?php endif; ?>
