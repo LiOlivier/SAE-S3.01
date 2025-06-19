@@ -28,16 +28,10 @@
                     <label for="enseignant">Sélectionner un enseignant :</label>
                     <select id="enseignant" name="enseignant">
                         <?php
-<<<<<<< HEAD
-                        require_once(__DIR__ . '/../config/database.php'); // Inclure database.php
-                        try {
-                            $db = Database::getConnexion(); // Utiliser la connexion centralisée
-=======
                         require "dbdata.php"; // Include your database credentials
                         try {
                             $db = new PDO($dsn, $login, $mdp);
                             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
->>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
 
                             $query = 'SELECT Utilisateur.Id, Utilisateur.nom, Utilisateur.prenom FROM Enseignant JOIN Utilisateur ON Enseignant.Id_Enseignant = Utilisateur.Id';
                             $stmt = $db->query($query);
@@ -80,12 +74,8 @@
                     <select id="entreprise" name="entreprise">
                         <?php
                         try {
-<<<<<<< HEAD
-                            $db = Database::getConnexion(); // Utiliser la connexion centralisée
-=======
                             $db = new PDO($dsn, $login, $mdp);
                             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
->>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
 
                             $query = 'SELECT Id_Entreprise FROM Entreprise';
                             $stmt = $db->query($query);

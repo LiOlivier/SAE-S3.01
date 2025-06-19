@@ -1,5 +1,7 @@
+
+
 <link rel="stylesheet" href="../CSS/listEtudiant_pedagogique.css">
-<?php
+<?php/*
 echo "<h1>Liste des Étudiants</h1>";
 $username = 'root';
 $password = '';
@@ -27,7 +29,7 @@ try {
                     SELECT 1 
                     FROM action a 
                     WHERE a.Id_Etudiant = u.Id 
-                      AND a.id_type_action = 7 -- Type de bordereau
+                      AND a.id_type_action = 7
                 ) THEN "En attente"
                 ELSE "Tâche complète"
             END AS BordereauEtat,
@@ -36,7 +38,7 @@ try {
                     SELECT 1 
                     FROM action a 
                     WHERE a.Id_Etudiant = u.Id 
-                      AND a.id_type_action = 9 -- Type de convention
+                      AND a.id_type_action= 9 -- Type de convention
                 ) THEN "En attente"
                 ELSE "Tâche complète"
             END AS ConventionEtat
@@ -88,5 +90,5 @@ try {
     }
 } catch (PDOException $e) {
     echo "Erreur de connexion à la base de données : " . $e->getMessage();
-}
+}*/
 ?>
