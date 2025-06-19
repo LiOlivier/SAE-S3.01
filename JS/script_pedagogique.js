@@ -23,13 +23,8 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             
-<<<<<<< HEAD
             if (targetFile === 'section_pedagogique') {
                 fetchContent('section_pedagogique.php', target); 
-=======
-            if (targetFile === 'listEtudiant_pedagogique') {
-                fetchContent('listEtudiant_pedagogique.php', target); 
->>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
             } else if (targetFile === 'DocumentEtudiant') {
                 fetchContent('DocumentEtudiant.php', target); 
             }
@@ -37,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     
-<<<<<<< HEAD
     //document.getElementById('backButton').addEventListener('click', goBack);
 
     fetchContent('section_pedagogique.php', document.getElementById('main-content'));
@@ -69,45 +63,28 @@ function initSidebarToggle() {
     });
 }
 
-=======
-    document.getElementById('backButton').addEventListener('click', goBack);
-});
-
->>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
 
 function goBack() {
     const target = document.getElementById('main-content'); 
 
     
-<<<<<<< HEAD
     if (target.dataset.loaded === 'section_pedagogique') {
-=======
-    if (target.dataset.loaded === 'listEtudiant_pedagogique') {
->>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
         return; 
     }
 
     
-<<<<<<< HEAD
     fetch('section_pedagogique.php')
-=======
-    fetch('board_pedagogique.php')
->>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
         .then(response => {
             if (!response.ok) throw new Error('Failed to load content');
             return response.text();
         })
         .then(data => {
             target.innerHTML = data; 
-<<<<<<< HEAD
             if (typeof initSidebarToggle === 'function') {
                 initSidebarToggle();
             }
 
             target.dataset.loaded = 'section_pedagogique'; 
-=======
-            target.dataset.loaded = 'board_pedagogique'; 
->>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
             
             attachEventListeners(); 
         })

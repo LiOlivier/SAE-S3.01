@@ -24,7 +24,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'pedagogique') {
 <div class="component_container">
     <?php
     include('./component/header.php');
-    include('./component/aside.php');
+    include('./component/aside_pedagogique.php');
 ?>
 </div>
 
