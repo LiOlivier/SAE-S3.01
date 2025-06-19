@@ -16,9 +16,15 @@ class StageController {
         $search = isset($_GET['search']) ? trim($_GET['search']) : null;
         $sort = isset($_GET['sort']) ? $_GET['sort'] : 'student_name';
         $order = isset($_GET['order']) && in_array(strtoupper($_GET['order']), ['ASC', 'DESC']) ? strtoupper($_GET['order']) : 'ASC';
+        // Get pagination parameters
+        $rowsPerPage = isset($_GET['rows']) && in_array((int)$_GET['rows'], [5, 10, 25, 50]) ? (int)$_GET['rows'] : 10;
+        $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
+        $offset = ($page - 1) * $rowsPerPage;
 
-        // Fetch data
-        $stages = $this->model->getAllStages($department, $year, $search, $sort, $order);
+        // Fetch data with pagination
+        $stages = $this->model->getAllStages($department, $year, $search, $sort, $order, $offset, $rowsPerPage);
+        $totalRows = $this->model->getTotalRows($department, $year, $search);
+        $totalPages = max(1, ceil($totalRows / $rowsPerPage));
         $departments = $this->model->getDepartments();
         $years = $this->model->getYears();
 
