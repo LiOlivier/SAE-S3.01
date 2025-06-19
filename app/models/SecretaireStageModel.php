@@ -5,15 +5,14 @@ class StageModel {
 
     public function __construct() {
         try {
-            require_once(__DIR__ . "/../../config/database.php"); // Inclure database.php
-            $this->db = Database::getConnexion(); // Utiliser la connexion centralisée
+            require_once(__DIR__ . "/../../config/database.php");
+            $this->db = Database::getConnexion();
         } catch (PDOException $e) {
             die('Erreur : ' . $e->getMessage());
         }
     }
 
-    public function getAllStages($department = null, $year = null, $search = null, $sort = 'id_etudiant', $order = 'ASC') {
-        // Base query to fetch internship details with student, company, and tutor names
+    public function getAllStages($department = null, $year = null, $search = null, $sort = 'id_etudiant', $order = 'ASC', $offset = 0, $rowsPerPage = 10) {
         $query = "
             SELECT 
                 s.annee, 
@@ -55,7 +54,6 @@ class StageModel {
             WHERE 1=1
         ";
 
-        // Add filters
         $params = [];
         if ($department) {
             $query .= " AND s.id_departement = :department";
@@ -70,7 +68,6 @@ class StageModel {
             $params[':search'] = "%$search%";
         }
 
-        // Add sorting
         $allowed_sort_columns = ['student_name', 'company_name', 'date_debut', 'date_fin', 'overdue_actions'];
         $sort = in_array($sort, $allowed_sort_columns) ? $sort : 'id_etudiant';
         $order = strtoupper($order) === 'DESC' ? 'DESC' : 'ASC';
@@ -82,19 +79,53 @@ class StageModel {
             $query .= " ORDER BY $sort $order";
         }
 
+        $query .= " LIMIT :offset, :rowsPerPage";
+
         $stmt = $this->db->prepare($query);
-        $stmt->execute($params);
+        foreach ($params as $key => $value) {
+            $stmt->bindValue($key, $value);
+        }
+        $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
+        $stmt->bindValue(':rowsPerPage', (int)$rowsPerPage, PDO::PARAM_INT);
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Helper method to get departments for filter dropdown
+    public function getTotalRows($department = null, $year = null, $search = null) {
+        $query = "
+            SELECT COUNT(*) 
+            FROM stage s
+            LEFT JOIN utilisateur u1 ON s.id_etudiant = u1.id AND u1.role = 'etudiant'
+            LEFT JOIN tuteur_entreprise te ON s.id_tuteur_entreprise = te.id_tuteur_entreprise
+            LEFT JOIN entreprise e ON te.id_entreprise = e.id_entreprise
+            WHERE 1=1
+        ";
+
+        $params = [];
+        if ($department) {
+            $query .= " AND s.id_departement = :department";
+            $params[':department'] = $department;
+        }
+        if ($year) {
+            $query .= " AND s.annee = :year";
+            $params[':year'] = $year;
+        }
+        if ($search) {
+            $query .= " AND (u1.nom LIKE :search OR u1.prenom LIKE :search OR e.ville LIKE :search)";
+            $params[':search'] = "%$search%";
+        }
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute($params);
+        return (int)$stmt->fetchColumn();
+    }
+
     public function getDepartments() {
-        $query = "SELECT id_departement, libelle FROM departement";
+        $query = "SELECT id_departement AS id_department, libelle FROM departement";
         $stmt = $this->db->query($query);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Helper method to get years for filter dropdown
     public function getYears() {
         $query = "SELECT annee FROM annee";
         $stmt = $this->db->query($query);
