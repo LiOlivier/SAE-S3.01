@@ -117,9 +117,12 @@
         .status.rouge {
             background-color: red;
         }
+<<<<<<< HEAD
         .nav_notif{
             top: 0px;
         }
+=======
+>>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
     </style>
 </head>
 
@@ -136,9 +139,13 @@ require_once(__DIR__ . "//component/aside.php");
 
     <?php
     // Connexion à la base de données
+<<<<<<< HEAD
 
     require_once(__DIR__ . '/../config/database.php');
     $pdo = Database::getConnexion('mysql');
+=======
+    $pdo = new PDO('mysql:host=localhost;dbname=sorbonne;charset=utf8', 'root', '');
+>>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
 
     // Requête pour obtenir les étudiants en INFO semestre 4 avec statut
     $sql = "SELECT utilisateur.nom, utilisateur.prenom, utilisateur.email, utilisateur.telephone, etudiant.id_Etudiant,
@@ -150,9 +157,15 @@ require_once(__DIR__ . "//component/aside.php");
             FROM utilisateur
             JOIN etudiant ON utilisateur.id = etudiant.Id_etudiant
             JOIN inscription ON etudiant.Id_etudiant = inscription.Id_Etudiant
+<<<<<<< HEAD
             LEFT JOIN stage ON inscription.Id_Etudiant = stage.Id_Etudiant AND inscription.num_Semestre = stage.num_Semestre
             LEFT JOIN action ON inscription.Id_Etudiant = action.Id_Etudiant AND inscription.num_Semestre = action.num_Semestre
             WHERE inscription.num_Semestre = 4 AND inscription.Id_Departement = 1";
+=======
+            LEFT JOIN stage ON inscription.Id_Etudiant = stage.Id_Etudiant AND inscription.numSemestre = stage.numSemestre
+            LEFT JOIN action ON inscription.Id_Etudiant = action.Id_Etudiant AND inscription.numSemestre = action.numSemestre
+            WHERE inscription.numSemestre = 4 AND inscription.Id_Departement = 1";
+>>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
 
     $stmt = $pdo->query($sql);
     $etudiants = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -6,7 +6,12 @@ class StagePlanningController {
     private $model;
 
     public function __construct() {
+<<<<<<< HEAD
         $this->model = new StagePlanningModel();
+=======
+        global $dsn, $login, $mdp;
+        $this->model = new StagePlanningModel($dsn, $login, $mdp);
+>>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
     }
 
     public function displayStagePlanning() {

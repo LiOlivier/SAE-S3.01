@@ -6,7 +6,11 @@ body {
 .sidenav {
     height: 100vh;
     overflow: hidden;
+<<<<<<< HEAD
     width: 225px;
+=======
+    width: 250px;
+>>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
     position: fixed;
     top: 0;
     left: 0;
@@ -42,7 +46,11 @@ body {
 .bouton-side {
     margin: 1em;
     text-decoration: none;
+<<<<<<< HEAD
     font-size: 15.5px !important;
+=======
+    font-size: 16px !important;
+>>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
     font-weight: bold;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-decoration: none;
@@ -52,6 +60,7 @@ body {
     display: block;
     width: 100%;
     box-sizing: border-box;
+<<<<<<< HEAD
     margin-left: 0.5em;
 }
 
@@ -219,6 +228,8 @@ a.bouton-side:hover {
     width: 100%;
     box-sizing: border-box;
     margin-left: 0.5em;
+=======
+>>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
 }
 
 /*

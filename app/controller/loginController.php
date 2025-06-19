@@ -1,7 +1,11 @@
 <?php
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
+<<<<<<< HEAD
 require "models/utilisateur.php";
+=======
+require "../model/utilisateur.php";
+>>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
 $user = new Utilisateur();
 
 if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
@@ -41,7 +45,11 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
                 exit();
             } 
             elseif ($_SESSION['user']['role'] == "secretaire") {
+<<<<<<< HEAD
                 header('Location: secretaire-dashboard.php');
+=======
+                header('Location: dashboard.php');
+>>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
                 exit();
             }
             
@@ -49,12 +57,21 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['connexion'])) {
                 header('Location: board_pedagogique.php');
                 exit();
             }
+<<<<<<< HEAD
             
             elseif ($_SESSION['user']['role'] == "chefdept") {
                 header('Location: board_chefdpt.php');
                 exit();
             } 
              
+=======
+
+               elseif ($_SESSION['user']['role'] == "chefdept") {
+            header('Location: board_chefdpt.php');
+            exit();
+            }
+
+>>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
         } else {
 
             echo "Identifiant ou mot de passe incorrect.";

@@ -17,6 +17,7 @@ require "./controller/boardController.php";
     <link rel="stylesheet" href="../CSS/t.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
         integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+<<<<<<< HEAD
     
 </head>
 <?php require_once(__DIR__ . "//component/header.php");
@@ -173,6 +174,8 @@ require "./controller/boardController.php";
     <link rel="stylesheet" href="../CSS/t.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
         integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+=======
+>>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
     <script src="TBD_eleve.html"></script>
 </head>
 <?php require_once(__DIR__ . "//component/header.php");
@@ -240,7 +243,11 @@ require_once(__DIR__ . "//component/aside.php");
                                 <div class="left">
                                     <div style="display: block;">
                                         <h3 class="nom"><?= $action['libelle']?></h3>
+<<<<<<< HEAD
                                         <h3 class="date-limite"><?= $action['delai_limite']?></h3>
+=======
+                                        <h3 class="date-limite"><?= $action['dateLimite']?></h3>
+>>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
                                         <button id="ouvrir">ouvrir</button>
                                         <input type="hidden" value="id">
                                     </div>

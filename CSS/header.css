@@ -11,6 +11,7 @@ div.bell{
 .nav_notif{
     position: fixed;
     width: 100%;
+<<<<<<< HEAD
     z-index: 2;
 }
 .far{
@@ -82,6 +83,8 @@ ul.navbar {
 .nav_notif{
     position: fixed;
     width: 100%;
+=======
+>>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
     z-index: 1;
 }
 .far{

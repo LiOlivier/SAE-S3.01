@@ -22,6 +22,7 @@
                             </div>
                         </a>
                     <?php } ?>
+<<<<<<< HEAD
                     <?php if ($_SESSION["user"]["role"] == 'chefdpt') { ?>
                         <a href="board_chefdpt.php" class="bouton-side" id="TDB">
                             <div class="content-side">
@@ -172,6 +173,9 @@
                         </a>
                     <?php } ?>
                     <?php if ($_SESSION["user"]["role"] == 'chefdpt') { ?>
+=======
+                    <?php if ($_SESSION["user"]["role"] == 'chefdept') { ?>
+>>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
                         <a href="board_chefdpt.php" class="bouton-side" id="TDB">
                             <div class="content-side">
                                 <i class="fas fa-th" style="font-size: 1.3em;"></i> <span>Tableau de Bord</span>

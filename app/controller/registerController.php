@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 require "models/utilisateur.php";
+=======
+require "../model/utilisateur.php";
+>>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     session_start();

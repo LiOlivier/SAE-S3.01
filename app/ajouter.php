@@ -98,6 +98,7 @@
             background-color: #f44336;
         }
     </style>
+<<<<<<< HEAD
     <?php
     require('./controller/sessionController.php');
     require_once 'component/aside.php';
@@ -106,6 +107,8 @@
     $pdo = Database::getConnexion('mysql');
     ?>
     
+=======
+>>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
 </head>
 
 <body>
@@ -165,6 +168,10 @@
                     <option value="">Aucune</option>
                     <?php
                     try {
+<<<<<<< HEAD
+=======
+                        $pdo = new PDO('mysql:host=localhost;dbname=sorbonne;charset=utf8', 'root', '');
+>>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
                         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                         $query = "SELECT Id_Entreprise, ville FROM entreprise";
@@ -198,6 +205,10 @@
             $entrepriseId = $_POST['entreprise'] ?? null;
 
             try {
+<<<<<<< HEAD
+=======
+                $pdo = new PDO('mysql:host=localhost;dbname=sorbonne;charset=utf8', 'root', '');
+>>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 // Ajouter dans la table utilisateur
@@ -221,7 +232,11 @@
                     $stmt->bindParam(':id', $lastUserId);
                     $stmt->execute();
 
+<<<<<<< HEAD
                     $query = "INSERT INTO inscription (annee, Id_Departement, num_Semestre, Id_Etudiant) 
+=======
+                    $query = "INSERT INTO inscription (annee, Id_Departement, numSemestre, Id_Etudiant) 
+>>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
                               VALUES (YEAR(CURDATE()), :departement, :semestre, :id)";
                     $stmt = $pdo->prepare($query);
                     $stmt->bindParam(':departement', $departement);

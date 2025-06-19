@@ -3,17 +3,29 @@
 class StageModel {
     private $db;
 
+<<<<<<< HEAD
     public function __construct() {
         try {
             require_once(__DIR__ . "/../../config/database.php"); // Inclure database.php
             $this->db = Database::getConnexion(); // Utiliser la connexion centralisée
+=======
+    public function __construct($dsn, $login, $mdp) {
+        try {
+            $this->db = new PDO($dsn, $login, $mdp);
+            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->db->exec("USE sorbonne");
+>>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
         } catch (PDOException $e) {
             die('Erreur : ' . $e->getMessage());
         }
     }
 
     public function getAllStages() {
+<<<<<<< HEAD
         $query = 'SELECT annee, Id_Departement, num_Semestre, Id_Etudiant, Id_Stage, date_debut, date_fin, mission, date_soutenance, salle_soutenance, Id_Enseignant_1, Id_Tuteur_Entreprise, Id_Enseignant_2 
+=======
+        $query = 'SELECT annee, Id_Departement, numSemestre, Id_Etudiant, Id_Stage, date_debut, date_fin, mission, date_soutenance, salle_soutenance, Id_Enseignant_1, Id_Tuteur_Entreprise, Id_Enseignant_2 
+>>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
                   FROM Stage 
                   ORDER BY Id_Etudiant ASC';
         $stmt = $this->db->query($query);

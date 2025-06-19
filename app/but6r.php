@@ -12,8 +12,105 @@
     <link rel="stylesheet" href="../CSS/t.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
         integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+<<<<<<< HEAD
     <link rel="stylesheet" href="../CSS/adminPage.css">
   
+=======
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        #one {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        #etudiants {
+            margin: 20px auto; /* Ajoute des marges verticales */
+            padding: 20px; /* Ajoute des marges internes */
+            max-width: 800px; /* Limite la largeur pour une meilleure lisibilité */
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #etudiants h2 {
+            margin-bottom: 1rem;
+            text-align: left;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column; /* Les cartes restent en colonne */
+            gap: 20px; /* Espacement uniforme entre les cartes */
+            padding: 10px; /* Ajout d'une marge interne */
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column; /* Réorganise les éléments en colonne */
+            align-items: flex-start; /* Aligne les éléments à gauche */
+            padding: 1.5rem;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 20px; /* Espace entre les cartes */
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+/* Container pour le titre (nom et point rouge/vert) */
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 10px; /* Ajoute un espace sous le titre */
+        }
+
+        .nom {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #444;
+            margin: 0;
+        }
+
+/* Style pour les infos comme email et téléphone */
+        .card-info {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px; /* Ajoute un léger espace entre les lignes */
+            line-height: 1.6; /* Augmente l'espacement entre les lignes */
+        }
+
+/* Point rouge ou vert */
+        .status {
+            width: 12px;
+            height: 12px;
+            display: inline-block;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+        .status.vert {
+            background-color: green;
+        }
+
+        .status.rouge {
+            background-color: red;
+        }
+    </style>
+>>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
 </head>
 
 <?php require_once('./controller/sessionController.php');
@@ -29,8 +126,12 @@ require_once(__DIR__ . "//component/aside.php");
 
     <?php
     // Connexion à la base de données
+<<<<<<< HEAD
     require_once(__DIR__ . '/../config/database.php');
     $pdo = Database::getConnexion('mysql');
+=======
+    $pdo = new PDO('mysql:host=localhost;dbname=sorbonne;charset=utf8', 'root', '');
+>>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
 
     // Requête pour obtenir les étudiants en RT semestre 6 avec statut
     $sql = "SELECT utilisateur.nom, utilisateur.prenom, utilisateur.email, utilisateur.telephone, etudiant.id_Etudiant,
@@ -42,9 +143,15 @@ require_once(__DIR__ . "//component/aside.php");
             FROM utilisateur
             JOIN etudiant ON utilisateur.id = etudiant.Id_etudiant
             JOIN inscription ON etudiant.Id_etudiant = inscription.Id_Etudiant
+<<<<<<< HEAD
             LEFT JOIN stage ON inscription.Id_Etudiant = stage.Id_Etudiant AND inscription.num_Semestre = stage.num_Semestre
             LEFT JOIN action ON inscription.Id_Etudiant = action.Id_Etudiant AND inscription.num_Semestre = action.num_Semestre
             WHERE inscription.num_Semestre = 6 AND inscription.Id_Departement = 3";
+=======
+            LEFT JOIN stage ON inscription.Id_Etudiant = stage.Id_Etudiant AND inscription.numSemestre = stage.numSemestre
+            LEFT JOIN action ON inscription.Id_Etudiant = action.Id_Etudiant AND inscription.numSemestre = action.numSemestre
+            WHERE inscription.numSemestre = 6 AND inscription.Id_Departement = 3";
+>>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
 
     $stmt = $pdo->query($sql);
     $etudiants = $stmt->fetchAll(PDO::FETCH_ASSOC);

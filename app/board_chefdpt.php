@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 
+=======
+session_start();
+>>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
 
     require('./controller/sessionController.php');
     require_once(__DIR__ ."/component/header.php");
