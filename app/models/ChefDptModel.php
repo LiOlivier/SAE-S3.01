@@ -32,36 +32,31 @@ class Model
         return self::$instance;
     }
 
-<<<<<<< HEAD
-    public function getListEtudiants($num_Semestre) {
-=======
-    public function getListEtudiants($numSemestre) {
->>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
+    public function getDpt($idEnseignant) {
+        $requete = $this->bd->prepare(('SELECT id_departement FROM departement WHERE id_enseignant = :id'));
+        $requete->bindValue(':id', $idEnseignant, PDO::PARAM_INT);
+        $requete->execute();
+        $tab = $requete->fetchAll(PDO::FETCH_ASSOC);
+        return $tab;
+    }
+    
+    public function getListEtudiants($numSemestre, $idDepartement) {
         $requete = $this->bd->prepare('SELECT u.id, u.nom, u.prenom,u.email,u.telephone, d.Libelle
                             FROM utilisateur u
                             JOIN inscription i ON i.Id_Etudiant = u.Id
                             JOIN departement d ON i.Id_Departement = d.Id_Departement
-<<<<<<< HEAD
-                            WHERE i.num_Semestre = :num');
-        $requete->bindValue(':num', $num_Semestre, PDO::PARAM_INT);
-=======
-                            WHERE i.numSemestre = :num');
+                            WHERE i.num_semestre = :num AND i.id_departement = :dpt');
         $requete->bindValue(':num', $numSemestre, PDO::PARAM_INT);
->>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
+        $requete->bindValue(':dpt', $idDepartement, PDO::PARAM_INT);
         $requete->execute();
         $tab = $requete->fetchAll(PDO::FETCH_ASSOC);
         return $tab;
     }
 
-<<<<<<< HEAD
-    public function getNbEtudiants($num_Semestre) {
-        $requete = $this->bd->prepare('SELECT COUNT(*) FROM Inscription WHERE num_Semestre = :num');
-        $requete->bindValue(':num', $num_Semestre, PDO::PARAM_INT);
-=======
-    public function getNbEtudiants($numSemestre) {
-        $requete = $this->bd->prepare('SELECT COUNT(*) FROM Inscription WHERE numSemestre = :num');
+    public function getNbEtudiants($numSemestre, $idDepartement) {
+        $requete = $this->bd->prepare('SELECT COUNT(*) FROM Inscription WHERE num_semestre = :num AND id_departement = :dpt');
         $requete->bindValue(':num', $numSemestre, PDO::PARAM_INT);
->>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
+        $requete->bindValue(':dpt', $idDepartement, PDO::PARAM_INT);
         $requete->execute();
         $tab = $requete->fetch(PDO::FETCH_ASSOC);
         return $tab["COUNT(*)"];

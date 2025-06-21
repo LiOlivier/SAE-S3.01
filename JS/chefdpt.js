@@ -11,72 +11,11 @@ document.getElementById("arrow").addEventListener("click", function() {
 var widthTDB = document.getElementById("body-tdb").getBoundingClientRect().width;
 document.getElementById("body-tdb").style.width = widthTDB - 250 + "px";
 
-let ajouteSemaine = document.getElementById("date-calendrier");
-
-let semaine; // Déclare la variable pour les lignes de semaines
-for (let i = 1; i <= 31; i++) {
-    if (i % 7 == 1) { // Début d'une nouvelle semaine
-        semaine = document.createElement('tr'); // Créer une nouvelle ligne
-    }
-
-    let day = document.createElement('td'); // Créer une cellule pour un jour
-    day.textContent = i; // Ajouter le numéro du jour
-    semaine.appendChild(day); // Ajouter le jour à la semaine
-
-    if (i % 7 == 0 || i == 31) { // Fin de la semaine ou dernier jour
-        ajouteSemaine.appendChild(semaine); // Ajouter la semaine au tableau
-    }
-}
-
-let tailleBody = document.body.getBoundingClientRect();
-
-document.getElementById('calendrier').style.left = (tailleBody.width - 380) + 'px';
-
 let article = document.querySelector("article");
 let widthArticle = article.getBoundingClientRect().width;
 
 
 article.style.width=(widthArticle - 380) +"px";
-
-
-//onglet notif
-
-
-
-let notif = document.querySelector(".notification");
-let xnotif = notif.getBoundingClientRect().x;
-let ynotif = notif.getBoundingClientRect().bottom;
-
-let ongletNotif = document.createElement("div");
-ongletNotif.id="ongletNotif";
-ongletNotif.style.position= "fixed";
-ongletNotif.style.width = 280 +"px";
-ongletNotif.style.height = 430 +"px";
-ongletNotif.style.backgroundColor="white";
-ongletNotif.textContent="heiiii";
-document.body.querySelector("section").append(ongletNotif);
-ongletNotif = document.getElementById("ongletNotif");
-ongletNotif.style.left = (xnotif - 270) + "px";
-ongletNotif.style.top = (ynotif) + "px";
-ongletNotif.style.display="none";
-
-notif.addEventListener('mousedown',remplaceNotif);
-
-
-function remplaceNotif(){
-    if(notif.id == "remplir"){
-        console.log('non-remplir');
-        notif.id = "non-remplir";
-        notif.src="../img/icones/Notification-no-notif.jpg";
-        ongletNotif.style.display = "none";
-    }
-    else{
-        console.log("in remplir");
-        notif.id = "remplir";
-        notif.src="../img/icones/Notification-rempli.jpg";
-        ongletNotif.style.display = "block";
-    }
-}
 
 document.addEventListener('DOMContentLoaded', function () {
     const blocks = document.querySelectorAll('.bloc-formation'); // Get all the clickable blocks
@@ -98,8 +37,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 fetchContent('listEtudiantS4.php', target); // Fetch and load the student list
             } else if (targetFile === 'listEtudiantS6') {
                 fetchContent('listEtudiantS6.php', target); // Fetch and load the student list
-            } else if (targetFile === 'zoneFormation') {
-                fetchContent('zoneFormation.php', target); // Fetch and load the zone formation content
             }
         });
     });
@@ -115,24 +52,12 @@ function fetchContent(file, target) {
         .then(data => {
             target.innerHTML = data; // Replace the content with the data from the PHP file
             target.dataset.loaded = file.split('.')[0]; // Mark as loaded based on the file name (without extension)
-            
-            // After loading new content, re-attach event listeners
-            if (file === 'zoneFormation.php') {
-                attachEventListeners(); // Re-attach event listeners to the blocs
-            }
         })
         .catch(error => console.error('Error:', error));
 }
 
-// Function to go back to the original zoneFormation.php section
 function goBack() {
-    const target = document.getElementById('main-content'); // Target container for dynamic content
-    
-    // Reset the loaded data to allow reloading zoneFormation
-    target.dataset.loaded = ''; // Reset the loaded attribute
-
-    // Force reload of the zoneFormation.php content
-    fetchContent('zoneFormation.php', target);
+    window.location.reload();
 }
 
 // Function to attach event listeners to the bloc-formation elements
@@ -156,8 +81,6 @@ function attachEventListeners() {
                 fetchContent('listEtudiantS4.php', target); // Fetch and load the student list
             } else if (targetFile === 'listEtudiantS6') {
                 fetchContent('listEtudiantS6.php', target); // Fetch and load the student list
-            } else if (targetFile === 'zoneFormation') {
-                fetchContent('zoneFormation.php', target); // Fetch and load the zone formation content
             }
         });
     });
