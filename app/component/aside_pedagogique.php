@@ -128,20 +128,16 @@
             $('.sidenav').toggleClass('collapsed');
             if ($('.sidenav').hasClass('collapsed')) {
                 $(this).find('i').removeClass('fa-chevron-left').addClass('fa-chevron-right');
-                // Sidebar réduite à 50px, donc #body-tdb à gauche: 50px
                 $('#body-tdb').css('left', '50px');
-                $('#body-tdb').css('width', 'calc(100% - 100px)'); // ajuster la largeur
+                $('#body-tdb').css('width', 'calc(100% - 100px)');
             } else {
                 $(this).find('i').removeClass('fa-chevron-right').addClass('fa-chevron-left');
-                // Sidebar à 250px, donc #body-tdb à gauche: 250px
                 $('#body-tdb').css('left', '250px');
-                $('#body-tdb').css('width', 'calc(100% - 300px)'); // ajuster la largeur
+                $('#body-tdb').css('width', 'calc(100% - 300px)');
             }
         });
     }
 
-
-    // Appelle au chargement initial
     $(document).ready(function () {
         initSidebarToggle();
     });

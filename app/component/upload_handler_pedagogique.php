@@ -48,24 +48,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 echo "studentId: $studentId, stageId: $stageId";
                 $requete = $bd->prepare('
-                    INSERT INTO `action`(`annee`, `Id_Departement`, `numSemestre`, `Id_Etudiant`, `Id_Stage`, `date_realisation`, `lienDocument`, `Id_TypeAction`, `Id`, `etat`) 
-                    VALUES (2024, 1, 4, :studentId, :stageId, :dateRealisation, :filePath, 9, :actionId, "a faire")
-                ');
-
-
+                INSERT INTO `action`(
+                    `annee`, `id_departement`, `num_semestre`, `id_etudiant`, `id_stage`, 
+                    `date_realisation`, `lien_document`, `id_type_action`, `id`, `etat`
+                ) VALUES (
+                    :annee, :id_departement, :num_semestre, :studentId, :stageId, 
+                    :dateRealisation, :filePath, 9, :actionId, "a faire"
+                )
+            ');
                 $dateRealisation = date('Y-m-d');
 
                 $cheminRelatif = "../document/" . $nomDestination;
-
-
+                $requete->bindValue(':annee', 2024, PDO::PARAM_INT);
+                $requete->bindValue(':id_departement', 1, PDO::PARAM_INT);
+                $requete->bindValue(':num_semestre', 4, PDO::PARAM_INT);
                 $requete->bindValue(':studentId', $studentId, PDO::PARAM_INT);
                 $requete->bindValue(':stageId', $stageId, PDO::PARAM_INT);
                 $requete->bindValue(':dateRealisation', $dateRealisation, PDO::PARAM_STR);
                 $requete->bindValue(':filePath', $cheminRelatif, PDO::PARAM_STR);
                 $requete->bindValue(':actionId', $studentId, PDO::PARAM_INT);
 
-
                 $requete->execute();
+
 
 
                 exit();
@@ -134,22 +138,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 echo "studentId: $studentId, stageId: $stageId";
                 $requete = $bd->prepare('
-                    INSERT INTO `action`(`annee`, `Id_Departement`, `num_Semestre`, `Id_Etudiant`, `Id_Stage`, `date_realisation`, `lienDocument`, `id_type_action`, `Id`, `etat`) 
-                    VALUES (2024, 1, 4, :studentId, :stageId, :dateRealisation, :filePath, 9, :actionId, "a faire")
-                ');
-
-
+                INSERT INTO `action`(
+                    `annee`, `id_departement`, `num_semestre`, `id_etudiant`, `id_stage`, 
+                    `date_realisation`, `lien_document`, `id_type_action`, `id`, `etat`
+                ) VALUES (
+                    :annee, :id_departement, :num_semestre, :studentId, :stageId, 
+                    :dateRealisation, :filePath, 9, :actionId, "a faire"
+                )
+            ');
                 $dateRealisation = date('Y-m-d');
 
                 $cheminRelatif = "../document/" . $nomDestination;
-
-
+                $requete->bindValue(':annee', 2024, PDO::PARAM_INT);
+                $requete->bindValue(':id_departement', 1, PDO::PARAM_INT);
+                $requete->bindValue(':num_semestre', 4, PDO::PARAM_INT);
                 $requete->bindValue(':studentId', $studentId, PDO::PARAM_INT);
                 $requete->bindValue(':stageId', $stageId, PDO::PARAM_INT);
                 $requete->bindValue(':dateRealisation', $dateRealisation, PDO::PARAM_STR);
                 $requete->bindValue(':filePath', $cheminRelatif, PDO::PARAM_STR);
                 $requete->bindValue(':actionId', $studentId, PDO::PARAM_INT);
-
 
                 $requete->execute();
 
