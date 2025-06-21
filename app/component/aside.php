@@ -35,18 +35,7 @@
                                 <i class="fas fa-th" style="font-size: 1.3em;"></i> <span>Tableau de Bord</span>
                             </div>
                         </a>
-<<<<<<< Updated upstream
-=======
                     <?php } ?>
-                    <?php if ($_SESSION["user"]["role"] == 'pedagogique') { ?>
-                        <a href="board_pedagogique.php" class="bouton-side" id="TDB">
-                            <div class="content-side">
-                                <i class="fas fa-th" style="font-size: 1.3em;"></i> <span>Tableau de Bord</span>
-                            </div>
-                        </a>
->>>>>>> Stashed changes
-                    <?php } ?>
-
             </li>
             <li>
             <?php if ($_SESSION["user"]["role"] == 'pedagogique') { ?>
