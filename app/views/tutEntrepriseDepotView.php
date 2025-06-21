@@ -14,6 +14,7 @@ require_once(__DIR__ . "/../models/TuteurEntrepriseModel.php");
     <link rel="stylesheet" href="../../CSS/TBD_entreprise.css">
     <link rel="stylesheet" href="../../CSS/card_entreprise.css">
     <link rel="stylesheet" href="../../CSS/notification.css">
+    <link rel="stylesheet" href="../../CSS/depot_entreprise.css">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
         integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
@@ -31,9 +32,9 @@ require_once(__DIR__ . "/../component/aside_entreprise.php");
         
         <h1 id="titre">Dépot de document</h1>
 
-        
+       <?php require __DIR__ . "/../component/card_depot_entreprise.php" ?> 
        
-        <?php require "component/notification.php" ?>
+        <?php require __DIR__ . "/../component/notification.php" ?>
     </section>
     
 
