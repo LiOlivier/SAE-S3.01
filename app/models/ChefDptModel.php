@@ -10,15 +10,8 @@ class Model
  
     private function __construct()
     {
-<<<<<<< HEAD
         require_once(__DIR__ . "/../../config/database.php"); // Inclure database.php
         $this->bd = Database::getConnexion(); // Utiliser la connexion centralisée
-=======
-        require(__DIR__."//../dbdata.php");
-        $this->bd = new PDO($dsn, $login, $mdp);
-        $this->bd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $this->bd->query("SET nameS 'utf8'");
->>>>>>> 145365576bb88050561c7ed14ad2574d84df58c3
     }
 
     /**

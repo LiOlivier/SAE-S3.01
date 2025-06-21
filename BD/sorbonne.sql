@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `sorbonne`
+-- Database: `sorbonne`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `action`
+-- Table structure for table `action`
 --
 
 CREATE TABLE `action` (
@@ -46,7 +46,7 @@ CREATE TABLE `action` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `administrateur`
+-- Table structure for table `administrateur`
 --
 
 CREATE TABLE `administrateur` (
@@ -54,7 +54,7 @@ CREATE TABLE `administrateur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `administrateur`
+-- Dumping data for table `administrateur`
 --
 
 INSERT INTO `administrateur` (`id_administrateur`) VALUES
@@ -65,7 +65,7 @@ INSERT INTO `administrateur` (`id_administrateur`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `annee`
+-- Table structure for table `annee`
 --
 
 CREATE TABLE `annee` (
@@ -73,7 +73,7 @@ CREATE TABLE `annee` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `annee`
+-- Dumping data for table `annee`
 --
 
 INSERT INTO `annee` (`annee`) VALUES
@@ -85,7 +85,7 @@ INSERT INTO `annee` (`annee`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `departement`
+-- Table structure for table `departement`
 --
 
 CREATE TABLE `departement` (
@@ -95,7 +95,7 @@ CREATE TABLE `departement` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `departement`
+-- Dumping data for table `departement`
 --
 
 INSERT INTO `departement` (`id_departement`, `libelle`, `id_enseignant`) VALUES
@@ -107,7 +107,7 @@ INSERT INTO `departement` (`id_departement`, `libelle`, `id_enseignant`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `enseignant`
+-- Table structure for table `enseignant`
 --
 
 CREATE TABLE `enseignant` (
@@ -116,7 +116,7 @@ CREATE TABLE `enseignant` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `enseignant`
+-- Dumping data for table `enseignant`
 --
 
 INSERT INTO `enseignant` (`id_enseignant`, `bureau`) VALUES
@@ -134,7 +134,7 @@ INSERT INTO `enseignant` (`id_enseignant`, `bureau`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `entreprise`
+-- Table structure for table `entreprise`
 --
 
 CREATE TABLE `entreprise` (
@@ -147,7 +147,7 @@ CREATE TABLE `entreprise` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `entreprise`
+-- Dumping data for table `entreprise`
 --
 
 INSERT INTO `entreprise` (`id_entreprise`, `adresse`, `code_postal`, `ville`, `indication_visite`, `tel`) VALUES
@@ -162,7 +162,7 @@ INSERT INTO `entreprise` (`id_entreprise`, `adresse`, `code_postal`, `ville`, `i
 -- --------------------------------------------------------
 
 --
--- Structure de la table `etudiant`
+-- Table structure for table `etudiant`
 --
 
 CREATE TABLE `etudiant` (
@@ -170,7 +170,7 @@ CREATE TABLE `etudiant` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `etudiant`
+-- Dumping data for table `etudiant`
 --
 
 INSERT INTO `etudiant` (`id_etudiant`) VALUES
@@ -193,7 +193,7 @@ INSERT INTO `etudiant` (`id_etudiant`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `gere`
+-- Table structure for table `gere`
 --
 
 CREATE TABLE `gere` (
@@ -203,7 +203,7 @@ CREATE TABLE `gere` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `gere`
+-- Dumping data for table `gere`
 --
 
 INSERT INTO `gere` (`id_departement`, `num_semestre`, `id_secretaire`) VALUES
@@ -213,7 +213,7 @@ INSERT INTO `gere` (`id_departement`, `num_semestre`, `id_secretaire`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `inscription`
+-- Table structure for table `inscription`
 --
 
 CREATE TABLE `inscription` (
@@ -224,7 +224,7 @@ CREATE TABLE `inscription` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `inscription`
+-- Dumping data for table `inscription`
 --
 
 INSERT INTO `inscription` (`annee`, `id_departement`, `num_semestre`, `id_etudiant`) VALUES
@@ -246,7 +246,7 @@ INSERT INTO `inscription` (`annee`, `id_departement`, `num_semestre`, `id_etudia
 -- --------------------------------------------------------
 
 --
--- Structure de la table `intervient`
+-- Table structure for table `intervient`
 --
 
 CREATE TABLE `intervient` (
@@ -256,7 +256,7 @@ CREATE TABLE `intervient` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `intervient`
+-- Dumping data for table `intervient`
 --
 
 INSERT INTO `intervient` (`id_enseignant`, `id_departement`, `specialise`) VALUES
@@ -265,7 +265,7 @@ INSERT INTO `intervient` (`id_enseignant`, `id_departement`, `specialise`) VALUE
 -- --------------------------------------------------------
 
 --
--- Structure de la table `secretaire`
+-- Table structure for table `secretaire`
 --
 
 CREATE TABLE `secretaire` (
@@ -274,7 +274,7 @@ CREATE TABLE `secretaire` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `secretaire`
+-- Dumping data for table `secretaire`
 --
 
 INSERT INTO `secretaire` (`id_secretaire`, `bureau`) VALUES
@@ -287,7 +287,7 @@ INSERT INTO `secretaire` (`id_secretaire`, `bureau`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `semestre`
+-- Table structure for table `semestre`
 --
 
 CREATE TABLE `semestre` (
@@ -298,7 +298,7 @@ CREATE TABLE `semestre` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `semestre`
+-- Dumping data for table `semestre`
 --
 
 INSERT INTO `semestre` (`id_departement`, `num_semestre`, `id_enseignant`, `annee`) VALUES
@@ -314,7 +314,7 @@ INSERT INTO `semestre` (`id_departement`, `num_semestre`, `id_enseignant`, `anne
 -- --------------------------------------------------------
 
 --
--- Structure de la table `stage`
+-- Table structure for table `stage`
 --
 
 CREATE TABLE `stage` (
@@ -334,7 +334,7 @@ CREATE TABLE `stage` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `stage`
+-- Dumping data for table `stage`
 --
 
 INSERT INTO `stage` (`annee`, `id_departement`, `num_semestre`, `id_etudiant`, `id_stage`, `date_debut`, `date_fin`, `mission`, `date_soutenance`, `salle_soutenance`, `id_enseignant_1`, `id_tuteur_entreprise`, `id_enseignant_2`) VALUES
@@ -349,7 +349,7 @@ INSERT INTO `stage` (`annee`, `id_departement`, `num_semestre`, `id_etudiant`, `
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tuteur_entreprise`
+-- Table structure for table `tuteur_entreprise`
 --
 
 CREATE TABLE `tuteur_entreprise` (
@@ -358,7 +358,7 @@ CREATE TABLE `tuteur_entreprise` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `tuteur_entreprise`
+-- Dumping data for table `tuteur_entreprise`
 --
 
 INSERT INTO `tuteur_entreprise` (`id_tuteur_entreprise`, `id_entreprise`) VALUES
@@ -377,7 +377,7 @@ INSERT INTO `tuteur_entreprise` (`id_tuteur_entreprise`, `id_entreprise`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `typeaction`
+-- Table structure for table `typeaction`
 --
 
 CREATE TABLE `typeaction` (
@@ -393,7 +393,7 @@ CREATE TABLE `typeaction` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `typeaction`
+-- Dumping data for table `typeaction`
 --
 
 INSERT INTO `typeaction` (`id_type_action`, `libelle`, `executant`, `destinataire`, `delai_en_jours`, `delai_limite`, `reference_delai`, `requiert_doc`, `lien_modele_doc`) VALUES
@@ -411,7 +411,7 @@ INSERT INTO `typeaction` (`id_type_action`, `libelle`, `executant`, `destinatair
 -- --------------------------------------------------------
 
 --
--- Structure de la table `utilisateur`
+-- Table structure for table `utilisateur`
 --
 
 CREATE TABLE `utilisateur` (
@@ -426,7 +426,7 @@ CREATE TABLE `utilisateur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `utilisateur`
+-- Dumping data for table `utilisateur`
 --
 
 INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `email`, `telephone`, `login`, `password`, `role`) VALUES
@@ -477,11 +477,11 @@ INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `email`, `telephone`, `login`,
 (62, 'dd', 'ddd', 'asd@gmail.com', '312312312', 'nunu', '$2y$10$Snu9FJrixWmk9/tvSKxt8.TjMMRAwmJYd8GGH5qS5vmDJxpAz8f2e', 'chefdept');
 
 --
--- Index pour les tables déchargées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `action`
+-- Indexes for table `action`
 --
 ALTER TABLE `action`
   ADD PRIMARY KEY (`id_action`),
@@ -492,19 +492,19 @@ ALTER TABLE `action`
   ADD KEY `id` (`id`);
 
 --
--- Index pour la table `administrateur`
+-- Indexes for table `administrateur`
 --
 ALTER TABLE `administrateur`
   ADD PRIMARY KEY (`id_administrateur`);
 
 --
--- Index pour la table `annee`
+-- Indexes for table `annee`
 --
 ALTER TABLE `annee`
   ADD PRIMARY KEY (`annee`);
 
 --
--- Index pour la table `departement`
+-- Indexes for table `departement`
 --
 ALTER TABLE `departement`
   ADD PRIMARY KEY (`id_departement`),
@@ -512,32 +512,32 @@ ALTER TABLE `departement`
   ADD UNIQUE KEY `libelle` (`libelle`);
 
 --
--- Index pour la table `enseignant`
+-- Indexes for table `enseignant`
 --
 ALTER TABLE `enseignant`
   ADD PRIMARY KEY (`id_enseignant`);
 
 --
--- Index pour la table `entreprise`
+-- Indexes for table `entreprise`
 --
 ALTER TABLE `entreprise`
   ADD PRIMARY KEY (`id_entreprise`);
 
 --
--- Index pour la table `etudiant`
+-- Indexes for table `etudiant`
 --
 ALTER TABLE `etudiant`
   ADD PRIMARY KEY (`id_etudiant`);
 
 --
--- Index pour la table `gere`
+-- Indexes for table `gere`
 --
 ALTER TABLE `gere`
   ADD PRIMARY KEY (`id_departement`,`num_semestre`,`id_secretaire`),
   ADD KEY `id_secretaire` (`id_secretaire`);
 
 --
--- Index pour la table `inscription`
+-- Indexes for table `inscription`
 --
 ALTER TABLE `inscription`
   ADD PRIMARY KEY (`annee`,`id_departement`,`num_semestre`,`id_etudiant`),
@@ -545,20 +545,20 @@ ALTER TABLE `inscription`
   ADD KEY `id_etudiant` (`id_etudiant`);
 
 --
--- Index pour la table `intervient`
+-- Indexes for table `intervient`
 --
 ALTER TABLE `intervient`
   ADD PRIMARY KEY (`id_departement`,`id_enseignant`),
   ADD KEY `id_enseignant` (`id_enseignant`);
 
 --
--- Index pour la table `secretaire`
+-- Indexes for table `secretaire`
 --
 ALTER TABLE `secretaire`
   ADD PRIMARY KEY (`id_secretaire`);
 
 --
--- Index pour la table `semestre`
+-- Indexes for table `semestre`
 --
 ALTER TABLE `semestre`
   ADD PRIMARY KEY (`id_departement`,`num_semestre`),
@@ -566,7 +566,7 @@ ALTER TABLE `semestre`
   ADD KEY `annee` (`annee`);
 
 --
--- Index pour la table `stage`
+-- Indexes for table `stage`
 --
 ALTER TABLE `stage`
   ADD PRIMARY KEY (`id_stage`),
@@ -576,20 +576,20 @@ ALTER TABLE `stage`
   ADD KEY `id_enseignant_2` (`id_enseignant_2`);
 
 --
--- Index pour la table `tuteur_entreprise`
+-- Indexes for table `tuteur_entreprise`
 --
 ALTER TABLE `tuteur_entreprise`
   ADD PRIMARY KEY (`id_tuteur_entreprise`),
   ADD KEY `id_entreprise` (`id_entreprise`);
 
 --
--- Index pour la table `typeaction`
+-- Indexes for table `typeaction`
 --
 ALTER TABLE `typeaction`
   ADD PRIMARY KEY (`id_type_action`);
 
 --
--- Index pour la table `utilisateur`
+-- Indexes for table `utilisateur`
 --
 ALTER TABLE `utilisateur`
   ADD PRIMARY KEY (`id`),
@@ -597,51 +597,51 @@ ALTER TABLE `utilisateur`
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `action`
+-- AUTO_INCREMENT for table `action`
 --
 ALTER TABLE `action`
   MODIFY `id_action` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `departement`
+-- AUTO_INCREMENT for table `departement`
 --
 ALTER TABLE `departement`
   MODIFY `id_departement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT pour la table `entreprise`
+-- AUTO_INCREMENT for table `entreprise`
 --
 ALTER TABLE `entreprise`
   MODIFY `id_entreprise` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT pour la table `stage`
+-- AUTO_INCREMENT for table `stage`
 --
 ALTER TABLE `stage`
   MODIFY `id_stage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT pour la table `typeaction`
+-- AUTO_INCREMENT for table `typeaction`
 --
 ALTER TABLE `typeaction`
   MODIFY `id_type_action` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT pour la table `utilisateur`
+-- AUTO_INCREMENT for table `utilisateur`
 --
 ALTER TABLE `utilisateur`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
--- Contraintes pour les tables déchargées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `action`
+-- Constraints for table `action`
 --
 ALTER TABLE `action`
   ADD CONSTRAINT `action_ibfk_1` FOREIGN KEY (`annee`,`id_departement`,`num_semestre`,`id_etudiant`,`id_stage`) REFERENCES `stage` (`annee`, `id_departement`, `num_semestre`, `id_etudiant`, `id_stage`),
@@ -651,38 +651,38 @@ ALTER TABLE `action`
   ADD CONSTRAINT `action_ibfk_5` FOREIGN KEY (`id`) REFERENCES `utilisateur` (`id`);
 
 --
--- Contraintes pour la table `administrateur`
+-- Constraints for table `administrateur`
 --
 ALTER TABLE `administrateur`
   ADD CONSTRAINT `administrateur_ibfk_1` FOREIGN KEY (`id_administrateur`) REFERENCES `utilisateur` (`id`);
 
 --
--- Contraintes pour la table `departement`
+-- Constraints for table `departement`
 --
 ALTER TABLE `departement`
   ADD CONSTRAINT `departement_ibfk_1` FOREIGN KEY (`id_enseignant`) REFERENCES `enseignant` (`id_enseignant`);
 
 --
--- Contraintes pour la table `enseignant`
+-- Constraints for table `enseignant`
 --
 ALTER TABLE `enseignant`
   ADD CONSTRAINT `enseignant_ibfk_1` FOREIGN KEY (`id_enseignant`) REFERENCES `utilisateur` (`id`);
 
 --
--- Contraintes pour la table `etudiant`
+-- Constraints for table `etudiant`
 --
 ALTER TABLE `etudiant`
   ADD CONSTRAINT `etudiant_ibfk_1` FOREIGN KEY (`id_etudiant`) REFERENCES `utilisateur` (`id`);
 
 --
--- Contraintes pour la table `gere`
+-- Constraints for table `gere`
 --
 ALTER TABLE `gere`
   ADD CONSTRAINT `gere_ibfk_1` FOREIGN KEY (`id_departement`,`num_semestre`) REFERENCES `semestre` (`id_departement`, `num_semestre`),
   ADD CONSTRAINT `gere_ibfk_2` FOREIGN KEY (`id_secretaire`) REFERENCES `secretaire` (`id_secretaire`);
 
 --
--- Contraintes pour la table `inscription`
+-- Constraints for table `inscription`
 --
 ALTER TABLE `inscription`
   ADD CONSTRAINT `inscription_ibfk_1` FOREIGN KEY (`id_departement`,`num_semestre`) REFERENCES `semestre` (`id_departement`, `num_semestre`),
@@ -690,20 +690,20 @@ ALTER TABLE `inscription`
   ADD CONSTRAINT `inscription_ibfk_3` FOREIGN KEY (`annee`) REFERENCES `annee` (`annee`);
 
 --
--- Contraintes pour la table `intervient`
+-- Constraints for table `intervient`
 --
 ALTER TABLE `intervient`
   ADD CONSTRAINT `intervient_ibfk_1` FOREIGN KEY (`id_enseignant`) REFERENCES `enseignant` (`id_enseignant`),
   ADD CONSTRAINT `intervient_ibfk_2` FOREIGN KEY (`id_departement`) REFERENCES `departement` (`id_departement`);
 
 --
--- Contraintes pour la table `secretaire`
+-- Constraints for table `secretaire`
 --
 ALTER TABLE `secretaire`
   ADD CONSTRAINT `secretaire_ibfk_1` FOREIGN KEY (`id_secretaire`) REFERENCES `utilisateur` (`id`);
 
 --
--- Contraintes pour la table `semestre`
+-- Constraints for table `semestre`
 --
 ALTER TABLE `semestre`
   ADD CONSTRAINT `semestre_ibfk_1` FOREIGN KEY (`id_departement`) REFERENCES `departement` (`id_departement`),
@@ -711,7 +711,7 @@ ALTER TABLE `semestre`
   ADD CONSTRAINT `semestre_ibfk_3` FOREIGN KEY (`annee`) REFERENCES `annee` (`annee`);
 
 --
--- Contraintes pour la table `stage`
+-- Constraints for table `stage`
 --
 ALTER TABLE `stage`
   ADD CONSTRAINT `stage_ibfk_1` FOREIGN KEY (`annee`,`id_departement`,`num_semestre`,`id_etudiant`) REFERENCES `inscription` (`annee`, `id_departement`, `num_semestre`, `id_etudiant`),
@@ -720,7 +720,7 @@ ALTER TABLE `stage`
   ADD CONSTRAINT `stage_ibfk_4` FOREIGN KEY (`id_enseignant_2`) REFERENCES `enseignant` (`id_enseignant`);
 
 --
--- Contraintes pour la table `tuteur_entreprise`
+-- Constraints for table `tuteur_entreprise`
 --
 ALTER TABLE `tuteur_entreprise`
   ADD CONSTRAINT `tuteur_entreprise_ibfk_1` FOREIGN KEY (`id_tuteur_entreprise`) REFERENCES `utilisateur` (`id`),
