@@ -1,13 +1,29 @@
+#titre{
+    margin-top: 50px;
+    margin-bottom: -10px;
+}
+
+.main-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);  
+  gap: 2rem;
+  padding: 1rem;
+  justify-items: center;
+}
+
 .clickable-card {
     text-align: center;
     padding: 20px;
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
+    
 }
 
 .clickable-card:hover {
+    background-color: hsl(210, 100%, 20%);
     transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: 0.2s;
 }
 
 .clickable-card .nom {
@@ -16,7 +32,57 @@
     margin-bottom: 10px;
 }
 
+.clickable-card:hover .nom {
+    color: white;
+    transition: 0.2s;
+}
+
 .clickable-card .details {
     font-size: 16px;
     color: #666;
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 1rem;
+}
+
+.card .container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.clickable-card:hover .icon {
+    filter: invert(1);
+}
+
+@media (max-width: 1200px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1rem;
+  }
+
+  .main-cards {
+    grid-template-columns: 1fr !important;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    margin: 1rem 0;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .nom {
+    font-size: 1.2rem;
+    text-align: center;
+    left: 0;
+    position: relative;
+  }
 }
