@@ -23,6 +23,10 @@ body {
     box-sizing: border-box;
 }
 
+.icons {
+    width: 10px;
+}
+
 .logo {
     position: absolute;
     top: 30px;
