@@ -45,6 +45,16 @@ class TypeAction
         $query->execute(['idAction' => $idAction]);
         return $query->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function getUploadedDocumentByActionId($idAction) {
+        $sql = "SELECT t.dateLimite, a.etat 
+                FROM typeaction t 
+                LEFT JOIN action a ON t.Id_TypeAction = a.Id_TypeAction 
+                WHERE a.id_action = :idAction OR a.id_action IS NULL";
+        $query = $this->db->prepare($sql);
+        $query->execute(['idAction' => $idAction]);
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
     
 }
 ?>

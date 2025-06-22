@@ -1,45 +1,58 @@
-<div class="card ">
+<div class="card">
     <div class="container">
         <div class="left">
             <div style="display: block;">
-                <h3 class="nom depot-nom"><?= $action["libelle"] ?></h3>
-                <h4 class="date-limite"> Date limite : <?= $action["delai_limite"] ?></h4>
-                <h4 class="etat"> Etat</h4>
-                <div class="validation">
-                    <i class="fas fa-circle"
-                        style="color: 
-        <?php
-        echo $action['Etat'] == 'A faire' ? '#B0B0B0' : // Gris
-            ($action['Etat'] == 'En attente' ? '#FFA500' : // Orange
-                ($action['Etat'] == 'Valider' ? '#63E6BE' : // Vert
-                    ($action['Etat'] == 'Refuser' ? '#FF0000' : '#000000'))); // Rouge par défaut, sinon Noir
-        ?>">
-                    </i> <?= $action['Etat'] ?>
-                </div>
-            <?php if ($action['Etat'] != 'Valider') { ?>
-                <form class="uploadForm" enctype="multipart/form-data">
-                <button class="modele" type="button" onclick="window.location.href='../app/component/DownloadModel.php?idAction=<?= $action["id_type_action"] ?>'">
-                        Modèle <i class="fas fa-download load" style="color: #c0c0c0;"></i>
+                <h3 class="nom depot-nom">Bordereau de Stage</h3>
+                <h4 class="date-limite">Date Limite : <?= htmlspecialchars($bordereau['dateLimite'] ?? 'Non spécifiée') ?></h4>
+                
+                <?php if (!empty($bordereau['etat']) && $bordereau['etat'] === 'Valider' && !empty($bordereau['lien_document'])): ?>
+                    <!-- Button for downloading the bordereau -->
+                    <button class="contacter" style="background-color: #00244d; color: #fff; cursor: pointer;" 
+                            onclick="window.location.href='<?= htmlspecialchars($bordereau['lien_document']) ?>'">
+                        Télécharger <i class="fas fa-download load" style="color: #fff;"></i>
                     </button>
-                    <input type="file" class="sortDocument" name="sortDocument" accept=".jpeg,.jpg,.png,.pdf" style="display:none;" /> <!-- ID remplacé par une classe -->
-                    <input type="hidden" name="actionId" value="<?= $action["id_type_action"] ?>">
-                    <input type="hidden" name="libelle" value="<?= $action["libelle"] ?>">
-                    <input type="hidden" name="nom" value="<?= $_SESSION["user"]["nom"] ?>">
-                    <?php if ($action['requiert_doc'] == 'oui') { ?> <!-- si l'instructeur a besoin d'un document-->
-                    <button type="button" class="contacter joindre" onclick="$(this).siblings('.sortDocument').click()"> <!-- Changez la logique pour utiliser siblings() -->
-                        Joindre fichier<i class="fas fa-upload load" style="color: #c0c0c0;"></i>
+                <?php elseif (!empty($bordereau['etat']) && $bordereau['etat'] === 'En attente'): ?>
+                    <!-- Button indicating the document is pending confirmation -->
+                    <button class="contacter" style="background-color: #FFA500; color: #fff; cursor: not-allowed;" disabled>
+                        En attente de confirmation
                     </button>
-                    <?php } ?>
-                </form>
-                <?php } ?>
-                <?php if ($action['Etat'] == 'Valider') { ?>
-                    <p class="message_valider">Document validé par l'administration</p>
-                <?php } ?>
-
-                <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
+                <?php else: ?>
+                    <!-- Disabled button when bordereau is not available -->
+                    <button class="contacter" style="background-color: #B0B0B0; color: #fff; cursor: not-allowed;" disabled>
+                        Non disponible
+                    </button>
+                <?php endif; ?>
             </div>
-
         </div>
     </div>
+</div>
 
+
+<div class="card">
+    <div class="container">
+        <div class="left">
+            <div style="display: block;">
+                <h3 class="nom depot-nom">Convention de Stage</h3>
+                <h4 class="date-limite">Date Limite : <?= htmlspecialchars($convention['dateLimite'] ?? 'Non spécifiée') ?></h4>
+                
+                <?php if ($convention['etat'] === 'Valider' && !empty($convention['lien_document'])): ?>
+                    <!-- Button for downloading the convention -->
+                    <button class="contacter" style="background-color: #00244d; color: #fff; cursor: pointer;" 
+                            onclick="window.location.href='<?= htmlspecialchars($convention['lien_document']) ?>'">
+                        Télécharger <i class="fas fa-download load" style="color: #fff;"></i>
+                    </button>
+                <?php elseif ($convention['etat'] === 'En attente'): ?>
+                    <!-- Button indicating the document is pending confirmation -->
+                    <button class="contacter" style="background-color: #FFA500; color: #fff; cursor: not-allowed;" disabled>
+                        En attente de confirmation
+                    </button>
+                <?php else: ?>
+                    <!-- Disabled button when convention is not available -->
+                    <button class="contacter" style="background-color: #B0B0B0; color: #fff; cursor: not-allowed;" disabled>
+                        Non disponible
+                    </button>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
 </div>

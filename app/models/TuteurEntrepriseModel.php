@@ -33,16 +33,17 @@ class TuteurEntrepriseModel
     }
 
     public function getEtudiantsByTuteurEntreprise($idTuteurEntreprise)
-    {
-        $requete = $this->bd->prepare('
-            SELECT u.id, u.nom, u.prenom, u.email, u.telephone
-            FROM utilisateur u
-            WHERE u.role = "etudiant" AND u.id_Tuteur = :idTuteurEntreprise
-        ');
-        $requete->bindParam(':idTuteurEntreprise', $idTuteurEntreprise, PDO::PARAM_INT);
-        $requete->execute();
-        return $requete->fetchAll(PDO::FETCH_ASSOC);
-    }
+{
+    $requete = $this->bd->prepare('
+        SELECT u.id AS id_etudiant, u.nom, u.prenom, u.email, u.telephone
+        FROM utilisateur u
+        JOIN stage s ON u.id = s.id_etudiant
+        WHERE u.role = "etudiant" AND s.id_tuteur_entreprise = :idTuteurEntreprise
+    ');
+    $requete->bindParam(':idTuteurEntreprise', $idTuteurEntreprise, PDO::PARAM_INT);
+    $requete->execute();
+    return $requete->fetchAll(PDO::FETCH_ASSOC);
+}
 
     
     
