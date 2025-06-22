@@ -51,24 +51,33 @@ require_once(__DIR__ . "//component/aside.php");
     ?>
 
     <section id="etudiants">
-        <h2>Étudiants en Info Semestre 6</h2>
+        <h2>Étudiants en SD Semestre 4</h2>
         <div class="container">
             <?php foreach ($etudiants as $etudiant): ?>
-                <div class="card">
-                    <h3 class="nom">
-                        <?= htmlspecialchars($etudiant['nom']) ?> <?= htmlspecialchars($etudiant['prenom']) ?>
-                        <span class="status <?= htmlspecialchars($etudiant['statut']) ?>"
-                              data-mission="<?= htmlspecialchars($etudiant['mission']) ?>"
-                              data-debut="<?= htmlspecialchars($etudiant['date_debut']) ?>"
-                              data-fin="<?= htmlspecialchars($etudiant['date_fin']) ?>"
-                              data-soutenance="<?= htmlspecialchars($etudiant['salle_soutenance']) ?>">
-                        </span>
-                    </h3>
-                    <div class="tooltip">
-                        <span>Email : <?= htmlspecialchars($etudiant['email']) ?></span>
-                        <span>Numéro de téléphone : <?= htmlspecialchars($etudiant['telephone']) ?></span>
-                    </div>
+            <div class="card">
+                <div class="info-ligne">
+                <img src="../IMG/icones/profile.svg" class="icons" alt="Nom">
+                <h3 class="nom">
+                    <?= htmlspecialchars($etudiant['nom']) ?> <?= htmlspecialchars($etudiant['prenom']) ?>
+                    <span class="status <?= htmlspecialchars($etudiant['statut']) ?>"
+                        data-mission="<?= htmlspecialchars($etudiant['mission']) ?>"
+                        data-debut="<?= htmlspecialchars($etudiant['date_debut']) ?>"
+                        data-fin="<?= htmlspecialchars($etudiant['date_fin']) ?>"
+                        data-soutenance="<?= htmlspecialchars($etudiant['salle_soutenance']) ?>">
+                    </span>
+                </h3>
                 </div>
+
+                <div class="info-ligne">
+                <img src="../IMG/icones/email.svg" class="icons" alt="Email">
+                <span><?= htmlspecialchars($etudiant['email']) ?></span>
+                </div>
+
+                <div class="info-ligne">
+                <img src="../IMG/icones/phone.svg" class="icons" alt="Téléphone">
+                <span><?= htmlspecialchars($etudiant['telephone']) ?></span>
+                </div>
+            </div>
             <?php endforeach; ?>
         </div>
     </section>

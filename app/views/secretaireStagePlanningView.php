@@ -64,7 +64,10 @@
                     <button type="submit" name="add_stage">Ajouter le Stage</button>
                 </form>
             </div>
-
+        </div>
+        
+        
+        <div class="cards">
             <div class="form-section" id="assign-tuteur">
                 <h2>Assignation des Tuteurs</h2>
                 <form action="stage-planning.php" method="post">
@@ -104,7 +107,9 @@
                     <button type="submit" name="assign_tuteur">Assigner les Tuteurs</button>
                 </form>
             </div>
-
+        </div>
+        
+        <div class="cards">
             <div class="form-section" id="jury-management">
                 <h2>Gestion du jury</h2>
                 <form action="stage-planning.php" method="post">

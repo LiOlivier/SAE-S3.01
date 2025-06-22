@@ -76,3 +76,21 @@ button{
     top: 1em;
     text-align: center;
 }
+
+.card-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px; /* Espace entre les cartes */
+}
+
+.etudiant-section {
+    margin-bottom: 2em; /* Espace entre les sections des étudiants */
+}
+
+.card {
+    flex: 1; /* Permet aux cartes de s'adapter à l'espace disponible */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

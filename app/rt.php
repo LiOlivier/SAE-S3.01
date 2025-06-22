@@ -12,30 +12,6 @@
     <link rel="stylesheet" href="../CSS/t.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
         integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
-    <style>
-        .clickable-card {
-            text-align: center;
-            padding: 20px;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .clickable-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .clickable-card .nom {
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .clickable-card .details {
-            font-size: 16px;
-            color: #666;
-            margin-top: 10px;
-        }
-    </style>
 </head>
 
 <?php
@@ -49,21 +25,18 @@ require_once(__DIR__ . "//component/aside.php");
         <h1 id="titre">BUT RT</h1>
 
         <div class="container">
+
             <div class="main-cards">
                 <!-- Case 1: BUT 2 -->
                 <div class="card clickable-card" onclick="navigateTo('but4r.php')">
-                    <div class="container">
                         <h3 class="nom">BUT 2</h3>
                         <p class="details">128 étudiants</p>
-                    </div>
                 </div>
 
                 <!-- Case 2: BUT 3 -->
                 <div class="card clickable-card" onclick="navigateTo('but6r.php')">
-                    <div class="container">
                         <h3 class="nom">BUT 3</h3>
                         <p class="details">90 étudiants</p>
-                    </div>
                 </div>
             </div>
         </div>
