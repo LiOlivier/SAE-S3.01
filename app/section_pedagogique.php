@@ -21,7 +21,7 @@ $etudiants = $model->getListeEtudiants($_SESSION['user']['id']);
             <div class="listEtudiant" id="etudiant-<?= htmlspecialchars($info['id']) ?>"
                  onclick="loadDocumentEtudiant(<?= htmlspecialchars($info['id']) ?>, '<?= addslashes(htmlspecialchars($info['nom'])) ?>', '<?= addslashes(htmlspecialchars($info['prenom'])) ?>')">
                 <p><?= strtoupper(htmlspecialchars($info['nom'])) . ' ' . htmlspecialchars($info['prenom']) ?></p>
-                <p>BUT <?= htmlspecialchars($info['Libelle']) ?></p>
+                <p>BUT <?= htmlspecialchars($info['Libelle']) ?></p> 
                 <?php
                 $etatClasseBord = ($info["BordereauEtat"] === "Tâche complète") ? 'etat-vert' : 'etat-gris';
                 $etatClasseConv = ($info["ConventionEtat"] === "Tâche complète") ? 'etat-vert' : 'etat-gris';
