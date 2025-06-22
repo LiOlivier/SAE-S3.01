@@ -26,10 +26,10 @@
             color: #ffffff;
             text-decoration: none;
         }
-        th.sortable {
+        th.common-sortable {
             cursor: pointer;
         }
-        th.sortable:hover {
+        th.common-sortable:hover {
             background-color: #004080;
         }
         .common-pagination {
@@ -131,16 +131,16 @@
                     <table class="responsive-table" id="stagesTable">
                         <thead>
                             <tr>
-                                <th class="sortable" onclick="sortTable('student_name')">Étudiant ↑</th>
-                                <th class="sortable" onclick="sortTable('company_name')">Ville entreprise</th>
+                                <th class="common-sortable" onclick="sortTable('student_name')">Étudiant ↑</th>
+                                <th class="common-sortable" onclick="sortTable('company_name')">Ville entreprise</th>
                                 <th>Tuteur pédagogique</th>
-                                <th class="sortable" onclick="sortTable('date_debut')">Date de début</th>
-                                <th class="sortable" onclick="sortTable('date_fin')">Date de fin</th>
+                                <th class="common-sortable" onclick="sortTable('date_debut')">Date de début</th>
+                                <th class="common-sortable" onclick="sortTable('date_fin')">Date de fin</th>
                                 <th>Mission</th>
                                 <th>Date de soutenance</th>
                                 <th>Salle</th>
                                 <th>Second jury</th>
-                                <th class="sortable" onclick="sortTable('overdue_actions')">Actions en retard</th>
+                                <th class="common-sortable" onclick="sortTable('overdue_actions')">Actions en retard</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -185,7 +185,7 @@
                         const isAscending = header.textContent.includes('↑');
                         const sortOrder = isAscending ? -1 : 1;
 
-                        table.querySelectorAll('th.sortable').forEach(th => {
+                        table.querySelectorAll('th.common-sortable').forEach(th => {
                             const text = th.textContent.replace(/[↑↓]/g, '').trim();
                             th.textContent = text + (th === header ? (isAscending ? ' ↓' : ' ↑') : '');
                         });
