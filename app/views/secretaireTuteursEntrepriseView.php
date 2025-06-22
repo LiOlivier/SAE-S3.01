@@ -116,7 +116,6 @@
         th, td { padding: 8px; text-align: left; border: 1px solid #ddd; }
         th { background-color: #003366; color: #ffffff; }
         .clickable { cursor: pointer; }
-        .clickable:hover { background-color: #f5f5f5; }
     </style>
 </head>
 <body class="body">

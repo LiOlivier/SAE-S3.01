@@ -115,6 +115,7 @@
         table { width: 100%; border-collapse: collapse; }
         th, td { padding: 8px; text-align: left; border: 1px solid #ddd; }
         th { background-color: #003366; color: #ffffff; }
+        .clickable { cursor: pointer; }
     </style>
 </head>
 <body class="body">
