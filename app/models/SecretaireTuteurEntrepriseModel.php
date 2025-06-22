@@ -13,9 +13,10 @@ class TuteurEntrepriseModel {
     }
 
     public function getAllTuteursEntreprise() {
-        $query = 'SELECT Utilisateur.nom, Utilisateur.prenom, Utilisateur.email, Utilisateur.telephone, Tuteur_Entreprise.id_entreprise 
-                  FROM Tuteur_Entreprise 
-                  JOIN Utilisateur ON Tuteur_Entreprise.Id_Tuteur_Entreprise = Utilisateur.id';
+        $query = 'SELECT u.nom, u.prenom, u.email, u.telephone, te.Id_Tuteur_Entreprise as id_tuteur_entreprise, e.adresse, e.code_postal, e.ville, e.tel as entreprise_tel 
+                  FROM Tuteur_Entreprise te 
+                  JOIN Utilisateur u ON te.Id_Tuteur_Entreprise = u.id 
+                  JOIN entreprise e ON te.id_entreprise = e.id_entreprise';
         $stmt = $this->db->query($query);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
