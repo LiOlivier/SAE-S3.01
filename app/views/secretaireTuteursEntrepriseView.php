@@ -168,7 +168,7 @@
                                             <input type="hidden" name="action" value="remove">
                                             <button type="submit">Supprimer</button>
                                         </form>
-                                        <form method="GET" action="modifier-tuteur-entreprise.php" style="display:inline;">
+                                        <form method="GET" action="secretaire-modifier-entreprise.php" style="display:inline;">
                                             <input type="hidden" name="id" value="<?= $tuteur['id_tuteur_entreprise'] ?>">
                                             <button type="submit">Modifier</button>
                                         </form>
@@ -225,7 +225,7 @@
                                             <input type="hidden" name="action" value="remove">
                                             <button type="submit">Supprimer</button>
                                         </form>
-                                        <form method="GET" action="modifier-tuteur-entreprise.php" style="display:inline;">
+                                        <form method="GET" action="secretaire-modifier-entreprise.php" style="display:inline;">
                                             <input type="hidden" name="id" value="${tuteur.id_tuteur_entreprise}">
                                             <button type="submit">Modifier</button>
                                         </form>
