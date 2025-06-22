@@ -121,7 +121,7 @@
                                 <?php echo htmlspecialchars($dept['libelle']); ?>
                             </option>
                         <?php endforeach; ?>
-                        </select>
+                    </select>
                 </div>
                 <div class="common-filter-input">
                     <label for="semester">Semestre :</label>
@@ -143,6 +143,14 @@
                                 <?php echo $yr; ?>
                             </option>
                         <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="common-filter-input">
+                    <label for="filter">Filtrer :</label>
+                    <select id="filter" onchange="updateQueryString()">
+                        <option value="all" <?php echo $filter === 'all' ? 'selected' : ''; ?>>Tous</option>
+                        <option value="active" <?php echo $filter === 'active' ? 'selected' : ''; ?>>Actifs (en stage)</option>
+                        <option value="inactive" <?php echo $filter === 'inactive' ? 'selected' : ''; ?>>Inactifs (pas en stage)</option>
                     </select>
                 </div>
             </div>
@@ -253,8 +261,9 @@
                     const department = document.getElementById('department').value;
                     const semester = document.getElementById('semester').value;
                     const year = document.getElementById('year').value;
+                    const filter = document.getElementById('filter').value;
                     const rows = document.getElementById('rowsPerPage').value;
-                    const page = <?php echo $page; ?>;
+                    const page = 1;
                     const sort = '<?php echo $sortColumn; ?>';
                     const order = '<?php echo $sortOrder; ?>';
 
@@ -262,6 +271,7 @@
                     if (department) params.set('department', department);
                     if (semester) params.set('semester', semester);
                     if (year) params.set('year', year);
+                    if (filter) params.set('filter', filter);
                     params.set('rows', rows);
                     params.set('page', page);
                     params.set('sort', sort);
@@ -322,6 +332,7 @@
                 document.getElementById('department').addEventListener('change', updateQueryString);
                 document.getElementById('semester').addEventListener('change', updateQueryString);
                 document.getElementById('year').addEventListener('change', updateQueryString);
+                document.getElementById('filter').addEventListener('change', updateQueryString);
             </script>
         </div>
     </div>

@@ -17,7 +17,7 @@ class EtudiantModel {
         return in_array($column, $allowedColumns) ? $column : 'nom';
     }
 
-    public function getAllEtudiants($search = '', $sortColumn = 'nom', $sortOrder = 'ASC', $department = '', $semester = '', $year = '', $limit = 10, $offset = 0) {
+    public function getAllEtudiants($search = '', $sortColumn = 'nom', $sortOrder = 'ASC', $department = '', $semester = '', $year = '', $filter = 'all', $limit = 10, $offset = 0) {
         $sortColumn = $this->validateColumn($sortColumn);
         $query = 'SELECT utilisateur.nom, utilisateur.prenom, utilisateur.email, utilisateur.telephone, etudiant.id_etudiant 
                   FROM etudiant 
@@ -47,6 +47,22 @@ class EtudiantModel {
             $params[':year'] = $year;
         }
 
+        if ($filter === 'active') {
+            // Only students with a currently ongoing stage
+            $conditions[] = 'etudiant.id_etudiant IN (
+                SELECT id_etudiant FROM stage 
+                WHERE date_debut <= NOW() AND date_fin >= NOW()
+            )';
+        } elseif ($filter === 'inactive') {
+            // Students who have at least one stage, but none ongoing
+            $conditions[] = 'etudiant.id_etudiant IN (
+                SELECT id_etudiant FROM stage
+            ) AND etudiant.id_etudiant NOT IN (
+                SELECT id_etudiant FROM stage 
+                WHERE date_debut <= NOW() AND date_fin >= NOW()
+            )';
+        }
+
         if (!empty($conditions)) {
             $query .= ' WHERE ' . implode(' AND ', $conditions);
         }
@@ -64,7 +80,7 @@ class EtudiantModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getTotalEtudiants($search = '', $department = '', $semester = '', $year = '') {
+    public function getTotalEtudiants($search = '', $department = '', $semester = '', $year = '', $filter = 'all') {
         $query = 'SELECT COUNT(*) 
                   FROM etudiant 
                   JOIN utilisateur ON etudiant.id_etudiant = utilisateur.id
@@ -91,6 +107,20 @@ class EtudiantModel {
         if (!empty($year)) {
             $conditions[] = 'inscription.annee = :year';
             $params[':year'] = $year;
+        }
+
+        if ($filter === 'active') {
+            $conditions[] = 'etudiant.id_etudiant IN (
+                SELECT id_etudiant FROM stage 
+                WHERE date_debut <= NOW() AND date_fin >= NOW()
+            )';
+        } elseif ($filter === 'inactive') {
+            $conditions[] = 'etudiant.id_etudiant IN (
+                SELECT id_etudiant FROM stage
+            ) AND etudiant.id_etudiant NOT IN (
+                SELECT id_etudiant FROM stage 
+                WHERE date_debut <= NOW() AND date_fin >= NOW()
+            )';
         }
 
         if (!empty($conditions)) {
