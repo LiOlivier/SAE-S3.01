@@ -17,6 +17,7 @@ class StagePlanningController {
         $enseignants = $this->model->getAllEnseignants();
         $departements = $this->model->getAllDepartements();
         $annees = $this->model->getAllAnnees();
+        $entreprises = $this->model->getAllEntreprises();
         require(__DIR__ . '/../views/SecretaireStagePlanningView.php');
     }
 
@@ -28,8 +29,9 @@ class StagePlanningController {
             $startDate = $_POST['start_date'];
             $endDate = $_POST['end_date'];
             $mission = $_POST['mission'];
+            $Id_Entreprise = $_POST['Id_Entreprise'];
 
-            if ($this->model->addStage($studentId, $semester, $Id_Departement, $startDate, $endDate, $mission)) {
+            if ($this->model->addStage($studentId, $semester, $Id_Departement, $startDate, $endDate, $mission, $Id_Entreprise)) {
                 $message = 'Le stage a été ajouté avec succès.';
             } else {
                 $message = 'Erreur : L\'étudiant a déjà 2 stages ou un stage dans ce semestre.';
