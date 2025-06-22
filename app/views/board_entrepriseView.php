@@ -1,5 +1,5 @@
 <?php
-require('controller/boardController_entreprise.php');
+require('../controller/boardController_entreprise.php');
 ?>
 
 <!DOCTYPE html>
