@@ -22,11 +22,12 @@
             <div class="common-filter-section">
                 <div class="common-filter-input">
                     <label for="search">Rechercher :</label>
-                    <input type="text" id="search" value="<?php echo htmlspecialchars($search); ?>" placeholder="Nom, Prénom, Email, Téléphone">
+                    <input type="text" id="search" value="<?php echo htmlspecialchars($search); ?>" placeholder="Nom, Prénom, Email, Téléphone" onkeypress="if(event.key === 'Enter') updateQueryString()">
+                    <button onclick="updateQueryString()">Rechercher</button>
                 </div>
                 <div class="common-filter-input">
                     <label for="department">Département :</label>
-                    <select id="department">
+                    <select id="department" onchange="updateQueryString()">
                         <option value="">Tous</option>
                         <?php foreach ($departments as $dept): ?>
                             <option value="<?php echo $dept['id_departement']; ?>" <?php echo $department == $dept['id_departement'] ? 'selected' : ''; ?>>
@@ -37,7 +38,7 @@
                 </div>
                 <div class="common-filter-input">
                     <label for="semester">Semestre :</label>
-                    <select id="semester">
+                    <select id="semester" onchange="updateQueryString()">
                         <option value="">Tous</option>
                         <?php foreach ($semesters as $sem): ?>
                             <option value="<?php echo $sem; ?>" <?php echo $semester == $sem ? 'selected' : ''; ?>>
@@ -48,7 +49,7 @@
                 </div>
                 <div class="common-filter-input">
                     <label for="year">Année :</label>
-                    <select id="year">
+                    <select id="year" onchange="updateQueryString()">
                         <option value="">Tous</option>
                         <?php foreach ($years as $yr): ?>
                             <option value="<?php echo $yr; ?>" <?php echo $year == $yr ? 'selected' : ''; ?>>
@@ -106,10 +107,6 @@
                 </select>
             </div>
             <script>
-                // Store initial data from PHP
-                const initialData = <?php echo json_encode($etudiants); ?>;
-                let currentData = [...initialData];
-
                 document.addEventListener('DOMContentLoaded', function() {
                     attachRowClickEvents();
                 });
@@ -126,47 +123,6 @@
                     });
                 }
 
-                function updateTable() {
-                    const search = document.getElementById('search').value.toLowerCase();
-                    const tbody = document.getElementById('table-body');
-
-                    // Filter data client-side
-                    currentData = initialData.filter(etudiant => {
-                        return (
-                            etudiant.nom.toLowerCase().includes(search) ||
-                            etudiant.prenom.toLowerCase().includes(search) ||
-                            etudiant.email.toLowerCase().includes(search) ||
-                            etudiant.telephone.toLowerCase().includes(search)
-                        );
-                    });
-
-                    // Update table body
-                    tbody.innerHTML = '';
-                    if (currentData.length === 0) {
-                        tbody.innerHTML = '<tr><td colspan="4">Aucun étudiant trouvé.</td></tr>';
-                    } else {
-                        currentData.forEach(etudiant => {
-                            const row = document.createElement('tr');
-                            row.className = 'clickable-row';
-                            row.setAttribute('data-id', etudiant.id_etudiant);
-                            row.innerHTML = `
-                                <td>${escapeHtml(etudiant.nom)}</td>
-                                <td>${escapeHtml(etudiant.prenom)}</td>
-                                <td>${escapeHtml(etudiant.email)}</td>
-                                <td>${escapeHtml(etudiant.telephone)}</td>
-                            `;
-                            tbody.appendChild(row);
-                        });
-                    }
-                    attachRowClickEvents();
-                }
-
-                function escapeHtml(str) {
-                    const div = document.createElement('div');
-                    div.textContent = str;
-                    return div.innerHTML;
-                }
-
                 function updateQueryString() {
                     const params = new URLSearchParams();
                     const search = document.getElementById('search').value;
@@ -176,8 +132,6 @@
                     const filter = document.getElementById('filter').value;
                     const rows = document.getElementById('rowsPerPage').value;
                     const page = 1;
-                    const sort = '<?php echo $sortColumn; ?>';
-                    const order = '<?php echo $sortOrder; ?>';
 
                     if (search) params.set('search', search);
                     if (department) params.set('department', department);
@@ -186,20 +140,19 @@
                     if (filter) params.set('filter', filter);
                     params.set('rows', rows);
                     params.set('page', page);
-                    params.set('sort', sort);
-                    params.set('order', order);
 
                     window.location.href = '?' + params.toString();
                 }
 
                 function sortTable(column) {
-                    const currentSort = '<?php echo $sortColumn; ?>';
-                    const currentOrder = '<?php echo $sortOrder; ?>';
-                    const order = (column === currentSort && currentOrder === 'ASC') ? 'DESC' : 'ASC';
                     const params = new URLSearchParams(window.location.search);
+                    const currentSort = params.get('sort');
+                    const currentOrder = params.get('order') || 'ASC';
+                    const order = (currentSort === column && currentOrder === 'ASC') ? 'DESC' : 'ASC';
                     params.set('sort', column);
                     params.set('order', order);
-                    params.set('page', 1);
+                    const currentPage = params.get('page') || '<?php echo $page; ?>';
+                    params.set('page', currentPage);
                     window.location.href = '?' + params.toString();
                 }
 
@@ -220,7 +173,7 @@
                     const rows = document.querySelectorAll('table tr');
                     let csv = 'Nom,Prénom,Email,Téléphone\n';
                     rows.forEach((row, index) => {
-                        if (index === 0) return; // Skip header
+                        if (index === 0) return;
                         const cols = row.querySelectorAll('td');
                         if (cols.length === 4) {
                             const rowData = Array.from(cols).map(col => `"${col.textContent.replace(/"/g, '""')}"`).join(',');
@@ -235,11 +188,6 @@
                     a.click();
                     window.URL.revokeObjectURL(url);
                 }
-
-                document.getElementById('search').addEventListener('input', () => {
-                    clearTimeout(window.searchTimeout);
-                    window.searchTimeout = setTimeout(updateTable, 1000);
-                });
 
                 document.getElementById('department').addEventListener('change', updateQueryString);
                 document.getElementById('semester').addEventListener('change', updateQueryString);
