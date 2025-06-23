@@ -1,5 +1,4 @@
 body{
-<<<<<<< HEAD
     background-color: rgb(239, 240, 241);
 }
 .component_container{
@@ -15,19 +14,6 @@ body{
 
 
 #main-content header{
-=======
-    background-color: rgb(194, 201, 207);
-}
-
-#body-tdb {
-    position: absolute;
-    top: 40px;
-    left: 250px;
-    width: calc(100% - 400px);
-}
-
-#body-tdb header{
->>>>>>> 030cf393547c0e32f8a7193ce8df897b2840c909
     height: 30px;
     background-color: white;
     border-bottom: #C5C5C5 solid 2px;
@@ -36,11 +22,7 @@ body{
     justify-content: flex-end;
 }
 
-<<<<<<< HEAD
 #main-content img{
-=======
-#body-tdb img{
->>>>>>> 030cf393547c0e32f8a7193ce8df897b2840c909
     width: 30px;
     margin-right: 10px;   
     display: flex;
@@ -91,56 +73,6 @@ body{
 }
 
 
-<<<<<<< HEAD
-=======
-#calendrier{
-    position: fixed;
-    top: 100px;
-    width: 350px;
-    height: 350px;
-    background-color: white;
-    justify-items: center;
-    border-radius: 5px;
-    border: black solid 1px;
-}
-#mois {
-    display: flex;
-    justify-content: center;
-}
-#mois span:hover{
-    background-color: #afafaf;
-    cursor: pointer;
-    border-radius: 2px;
-}
-#nom-de-mois {
-    padding: 0 100% ;
-    font-size: 18px;
-}
-
-
-#calendrier th, #calendrier td {
-    text-align: center; 
-    vertical-align: middle; 
-    padding: 10px 5px; 
-    width: 35px; 
-    height: 35px; 
-    box-sizing: border-box; 
-}
-
-#calendrier th{
-    user-select: none;
-    padding: 30px 5px; 
-}
-
-
-#date-calendrier td:hover {
-    background-color: #1923b1; 
-    cursor: pointer; 
-    border-radius: 50%;
-    width: 5px;
-}
-
->>>>>>> 030cf393547c0e32f8a7193ce8df897b2840c909
 .notification:hover{
     cursor:pointer;
 }
