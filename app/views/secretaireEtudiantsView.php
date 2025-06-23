@@ -9,94 +9,6 @@
     <link rel="stylesheet" href="../CSS/secretaire.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
         integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
-    <style>
-        th, th a, th a:hover, th a:visited {
-            color: #ffffff;
-            text-decoration: none;
-        }
-        th.common-sortable {
-            cursor: pointer;
-        }
-        th.common-sortable:hover {
-            background-color: #005599;
-        }
-        .common-filter-section {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-            align-items: center;
-        }
-        .common-filter-section label {
-            margin-right: 5px;
-            font-weight: bold;
-            color: #555;
-            font-size: 0.9rem;
-        }
-        .common-filter-section select, .common-filter-section input[type="text"] {
-            max-width: 200px;
-            height: 34px;
-            padding: 8px;
-            border: 1px solid #003366;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .common-filter-section input:focus, .common-filter-section select:focus {
-            border-color: #005599;
-            box-shadow: 0 0 8px rgba(0, 53, 102, 0.3);
-            outline: none;
-        }
-        .common-pagination {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-        }
-        .common-pagination button {
-            padding: 8px 12px;
-            background-color: #003366;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: background-color 0.3s ease;
-        }
-        .common-pagination button:hover:not(:disabled) {
-            background-color: #005599;
-        }
-        .common-pagination button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-        }
-        .common-pagination select {
-            width: auto;
-            min-width: 80px;
-            height: 34px;
-            padding: 8px;
-            border: 1px solid #003366;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .common-export-btn {
-            margin-bottom: 20px;
-            padding: 8px 12px;
-            background-color: #003366;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: background-color 0.3s ease;
-        }
-        .common-export-btn:hover {
-            background-color: #005599;
-        }
-    </style>
 </head>
 <body class="body">
     <?php 
@@ -154,15 +66,15 @@
                     </select>
                 </div>
             </div>
-            <button class="common-export-btn" onclick="exportToCSV()">Exporter en CSV</button>
+            <button onclick="exportToCSV()">Exporter en CSV</button>
             <div class="table-wrapper">
                 <table>
                     <thead>
                         <tr>
-                            <th class="common-sortable" onclick="sortTable('nom')">Nom <?php echo $sortColumn == 'nom' ? ($sortOrder == 'ASC' ? '↑' : '↓') : ''; ?></th>
-                            <th class="common-sortable" onclick="sortTable('prenom')">Prénom <?php echo $sortColumn == 'prenom' ? ($sortOrder == 'ASC' ? '↑' : '↓') : ''; ?></th>
-                            <th class="common-sortable" onclick="sortTable('email')">Email <?php echo $sortColumn == 'email' ? ($sortOrder == 'ASC' ? '↑' : '↓') : ''; ?></th>
-                            <th class="common-sortable" onclick="sortTable('telephone')">Téléphone <?php echo $sortColumn == 'telephone' ? ($sortOrder == 'ASC' ? '↑' : '↓') : ''; ?></th>
+                            <th class="clickable-row" onclick="sortTable('nom')">Nom <?php echo $sortColumn == 'nom' ? ($sortOrder == 'ASC' ? '↑' : '↓') : ''; ?></th>
+                            <th class="clickable-row" onclick="sortTable('prenom')">Prénom <?php echo $sortColumn == 'prenom' ? ($sortOrder == 'ASC' ? '↑' : '↓') : ''; ?></th>
+                            <th class="clickable-row" onclick="sortTable('email')">Email <?php echo $sortColumn == 'email' ? ($sortOrder == 'ASC' ? '↑' : '↓') : ''; ?></th>
+                            <th class="clickable-row" onclick="sortTable('telephone')">Téléphone <?php echo $sortColumn == 'telephone' ? ($sortOrder == 'ASC' ? '↑' : '↓') : ''; ?></th>
                         </tr>
                     </thead>
                     <tbody id="table-body">
@@ -206,7 +118,7 @@
                     var rows = document.querySelectorAll('.clickable-row');
                     rows.forEach(function(row) {
                         row.addEventListener('click', function(event) {
-                            if (!event.target.closest('th.common-sortable')) {
+                            if (!event.target.closest('th.clickable-row')) {
                                 var studentId = this.getAttribute('data-id');
                                 window.location.href = 'secretaire-student-details.php?id=' + studentId;
                             }
