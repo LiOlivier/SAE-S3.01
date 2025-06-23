@@ -156,38 +156,29 @@ require_once(__DIR__ . "//component/aside.php");
     $stmt = $pdo->query($sql);
     $etudiants = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
-<section id="etudiants">
-  <h2>Étudiants en SD Semestre 4</h2>
-  <div class="container">
-    <?php foreach ($etudiants as $etudiant): ?>
-      <div class="card">
-        <div class="info-ligne">
-          <img src="../IMG/icones/profile.svg" class="icon" alt="Nom">
-          <h3 class="nom">
-            <?= htmlspecialchars($etudiant['nom']) ?> <?= htmlspecialchars($etudiant['prenom']) ?>
-            <span class="status <?= htmlspecialchars($etudiant['statut']) ?>"
-                  data-mission="<?= htmlspecialchars($etudiant['mission']) ?>"
-                  data-debut="<?= htmlspecialchars($etudiant['date_debut']) ?>"
-                  data-fin="<?= htmlspecialchars($etudiant['date_fin']) ?>"
-                  data-soutenance="<?= htmlspecialchars($etudiant['salle_soutenance']) ?>">
-            </span>
-          </h3>
-        </div>
 
-        <div class="info-ligne">
-          <img src="../IMG/icones/email.svg" class="icon" alt="Email">
-          <span><?= htmlspecialchars($etudiant['email']) ?></span>
+    <section id="etudiants">
+        <h2>Étudiants en SD Semestre 4</h2>
+        <div class="container">
+            <?php foreach ($etudiants as $etudiant): ?>
+                <div class="card">
+                    <h3 class="nom">
+                        <?= htmlspecialchars($etudiant['nom']) ?> <?= htmlspecialchars($etudiant['prenom']) ?>
+                        <span class="status <?= htmlspecialchars($etudiant['statut']) ?>"
+                              data-mission="<?= htmlspecialchars($etudiant['mission']) ?>"
+                              data-debut="<?= htmlspecialchars($etudiant['date_debut']) ?>"
+                              data-fin="<?= htmlspecialchars($etudiant['date_fin']) ?>"
+                              data-soutenance="<?= htmlspecialchars($etudiant['salle_soutenance']) ?>">
+                        </span>
+                    </h3>
+                    <div class="tooltip">
+                        <span>Email : <?= htmlspecialchars($etudiant['email']) ?></span>
+                        <span>Numéro de téléphone : <?= htmlspecialchars($etudiant['telephone']) ?></span>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
-
-        <div class="info-ligne">
-          <img src="../IMG/icones/phone.svg" class="icon" alt="Téléphone">
-          <span><?= htmlspecialchars($etudiant['telephone']) ?></span>
-        </div>
-      </div>
-    <?php endforeach; ?>
-  </div>
-</section>
-
+    </section>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {

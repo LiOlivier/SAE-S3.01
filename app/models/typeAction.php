@@ -45,23 +45,6 @@ class TypeAction
         $query->execute(['idAction' => $idAction]);
         return $query->fetch(PDO::FETCH_ASSOC);
     }
-
-    public function getUploadedDocumentByActionId($idAction) {
-        $sql = "SELECT t.delai_limite, a.lien_document, a.etat 
-                FROM typeaction t 
-                LEFT JOIN action a ON t.id_type_action = a.id_type_action 
-                WHERE t.id_type_action = :idAction";
-        $query = $this->db->prepare($sql);
-        $query->execute(['idAction' => $idAction]);
-        $result = $query->fetch(PDO::FETCH_ASSOC);
-
-        // Convertir la date en format européen si elle existe
-        if (!empty($result['delai_limite'])) {
-            $date = new DateTime($result['delai_limite']);
-            $result['delai_limite'] = $date->format('d/m/Y'); // Format européen
-        }
-    
-        return $result;    }
     
 }
 ?>

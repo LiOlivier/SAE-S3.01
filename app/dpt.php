@@ -7,7 +7,6 @@
     <title>Tableau de Bord</title>
     <link rel="stylesheet" href="../CSS/aside.css">
     <link rel="stylesheet" href="../CSS/header.css">
-    
     <link rel="stylesheet" href="../CSS/card.css">
     <link rel="stylesheet" href="../CSS/TBD.css">
     <link rel="stylesheet" href="../CSS/t.css">
@@ -37,7 +36,6 @@ require_once(__DIR__ . "//component/aside.php");
                 <!-- Case 1: BUT Informatique -->
                 <div class="card clickable-card" onclick="navigateTo('informatique.php')">
                     <div class="container">
-                        <img src="../IMG/icones/INFO.svg" alt="icons" class="icones">
                         <h3 class="nom">BUT Informatique</h3>
                     </div>
                 </div>
@@ -45,7 +43,6 @@ require_once(__DIR__ . "//component/aside.php");
                 <!-- Case 2: BUT GEA -->
                 <div class="card clickable-card" onclick="navigateTo('gea.php')">
                     <div class="container">
-                        <img src="../IMG/icones/GEA.svg" alt="icons" class="icones">
                         <h3 class="nom">BUT GEA</h3>
                     </div>
                 </div>
@@ -53,7 +50,6 @@ require_once(__DIR__ . "//component/aside.php");
                 <!-- Case 3: BUT RT -->
                 <div class="card clickable-card" onclick="navigateTo('rt.php')">
                     <div class="container">
-                        <img src="../IMG/icones/RT.svg" alt="icons" class="icones">
                         <h3 class="nom">BUT RT</h3>
                     </div>
                 </div>
@@ -61,7 +57,6 @@ require_once(__DIR__ . "//component/aside.php");
                 <!-- Case 4: BUT SD -->
                 <div class="card clickable-card" onclick="navigateTo('sd.php')">
                     <div class="container">
-                        <img src="../IMG/icones/SD.svg" alt="icon" class="icones">
                         <h3 class="nom">BUT SD</h3>
                     </div>
                 </div>
