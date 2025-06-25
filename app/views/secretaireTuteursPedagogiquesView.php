@@ -13,9 +13,9 @@
 </head>
 
 <body class="body">
-    <?php require_once(__DIR__ . "/../component/header.php"); ?>
-    <?php require_once(__DIR__ . "/../component/aside.php"); ?>
-    <?php 
+    <?php
+        require_once(__DIR__ . "/../component/header.php");
+        require_once(__DIR__ . "/../component/aside.php");
         $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
         $rowsPerPage = isset($_GET['rows']) && in_array((int)$_GET['rows'], [5, 10, 25, 50]) ? (int)$_GET['rows'] : 10;
         $search = isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '';
