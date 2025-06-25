@@ -54,7 +54,13 @@ class StagePlanningModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function addStage($studentId, $semester, $Id_Departement, $startDate, $endDate, $mission) {
+    public function getAllEntreprises() {
+        $query = 'SELECT Id_Entreprise AS nom FROM Entreprise';
+        $stmt = $this->db->query($query);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function addStage($studentId, $semester, $Id_Departement, $startDate, $endDate, $mission, $Id_Entreprise) {
         // Check if the student already has 2 stages
         $query = 'SELECT COUNT(*) AS stage_count FROM Stage WHERE Id_Etudiant = :studentId';
         $stmt = $this->db->prepare($query);
@@ -93,8 +99,8 @@ class StagePlanningModel {
 
         $annee = $result['annee'];
 
-        // Insert the new stage
-        $query = 'INSERT INTO Stage (Id_Etudiant, num_Semestre, annee, Id_Departement, date_debut, date_fin, mission) VALUES (:studentId, :semester, :annee, :Id_Departement, :startDate, :endDate, :mission)';
+        // Insert the new stage with enterprise
+        $query = 'INSERT INTO Stage (Id_Etudiant, num_Semestre, annee, Id_Departement, date_debut, date_fin, mission, Id_Entreprise) VALUES (:studentId, :semester, :annee, :Id_Departement, :startDate, :endDate, :mission, :Id_Entreprise)';
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':studentId', $studentId, PDO::PARAM_INT);
         $stmt->bindParam(':semester', $semester, PDO::PARAM_INT);
@@ -103,6 +109,7 @@ class StagePlanningModel {
         $stmt->bindParam(':startDate', $startDate, PDO::PARAM_STR);
         $stmt->bindParam(':endDate', $endDate, PDO::PARAM_STR);
         $stmt->bindParam(':mission', $mission, PDO::PARAM_STR);
+        $stmt->bindParam(':Id_Entreprise', $Id_Entreprise, PDO::PARAM_INT);
         return $stmt->execute();
     }
 

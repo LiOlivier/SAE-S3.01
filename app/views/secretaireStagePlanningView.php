@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -60,6 +60,16 @@
 
                     <label for="mission">Mission :</label>
                     <textarea id="mission" name="mission"></textarea>
+
+                    <label for="Id_Entreprise">Sélectionner une entreprise :</label>
+                    <select id="Id_Entreprise" name="Id_Entreprise" class="searchable" required>
+                        <option value="">Sélectionner une entreprise</option>
+                        <?php foreach ($entreprises as $entreprise) { ?>
+                            <option value="<?php echo htmlspecialchars($entreprise['nom'], ENT_QUOTES); ?>">
+                                <?php echo htmlspecialchars($entreprise['nom'], ENT_QUOTES); ?>
+                            </option>
+                        <?php } ?>
+                    </select>
 
                     <button type="submit" name="add_stage">Ajouter le Stage</button>
                 </form>

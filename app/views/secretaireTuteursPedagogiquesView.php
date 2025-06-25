@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,118 +10,12 @@
     <link rel="stylesheet" href="../CSS/secretaire.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
         integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
-    <style>
-        th, th a, th a:hover, th a:visited {
-            color: #ffffff;
-            text-decoration: none;
-        }
-        th.common-sortable {
-            cursor: pointer;
-        }
-        th.common-sortable:hover {
-            background-color: #005599;
-        }
-        .common-filter-section {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-            align-items: flex-start;
-            padding: 10px;
-        }
-        .common-filter-section label {
-            margin-right: 5px;
-            font-weight: bold;
-            color: #555;
-            font-size: 0.9rem;
-            white-space: nowrap;
-        }
-        .common-filter-input {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 10px;
-            padding: 10px;
-            margin: 0 auto;
-        }
-        .common-filter-section input[type="text"], .common-filter-section select, .common-filter-section button {
-            max-width: 200px;
-            height: 34px;
-            padding: 8px;
-            border: 1px solid #003366;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            margin: 0;
-        }
-        .common-filter-section button {
-            margin-left: auto;
-            background-color: #003366;
-            color: #fff;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            padding: 8px 16px;
-        }
-        .common-filter-section input:focus, .common-filter-section select:focus, .common-filter-section button:focus {
-            border-color: #005599;
-            box-shadow: 0 0 8px rgba(0, 53, 102, 0.3);
-            outline: none;
-        }
-        .common-filter-section button:hover {
-            background-color: #005599;
-        }
-        .common-pagination {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-        }
-        .common-pagination button {
-            padding: 8px 12px;
-            background-color: #003366;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: background-color 0.3s ease;
-        }
-        .common-pagination button:hover:not(:disabled) {
-            background-color: #005599;
-        }
-        .common-pagination button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-        }
-        .common-pagination select {
-            width: auto;
-            min-width: 80px;
-            height: 34px;
-            padding: 8px;
-            border: 1px solid #003366;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .message {
-            margin-top: 10px;
-            padding: 10px;
-            border-radius: 4px;
-        }
-        .success { background-color: #d4edda; color: #155724; }
-        .error { background-color: #f8d7da; color: #721c24; }
-        .table-wrapper { margin-top: 20px; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { padding: 8px; text-align: left; border: 1px solid #ddd; }
-        th { background-color: #003366; color: #ffffff; }
-    </style>
 </head>
+
 <body class="body">
-    <?php require_once(__DIR__ . "/../component/header.php"); ?>
-    <?php require_once(__DIR__ . "/../component/aside.php"); ?>
-    <?php 
+    <?php
+        require_once(__DIR__ . "/../component/header.php");
+        require_once(__DIR__ . "/../component/aside.php");
         $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
         $rowsPerPage = isset($_GET['rows']) && in_array((int)$_GET['rows'], [5, 10, 25, 50]) ? (int)$_GET['rows'] : 10;
         $search = isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '';
@@ -139,7 +34,7 @@
                 <div class="common-filter-input">
                     <label for="search">Rechercher :</label>
                     <input type="text" id="search" value="<?php echo $search; ?>" placeholder="Nom, Prénom, Email, Téléphone">
-                    <button onclick="updateTable()">Rechercher</button>
+                    <button onclick="submitSearch()">Rechercher</button>
                 </div>
                 <div class="common-filter-input">
                     <label for="filter">Filtrer :</label>
@@ -154,20 +49,20 @@
                     <table>
                         <thead>
                             <tr>
-                                <th class="common-sortable" onclick="sortTuteurs('nom')">Nom <?php echo $sort === 'nom' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
-                                <th class="common-sortable" onclick="sortTuteurs('prenom')">Prénom <?php echo $sort === 'prenom' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
-                                <th class="common-sortable" onclick="sortTuteurs('email')">Email <?php echo $sort === 'email' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
-                                <th class="common-sortable" onclick="sortTuteurs('telephone')">Téléphone <?php echo $sort === 'telephone' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
+                                <th class="clickable-row" onclick="sortTuteurs('nom')">Nom <?php echo $sort === 'nom' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
+                                <th class="clickable-row" onclick="sortTuteurs('prenom')">Prénom <?php echo $sort === 'prenom' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
+                                <th class="clickable-row" onclick="sortTuteurs('email')">Email <?php echo $sort === 'email' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
+                                <th class="clickable-row" onclick="sortTuteurs('telephone')">Téléphone <?php echo $sort === 'telephone' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody id="table-body">
                             <?php foreach ($tutorsPedagogiques as $tutor): ?>
                                 <tr>
-                                    <td class="clickable" onclick="window.location.href='secretaire-enseignant-details.php?id=<?= $tutor['id'] ?>'"><?= htmlspecialchars($tutor['nom'] ?? 'N/A') ?></td>
-                                    <td class="clickable" onclick="window.location.href='secretaire-enseignant-details.php?id=<?= $tutor['id'] ?>'"><?= htmlspecialchars($tutor['prenom'] ?? 'N/A') ?></td>
-                                    <td class="clickable" onclick="window.location.href='secretaire-enseignant-details.php?id=<?= $tutor['id'] ?>'"><?= htmlspecialchars($tutor['email'] ?? 'N/A') ?></td>
-                                    <td class="clickable" onclick="window.location.href='secretaire-enseignant-details.php?id=<?= $tutor['id'] ?>'"><?= htmlspecialchars($tutor['telephone'] ?? 'N/A') ?></td>
+                                    <td class="clickable-column" onclick="window.location.href='secretaire-enseignant-details.php?id=<?= $tutor['id'] ?>'"><?= htmlspecialchars($tutor['nom'] ?? 'N/A') ?></td>
+                                    <td class="clickable-column" onclick="window.location.href='secretaire-enseignant-details.php?id=<?= $tutor['id'] ?>'"><?= htmlspecialchars($tutor['prenom'] ?? 'N/A') ?></td>
+                                    <td class="clickable-column" onclick="window.location.href='secretaire-enseignant-details.php?id=<?= $tutor['id'] ?>'"><?= htmlspecialchars($tutor['email'] ?? 'N/A') ?></td>
+                                    <td class="clickable-column" onclick="window.location.href='secretaire-enseignant-details.php?id=<?= $tutor['id'] ?>'"><?= htmlspecialchars($tutor['telephone'] ?? 'N/A') ?></td>
                                     <td>
                                         <form method="POST" action="" style="display:inline;" onsubmit="return confirmDelete(event, this)">
                                             <input type="hidden" name="id" value="<?= $tutor['id'] ?>">
@@ -193,59 +88,17 @@
                     </select>
                 </div>
                 <script>
-                    // Store initial data from PHP
-                    const initialData = <?php echo json_encode($tutorsPedagogiques); ?>;
-                    let currentData = [...initialData];
-
-                    function updateTable() {
-                        const search = document.getElementById('search').value.toLowerCase();
-                        const tbody = document.getElementById('table-body');
-
-                        currentData = initialData.filter(tutor => {
-                            return (
-                                tutor.nom.toLowerCase().includes(search) ||
-                                tutor.prenom.toLowerCase().includes(search) ||
-                                tutor.email.toLowerCase().includes(search) ||
-                                tutor.telephone.toLowerCase().includes(search)
-                            );
-                        });
-
-                        tbody.innerHTML = '';
-                        if (currentData.length === 0) {
-                            tbody.innerHTML = '<tr><td colspan="5">Aucun tuteur pédagogique trouvé.</td></tr>';
-                        } else {
-                            currentData.forEach(tutor => {
-                                const row = document.createElement('tr');
-                                row.innerHTML = `
-                                    <td class="clickable" onclick="window.location.href='secretaire-enseignant-details.php?id=${tutor.id}'">${escapeHtml(tutor.nom)}</td>
-                                    <td class="clickable" onclick="window.location.href='secretaire-enseignant-details.php?id=${tutor.id}'">${escapeHtml(tutor.prenom)}</td>
-                                    <td class="clickable" onclick="window.location.href='secretaire-enseignant-details.php?id=${tutor.id}'">${escapeHtml(tutor.email)}</td>
-                                    <td class="clickable" onclick="window.location.href='secretaire-enseignant-details.php?id=${tutor.id}'">${escapeHtml(tutor.telephone)}</td>
-                                    <td>
-                                        <form method="POST" action="" style="display:inline;" onsubmit="return confirmDelete(event, this)">
-                                            <input type="hidden" name="id" value="${tutor.id}">
-                                            <input type="hidden" name="action" value="remove">
-                                            <button type="submit">Supprimer</button>
-                                        </form>
-                                    </td>
-                                `;
-                                tbody.appendChild(row);
-                            });
-                        }
-                    }
-
-                    function escapeHtml(str) {
-                        const div = document.createElement('div');
-                        div.textContent = str;
-                        return div.innerHTML;
-                    }
-
                     function sortTuteurs(column) {
                         const params = new URLSearchParams(window.location.search);
-                        const currentOrder = params.get('order') === 'desc' ? 'asc' : 'desc';
+                        const currentSort = params.get('sort');
+                        const currentOrder = params.get('order') === 'desc' ? 'desc' : 'asc';
+                        let newOrder = 'asc';
+                        if (currentSort === column && currentOrder === 'asc') {
+                            newOrder = 'desc';
+                        }
                         params.set('sort', column);
-                        params.set('order', currentOrder);
-                        params.set('page', 1);
+                        params.set('order', newOrder);
+                        // preserve current page
                         window.location.href = '?' + params.toString();
                     }
 
@@ -270,23 +123,26 @@
                     }
 
                     function confirmDelete(event, form) {
-                        event.preventDefault(); // Prevent default form submission
+                        event.preventDefault();
                         const confirmed = confirm('Confirmer la suppression ou changement de rôle ?');
                         if (confirmed) {
-                            form.submit(); // Submit the form only if confirmed
+                            form.submit();
                         }
-                        return false; // Ensure no default action
+                        return false;
+                    }
+
+                    function submitSearch() {
+                        const params = new URLSearchParams(window.location.search);
+                        params.set('search', document.getElementById('search').value);
+                        params.set('page', 1);
+                        window.location.href = '?' + params.toString();
                     }
 
                     document.addEventListener('DOMContentLoaded', function() {
                         const searchInput = document.getElementById('search');
-                        searchInput.addEventListener('input', () => {
-                            clearTimeout(window.searchTimeout);
-                            window.searchTimeout = setTimeout(updateTable, 1000); // Debounce
-                        });
                         searchInput.addEventListener('keypress', (e) => {
                             if (e.key === 'Enter') {
-                                updateTable();
+                                submitSearch();
                             }
                         });
                     });
@@ -296,10 +152,10 @@
                     <table>
                         <thead>
                             <tr>
-                                <th class="common-sortable" onclick="sortTuteurs('nom')">Nom <?php echo $sort === 'nom' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
-                                <th class="common-sortable" onclick="sortTuteurs('prenom')">Prénom <?php echo $sort === 'prenom' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
-                                <th class="common-sortable" onclick="sortTuteurs('email')">Email <?php echo $sort === 'email' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
-                                <th class="common-sortable" onclick="sortTuteurs('telephone')">Téléphone <?php echo $sort === 'telephone' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
+                                <th class="clickable-row" onclick="sortTuteurs('nom')">Nom <?php echo $sort === 'nom' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
+                                <th class="clickable-row" onclick="sortTuteurs('prenom')">Prénom <?php echo $sort === 'prenom' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
+                                <th class="clickable-row" onclick="sortTuteurs('email')">Email <?php echo $sort === 'email' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
+                                <th class="clickable-row" onclick="sortTuteurs('telephone')">Téléphone <?php echo $sort === 'telephone' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
                                 <th>Actions</th>
                             </tr>
                         </thead>

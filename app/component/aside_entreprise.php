@@ -3,17 +3,17 @@
         <i class="fas fa-chevron-left"></i>
     </button>
     <nav>
-        <img src="../IMG/USPN.png" alt="logo USPN" id="USPN" class="bouton-side">
+        <img src="../../IMG/USPN.png" alt="logo USPN" id="USPN" class="bouton-side">
         <ul class="aside-ul">
             <li>
-                <a href="board_tut_entreprise.php" class="bouton-side" id="TDB">
+                <a href="tutEntrepriseBoardView.php" class="bouton-side" id="TDB">
                     <div class="content-side">
                         <i class="fas fa-th" style="font-size: 1.3em;"></i> <span>Tableau de Bord</span>
                     </div>
                 </a>
             </li>
             <li>
-                <a href="depot_entreprise.php" class="bouton-side" id="DP">
+                <a href="tutEntrepriseDepotView.php" class="bouton-side" id="DP">
                     <div class="content-side">
                         <i class="fas fa-folder" style="font-size: 1.3em;"></i> <span>Dépot de document</span>
                     </div>
@@ -28,7 +28,7 @@
             </li>
         </ul>
     </nav>
-    <a href="logout.php" class="bouton-side" id="Deconecter"><i class="fas fa-sign-out-alt" style="font-size: 1.3em;"></i><span> Déconnexion</span></a>
+    <a href="../logout.php" class="bouton-side" id="Deconecter"><i class="fas fa-sign-out-alt" style="font-size: 1.3em;"></i><span> Déconnexion</span></a>
 </aside>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">

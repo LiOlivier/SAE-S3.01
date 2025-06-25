@@ -36,7 +36,6 @@
                             </div>
                         </a>
                     <?php } ?>
-
             </li>
             <li>
             <?php if ($_SESSION["user"]["role"] == 'pedagogique') { ?>
@@ -67,6 +66,8 @@
                     </a>
                 <?php } ?>
             </li>
+            
+
 
 
                 <?php if ($_SESSION["user"]["role"] == 'secretaire') { ?>
