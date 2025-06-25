@@ -44,19 +44,19 @@
                     </select>
                 </div>
             </div>
-            <?php if (!empty($tutorsPedagogiques)): ?>
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th class="clickable-row" onclick="sortTuteurs('nom')">Nom <?php echo $sort === 'nom' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
-                                <th class="clickable-row" onclick="sortTuteurs('prenom')">Prénom <?php echo $sort === 'prenom' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
-                                <th class="clickable-row" onclick="sortTuteurs('email')">Email <?php echo $sort === 'email' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
-                                <th class="clickable-row" onclick="sortTuteurs('telephone')">Téléphone <?php echo $sort === 'telephone' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table-body">
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="clickable-row" onclick="sortTuteurs('nom')">Nom <?php echo $sort === 'nom' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
+                            <th class="clickable-row" onclick="sortTuteurs('prenom')">Prénom <?php echo $sort === 'prenom' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
+                            <th class="clickable-row" onclick="sortTuteurs('email')">Email <?php echo $sort === 'email' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
+                            <th class="clickable-row" onclick="sortTuteurs('telephone')">Téléphone <?php echo $sort === 'telephone' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <?php if (!empty($tutorsPedagogiques)): ?>
                             <?php foreach ($tutorsPedagogiques as $tutor): ?>
                                 <tr>
                                     <td class="clickable-column" onclick="window.location.href='secretaire-enseignant-details.php?id=<?= $tutor['id'] ?>'"><?= htmlspecialchars($tutor['nom'] ?? 'N/A') ?></td>
@@ -72,99 +72,69 @@
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="common-pagination">
-                    <button onclick="changePage(<?php echo $page - 1; ?>)" <?php echo $page <= 1 ? 'disabled' : ''; ?>>Précédent</button>
-                    <span id="page-info">Page <?php echo $page; ?> sur <?php echo $totalPages; ?></span>
-                    <button onclick="changePage(<?php echo $page + 1; ?>)" <?php echo $page >= $totalPages ? 'disabled' : ''; ?>>Suivant</button>
-                    <select id="rowsPerPage" onchange="changeRowsPerPage()">
-                        <?php foreach ([5, 10, 25, 50] as $rows): ?>
-                            <option value="<?php echo $rows; ?>" <?php echo $rowsPerPage == $rows ? 'selected' : ''; ?>>
-                                <?php echo $rows; ?> par page
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-                <script>
-                    function sortTuteurs(column) {
-                        const params = new URLSearchParams(window.location.search);
-                        const currentSort = params.get('sort');
-                        const currentOrder = params.get('order') === 'desc' ? 'desc' : 'asc';
-                        let newOrder = 'asc';
-                        if (currentSort === column && currentOrder === 'asc') {
-                            newOrder = 'desc';
-                        }
-                        params.set('sort', column);
-                        params.set('order', newOrder);
-                        // preserve current page
-                        window.location.href = '?' + params.toString();
-                    }
-
-                    function changePage(page) {
-                        const params = new URLSearchParams(window.location.search);
-                        params.set('page', Math.max(1, page));
-                        window.location.href = '?' + params.toString();
-                    }
-
-                    function changeRowsPerPage() {
-                        const params = new URLSearchParams(window.location.search);
-                        params.set('rows', document.getElementById('rowsPerPage').value);
-                        params.set('page', 1);
-                        window.location.href = '?' + params.toString();
-                    }
-
-                    function filterTuteurs() {
-                        const params = new URLSearchParams(window.location.search);
-                        params.set('filter', document.getElementById('filter').value);
-                        params.set('page', 1);
-                        window.location.href = '?' + params.toString();
-                    }
-
-                    function confirmDelete(event, form) {
-                        event.preventDefault();
-                        const confirmed = confirm('Confirmer la suppression ou changement de rôle ?');
-                        if (confirmed) {
-                            form.submit();
-                        }
-                        return false;
-                    }
-
-                    function submitSearch() {
-                        const params = new URLSearchParams(window.location.search);
-                        params.set('search', document.getElementById('search').value);
-                        params.set('page', 1);
-                        window.location.href = '?' + params.toString();
-                    }
-
-                    document.addEventListener('DOMContentLoaded', function() {
-                        const searchInput = document.getElementById('search');
-                        searchInput.addEventListener('keypress', (e) => {
-                            if (e.key === 'Enter') {
-                                submitSearch();
-                            }
-                        });
-                    });
-                </script>
-            <?php else: ?>
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th class="clickable-row" onclick="sortTuteurs('nom')">Nom <?php echo $sort === 'nom' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
-                                <th class="clickable-row" onclick="sortTuteurs('prenom')">Prénom <?php echo $sort === 'prenom' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
-                                <th class="clickable-row" onclick="sortTuteurs('email')">Email <?php echo $sort === 'email' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
-                                <th class="clickable-row" onclick="sortTuteurs('telephone')">Téléphone <?php echo $sort === 'telephone' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table-body">
+                        <?php else: ?>
                             <tr><td colspan="5">Aucun tuteur pédagogique trouvé.</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            <?php endif; ?>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="common-pagination">
+                <button onclick="changePage(<?php echo $page - 1; ?>)" <?php echo $page <= 1 ? 'disabled' : ''; ?>>Précédent</button>
+                <span id="page-info">Page <?php echo $page; ?> sur <?php echo $totalPages; ?></span>
+                <button onclick="changePage(<?php echo $page + 1; ?>)" <?php echo $page >= $totalPages ? 'disabled' : ''; ?>>Suivant</button>
+                <select id="rowsPerPage" onchange="changeRowsPerPage()">
+                    <?php foreach ([5, 10, 25, 50] as $rows): ?>
+                        <option value="<?php echo $rows; ?>" <?php echo $rowsPerPage == $rows ? 'selected' : ''; ?>>
+                            <?php echo $rows; ?> par page
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <script>
+                function sortTuteurs(column) {
+                    const params = new URLSearchParams(window.location.search);
+                    const currentSort = params.get('sort');
+                    const currentOrder = params.get('order') === 'desc' ? 'desc' : 'asc';
+                    let newOrder = 'asc';
+                    if (currentSort === column && currentOrder === 'asc') newOrder = 'desc';
+                    params.set('sort', column);
+                    params.set('order', newOrder);
+                    window.location.href = '?' + params.toString();
+                }
+                function changePage(page) {
+                    const params = new URLSearchParams(window.location.search);
+                    params.set('page', Math.max(1, page));
+                    window.location.href = '?' + params.toString();
+                }
+                function changeRowsPerPage() {
+                    const params = new URLSearchParams(window.location.search);
+                    params.set('rows', document.getElementById('rowsPerPage').value);
+                    params.set('page', 1);
+                    window.location.href = '?' + params.toString();
+                }
+                function filterTuteurs() {
+                    const params = new URLSearchParams(window.location.search);
+                    params.set('filter', document.getElementById('filter').value);
+                    params.set('page', 1);
+                    window.location.href = '?' + params.toString();
+                }
+                function confirmDelete(event, form) {
+                    event.preventDefault();
+                    if (confirm('Confirmer la suppression ou changement de rôle ?')) form.submit();
+                    return false;
+                }
+                function submitSearch() {
+                    const params = new URLSearchParams(window.location.search);
+                    params.set('search', document.getElementById('search').value);
+                    params.set('page', 1);
+                    window.location.href = '?' + params.toString();
+                }
+                document.addEventListener('DOMContentLoaded', function() {
+                    document.getElementById('search').addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') submitSearch();
+                    });
+                });
+            </script>
         </div>
     </div>
 </body>
