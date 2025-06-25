@@ -17,7 +17,6 @@
         require_once(__DIR__ . "/../component/header.php");
         require_once(__DIR__ . "/../component/aside.php"); 
     ?>
-
     <section id="one">
         <h1 id="titre">Tableau de Bord</h1>
         <main class="dashboard-grid">
@@ -33,7 +32,6 @@
                     </ul>
                 </div>
             </section>
-
             <section id="recent-notifications">
                 <div class="cards">
                     <h2>Notifications récentes</h2>

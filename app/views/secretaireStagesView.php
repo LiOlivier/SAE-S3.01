@@ -16,12 +16,10 @@
     <?php 
         require_once(__DIR__ . "/../component/header.php");
         require_once(__DIR__ . "/../component/aside.php"); 
-        // Default pagination values to prevent undefined errors
         $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
         $rowsPerPage = isset($_GET['rows']) && in_array((int)$_GET['rows'], [5, 10, 25, 50]) ? (int)$_GET['rows'] : 10;
         $totalPages = isset($totalPages) ? max(1, (int)$totalPages) : 1;
     ?>
-
     <div id="one">
         <h1 id="titre">Liste des stages</h1>
         <div class="cards">
@@ -60,8 +58,6 @@
                     </select>
                 </div>
             </div>
-
-            <!-- Stages Table -->
             <div class="table-wrapper">
                 <table class="responsive-table" id="stagesTable">
                     <thead>
@@ -112,7 +108,6 @@
                     </tbody>
                 </table>
             </div>
-            <!-- Pagination -->
             <div class="common-pagination">
                 <button onclick="changePage(<?php echo $page - 1; ?>)" <?php echo $page <= 1 ? 'disabled' : ''; ?>>Précédent</button>
                 <span id="page-info">Page <?php echo $page; ?> sur <?php echo $totalPages; ?></span>
@@ -131,54 +126,43 @@
                     const currentSort = params.get('sort');
                     const currentOrder = params.get('order') === 'desc' ? 'desc' : 'asc';
                     let newOrder = 'asc';
-                    if (currentSort === column && currentOrder === 'asc') {
-                        newOrder = 'desc';
-                    }
+                    if (currentSort === column && currentOrder === 'asc') newOrder = 'desc';
                     params.set('sort', column);
                     params.set('order', newOrder);
                     window.location.href = '?' + params.toString();
                 }
-
                 function changePage(page) {
                     const params = new URLSearchParams(window.location.search);
                     params.set('page', Math.max(1, page));
                     window.location.href = '?' + params.toString();
                 }
-
                 function changeRowsPerPage() {
                     const params = new URLSearchParams(window.location.search);
                     params.set('rows', document.getElementById('rowsPerPage').value);
                     params.set('page', 1);
                     window.location.href = '?' + params.toString();
                 }
-
                 function changeDepartment() {
                     const params = new URLSearchParams(window.location.search);
                     params.set('department', document.getElementById('department').value);
                     params.set('page', 1);
                     window.location.href = '?' + params.toString();
                 }
-
                 function changeYear() {
                     const params = new URLSearchParams(window.location.search);
                     params.set('year', document.getElementById('year').value);
                     params.set('page', 1);
                     window.location.href = '?' + params.toString();
                 }
-
                 function submitSearch() {
                     const params = new URLSearchParams(window.location.search);
                     params.set('search', document.getElementById('search').value);
                     params.set('page', 1);
                     window.location.href = '?' + params.toString();
                 }
-
                 document.addEventListener('DOMContentLoaded', function() {
-                    const searchInput = document.getElementById('search');
-                    searchInput.addEventListener('keypress', (e) => {
-                        if (e.key === 'Enter') {
-                            submitSearch();
-                        }
+                    document.getElementById('search').addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') submitSearch();
                     });
                 });
             </script>
