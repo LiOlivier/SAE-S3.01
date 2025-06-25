@@ -91,10 +91,11 @@
                 <div class="common-filter-input">
                     <label for="search">Rechercher :</label>
                     <input type="text" id="search" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>" placeholder="Nom étudiant/ville entreprise">
+                    <button onclick="submitSearch()">Rechercher</button>
                 </div>
                 <div class="common-filter-input">
                     <label for="department">Département :</label>
-                    <select id="department">
+                    <select id="department" onchange="changeDepartment()">
                         <option value="">Tous les départements</option>
                         <?php 
                         if (is_array($departments) && !empty($departments)) {
@@ -111,7 +112,7 @@
                 </div>
                 <div class="common-filter-input">
                     <label for="year">Année :</label>
-                    <select id="year">
+                    <select id="year" onchange="changeYear()">
                         <option value="">Toutes les années</option>
                         <?php foreach ($years as $year): ?>
                             <option value="<?= htmlspecialchars($year['annee']) ?>" <?= isset($_GET['year']) && $_GET['year'] == $year['annee'] ? 'selected' : '' ?>>
@@ -123,24 +124,34 @@
             </div>
 
             <!-- Stages Table -->
-            <?php if (!empty($stages)): ?>
-                <div class="table-wrapper">
-                    <table class="responsive-table" id="stagesTable">
-                        <thead>
-                            <tr>
-                                <th class="clickable-row" onclick="sortTable('student_name')">Étudiant ↑</th>
-                                <th class="clickable-row" onclick="sortTable('company_name')">Ville entreprise</th>
-                                <th>Tuteur pédagogique</th>
-                                <th class="clickable-row" onclick="sortTable('date_debut')">Date de début</th>
-                                <th class="clickable-row" onclick="sortTable('date_fin')">Date de fin</th>
-                                <th>Mission</th>
-                                <th>Date de soutenance</th>
-                                <th>Salle</th>
-                                <th>Second jury</th>
-                                <th class="clickable-row" onclick="sortTable('overdue_actions')">Actions en retard</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table-body">
+            <div class="table-wrapper">
+                <table class="responsive-table" id="stagesTable">
+                    <thead>
+                        <tr>
+                            <th class="clickable-row" onclick="sortTable('student_name')">
+                                Étudiant <?php echo $sort === 'student_name' ? ($order === 'ASC' ? '↑' : '↓') : ''; ?>
+                            </th>
+                            <th class="clickable-row" onclick="sortTable('company_name')">
+                                Ville entreprise <?php echo $sort === 'company_name' ? ($order === 'ASC' ? '↑' : '↓') : ''; ?>
+                            </th>
+                            <th>Tuteur pédagogique</th>
+                            <th class="clickable-row" onclick="sortTable('date_debut')">
+                                Date de début <?php echo $sort === 'date_debut' ? ($order === 'ASC' ? '↑' : '↓') : ''; ?>
+                            </th>
+                            <th class="clickable-row" onclick="sortTable('date_fin')">
+                                Date de fin <?php echo $sort === 'date_fin' ? ($order === 'ASC' ? '↑' : '↓') : ''; ?>
+                            </th>
+                            <th>Mission</th>
+                            <th>Date de soutenance</th>
+                            <th>Salle</th>
+                            <th>Second jury</th>
+                            <th class="clickable-row" onclick="sortTable('overdue_actions')">
+                                Actions en retard <?php echo $sort === 'overdue_actions' ? ($order === 'ASC' ? '↑' : '↓') : ''; ?>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <?php if (!empty($stages)): ?>
                             <?php foreach ($stages as $stage): ?>
                                 <tr>
                                     <td data-column="student_name"><?= htmlspecialchars($stage['student_name']) ?></td>
@@ -157,140 +168,82 @@
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- Pagination -->
-                <div class="common-pagination">
-                    <button onclick="changePage(<?php echo $page - 1; ?>)" <?php echo $page <= 1 ? 'disabled' : ''; ?>>Précédent</button>
-                    <span id="page-info">Page <?php echo $page; ?> sur <?php echo $totalPages; ?></span>
-                    <button onclick="changePage(<?php echo $page + 1; ?>)" <?php echo $page >= $totalPages ? 'disabled' : ''; ?>>Suivant</button>
-                    <select id="rowsPerPage" onchange="changeRowsPerPage()">
-                        <?php foreach ([5, 10, 25, 50] as $rows): ?>
-                            <option value="<?php echo $rows; ?>" <?php echo $rowsPerPage == $rows ? 'selected' : ''; ?>>
-                                <?php echo $rows; ?> par page
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-                <script>
-                    // Store initial data from PHP
-                    const initialData = <?php echo json_encode($stages); ?>;
-                    let currentData = [...initialData];
+                        <?php else: ?>
+                            <tr><td colspan="10">Aucun tuteur entreprise trouvé.</td></tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Pagination -->
+            <div class="common-pagination">
+                <button onclick="changePage(<?php echo $page - 1; ?>)" <?php echo $page <= 1 ? 'disabled' : ''; ?>>Précédent</button>
+                <span id="page-info">Page <?php echo $page; ?> sur <?php echo $totalPages; ?></span>
+                <button onclick="changePage(<?php echo $page + 1; ?>)" <?php echo $page >= $totalPages ? 'disabled' : ''; ?>>Suivant</button>
+                <select id="rowsPerPage" onchange="changeRowsPerPage()">
+                    <?php foreach ([5, 10, 25, 50] as $rows): ?>
+                        <option value="<?php echo $rows; ?>" <?php echo $rowsPerPage == $rows ? 'selected' : ''; ?>>
+                            <?php echo $rows; ?> par page
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <script>
+                function sortTable(column) {
+                    const params = new URLSearchParams(window.location.search);
+                    const currentSort = params.get('sort');
+                    const currentOrder = params.get('order') === 'desc' ? 'desc' : 'asc';
+                    let newOrder = 'asc';
+                    if (currentSort === column && currentOrder === 'asc') {
+                        newOrder = 'desc';
+                    }
+                    params.set('sort', column);
+                    params.set('order', newOrder);
+                    window.location.href = '?' + params.toString();
+                }
 
-                    document.addEventListener('DOMContentLoaded', function() {
-                        updateTable();
-                    });
+                function changePage(page) {
+                    const params = new URLSearchParams(window.location.search);
+                    params.set('page', Math.max(1, page));
+                    window.location.href = '?' + params.toString();
+                }
 
-                    function updateTable() {
-                        const search = document.getElementById('search').value.toLowerCase();
-                        const department = document.getElementById('department').value;
-                        const year = document.getElementById('year').value;
-                        const tbody = document.getElementById('table-body');
+                function changeRowsPerPage() {
+                    const params = new URLSearchParams(window.location.search);
+                    params.set('rows', document.getElementById('rowsPerPage').value);
+                    params.set('page', 1);
+                    window.location.href = '?' + params.toString();
+                }
 
-                        // Filter data client-side
-                        currentData = initialData.filter(stage => {
-                            const matchesSearch = 
-                                stage.student_name.toLowerCase().includes(search) ||
-                                (stage.company_name?.toLowerCase().includes(search) ?? false);
-                            const matchesDepartment = !department || stage.department_id == department;
-                            const matchesYear = !year || stage.annee == year;
+                function changeDepartment() {
+                    const params = new URLSearchParams(window.location.search);
+                    params.set('department', document.getElementById('department').value);
+                    params.set('page', 1);
+                    window.location.href = '?' + params.toString();
+                }
 
-                            return matchesSearch && matchesDepartment && matchesYear;
-                        });
+                function changeYear() {
+                    const params = new URLSearchParams(window.location.search);
+                    params.set('year', document.getElementById('year').value);
+                    params.set('page', 1);
+                    window.location.href = '?' + params.toString();
+                }
 
-                        // Update table body
-                        tbody.innerHTML = '';
-                        if (currentData.length === 0) {
-                            tbody.innerHTML = '<tr><td colspan="10">Aucun stage trouvé.</td></tr>';
-                        } else {
-                            currentData.forEach(stage => {
-                                const row = document.createElement('tr');
-                                row.innerHTML = `
-                                    <td data-column="student_name">${escapeHtml(stage.student_name)}</td>
-                                    <td data-column="company_name">${escapeHtml(stage.company_name ?? 'N/A')}</td>
-                                    <td data-column="academic_tutor_name">${escapeHtml(stage.academic_tutor_name ?? 'N/A')}</td>
-                                    <td data-column="date_debut">${escapeHtml(stage.date_debut)}</td>
-                                    <td data-column="date_fin">${escapeHtml(stage.date_fin)}</td>
-                                    <td data-column="mission">${escapeHtml(stage.mission)}</td>
-                                    <td data-column="date_soutenance">${escapeHtml(stage.date_soutenance ?? 'Non planifiée')}</td>
-                                    <td data-column="salle_soutenance">${escapeHtml(stage.salle_soutenance ?? 'N/A')}</td>
-                                    <td data-column="second_jury_name">${escapeHtml(stage.second_jury_name ?? 'Non assigné')}</td>
-                                    <td data-column="overdue_actions" style="${stage.overdue_actions > 0 ? 'color: #ff0000; font-weight: bold;' : ''}">
-                                        ${escapeHtml(stage.overdue_actions)}
-                                    </td>
-                                `;
-                                tbody.appendChild(row);
-                            });
+                function submitSearch() {
+                    const params = new URLSearchParams(window.location.search);
+                    params.set('search', document.getElementById('search').value);
+                    params.set('page', 1);
+                    window.location.href = '?' + params.toString();
+                }
+
+                document.addEventListener('DOMContentLoaded', function() {
+                    const searchInput = document.getElementById('search');
+                    searchInput.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') {
+                            submitSearch();
                         }
-                    }
-
-                    function escapeHtml(str) {
-                        const div = document.createElement('div');
-                        div.textContent = str;
-                        return div.innerHTML;
-                    }
-
-                    function sortTable(column) {
-                        const table = document.getElementById('stagesTable');
-                        const tbody = table.querySelector('tbody');
-                        const rows = Array.from(tbody.querySelectorAll('tr'));
-                        const header = table.querySelector(`th[onclick="sortTable('${column}')"]`);
-                        const isAscending = header.textContent.includes('↑');
-                        const sortOrder = isAscending ? -1 : 1;
-
-                        table.querySelectorAll('th.clickable-row').forEach(th => {
-                            const text = th.textContent.replace(/[↑↓]/g, '').trim();
-                            th.textContent = text + (th === header ? (isAscending ? ' ↓' : ' ↑') : '');
-                        });
-
-                        rows.sort((a, b) => {
-                            let aValue = a.querySelector(`td[data-column="${column}"]`).textContent.trim();
-                            let bValue = b.querySelector(`td[data-column="${column}"]`).textContent.trim();
-
-                            if (column === 'overdue_actions') {
-                                aValue = parseInt(aValue) || 0;
-                                bValue = parseInt(bValue) || 0;
-                                return (aValue - bValue) * sortOrder;
-                            }
-
-                            if (column === 'date_debut' || column === 'date_fin') {
-                                aValue = new Date(aValue);
-                                bValue = new Date(bValue);
-                                return (aValue - bValue) * sortOrder;
-                            }
-
-                            return aValue.localeCompare(bValue) * sortOrder;
-                        });
-
-                        tbody.innerHTML = '';
-                        rows.forEach(row => tbody.appendChild(row));
-                    }
-
-                    function changePage(page) {
-                        const params = new URLSearchParams(window.location.search);
-                        params.set('page', Math.max(1, page));
-                        window.location.href = '?' + params.toString();
-                    }
-
-                    function changeRowsPerPage() {
-                        const params = new URLSearchParams(window.location.search);
-                        params.set('rows', document.getElementById('rowsPerPage').value);
-                        params.set('page', 1);
-                        window.location.href = '?' + params.toString();
-                    }
-
-                    document.getElementById('search').addEventListener('input', () => {
-                        clearTimeout(window.searchTimeout);
-                        window.searchTimeout = setTimeout(updateTable, 1000);
                     });
-
-                    document.getElementById('department').addEventListener('change', updateTable);
-                    document.getElementById('year').addEventListener('change', updateTable);
-                </script>
-            <?php else: ?>
-                <p style="color: #ff0000;">Aucun stage trouvé.</p>
-            <?php endif; ?>
+                });
+            </script>
         </div>
     </div>
 </body>
