@@ -1,5 +1,20 @@
 <?php
 session_start();
+require_once "../config/database.php";
+$db = Database::getConnexion('mysql'); 
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$db->exec("USE sorbonne");
+
+// Handle state change form submission BEFORE any HTML output
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action_id'], $_POST['new_etat'])) {
+    $updateQuery = "UPDATE action SET etat = :new_etat WHERE id_action = :action_id";
+    $updateStmt = $db->prepare($updateQuery);
+    $updateStmt->bindParam(':new_etat', $_POST['new_etat'], PDO::PARAM_STR);
+    $updateStmt->bindParam(':action_id', $_POST['action_id'], PDO::PARAM_INT);
+    $updateStmt->execute();
+    header("Location: " . strtok($_SERVER["REQUEST_URI"], '?') . (isset($_GET['id']) ? '?id=' . urlencode($_GET['id']) : ''));
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,14 +35,12 @@ session_start();
     <?php 
         require_once(__DIR__ . "/component/header.php");
         require_once(__DIR__ . "/component/aside.php"); 
-        require_once "../config/database.php";
     ?>
 
     <section id="one">
         <h1 id="titre">Détails de l'Étudiant</h1>
         <div class="cards">
             <?php
-            $db = Database::getConnexion('mysql'); 
             try {
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -123,7 +136,7 @@ session_start();
             <div class="cards">
                 <?php
                 try {
-                    $query = 'SELECT lien_document FROM action WHERE id_etudiant = :studentId';
+                    $query = 'SELECT id_action, lien_document, etat FROM action WHERE id_etudiant = :studentId AND lien_document IS NOT NULL';
                     $stmt = $db->prepare($query);
                     $stmt->bindParam(':studentId', $studentId, PDO::PARAM_INT);
                     $stmt->execute();
@@ -131,7 +144,37 @@ session_start();
 
                     if ($documents) {
                         foreach ($documents as $document) {
-                            echo '<p><a href="' . htmlspecialchars($document['lien_document'], ENT_QUOTES) . '" target="_blank">Voir le document</a></p>';
+                            $lien = $document['lien_document'];
+                            $etat = $document['etat'];
+                            $id_action = $document['id_action'];
+                            // Determine document type
+                            $type = '';
+                            if (strpos($lien, 'Convention') !== false) {
+                                $type = 'Convention de stage';
+                            } elseif (strpos($lien, 'Bordereau') !== false) {
+                                $type = 'Bordereau de stage';
+                            } else {
+                                $type = 'Document';
+                            }
+                            echo '<div style="margin-bottom:1em;">';
+                            echo '<p>';
+                            echo '<a href="' . htmlspecialchars($lien, ENT_QUOTES) . '" target="_blank">Voir le document</a> ';
+                            echo '<span style="font-style:italic;">(' . $type . ')</span> ';
+                            echo '<span style="margin-left:10px;">État : <strong>' . htmlspecialchars($etat, ENT_QUOTES) . '</strong></span>';
+                            // State change form
+                            echo '<form method="post" style="display:inline;margin-left:10px;">';
+                            echo '<input type="hidden" name="action_id" value="' . intval($id_action) . '">';
+                            echo '<select name="new_etat">';
+                            $etats = ['A faire', 'En attente', 'Valider', 'Refuser'];
+                            foreach ($etats as $e) {
+                                $selected = ($e === $etat) ? 'selected' : '';
+                                echo '<option value="' . $e . '" ' . $selected . '>' . $e . '</option>';
+                            }
+                            echo '</select>';
+                            echo '<button type="submit">Changer l\'état</button>';
+                            echo '</form>';
+                            echo '</p>';
+                            echo '</div>';
                         }
                     } else {
                         echo '<p>Aucun document trouvé.</p>';
