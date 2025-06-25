@@ -9,7 +9,7 @@
         </ul>
     </nav>
     <div class="nav_notif">
-        <div class="bell"> <i class="far fa-bell" style="cursor: pointer;"></i></div>
+        <div class="bell"></div>
     </div>
 
 </header>

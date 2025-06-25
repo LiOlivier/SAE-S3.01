@@ -18,7 +18,8 @@ require "./controller/boardController.php";
         integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
     
 </head>
-<?php require_once(__DIR__ . "//component/header.php");
+<?php 
+require_once(__DIR__ . "//component/header.php");
 require_once(__DIR__ . "//component/aside.php");
 
 ?>
