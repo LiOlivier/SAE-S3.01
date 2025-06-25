@@ -1,33 +1,38 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'pedagogique') {
+    header('Location: login.php');
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
-        integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+    <title>Tableau de Bord Pédagogique</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/header.css">
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" crossorigin="anonymous">
     <link rel="stylesheet" href="../CSS/aside.css">
-    <link rel="stylesheet" href="../CSS/section_pedagogique.css">
-    
-    
-    <title>Tableau de Bord</title>
+    <link rel="stylesheet" href="../CSS/header_pedagogique.css">
+    <link rel="stylesheet" href="../CSS/listEtudiant_pedagogique.css">
 </head>
 <body>
-<?php
-    session_start();
-
-    if (!isset($_SESSION['user'])) {
-        header('Location: login.php');
-        exit();
-    }
-    
-    $utilisateurId = $_SESSION['user']['id'];
-    require_once(__DIR__ . "//component/header.php");
-    require_once(__DIR__ . "//component/aside.php");
-    require_once(__DIR__ ."/section_pedagogique.php") ;
-    require_once(__DIR__ ."../component/notification.php");
-    
+<div class="component_container">
+    <?php
+    include('./component/header.php');
+    include('./component/aside.php');
 ?>
+</div>
+
+<div id="main-content" data-loaded=""></div>
+
+
+<?php require_once __DIR__ . '/component/notification.php'; ?>
+
 <script src="../JS/script_pedagogique.js"></script>
 </body>
 </html>

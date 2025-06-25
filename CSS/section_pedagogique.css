@@ -1,4 +1,19 @@
 body{
+    background-color: rgb(239, 240, 241);
+}
+.component_container{
+    position: relative;
+}
+#main-content {
+    position: absolute;
+    top: 40px;
+    left: 250px; /* correspond à sidebar ouverte */
+    width: calc(100% - 300px); /* 250px sidebar + marge 50px */
+    transition: left 0.3s ease, width 0.3s ease;
+}
+
+
+#main-content header{
     background-color: rgb(194, 201, 207);
 }
 
@@ -66,54 +81,6 @@ body{
     font-weight: bold;
     font-size: 25px;
     padding-top: 10px;
-}
-
-
-#calendrier{
-    position: fixed;
-    top: 100px;
-    width: 350px;
-    height: 350px;
-    background-color: white;
-    justify-items: center;
-    border-radius: 5px;
-    border: black solid 1px;
-}
-#mois {
-    display: flex;
-    justify-content: center;
-}
-#mois span:hover{
-    background-color: #afafaf;
-    cursor: pointer;
-    border-radius: 2px;
-}
-#nom-de-mois {
-    padding: 0 100% ;
-    font-size: 18px;
-}
-
-
-#calendrier th, #calendrier td {
-    text-align: center; 
-    vertical-align: middle; 
-    padding: 10px 5px; 
-    width: 35px; 
-    height: 35px; 
-    box-sizing: border-box; 
-}
-
-#calendrier th{
-    user-select: none;
-    padding: 30px 5px; 
-}
-
-
-#date-calendrier td:hover {
-    background-color: #1923b1; 
-    cursor: pointer; 
-    border-radius: 50%;
-    width: 5px;
 }
 
 .notification:hover{
