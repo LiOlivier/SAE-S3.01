@@ -139,7 +139,7 @@
                 <div class="common-filter-input">
                     <label for="search">Rechercher :</label>
                     <input type="text" id="search" value="<?php echo $search; ?>" placeholder="Nom, Prénom, Email, Téléphone">
-                    <button onclick="updateTable()">Rechercher</button>
+                    <button onclick="submitSearch()">Rechercher</button>
                 </div>
             </div>
             <?php if (!empty($tuteursEntreprise)): ?>
@@ -190,63 +190,17 @@
                     </select>
                 </div>
                 <script>
-                    // Store initial data from PHP
-                    const initialData = <?php echo json_encode($tuteursEntreprise); ?>;
-                    let currentData = [...initialData];
-
-                    function updateTable() {
-                        const search = document.getElementById('search').value.toLowerCase();
-                        const tbody = document.getElementById('table-body');
-
-                        currentData = initialData.filter(tuteur => {
-                            return (
-                                tuteur.nom.toLowerCase().includes(search) ||
-                                tuteur.prenom.toLowerCase().includes(search) ||
-                                tuteur.email.toLowerCase().includes(search) ||
-                                tuteur.telephone.toLowerCase().includes(search)
-                            );
-                        });
-
-                        tbody.innerHTML = '';
-                        if (currentData.length === 0) {
-                            tbody.innerHTML = '<tr><td colspan="5">Aucun tuteur entreprise trouvé.</td></tr>';
-                        } else {
-                            currentData.forEach(tuteur => {
-                                const row = document.createElement('tr');
-                                row.innerHTML = `
-                                    <td class="clickable" onclick="window.location.href='secretaire-entreprise-details.php?id=${tuteur.id_tuteur_entreprise}'">${escapeHtml(tuteur.nom)}</td>
-                                    <td class="clickable" onclick="window.location.href='secretaire-entreprise-details.php?id=${tuteur.id_tuteur_entreprise}'">${escapeHtml(tuteur.prenom)}</td>
-                                    <td class="clickable" onclick="window.location.href='secretaire-entreprise-details.php?id=${tuteur.id_tuteur_entreprise}'">${escapeHtml(tuteur.email)}</td>
-                                    <td class="clickable" onclick="window.location.href='secretaire-entreprise-details.php?id=${tuteur.id_tuteur_entreprise}'">${escapeHtml(tuteur.telephone)}</td>
-                                    <td>
-                                        <form method="POST" action="" style="display:inline;" onsubmit="return confirmDelete(event, this)">
-                                            <input type="hidden" name="id" value="${tuteur.id_tuteur_entreprise}">
-                                            <input type="hidden" name="action" value="remove">
-                                            <button type="submit">Supprimer</button>
-                                        </form>
-                                        <form method="GET" action="secretaire-modifier-entreprise.php" style="display:inline;">
-                                            <input type="hidden" name="id" value="${tuteur.id_tuteur_entreprise}">
-                                            <button type="submit">Modifier</button>
-                                        </form>
-                                    </td>
-                                `;
-                                tbody.appendChild(row);
-                            });
-                        }
-                    }
-
-                    function escapeHtml(str) {
-                        const div = document.createElement('div');
-                        div.textContent = str;
-                        return div.innerHTML;
-                    }
-
                     function sortTuteurs(column) {
                         const params = new URLSearchParams(window.location.search);
-                        const currentOrder = params.get('order') === 'desc' ? 'asc' : 'desc';
+                        const currentSort = params.get('sort');
+                        const currentOrder = params.get('order') === 'desc' ? 'desc' : 'asc';
+                        let newOrder = 'asc';
+                        if (currentSort === column && currentOrder === 'asc') {
+                            newOrder = 'desc';
+                        }
                         params.set('sort', column);
-                        params.set('order', currentOrder);
-                        params.set('page', 1);
+                        params.set('order', newOrder);
+                        // preserve current page
                         window.location.href = '?' + params.toString();
                     }
 
@@ -264,23 +218,26 @@
                     }
 
                     function confirmDelete(event, form) {
-                        event.preventDefault(); // Prevent default form submission
+                        event.preventDefault();
                         const confirmed = confirm('Confirmer la suppression ?');
                         if (confirmed) {
-                            form.submit(); // Submit the form only if confirmed
+                            form.submit();
                         }
-                        return false; // Ensure no default action
+                        return false;
+                    }
+
+                    function submitSearch() {
+                        const params = new URLSearchParams(window.location.search);
+                        params.set('search', document.getElementById('search').value);
+                        params.set('page', 1);
+                        window.location.href = '?' + params.toString();
                     }
 
                     document.addEventListener('DOMContentLoaded', function() {
                         const searchInput = document.getElementById('search');
-                        searchInput.addEventListener('input', () => {
-                            clearTimeout(window.searchTimeout);
-                            window.searchTimeout = setTimeout(updateTable, 1000); // Debounce
-                        });
                         searchInput.addEventListener('keypress', (e) => {
                             if (e.key === 'Enter') {
-                                updateTable();
+                                submitSearch();
                             }
                         });
                     });
