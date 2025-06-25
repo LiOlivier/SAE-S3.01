@@ -10,7 +10,6 @@ try {
     if (isset($_GET['id'])) {
         $tuteurId = (int)$_GET['id'];
 
-        // Fetch tuteur and enterprise details
         $query = 'SELECT u.nom, u.prenom, u.email, u.telephone, e.adresse, e.code_postal, e.ville, e.tel as entreprise_tel 
                   FROM Tuteur_Entreprise te 
                   JOIN Utilisateur u ON te.Id_Tuteur_Entreprise = u.id 
@@ -22,7 +21,6 @@ try {
         $tuteur = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($tuteur) {
-            // Count students under control
             $query = 'SELECT COUNT(DISTINCT s.id_etudiant) as student_count 
                       FROM stage s 
                       WHERE s.id_tuteur_entreprise = :id';

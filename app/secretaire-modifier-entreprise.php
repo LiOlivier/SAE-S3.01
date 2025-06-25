@@ -9,7 +9,6 @@ try {
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $db->exec("USE sorbonne");
 
-    // Fetch tuteur details for editing
     $stmt = $db->prepare("SELECT u.nom, u.prenom, u.email, u.telephone, te.id_entreprise 
                           FROM Tuteur_Entreprise te 
                           JOIN Utilisateur u ON te.Id_Tuteur_Entreprise = u.id 
@@ -29,15 +28,13 @@ try {
         $telephone = htmlspecialchars($_POST['telephone']);
         $id_entreprise = (int)$_POST['id_entreprise'];
 
-        // Update Utilisateur table
         $stmt = $db->prepare("UPDATE Utilisateur SET nom = :nom, prenom = :prenom, email = :email, telephone = :telephone WHERE id = :id");
         $stmt->execute([':id' => $id, ':nom' => $nom, ':prenom' => $prenom, ':email' => $email, ':telephone' => $telephone]);
 
-        // Update Tuteur_Entreprise table (if id_entreprise changes)
         $stmt = $db->prepare("UPDATE Tuteur_Entreprise SET id_entreprise = :id_entreprise WHERE Id_Tuteur_Entreprise = :id");
         $stmt->execute([':id' => $id, ':id_entreprise' => $id_entreprise]);
 
-        header("Location: tuteur-entreprise-details.php?id=" . $id);
+        header("Location: secretaire-tuteurs-entreprise.php");
         exit();
     }
 } catch (PDOException $e) {
@@ -54,40 +51,6 @@ try {
     <link rel="stylesheet" href="../CSS/aside.css">
     <link rel="stylesheet" href="../CSS/header.css">
     <link rel="stylesheet" href="../CSS/secretaire.css">
-    <style>
-        .form-container {
-            margin: 20px;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            max-width: 600px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #003366;
-            border-radius: 8px;
-        }
-        .form-group button {
-            padding: 8px 16px;
-            background-color: #003366;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        .form-group button:hover {
-            background-color: #005599;
-        }
-    </style>
 </head>
 <body class="body">
     <?php require_once(__DIR__ . "/component/header.php"); ?>
@@ -118,7 +81,7 @@ try {
                 </div>
                 <div class="form-group">
                     <button type="submit">Enregistrer</button>
-                    <a href="tuteur-entreprise-details.php?id=<?= $id ?>"><button type="button">Annuler</button></a>
+                    <a href="secretaire-tuteurs-entreprise.php"><button type="button">Annuler</button></a>
                 </div>
             </form>
         </div>
