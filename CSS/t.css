@@ -113,10 +113,10 @@ color: #003366;
 }
 
 
-.clickable-card:hover .icon {
+.clickable-card:hover .icons,
+.clickable-card:hover .icones {
     filter: invert(1);
 }
-
 .card .container {
     display: flex;
     align-items: center;

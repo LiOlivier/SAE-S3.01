@@ -122,7 +122,7 @@
             <input type="email" id="email" name="email" placeholder="exemple@email.com" required>
 
             <label for="telephone">Téléphone :</label>
-            <input type="text" id="telephone" name="telephone" placeholder="06XXXXXXXX" required>
+            <input type="text" id="telephone" name="telephone" placeholder="+33XXXXXXXX" required>
 
             <label for="login">Login :</label>
             <input type="text" id="login" name="login" placeholder="Choisissez un identifiant" required>
