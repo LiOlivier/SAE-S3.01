@@ -17,7 +17,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'pedagogique') {
     
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" crossorigin="anonymous">
     <link rel="stylesheet" href="../CSS/aside.css">
-    <link rel="stylesheet" href="../CSS/header_pedagogique.css">
+    <link rel="stylesheet" href="../CSS/header.css">
     <link rel="stylesheet" href="../CSS/listEtudiant_pedagogique.css">
 </head>
 <body>

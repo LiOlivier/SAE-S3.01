@@ -1,12 +1,3 @@
-document.getElementById("arrow").addEventListener("click", function() {
-    var english = document.getElementById("english");
-    if (english.style.display === "none") {
-        english.style.display = "block";
-    } else {
-        english.style.display = "none";
-    }
-});
-
 document.addEventListener('DOMContentLoaded', function () {
     const blocks = document.querySelectorAll('.bloc-formation'); 
 
@@ -55,10 +46,10 @@ function initSidebarToggle() {
             icon.classList.add("fa-chevron-left");
         }
 
-        const one = document.getElementById("one");
+        const one = document.getElementById("main-content");
         if (one) {
-            const currentMargin = getComputedStyle(one).marginLeft;
-            one.style.marginLeft = (currentMargin === "250px") ? "50px" : "250px";
+            const currentLeft = getComputedStyle(one).left;
+            one.style.left = (currentLeft === "250px") ? "50px" : "250px";
         }
     });
 }

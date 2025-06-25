@@ -21,7 +21,7 @@ body{
 }
 .listEtudiant:hover{
     cursor: pointer;
-    background-color: #8b8989;
+    background-color: #e0dede;
 }
 
 .detail-button{

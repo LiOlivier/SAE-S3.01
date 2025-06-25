@@ -5,15 +5,15 @@
     <h1><?= strtoupper($student['nom']) . " " . $student['prenom'] ?> - BUT <?= $student['Libelle'] ?></h1>
     <h2><?= $student["email"] ?> - <?= $student["telephone"] ?></h2>
 </div>
-
 <?php
 function renderSection($type, $etat, $studentId, $nom, $prenom, $stageId, $tuteur) {
     $color = $etat === "Tâche complète" ? "green" : "red";
-    $disabled = $etat === "En attente" ? 'disabled style="background-color:grey;color:black;"' : "";
+    $disabled = $etat === "En attente" ? 'disabled style="background-color:grey;color:white;"' : "";
     $docLabel = ucfirst($type);
     $filename = "$docLabel-$studentId-$nom" . "_" . $prenom . ".pdf";
 
-    echo "<div class='document-section'>
+    echo "
+    <div class='document-section'>
             <h3>$docLabel de stage</h3>
             <form action='telechargement_pedagogique.php' method='POST'>
                 <input type='hidden' name='studentId' value='$studentId'>
