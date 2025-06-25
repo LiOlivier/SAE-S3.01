@@ -235,68 +235,82 @@ button:hover {
 
             <?php
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
-                $nom = $_POST['nom'];
-                $prenom = $_POST['prenom'];
-                $email = $_POST['email'];
-                $telephone = $_POST['telephone'];
-                $login = $_POST['login'];
-                $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                $role = $_POST['role'];
-                $departement = $_POST['departement'] ?? null;
-                $semestre = $_POST['semestre'] ?? null;
-                $entrepriseId = $_POST['entreprise'] ?? null;
+            $nom = $_POST['nom'];
+            $prenom = $_POST['prenom'];
+            $email = $_POST['email'];
+            $telephone = $_POST['telephone'];
+            $login = $_POST['login'];
+            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $role = $_POST['role'];
+            $departement = $_POST['departement'] ?? null;
+            $semestre = $_POST['semestre'] ?? null;
+            $entrepriseId = $_POST['entreprise'] ?? null;
 
-                try {
-                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    $query = "INSERT INTO utilisateur (nom, prenom, email, telephone, login, password, role) 
-                              VALUES (:nom, :prenom, :email, :telephone, :login, :password, :role)";
-                    $stmt = $pdo->prepare($query);
-                    $stmt->bindParam(':nom', $nom);
-                    $stmt->bindParam(':prenom', $prenom);
-                    $stmt->bindParam(':email', $email);
-                    $stmt->bindParam(':telephone', $telephone);
-                    $stmt->bindParam(':login', $login);
-                    $stmt->bindParam(':password', $password);
-                    $stmt->bindParam(':role', $role);
+            $stmt = $pdo->prepare("SELECT COUNT(*) FROM utilisateur WHERE login = :login");
+            $stmt->bindParam(':login', $login);
+            $stmt->execute();
+            if ($stmt->fetchColumn() > 0) {
+                echo "<div class='alert error'>Ce login est déjà utilisé. Choisissez un autre identifiant.</div>";
+                exit;
+            }
+
+            try {
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                $query = "INSERT INTO utilisateur (nom, prenom, email, telephone, login, password, role) 
+                        VALUES (:nom, :prenom, :email, :telephone, :login, :password, :role)";
+                $stmt = $pdo->prepare($query);
+                $stmt->bindParam(':nom', $nom);
+                $stmt->bindParam(':prenom', $prenom);
+                $stmt->bindParam(':email', $email);
+                $stmt->bindParam(':telephone', $telephone);
+                $stmt->bindParam(':login', $login);
+                $stmt->bindParam(':password', $password);
+                $stmt->bindParam(':role', $role);
+                $stmt->execute();
+
+                $lastUserId = $pdo->lastInsertId();
+
+                if ($role === 'etudiant') {
+                    $stmt = $pdo->prepare("INSERT INTO etudiant (id_Etudiant) VALUES (:id)");
+                    $stmt->bindParam(':id', $lastUserId);
                     $stmt->execute();
 
-                    $lastUserId = $pdo->lastInsertId();
-
-                    if ($role === 'etudiant' && $departement && $semestre) {
-                        $stmt = $pdo->prepare("INSERT INTO etudiant (id_Etudiant) VALUES (:id)");
-                        $stmt->bindParam(':id', $lastUserId);
-                        $stmt->execute();
-
+                    try {
                         $stmt = $pdo->prepare("INSERT INTO inscription (annee, Id_Departement, num_Semestre, Id_Etudiant) 
-                                               VALUES (YEAR(CURDATE()), :departement, :semestre, :id)");
+                                            VALUES (YEAR(CURDATE()), :departement, :semestre, :id)");
                         $stmt->bindParam(':departement', $departement);
                         $stmt->bindParam(':semestre', $semestre);
                         $stmt->bindParam(':id', $lastUserId);
                         $stmt->execute();
-                    } elseif ($role === 'enseignant') {
-                        $stmt = $pdo->prepare("INSERT INTO enseignant (Id_Enseignant) VALUES (:id)");
-                        $stmt->bindParam(':id', $lastUserId);
-                        $stmt->execute();
-                    } elseif ($role === 'secretaire') {
-                        $stmt = $pdo->prepare("INSERT INTO secretaire (Id_Secretaire) VALUES (:id)");
-                        $stmt->bindParam(':id', $lastUserId);
-                        $stmt->execute();
-                    } elseif ($role === 'tuteur_entreprise' && $entrepriseId) {
-                        $stmt = $pdo->prepare("INSERT INTO tuteur_entreprise (Id_Tuteur_Entreprise, Id_Entreprise) VALUES (:id, :entreprise)");
-                        $stmt->bindParam(':id', $lastUserId);
-                        $stmt->bindParam(':entreprise', $entrepriseId);
-                        $stmt->execute();
-                    } elseif ($role === 'administrateur') {
-                        $stmt = $pdo->prepare("INSERT INTO administrateur (Id_Administrateur) VALUES (:id)");
-                        $stmt->bindParam(':id', $lastUserId);
-                        $stmt->execute();
+                    } catch (PDOException $e) {
+                        // Ne rien afficher, erreur ignorée volontairement
                     }
-
-                    echo "<div class='alert success'>Utilisateur ajouté avec succès.</div>";
-                } catch (PDOException $e) {
-                    echo "<div class='alert error'>Erreur : " . $e->getMessage() . "</div>";
+                } elseif ($role === 'enseignant') {
+                    $stmt = $pdo->prepare("INSERT INTO enseignant (Id_Enseignant) VALUES (:id)");
+                    $stmt->bindParam(':id', $lastUserId);
+                    $stmt->execute();
+                } elseif ($role === 'secretaire') {
+                    $stmt = $pdo->prepare("INSERT INTO secretaire (Id_Secretaire) VALUES (:id)");
+                    $stmt->bindParam(':id', $lastUserId);
+                    $stmt->execute();
+                } elseif ($role === 'tuteur_entreprise' && $entrepriseId) {
+                    $stmt = $pdo->prepare("INSERT INTO tuteur_entreprise (Id_Tuteur_Entreprise, Id_Entreprise) VALUES (:id, :entreprise)");
+                    $stmt->bindParam(':id', $lastUserId);
+                    $stmt->bindParam(':entreprise', $entrepriseId);
+                    $stmt->execute();
+                } elseif ($role === 'administrateur') {
+                    $stmt = $pdo->prepare("INSERT INTO administrateur (Id_Administrateur) VALUES (:id)");
+                    $stmt->bindParam(':id', $lastUserId);
+                    $stmt->execute();
                 }
+
+                echo "<div class='alert success'>Utilisateur ajouté avec succès.</div>";
+            } catch (PDOException $e) {
+                echo "<div class='alert error'>Erreur : " . $e->getMessage() . "</div>";
             }
+        }
+
             ?>
         </section>
     </div>
