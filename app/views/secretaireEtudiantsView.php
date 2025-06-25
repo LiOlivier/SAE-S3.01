@@ -17,7 +17,6 @@
         require_once(__DIR__ . "/../component/header.php");
         require_once(__DIR__ . "/../component/aside.php"); 
     ?>
-
     <div id="one">
         <h1 id="titre">Liste des Etudiants</h1>
         <div class="cards">
@@ -133,16 +132,13 @@
                     const year = document.getElementById('year').value;
                     const filter = document.getElementById('filter').value;
                     const rows = document.getElementById('rowsPerPage').value;
-                    const page = 1;
-
+                    params.set('rows', rows);
+                    params.set('page', 1);
                     if (search) params.set('search', search);
                     if (department) params.set('department', department);
                     if (semester) params.set('semester', semester);
                     if (year) params.set('year', year);
                     if (filter) params.set('filter', filter);
-                    params.set('rows', rows);
-                    params.set('page', page);
-
                     window.location.href = '?' + params.toString();
                 }
 
@@ -153,8 +149,7 @@
                     const order = (currentSort === column && currentOrder === 'ASC') ? 'DESC' : 'ASC';
                     params.set('sort', column);
                     params.set('order', order);
-                    const currentPage = params.get('page') || '<?php echo $page; ?>';
-                    params.set('page', currentPage);
+                    params.set('page', params.get('page') || '<?php echo $page; ?>');
                     window.location.href = '?' + params.toString();
                 }
 
@@ -190,11 +185,6 @@
                     a.click();
                     window.URL.revokeObjectURL(url);
                 }
-
-                document.getElementById('department').addEventListener('change', updateQueryString);
-                document.getElementById('semester').addEventListener('change', updateQueryString);
-                document.getElementById('year').addEventListener('change', updateQueryString);
-                document.getElementById('filter').addEventListener('change', updateQueryString);
             </script>
         </div>
     </div>

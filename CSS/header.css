@@ -7,6 +7,7 @@ div.bell{
     display: flex;
     justify-content: flex-end;
     padding-bottom: 0.5em;
+    height: 2vh;
 } 
 .nav_notif{
     position: fixed;
