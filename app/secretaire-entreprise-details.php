@@ -52,28 +52,6 @@ try {
     <link rel="stylesheet" href="../CSS/secretaire.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
           integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
-    <style>
-        /* .details-container {
-            margin: 20px;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            max-width: 600px;
-        }
-        .details-item {
-            margin-bottom: 10px;
-        }
-        .details-item label {
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        .clickable-row {
-            cursor: pointer;
-        }
-        .clickable-row:hover {
-            background-color: #f5f5f5;
-        } */
-    </style>
 </head>
 <body class="body">
     <?php require_once(__DIR__ . "/component/header.php"); ?>
