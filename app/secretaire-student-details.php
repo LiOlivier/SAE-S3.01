@@ -5,7 +5,6 @@ $db = Database::getConnexion('mysql');
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $db->exec("USE sorbonne");
 
-// Handle state change form submission BEFORE any HTML output
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action_id'], $_POST['new_etat'])) {
     $updateQuery = "UPDATE action SET etat = :new_etat WHERE id_action = :action_id";
     $updateStmt = $db->prepare($updateQuery);
@@ -147,7 +146,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action_id'], $_POST['
                             $lien = $document['lien_document'];
                             $etat = $document['etat'];
                             $id_action = $document['id_action'];
-                            // Determine document type
                             $type = '';
                             if (strpos($lien, 'Convention') !== false) {
                                 $type = 'Convention de stage';
@@ -161,7 +159,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action_id'], $_POST['
                             echo '<a href="' . htmlspecialchars($lien, ENT_QUOTES) . '" target="_blank">Voir le document</a> ';
                             echo '<span style="font-style:italic;">(' . $type . ')</span> ';
                             echo '<span style="margin-left:10px;">État : <strong>' . htmlspecialchars($etat, ENT_QUOTES) . '</strong></span>';
-                            // State change form
                             echo '<form method="post" style="display:inline;margin-left:10px;">';
                             echo '<input type="hidden" name="action_id" value="' . intval($id_action) . '">';
                             echo '<select name="new_etat">';
@@ -185,37 +182,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action_id'], $_POST['
                 ?>
             </div>
         </section>
-
-        <!-- 
-        <section id="communication">
-            <h2>Communication</h2>
-            <div class="cards">
-                <?php
-                try {
-                    $query = 'SELECT * FROM Communication WHERE id_etudiant = :studentId';
-                    $stmt = $db->prepare($query);
-                    $stmt->bindParam(':studentId', $studentId, PDO::PARAM_INT);
-                    $stmt->execute();
-                    $communications = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                    if ($communications) {
-                        foreach ($communications as $communication) {
-                            echo '<p><strong>Communication ID:</strong> ' . htmlspecialchars($communication['Id_Communication'], ENT_QUOTES) . '</p>';
-                            echo '<p><strong>Type:</strong> ' . htmlspecialchars($communication['type'], ENT_QUOTES) . '</p>';
-                            echo '<p><strong>Message:</strong> ' . htmlspecialchars($communication['message'], ENT_QUOTES) . '</p>';
-                            echo '<p><strong>Date:</strong> ' . htmlspecialchars($communication['date'], ENT_QUOTES) . '</p>';
-                            echo '<hr>';
-                        }
-                    } else {
-                        echo '<p>Aucune communication trouvée.</p>';
-                    }
-                } catch (PDOException $e) {
-                    echo 'Erreur : ' . $e->getMessage();
-                }
-                ?>
-            </div>
-        </section>
-        -->
     </section>
 </body>
 </html>
