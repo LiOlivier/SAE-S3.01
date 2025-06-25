@@ -730,3 +730,59 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+-- INSERTION POUR TUTEUR ENTREPRISE 
+
+-- Ajout d'une entreprise
+INSERT INTO entreprise (id_entreprise, adresse, code_postal, ville, indication_visite, tel)
+VALUES (8, '123 rue de la Tech', 75000, 'Paris', 1, '0102030405');
+
+-- Ajout du tuteur entreprise
+INSERT INTO utilisateur (id, nom, prenom, email, telephone, login, password, role)
+VALUES (66, 'Leroy', 'Julien', 'julien.leroy@entreprise.com', '0611223344', 'jleroy',
+        '$2y$10$aXSzkmvVqZckzbl7sqyrSu1VpD213j/Jnlyd2Ch8I//qEIZ9ucyCW', 'tuteur');
+
+INSERT INTO tuteur_entreprise (id_tuteur_entreprise, id_entreprise)
+VALUES (66, 8);
+
+-- Ajout du tuteur pédagogique
+INSERT INTO utilisateur (id, nom, prenom, email, telephone, login, password, role)
+VALUES (67, 'Roux', 'Camille', 'camille.roux@univ.fr', '0611223345', 'croux',
+        '$2y$10$aXSzkmvVqZckzbl7sqyrSu1VpD213j/Jnlyd2Ch8I//qEIZ9ucyCW', 'pedagogique');
+
+-- Ajout du tuteur pédagogique dans la table enseignant
+INSERT INTO enseignant (id_enseignant, bureau)
+VALUES (67, 'L107');
+
+-- Ajout des deux étudiants
+INSERT INTO utilisateur (id, nom, prenom, email, telephone, login, password, role)
+VALUES 
+(68, 'Tremblay', 'Alice', 'alice.tremblay@etu.univ.fr', '0699999991', 'alice',
+     '$2y$10$aXSzkmvVqZckzbl7sqyrSu1VpD213j/Jnlyd2Ch8I//qEIZ9ucyCW', 'etudiant'),
+(69, 'Nguyen', 'Léo', 'leo.nguyen@etu.univ.fr', '0699999992', 'leo',
+     '$2y$10$aXSzkmvVqZckzbl7sqyrSu1VpD213j/Jnlyd2Ch8I//qEIZ9ucyCW', 'etudiant');
+
+-- Insertion dans la table etudiant
+INSERT INTO etudiant (id_etudiant)
+VALUES (68), (69);
+
+-- Inscription des étudiants (2025, Département 1 = INFO, Semestre 6)
+INSERT INTO inscription (annee, id_departement, num_semestre, id_etudiant)
+VALUES 
+(2025, 1, 6, 68),
+(2025, 1, 6, 69);
+
+-- Ajout des stages fictifs liés au tuteur entreprise et au tuteur pédagogique
+INSERT INTO stage (
+  annee, id_departement, num_semestre, id_etudiant, id_stage,
+  date_debut, date_fin, mission, id_tuteur_entreprise, id_enseignant_1
+)
+VALUES 
+(2025, 1, 6, 68, 13, '2025-03-01', '2025-06-30', 'Développement mobile', 66, 67),
+(2025, 1, 6, 69, 14, '2025-03-01', '2025-06-30', 'Analyse de données', 66, 67);
+
+-- Mise à jour des dates limites pour les types d'action
+UPDATE typeaction SET delai_limite = '2024-12-12' WHERE id_type_action = 7;
+UPDATE typeaction SET delai_limite = '2025-02-02' WHERE id_type_action = 9;
+
