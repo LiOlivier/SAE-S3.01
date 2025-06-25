@@ -79,8 +79,8 @@
     ?>
 
     <div id="one">
+        <h1 id="titre">Liste des stages</h1>
         <div class="cards">
-            <h1 id="titre">Liste des stages</h1>
 
             <!-- Filter Form -->
             <form method="GET" action="">
