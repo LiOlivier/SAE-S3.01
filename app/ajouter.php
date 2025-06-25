@@ -65,8 +65,8 @@
         input:focus,
         select:focus {
             outline: none;
-            border-color: #4caf50;
-            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+            border-color: #003366;
+            box-shadow: 0 0 5px rgba(0, 51, 102, 0.5);
         }
 
         button {
@@ -107,7 +107,6 @@
     ?>
     
 </head>
-
 <body>
     <section>
         <h1>Ajouter un utilisateur</h1>
@@ -122,7 +121,7 @@
             <input type="email" id="email" name="email" placeholder="exemple@email.com" required>
 
             <label for="telephone">Téléphone :</label>
-            <input type="text" id="telephone" name="telephone" placeholder="06XXXXXXXX" required>
+            <input type="text" id="telephone" name="telephone" placeholder="+33XXXXXXXX" required>
 
             <label for="login">Login :</label>
             <input type="text" id="login" name="login" placeholder="Choisissez un identifiant" required>
