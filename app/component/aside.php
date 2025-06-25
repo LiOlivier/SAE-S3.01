@@ -30,11 +30,12 @@
                         </a>
                     <?php } ?>
                     <?php if ($_SESSION["user"]["role"] == 'tuteur') { ?>
-                        <a href="board_tut_entreprise.php" class="bouton-side" id="TDB">
+                        <a href="views/tutEntrepriseBoardView.php" class="bouton-side" id="TDB">
                             <div class="content-side">
                                 <i class="fas fa-th" style="font-size: 1.3em;"></i> <span>Tableau de Bord</span>
                             </div>
                         </a>
+                        
                     <?php } ?>
             </li>
             <li>
@@ -50,6 +51,13 @@
             <li>
                 <?php if ($_SESSION["user"]["role"] == 'etudiant') { ?>
                     <a href="depot.php" class="bouton-side" id="DP">
+                        <div class="content-side">
+                            <i class="fas fa-folder" style="font-size: 1.3em;"></i> <span>Dépot de document</span>
+                        </div>
+                    </a>
+
+                <?php } ?><?php if ($_SESSION["user"]["role"] == 'tuteur') { ?>
+                    <a href="views/tutEntrepriseDepotView.php" class="bouton-side" id="DP">
                         <div class="content-side">
                             <i class="fas fa-folder" style="font-size: 1.3em;"></i> <span>Dépot de document</span>
                         </div>
