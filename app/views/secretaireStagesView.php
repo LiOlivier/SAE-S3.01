@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,71 +10,8 @@
     <link rel="stylesheet" href="../CSS/secretaire.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
         integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
-    <style>
-        .form-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 24px 32px;
-            align-items: end;
-            width: 100%;
-            margin-bottom: 10px;
-        }
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            min-width: 0;
-        }
-        .form-button {
-            display: flex;
-            align-items: flex-end;
-            min-width: 120px;
-        }
-        /* th, th a, th a:hover, th a:visited {
-            color: #ffffff;
-            text-decoration: none;
-        } */
-        /* th.common-sortable {
-            cursor: pointer;
-        }
-        th.common-sortable:hover {
-            background-color: #004080;
-        } */
-        /* .common-pagination {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-        }
-        .common-pagination button {
-            padding: 8px 12px;
-            background-color: #003366;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: background-color 0.3s ease;
-        }
-        .common-pagination button:hover:not(:disabled) {
-            background-color: #005599;
-        }
-        .common-pagination button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-        }
-        .common-pagination select {
-            width: auto;
-            min-width: 80px;
-            height: 34px;
-            padding: 8px;
-            border: 1px solid #003366;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        } */
-    </style>
 </head>
+
 <body class="body">
     <?php 
         require_once(__DIR__ . "/../component/header.php");

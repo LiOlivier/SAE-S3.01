@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,116 +9,9 @@
     <link rel="stylesheet" href="../CSS/header.css">
     <link rel="stylesheet" href="../CSS/secretaire.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
-          integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
-    <style>
-        th, th a, th a:hover, th a:visited {
-            color: #ffffff;
-            text-decoration: none;
-        }
-        th.common-sortable {
-            cursor: pointer;
-        }
-        th.common-sortable:hover {
-            background-color: #005599;
-        }
-        .common-filter-section {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-            align-items: flex-start;
-            padding: 10px;
-        }
-        .common-filter-section label {
-            margin-right: 5px;
-            font-weight: bold;
-            color: #555;
-            font-size: 0.9rem;
-            white-space: nowrap;
-        }
-        .common-filter-input {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 10px;
-            padding: 10px;
-            margin: 0 auto;
-        }
-        .common-filter-section input[type="text"], .common-filter-section select, .common-filter-section button {
-            max-width: 200px;
-            height: 34px;
-            padding: 8px;
-            border: 1px solid #003366;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            margin: 0;
-        }
-        .common-filter-section button {
-            margin-left: auto;
-            background-color: #003366;
-            color: #fff;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            padding: 8px 16px;
-        }
-        .common-filter-section input:focus, .common-filter-section select:focus, .common-filter-section button:focus {
-            border-color: #005599;
-            box-shadow: 0 0 8px rgba(0, 53, 102, 0.3);
-            outline: none;
-        }
-        .common-filter-section button:hover {
-            background-color: #005599;
-        }
-        .common-pagination {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-        }
-        .common-pagination button {
-            padding: 8px 12px;
-            background-color: #003366;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: background-color 0.3s ease;
-        }
-        .common-pagination button:hover:not(:disabled) {
-            background-color: #005599;
-        }
-        .common-pagination button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-        }
-        .common-pagination select {
-            width: auto;
-            min-width: 80px;
-            height: 34px;
-            padding: 8px;
-            border: 1px solid #003366;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .message {
-            margin-top: 10px;
-            padding: 10px;
-            border-radius: 4px;
-        }
-        .success { background-color: #d4edda; color: #155724; }
-        .error { background-color: #f8d7da; color: #721c24; }
-        .table-wrapper { margin-top: 20px; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { padding: 8px; text-align: left; border: 1px solid #ddd; }
-        th { background-color: #003366; color: #ffffff; }
-        .clickable { cursor: pointer; }
-    </style>
+        integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
 </head>
+
 <body class="body">
     <?php require_once(__DIR__ . "/../component/header.php"); ?>
     <?php require_once(__DIR__ . "/../component/aside.php"); ?>
@@ -147,20 +41,20 @@
                     <table>
                         <thead>
                             <tr>
-                                <th class="common-sortable" onclick="sortTuteurs('nom')">Nom <?php echo $sort === 'nom' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
-                                <th class="common-sortable" onclick="sortTuteurs('prenom')">Prénom <?php echo $sort === 'prenom' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
-                                <th class="common-sortable" onclick="sortTuteurs('email')">Email <?php echo $sort === 'email' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
-                                <th class="common-sortable" onclick="sortTuteurs('telephone')">Téléphone <?php echo $sort === 'telephone' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
+                                <th class="clickable-row" onclick="sortTuteurs('nom')">Nom <?php echo $sort === 'nom' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
+                                <th class="clickable-row" onclick="sortTuteurs('prenom')">Prénom <?php echo $sort === 'prenom' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
+                                <th class="clickable-row" onclick="sortTuteurs('email')">Email <?php echo $sort === 'email' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
+                                <th class="clickable-row" onclick="sortTuteurs('telephone')">Téléphone <?php echo $sort === 'telephone' ? ($order === 'asc' ? '↑' : '↓') : ''; ?></th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody id="table-body">
                             <?php foreach ($tuteursEntreprise as $tuteur): ?>
                                 <tr>
-                                    <td class="clickable" onclick="window.location.href='secretaire-entreprise-details.php?id=<?= $tuteur['id_tuteur_entreprise'] ?>'"><?= htmlspecialchars($tuteur['nom'] ?? 'N/A') ?></td>
-                                    <td class="clickable" onclick="window.location.href='secretaire-entreprise-details.php?id=<?= $tuteur['id_tuteur_entreprise'] ?>'"><?= htmlspecialchars($tuteur['prenom'] ?? 'N/A') ?></td>
-                                    <td class="clickable" onclick="window.location.href='secretaire-entreprise-details.php?id=<?= $tuteur['id_tuteur_entreprise'] ?>'"><?= htmlspecialchars($tuteur['email'] ?? 'N/A') ?></td>
-                                    <td class="clickable" onclick="window.location.href='secretaire-entreprise-details.php?id=<?= $tuteur['id_tuteur_entreprise'] ?>'"><?= htmlspecialchars($tuteur['telephone'] ?? 'N/A') ?></td>
+                                    <td class="clickable-column" onclick="window.location.href='secretaire-entreprise-details.php?id=<?= $tuteur['id_tuteur_entreprise'] ?>'"><?= htmlspecialchars($tuteur['nom'] ?? 'N/A') ?></td>
+                                    <td class="clickable-column" onclick="window.location.href='secretaire-entreprise-details.php?id=<?= $tuteur['id_tuteur_entreprise'] ?>'"><?= htmlspecialchars($tuteur['prenom'] ?? 'N/A') ?></td>
+                                    <td class="clickable-column" onclick="window.location.href='secretaire-entreprise-details.php?id=<?= $tuteur['id_tuteur_entreprise'] ?>'"><?= htmlspecialchars($tuteur['email'] ?? 'N/A') ?></td>
+                                    <td class="clickable-column" onclick="window.location.href='secretaire-entreprise-details.php?id=<?= $tuteur['id_tuteur_entreprise'] ?>'"><?= htmlspecialchars($tuteur['telephone'] ?? 'N/A') ?></td>
                                     <td>
                                         <form method="POST" action="" style="display:inline;" onsubmit="return confirmDelete(event, this)">
                                             <input type="hidden" name="id" value="<?= $tuteur['id_tuteur_entreprise'] ?>">
