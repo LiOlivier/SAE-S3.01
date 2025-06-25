@@ -25,7 +25,8 @@
             align-items: center;
             flex-direction: column;
             min-height: 100vh;
-        }
+            margin-left: 220px; /* adapte à la largeur de ton aside */
+        
 
         h1 {
             margin-bottom: 20px;
@@ -97,6 +98,40 @@
         .alert.error {
             background-color: #f44336;
         }
+
+      @media (max-width: 900px) {
+    section {
+        margin-left: 0;
+        padding: 0.5rem;
+        min-height: unset;
+    }
+    form {
+        max-width: 100vw;
+        min-width: 0;
+        margin: 0 2vw;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    h1 {
+        font-size: 1.1rem;
+        text-align: center;
+    }
+    input, select, button {
+        font-size: 1rem;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 600px) {
+    form {
+        margin: 0 1vw;
+        padding: 5px;
+    }
+    h1 {
+        font-size: 1rem;
+    }
+}
+
     </style>
     <?php
     require('./controller/sessionController.php');
