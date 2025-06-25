@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="../CSS/listEtudiant_pedagogique.css">
 <?php
-echo "<h1>Liste des Étudiants</h1>";
+/*echo "<h1>Liste des Étudiants</h1>";
 $username = 'root';
 $password = '';
 
@@ -88,5 +88,5 @@ try {
     }
 } catch (PDOException $e) {
     echo "Erreur de connexion à la base de données : " . $e->getMessage();
-}
+}*/
 ?>

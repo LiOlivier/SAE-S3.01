@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             
-            if (targetFile === 'listEtudiant_pedagogique') {
-                fetchContent('listEtudiant_pedagogique.php', target); 
+            if (targetFile === 'section_pedagogique') {
+                fetchContent('section_pedagogique.php', target); 
             } else if (targetFile === 'DocumentEtudiant') {
                 fetchContent('DocumentEtudiant.php', target); 
             }
@@ -32,27 +32,59 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     
-    document.getElementById('backButton').addEventListener('click', goBack);
+    //document.getElementById('backButton').addEventListener('click', goBack);
+
+    fetchContent('section_pedagogique.php', document.getElementById('main-content'));
+
 });
+
+function initSidebarToggle() {
+    const toggleBtn = document.getElementById("toggleSidebar");
+    if (!toggleBtn) return;
+
+    toggleBtn.addEventListener("click", function () {
+        const sidenav = document.querySelector(".sidenav");
+        sidenav.classList.toggle("collapsed");
+
+        const icon = this.querySelector("i");
+        if (sidenav.classList.contains("collapsed")) {
+            icon.classList.remove("fa-chevron-left");
+            icon.classList.add("fa-chevron-right");
+        } else {
+            icon.classList.remove("fa-chevron-right");
+            icon.classList.add("fa-chevron-left");
+        }
+
+        const one = document.getElementById("one");
+        if (one) {
+            const currentMargin = getComputedStyle(one).marginLeft;
+            one.style.marginLeft = (currentMargin === "250px") ? "50px" : "250px";
+        }
+    });
+}
 
 
 function goBack() {
     const target = document.getElementById('main-content'); 
 
     
-    if (target.dataset.loaded === 'listEtudiant_pedagogique') {
+    if (target.dataset.loaded === 'section_pedagogique') {
         return; 
     }
 
     
-    fetch('board_pedagogique.php')
+    fetch('section_pedagogique.php')
         .then(response => {
             if (!response.ok) throw new Error('Failed to load content');
             return response.text();
         })
         .then(data => {
             target.innerHTML = data; 
-            target.dataset.loaded = 'board_pedagogique'; 
+            if (typeof initSidebarToggle === 'function') {
+                initSidebarToggle();
+            }
+
+            target.dataset.loaded = 'section_pedagogique'; 
             
             attachEventListeners(); 
         })
