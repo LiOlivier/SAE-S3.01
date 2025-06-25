@@ -107,7 +107,6 @@
     ?>
     
 </head>
-<p> test </p>
 <body>
     <section>
         <h1>Ajouter un utilisateur</h1>
