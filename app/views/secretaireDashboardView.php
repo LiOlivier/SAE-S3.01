@@ -12,7 +12,7 @@
         integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
 </head>
 
-<body>
+<body class="body">
     <?php 
         require_once(__DIR__ . "/../component/header.php");
         require_once(__DIR__ . "/../component/aside.php"); 
@@ -25,11 +25,11 @@
                 <div class="cards">
                     <h2>Résumé rapide des actions en attente et des mises à jour récentes</h2>
                     <ul class="summary-list">
-                        <li><i class="fas fa-exclamation-circle"></i> <?php echo $overdueReportsCount; ?> étudiants ont des rapports en retard.</li>
-                        <li><i class="fas fa-calendar-alt"></i> <?php echo $upcomingSoutenancesCount; ?> soutenances sont prévues pour cette semaine.</li>
-                        <li><i class="fas fa-users-slash"></i> <?php echo $stagesWithoutJuryCount; ?> stages en cours sans jury assigné.</li>
-                        <li><i class="fas fa-users"></i> <?php echo $totalStudentsCount; ?> étudiants inscrits.</li>
-                        <li><i class="fas fa-briefcase"></i> <?php echo $totalStagesCount; ?> stages en cours.</li>
+                        <li><i class="fas fa-exclamation-circle"></i> <?php echo htmlspecialchars($overdueReportsCount); ?> étudiants ont des rapports en retard.</li>
+                        <li><i class="fas fa-calendar-alt"></i> <?php echo htmlspecialchars($upcomingSoutenancesCount); ?> soutenances sont prévues pour cette semaine.</li>
+                        <li><i class="fas fa-users-slash"></i> <?php echo htmlspecialchars($stagesWithoutJuryCount); ?> stages en cours sans jury assigné.</li>
+                        <li><i class="fas fa-users"></i> <?php echo htmlspecialchars($totalStudentsCount); ?> étudiants inscrits.</li>
+                        <li><i class="fas fa-briefcase"></i> <?php echo htmlspecialchars($totalStagesCount); ?> stages en cours.</li>
                     </ul>
                 </div>
             </section>
@@ -38,13 +38,15 @@
                 <div class="cards">
                     <h2>Notifications récentes</h2>
                     <ul class="notification-list">
-                        <?php if (empty($recentNotifications)) { ?>
+                        <?php if (empty($recentNotifications)): ?>
                             <li>Aucune notification récente.</li>
-                        <?php } else { 
-                            foreach ($recentNotifications as $notification) { ?>
-                                <li><?php echo htmlspecialchars($notification['prenom']) . ' ' . htmlspecialchars($notification['nom']) . ' a ' . htmlspecialchars($notification['libelle']) . ' le ' . htmlspecialchars($notification['date_realisation']); ?>.</li>
-                            <?php } 
-                        } ?>
+                        <?php else: ?>
+                            <?php foreach ($recentNotifications as $notification): ?>
+                                <li>
+                                    <?php echo htmlspecialchars($notification['prenom']) . ' ' . htmlspecialchars($notification['nom']) . ' a ' . htmlspecialchars($notification['libelle']) . ' le ' . htmlspecialchars($notification['date_realisation']); ?>.
+                                </li>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </section>
