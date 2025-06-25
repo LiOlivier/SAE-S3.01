@@ -65,8 +65,8 @@
         input:focus,
         select:focus {
             outline: none;
-            border-color: #4caf50;
-            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+            border-color: #003366;
+            box-shadow: 0 0 5px rgba(0, 51, 102, 0.5);
         }
 
         button {
