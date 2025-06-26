@@ -14,14 +14,6 @@ session_start();
     <link rel="stylesheet" href="../CSS/secretaire.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
         integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
-    <style>
-        .clickable-row {
-            cursor: pointer;
-        }
-        .clickable-row:hover {
-            background-color: #f5f5f5;
-        }
-    </style>
 </head>
 
 <body class="body">
@@ -60,7 +52,6 @@ session_start();
                         echo '<p><strong>Téléphone:</strong> ' . htmlspecialchars($enseignant['telephone'], ENT_QUOTES) . '</p>';
                         echo '<p><strong>Bureau:</strong> ' . htmlspecialchars($enseignant['bureau'] ?? 'Non spécifié', ENT_QUOTES) . '</p>';
 
-                        // Check if the Enseignant is head of a department
                         $query = 'SELECT libelle FROM departement WHERE id_enseignant = :enseignantId';
                         $stmt = $db->prepare($query);
                         $stmt->bindParam(':enseignantId', $enseignantId, PDO::PARAM_INT);
@@ -71,7 +62,6 @@ session_start();
                             echo '<p><strong>Département (Responsable):</strong> ' . htmlspecialchars($dept, ENT_QUOTES) . '</p>';
                         }
 
-                        // Check if the Enseignant is a Tuteur Pédagogique (role = 'pedagogique')
                         if ($enseignant['role'] === 'pedagogique') {
                             echo '<section id="students-under-control">';
                             echo '<h2>Étudiants sous Contrôle</h2>';

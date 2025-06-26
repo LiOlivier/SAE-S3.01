@@ -10,7 +10,6 @@ try {
     if (isset($_GET['id'])) {
         $tuteurId = (int)$_GET['id'];
 
-        // Fetch tuteur and enterprise details
         $query = 'SELECT u.nom, u.prenom, u.email, u.telephone, e.adresse, e.code_postal, e.ville, e.tel as entreprise_tel 
                   FROM Tuteur_Entreprise te 
                   JOIN Utilisateur u ON te.Id_Tuteur_Entreprise = u.id 
@@ -22,7 +21,6 @@ try {
         $tuteur = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($tuteur) {
-            // Count students under control
             $query = 'SELECT COUNT(DISTINCT s.id_etudiant) as student_count 
                       FROM stage s 
                       WHERE s.id_tuteur_entreprise = :id';
@@ -52,28 +50,6 @@ try {
     <link rel="stylesheet" href="../CSS/secretaire.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
           integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
-    <style>
-        .details-container {
-            margin: 20px;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            max-width: 600px;
-        }
-        .details-item {
-            margin-bottom: 10px;
-        }
-        .details-item label {
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        .clickable-row {
-            cursor: pointer;
-        }
-        .clickable-row:hover {
-            background-color: #f5f5f5;
-        }
-    </style>
 </head>
 <body class="body">
     <?php require_once(__DIR__ . "/component/header.php"); ?>
@@ -82,17 +58,17 @@ try {
         <h1 id="titre">Détails du Tuteur Entreprise</h1>
         <div class="cards">
             <?php if ($tuteur): ?>
-                <div class="details-container">
-                    <div class="details-item"><label>Nom :</label> <?= htmlspecialchars($tuteur['nom'] ?? 'N/A') ?></div>
-                    <div class="details-item"><label>Prénom :</label> <?= htmlspecialchars($tuteur['prenom'] ?? 'N/A') ?></div>
-                    <div class="details-item"><label>Email :</label> <?= htmlspecialchars($tuteur['email'] ?? 'N/A') ?></div>
-                    <div class="details-item"><label>Téléphone :</label> <?= htmlspecialchars($tuteur['telephone'] ?? 'N/A') ?></div>
-                    <div class="details-item"><label>Adresse Entreprise :</label> <?= htmlspecialchars($tuteur['adresse'] ?? 'N/A') ?></div>
-                    <div class="details-item"><label>Code Postal :</label> <?= htmlspecialchars($tuteur['code_postal'] ?? 'N/A') ?></div>
-                    <div class="details-item"><label>Ville :</label> <?= htmlspecialchars($tuteur['ville'] ?? 'N/A') ?></div>
-                    <div class="details-item"><label>Téléphone Entreprise :</label> <?= htmlspecialchars($tuteur['entreprise_tel'] ?? 'N/A') ?></div>
-                    <div class="details-item"><label>Nombre d'Étudiants sous Contrôle :</label> <?= htmlspecialchars($studentCount ?? '0') ?></div>
-                </div>
+                <ul class="summary-list">
+                    <li><label>Nom :</label> <?= htmlspecialchars($tuteur['nom'] ?? 'N/A') ?></li>
+                    <li><label>Prénom :</label> <?= htmlspecialchars($tuteur['prenom'] ?? 'N/A') ?></li>
+                    <li><label>Email :</label> <?= htmlspecialchars($tuteur['email'] ?? 'N/A') ?></li>
+                    <li><label>Téléphone :</label> <?= htmlspecialchars($tuteur['telephone'] ?? 'N/A') ?></li>
+                    <li><label>Adresse Entreprise :</label> <?= htmlspecialchars($tuteur['adresse'] ?? 'N/A') ?></li>
+                    <li><label>Code Postal :</label> <?= htmlspecialchars($tuteur['code_postal'] ?? 'N/A') ?></li>
+                    <li><label>Ville :</label> <?= htmlspecialchars($tuteur['ville'] ?? 'N/A') ?></li>
+                    <li><label>Téléphone Entreprise :</label> <?= htmlspecialchars($tuteur['entreprise_tel'] ?? 'N/A') ?></li>
+                    <li><label>Nombre d'Étudiants sous Contrôle :</label> <?= htmlspecialchars($studentCount ?? '0') ?></li>
+                </ul>
                 <?php if ($studentCount > 0): ?>
                     <section id="students-under-control">
                         <h2>Étudiants sous Contrôle</h2>

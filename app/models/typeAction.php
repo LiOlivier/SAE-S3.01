@@ -51,7 +51,7 @@ class TypeAction
         return $query->fetch(PDO::FETCH_ASSOC);
     }
 
-public function getUploadedDocumentByActionIdAndStudentId($idAction, $idEtudiant) {
+    public function getUploadedDocumentByActionIdAndStudentId($idAction, $idEtudiant) {
         $sql = "SELECT t.delai_limite, a.lien_document, a.etat 
                 FROM typeaction t 
                 LEFT JOIN action a ON t.id_type_action = a.id_type_action 
@@ -71,5 +71,4 @@ public function getUploadedDocumentByActionIdAndStudentId($idAction, $idEtudiant
     
         return $result;
     }
-    
 }

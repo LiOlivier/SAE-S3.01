@@ -1,5 +1,19 @@
 <?php
 session_start();
+require_once "../config/database.php";
+$db = Database::getConnexion('mysql'); 
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$db->exec("USE sorbonne");
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action_id'], $_POST['new_etat'])) {
+    $updateQuery = "UPDATE action SET etat = :new_etat WHERE id_action = :action_id";
+    $updateStmt = $db->prepare($updateQuery);
+    $updateStmt->bindParam(':new_etat', $_POST['new_etat'], PDO::PARAM_STR);
+    $updateStmt->bindParam(':action_id', $_POST['action_id'], PDO::PARAM_INT);
+    $updateStmt->execute();
+    header("Location: " . strtok($_SERVER["REQUEST_URI"], '?') . (isset($_GET['id']) ? '?id=' . urlencode($_GET['id']) : ''));
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,14 +34,12 @@ session_start();
     <?php 
         require_once(__DIR__ . "/component/header.php");
         require_once(__DIR__ . "/component/aside.php"); 
-        require_once "../config/database.php";
     ?>
 
     <section id="one">
         <h1 id="titre">Détails de l'Étudiant</h1>
         <div class="cards">
             <?php
-            $db = Database::getConnexion('mysql'); 
             try {
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -123,7 +135,7 @@ session_start();
             <div class="cards">
                 <?php
                 try {
-                    $query = 'SELECT lien_document FROM action WHERE id_etudiant = :studentId';
+                    $query = 'SELECT id_action, lien_document, etat FROM action WHERE id_etudiant = :studentId AND lien_document IS NOT NULL';
                     $stmt = $db->prepare($query);
                     $stmt->bindParam(':studentId', $studentId, PDO::PARAM_INT);
                     $stmt->execute();
@@ -131,7 +143,35 @@ session_start();
 
                     if ($documents) {
                         foreach ($documents as $document) {
-                            echo '<p><a href="' . htmlspecialchars($document['lien_document'], ENT_QUOTES) . '" target="_blank">Voir le document</a></p>';
+                            $lien = $document['lien_document'];
+                            $etat = $document['etat'];
+                            $id_action = $document['id_action'];
+                            $type = '';
+                            if (strpos($lien, 'Convention') !== false) {
+                                $type = 'Convention de stage';
+                            } elseif (strpos($lien, 'Bordereau') !== false) {
+                                $type = 'Bordereau de stage';
+                            } else {
+                                $type = 'Document';
+                            }
+                            echo '<div style="margin-bottom:1em;">';
+                            echo '<p>';
+                            echo '<a href="' . htmlspecialchars($lien, ENT_QUOTES) . '" target="_blank">Voir le document</a> ';
+                            echo '<span style="font-style:italic;">(' . $type . ')</span> ';
+                            echo '<span style="margin-left:10px;">État : <strong>' . htmlspecialchars($etat, ENT_QUOTES) . '</strong></span>';
+                            echo '<form method="post" style="display:inline;margin-left:10px;">';
+                            echo '<input type="hidden" name="action_id" value="' . intval($id_action) . '">';
+                            echo '<select name="new_etat">';
+                            $etats = ['A faire', 'En attente', 'Valider', 'Refuser'];
+                            foreach ($etats as $e) {
+                                $selected = ($e === $etat) ? 'selected' : '';
+                                echo '<option value="' . $e . '" ' . $selected . '>' . $e . '</option>';
+                            }
+                            echo '</select>';
+                            echo '<button type="submit">Changer l\'état</button>';
+                            echo '</form>';
+                            echo '</p>';
+                            echo '</div>';
                         }
                     } else {
                         echo '<p>Aucun document trouvé.</p>';
@@ -142,37 +182,6 @@ session_start();
                 ?>
             </div>
         </section>
-
-        <!-- 
-        <section id="communication">
-            <h2>Communication</h2>
-            <div class="cards">
-                <?php
-                try {
-                    $query = 'SELECT * FROM Communication WHERE id_etudiant = :studentId';
-                    $stmt = $db->prepare($query);
-                    $stmt->bindParam(':studentId', $studentId, PDO::PARAM_INT);
-                    $stmt->execute();
-                    $communications = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                    if ($communications) {
-                        foreach ($communications as $communication) {
-                            echo '<p><strong>Communication ID:</strong> ' . htmlspecialchars($communication['Id_Communication'], ENT_QUOTES) . '</p>';
-                            echo '<p><strong>Type:</strong> ' . htmlspecialchars($communication['type'], ENT_QUOTES) . '</p>';
-                            echo '<p><strong>Message:</strong> ' . htmlspecialchars($communication['message'], ENT_QUOTES) . '</p>';
-                            echo '<p><strong>Date:</strong> ' . htmlspecialchars($communication['date'], ENT_QUOTES) . '</p>';
-                            echo '<hr>';
-                        }
-                    } else {
-                        echo '<p>Aucune communication trouvée.</p>';
-                    }
-                } catch (PDOException $e) {
-                    echo 'Erreur : ' . $e->getMessage();
-                }
-                ?>
-            </div>
-        </section>
-        -->
     </section>
 </body>
 </html>
