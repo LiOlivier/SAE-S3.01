@@ -29,8 +29,10 @@ foreach ($listeEtudiants as $etudiant) {
     $etudiantsActions[$etudiant['id_etudiant']] = [
         'nom' => $etudiant['nom'],
         'prenom' => $etudiant['prenom'],
-        'bordereau' => $actionModel->getUploadedDocumentByActionId(7), // Bordereau de stage
-        'convention' => $actionModel->getUploadedDocumentByActionId(9) // Convention de stage
+        'bordereau' => $actionModel->getUploadedDocumentByActionIdAndStudentId(7, $etudiant['id_etudiant']),
+        'convention' => $actionModel->getUploadedDocumentByActionIdAndStudentId(9, $etudiant['id_etudiant'])
     ];
 }
+
+
 ?>
