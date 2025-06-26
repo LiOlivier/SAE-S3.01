@@ -18,7 +18,7 @@
                 </div>
             <?php if ($action['Etat'] != 'Valider') { ?>
                 <form class="uploadForm" enctype="multipart/form-data">
-                <button class="modele" type="button" onclick="window.location.href='../app/component/DownloadModel.php?idAction=<?= $action["id_type_action"] ?>'">
+                <button class="modele" type="button" onclick='window.open("../app/component/pdf/<?= $action["lien_modele_doc"] ?>", "_blank")'>
                         Modèle <i class="fas fa-download load" style="color: #c0c0c0;"></i>
                     </button>
                     <input type="file" class="sortDocument" name="sortDocument" accept=".jpeg,.jpg,.png,.pdf" style="display:none;" /> <!-- ID remplacé par une classe -->
