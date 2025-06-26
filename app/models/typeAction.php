@@ -43,11 +43,11 @@ class TypeAction
         ]);
     }
 
-    public  function selectActionById($idAction)
+    public  function selectActionById($idTypeAction)
     {
-        $sql = "SELECT lien_modele_doc FROM $this->table WHERE id_action = :idAction";
+        $sql = "SELECT lien_modele_doc FROM $this->table WHERE id_type_action = :idTypeAction";
         $query = $this->db->prepare($sql);
-        $query->execute(['idAction' => $idAction]);
+        $query->execute(['idTypeAction' => $idTypeAction]);
         return $query->fetch(PDO::FETCH_ASSOC);
     }
 

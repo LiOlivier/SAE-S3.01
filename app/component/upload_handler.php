@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $extensionFichier = strtolower($elementsChemin['extension']);
         $extensionsAutorisees = ["jpeg", "jpg", "gif", "png", "pdf"];
         $idAction = $_POST["actionId"];
+        $idTypeAction = $_POST["typeActionId"];
         $libele = $_POST["libelle"];
         $nom = $_POST["nom"];
 
