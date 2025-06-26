@@ -22,7 +22,7 @@
                         Modèle <i class="fas fa-download load" style="color: #c0c0c0;"></i>
                     </button>
                     <input type="file" class="sortDocument" name="sortDocument" accept=".jpeg,.jpg,.png,.pdf" style="display:none;" /> <!-- ID remplacé par une classe -->
-                    <input type="hidden" name="actionId" value="<?= $action["id_type_action"] ?>">
+                    <input type="hidden" name="actionId" value="<?= $action["id_action"] ?>">
                     <input type="hidden" name="libelle" value="<?= $action["libelle"] ?>">
                     <input type="hidden" name="nom" value="<?= $_SESSION["user"]["nom"] ?>">
                     <?php if ($action['requiert_doc'] == 'oui') { ?> <!-- si l'instructeur a besoin d'un document-->
