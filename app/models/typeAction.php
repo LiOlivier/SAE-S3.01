@@ -35,7 +35,7 @@ class TypeAction
 
     public function updateDocument($idAction, $libelle)
     {
-        $sql = "UPDATE action SET lien_document = :libelle, Etat = 'En attente' WHERE id_action = :idAction";
+        $sql = "UPDATE action SET lien_document = CONCAT('../document/', :libelle), Etat = 'En attente' WHERE id_action = :idAction";
         $query = $this->db->prepare($sql);
         $query->execute([
             'libelle' => $libelle,
